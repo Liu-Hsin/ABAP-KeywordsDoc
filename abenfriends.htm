@@ -1,0 +1,164 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENFRIENDS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP Objects - Friends, Friendship Between Classes">
+<meta name="keywords" content="ABAP, friend, friendship, class">
+<title>
+ABAP Objects - Friends, Friendship Between Classes - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenfriends.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenfriends.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendeclarations.htm')" class="blue">Declarations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_declarations.htm')" class="blue">Declaration Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenclasses_and_interfaces.htm')" class="blue">Classes and Interfaces (ABAP Objects)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_objects_oview.htm')" class="blue">ABAP Objects - Overview</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP Objects - Friends, Friendship Between Classes
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+There is normally a strict separation between external
+(<span class="qtext">PUBLIC</span>) and internal (<span class="qtext">PROTECTED</span> and <span class="qtext">PRIVATE</span>)
+classes. A user can only access the public components of a class. This allows the internal implementation of a class to be changed without invalidating its users.
+</p>
+<p>
+In rare cases, however, classes must work so closely together that they require access to their mutually
+invisible components. The concept of friendship between classes was developed so that these components do not need to be made available to all users at the same time.
+</p>
+<A name="@@ITOC@@ABENFRIENDS_1"></A>
+<p><span class="h2">
+Friends
+</span></p>
+<p>
+A class can grant friendship to other classes and interfaces (and thus to all classes that implement
+the interface). To do this, the <span class="qtext">FRIENDS</span> additions of the <a href="javascript:call_link('abapclass_definition.htm')" class="blue">
+<span class="qtext">CLASS ... DEFINITION</span></a> statement must be used, which lists all of the classes
+and interfaces to which friendship should be granted. These friends receive access to all components of the class granting the friendship, regardless of their
+<a href="javascript:call_link('abenvisibility_section_glosry.htm')" class="grey" title="词汇表条目">visibility section</a> or the
+addition <a href="javascript:call_link('abapdata_options.htm')" class="blue"><span class="qtext">READ-ONLY</span></a>, and can
+always create instances of this class regardless of the addition <span class="qtext">CREATE</span> of the statement <a href="javascript:call_link('abapclass.htm')" class="blue"><span class="qtext">CLASS</span></a>.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Caution is advised when granting friendship to a global interface. Each class that implements the interface becomes a friend of the class granting the friendship. The use of a global interface should be limited by means like the
+<a href="javascript:call_link('abenpackage_concept_glosry.htm')" class="grey" title="词汇表条目">package concept</a> in order to restrict this group.
+</p>
+<A name="@@ITOC@@ABENFRIENDS_2"></A>
+<p><span class="h2">
+Friendship is unilateral
+</span></p>
+<p>
+Granting friendship is a unilateral principle. A class that grants friendship is not automatically a
+friend of its friends. If the class that grants friendship wants to access the non-public components of a friend, the latter must also explicitly grant friendship.
+</p>
+<A name="@@ITOC@@ABENFRIENDS_3"></A>
+<p><span class="h2">
+Inheritance, Interfaces, and Friendship
+</span></p>
+<p>
+Heirs of <a href="javascript:call_link('abenfriend_glosry.htm')" class="grey" title="词汇表条目">friends</a> and interfaces that
+contain a friend as a component interface also become friends. For this reason, extreme care should
+be taken when offering a friendship. The higher a friend is in the inheritance tree, the more subclasses
+receive access to all of the components of the class granting friendship. A class that grants friendship
+to the root class <span class="qtext">object</span> receives all classes from ABAP Objects as friends
+and therefore has no privacy whatsoever. Conversely, it is relatively safe to grant friendship to a final class since only this class is specified as a friend.
+</p>
+<p>
+Granting friendship is not inherited, in contrast to the
+<a href="javascript:call_link('abenfriend_glosry.htm')" class="grey" title="词汇表条目">friend</a> property. A friend of a superclass is, therefore, not automatically a friend of its subclasses.
+</p>
+<A name="@@ITOC@@ABENFRIENDS_4"></A>
+<p><span class="h2">
+The FRIENDS Additions
+</span></p>
+<p>
+The <span class="qtext">CLASS ... DEFINITION</span> statement has three different <span class="qtext">FRIENDS</span> additions: <br>
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abapclass_options.htm')" class="blue"><span class="qtext">... FRIENDS cif1 ... cifn</span></a> <br>
+ <br>This addition can be specified when defining any local class of a program. Friendship can be granted
+to all classes or interfaces of the same program and to the classes and interfaces of the class library.
+In particular, the local classes of a class pool can grant friendship to the global class of that class pool. <br></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abapclass_options.htm')" class="blue"><span class="qtext">... GLOBAL FRIENDS cif1 ... cifn</span></a> <br>
+ <br>This addition can only be used with global classes. It is generated when a class is defined using the
+<a href="javascript:call_link('abenclass_builder_glosry.htm')" class="grey" title="词汇表条目">Class Builder</a>. Friendship can be granted to all other global classes and interfaces. <br></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abapclass_local_friends.htm')" class="blue"><span class="qtext">... LOCAL FRIENDS cif1 ... cifn</span></a> <br>
+ <br>This addition is not specified when the class is declared, but instead defines its own statement.
+In a class pool, the global class can use this statement to grant friendship to the local classes and
+interfaces of its own class pool. While the <span class="qtext">CLASS</span> statement for the actual class declaration is valid for the entire class, the statement <br>
+ <br><span class="qtext">CLASS ... DEFINITION LOCAL FRIENDS cif1 ... cifn.</span> <br> <br>is specified directly in the include program for defining local classes and interfaces.</li>
+</ul>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey">Friendship</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

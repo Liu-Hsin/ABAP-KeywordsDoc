@@ -1,0 +1,213 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_PROJ_VIEW_ASSOCIATION -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - projection_view, ASSOCIATION">
+<title>
+CDS DDL - projection_view, ASSOCIATION - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_proj_view_association.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_proj_view_association.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_views.htm')" class="blue">ABAP CDS - Projection Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_as_projection.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY AS PROJECTION</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+CDS DDL - projection_view, ASSOCIATION
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400"> ... ASSOCIATION <i class=bn>[</i> [min..max] <i class=bn>]</i> TO target <i class=bn>[</i>AS _assoc<i class=bn>]</i> ON
+<a href="javascript:call_link('abencds_conditional_expression_v2.htm')" class="blue">cds_cond</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i> WITH DEFAULT FILTER <a href="javascript:call_link('abencds_conditional_expression_v2.htm')" class="blue">cds_cond</a> <i class=bn>]</i> ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+You can define new <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">associations</a> to external data sources in
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection views</a>. The same rules apply as for
+<a href="javascript:call_link('abencds_association_v2.htm')" class="blue">associations in CDS view entities</a>, but there are further restrictions. The main difference is that the newly defined associations can only be exposed, but they cannot be used in
+<a href="javascript:call_link('abenpath_expression_glosry.htm')" class="grey" title="词汇表条目">path expressions</a> to pick elements from the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>. The purpose of defining new associations is to model new relationships which can be interpreted by consumer frameworks, such as
+<a href="javascript:call_link('abensadl_glosry.htm')" class="grey" title="词汇表条目">SADL</a>. However, no additional
+<a href="javascript:call_link('abenjoin_glosry.htm')" class="grey" title="词汇表条目">joins</a> should be generated on CDS level by denormalizing fields from new association targets into the CDS projection view.
+</p>
+<p>
+The target of the locally defined association <span class="qtext400">target</span> can be a
+<a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a>, a
+<a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>, a
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a>, or a <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a>.
+</p>
+<p>
+For new, local associations in CDS projection views, the same rules apply as for
+<a href="javascript:call_link('abencds_association_v2.htm')" class="blue"> associations in CDS view entities</a>. On top of that, the following additional rules apply:
+</p>
+<ul class="disc">
+<li>Association type</li>
+</ul>
+<ul class="circlem2">
+<li>Only "simple" associations can be defined in a CDS projection view. Specialized associations of type
+<a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">composition</a> or <a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">to-parent</a> are not supported.</li>
+</ul>
+<ul class="disc">
+<li>Association alias</li>
+</ul>
+<ul class="circlem2">
+<li>An association <a href="javascript:call_link('abenalias_glosry.htm')" class="grey" title="词汇表条目">alias</a> is obligatory if the association is defined locally and if the same association is enhanced by an additional
+<a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter condition</a> when exposed in the element list. In all other cases, an alias is optional.</li>
+</ul>
+<ul class="disc">
+<li>Exposure in the element list</li>
+</ul>
+<ul class="circlem2">
+<li>The newly defined association can be exposed, but exposure is not obligatory, as it can also be done in
+<a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extensions</a> later on. In certain extensibility use cases, the new association must not be exposed.</li>
+</ul>
+<ul class="circlem2">
+<li>No fields must be selected from locally defined associations. <a href="javascript:call_link('abenpath_expression_glosry.htm')" class="grey" title="词汇表条目">Path expressions</a> are not supported.</li>
+</ul>
+<ul class="circlem2">
+<li>Redirection of a newly defined association with the keyword <a href="javascript:call_link('abencds_proj_view_expose_assoc.htm')" class="blue"><span class="qtext400">REDIRECTED TO</span></a> is not possible.</li>
+</ul>
+<ul class="circlem2">
+<li>It is possible to enhance a locally defined association with an additional filter when exposing it in the element list. Two kinds of attributes can be added in square brackets as filter:
+<a href="javascript:call_link('abencardinality_glosry.htm')" class="grey" title="词汇表条目">cardinality</a> and
+<a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter condition</a>. It is not possible to specify
+<a href="javascript:call_link('abenjoin_type_glosry.htm')" class="grey" title="词汇表条目">join type</a> characteristics in the filter.
+The details are described in topic <a href="javascript:call_link('abencds_path_expr_attr_v2.htm')" class="blue">CDS DDL - <span class="qtext400">path_expr</span>, attributes</a>. <br>
+Here's an example: <span class="qtext400">_toAssoc[1:field='1']</span></li>
+</ul>
+<ul class="disc">
+<li>Client dependency</li>
+</ul>
+<ul class="circlem2">
+<li>Client dependency must not be changed by introducing a new association. This also applies to
+<a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extensions</a> later on,
+as this may lead to incompatibilities. For example, a CDS projection view that is based on a client-independent
+CDS view must not contain an association to a client-dependent target view. Breaking this rule leads to a syntax error.</li>
+</ul>
+<ul class="disc">
+<li>Filter</li>
+</ul>
+<ul class="circlem2">
+<li>The addition <a href="javascript:call_link('abencds_association_v2.htm')" class="blue"><span class="qtext400">WITH DEFAULT
+FILTER</span></a> is supported after the definition of the <span class="qtext400">ON</span> condition of a local association.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">ON</span> condition <br>For the <span class="qtext400">ON</span> condition
+of a local association in a CDS projection view, the same rules apply as for the <span class="qtext400">ON</span>
+condition of a normal CDS association: see <a href="javascript:call_link('abencds_simple_association_v2.htm')" class="blue">
+CDS DDL - <span class="qtext400">ASSOCIATION</span></a>. On top of that, the following restrictions apply for local associations in CDS projection views:</li>
+</ul>
+<ul class="circlem2">
+<li>Fields from the <a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">element list</a> of the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> which are used in the <span class="qtext400">ON</span> condition of locally defined associations must be included in the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Expressions cannot be used in the <span class="qtext400">ON</span> condition. In particular, functions,
+calculated fields, arithmetic functions, parameters, and path expressions are explicitly not supported.
+These expressions are also not supported if they are implicitly used, by defining them in the projection list and referencing the corresponding alias in the <span class="qtext400">ON</span> condition.</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abenpath_expression_glosry.htm')" class="grey" title="词汇表条目">Path expressions</a> that generate a
+<a href="javascript:call_link('abenjoin_glosry.htm')" class="grey" title="词汇表条目">join</a> are not allowed in the <span class="qtext400">ON</span> condition.</li>
+</ul>
+<ul class="circlem2">
+<li>The prefixes <span class="qtext400">$projection</span>,
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> name, or
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> alias
+must be used for fields used in the <span class="qtext400">ON</span> condition of a locally defined association, if they refer to a field from the element list of the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目"> association source</a>. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS projection view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_PV_SO_ASSOC</span></span>
+is a projection of the CDS view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_CDS_SO</span></span>.
+It defines associations to external data sources, namely a custom entity and a CDS DDIC-based view.
+These associations are exposed in the element list, but no fields are picked from the associations via a path expression.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #CHECK <br>@EndUserText.label: 'Projection View SO' <br>
+define root view entity DEMO_SALES_PV_SO_ASSOC <br>&nbsp;&nbsp;as projection on DEMO_SALES_CDS_SO <br>&nbsp;&nbsp;association [0..1] to demo_sales_so_custom_analytics&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as _SalesOrderCustomData <br>
+&nbsp;&nbsp;&nbsp;&nbsp;on _SalesOrderCustomData.SalesOrderKey = $projection.SalesOrderKey <br>&nbsp;&nbsp;association [0..1] to DEMO_SALES_CDS_VIEW_ANALYTICS&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as _SalesOrderAnalyticData <br>
+&nbsp;&nbsp;&nbsp;&nbsp;on _SalesOrderAnalyticData.SalesOrderKey =&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $projection.SalesOrderKey <br>
+&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;key so_key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as SalesOrderKey, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as SalesOrderExternalId, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifecycle_status&nbsp;&nbsp; as LifecycleStatus, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buyer_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as BuyerId, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Buyer.family_name as BuyerDescription, <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created_by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as CreatedBy, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_changed_by&nbsp;&nbsp;&nbsp;&nbsp;as LastChangedBy, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_SalesOrderAnalyticData, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_SalesOrderCustomData <br>&nbsp;&nbsp;}</span> <br><br>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

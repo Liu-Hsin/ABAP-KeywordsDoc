@@ -1,0 +1,256 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_ASSOC_JOIN_V1 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - DDIC-based View, Associations and Joins">
+<title>
+CDS DDL - DDIC-based View, Associations and Joins - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_assoc_join_v1.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_assoc_join_v1.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_ddic_entity.htm')" class="blue">ABAP CDS - DDIC-Based Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v1_views.htm')" class="blue">ABAP CDS - DDIC-Based Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue">CDS DDL - DEFINE VIEW ddic_based</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_association_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT, Associations</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+CDS DDL - DDIC-based View, Associations and Joins
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+This topic describes the different use cases of CDS associations. It explains in which use case a join is generated on the database and which
+<a href="javascript:call_link('abenjoin_type_glosry.htm')" class="grey" title="词汇表条目"> join type</a> is generated each time.
+Examples and screenshots of the SQL statement generated on the database are provided to further illustrate the transformation into joins.
+</p>
+<p>
+When a CDS association is instantiated as join on the database, then the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> represents the left side and the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> represents
+the right side of the join. The <span class="qtext400">ON</span> condition of the association is added to the <span class="qtext400">ON</span> condition of the join.
+</p>
+<p>
+There are the following basic use cases for CDS associations:
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENCDS_ASSOC_JOIN_V1_1" class="blue">Using a path expression in the FROM clause</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENCDS_ASSOC_JOIN_V1_2" class="blue">Exposing a CDS association</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENCDS_ASSOC_JOIN_V1_3" class="blue">Adding a field from the association target to the element list</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENCDS_ASSOC_JOIN_V1_4" class="blue">Using a path expression in the WHERE clause</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENCDS_ASSOC_JOIN_V1_5" class="blue">Using an exposed association in an external view</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENCDS_ASSOC_JOIN_V1_6" class="blue">Using an exposed association in ABAP SQL</A> <br><br></li>
+</ul>
+<A name="@@ITOC@@ABENCDS_ASSOC_JOIN_V1_1"></A>
+<p><span class="h2">
+Using a path expression in the <span class="qtext400">FROM</span> clause
+</span></p>
+<p>
+<span class="bold">Use case</span>: the data source of a CDS view entity after <span class="qtext400">FROM</span> is specified as path expression.
+</p>
+<p>
+<span class="bold">Example</span>:
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity demo_cds_assoc_from <br>
+&nbsp;&nbsp;as select from demo_cds_assoc_spfli._sflight <br>{&nbsp;&nbsp;<br>&nbsp;&nbsp;key carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connid&nbsp;&nbsp; <br>}</span>
+</dd></dl>
+<p>
+<span class="bold">SQL statement generated on the database</span>:
+</p>
+<span class="border1"><img src="abdoc_assoc_6.png" width="00590" height="00174" alt="Figure"></span>
+<p>
+The SQL statement generated on the database shows that the path expression is transformed into an <a href="javascript:call_link('abeninner_join_glosry.htm')" class="grey" title="词汇表条目">inner join</a> on the database. <br><br>
+</p>
+<A name="@@ITOC@@ABENCDS_ASSOC_JOIN_V1_2"></A>
+<p><span class="h2">
+Exposing a CDS association
+</span></p>
+<p>
+<span class="bold">Use case</span>: an association is defined and exposed in the element list of a CDS
+view entity. In this way, it can be used in other CDS entities. However, the association is not part of the output and no data is selected from the association target.
+</p>
+<p>
+<span class="bold">Example</span>:
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity demo_cds_assoc_exposition <br>
+&nbsp;&nbsp;as select from scarr <br>&nbsp;&nbsp;association [1..*] to demo_cds_assoc_spfli as _spfli&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on scarr.carrid = _spfli.carrid <br>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli, <br>&nbsp;&nbsp;key carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrname <br>}</span>
+</dd></dl>
+<p>
+<span class="bold">SQL statement generated on the database</span>:
+</p>
+<span class="border1"><img src="abdoc_assoc_1.png" width="00452" height="00119" alt="Figure"></span>
+<p>
+The SQL statement generated on the database shows that no join is generated and the association is not mentioned in the statement that is passed to the database. <br><br>
+</p>
+<A name="@@ITOC@@ABENCDS_ASSOC_JOIN_V1_3"></A>
+<p><span class="h2">
+Adding a field from the association target to the element list
+</span></p>
+<p>
+<span class="bold">Use case</span>: an association is defined and an element from the association target
+is included in the element list of the same CDS view entity. In this example, the association is used, but not exposed, and therefore it cannot be used in path expressions of other CDS entities.
+</p>
+<p>
+<span class="bold">Example</span>:
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity demo_cds_assoc_element <br>
+&nbsp;&nbsp;as select from scarr <br>&nbsp;&nbsp;association [1..*] to demo_cds_assoc_spfli as _spfli&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on scarr.carrid = _spfli.carrid <br>{ <br>&nbsp;&nbsp;key carrid,&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli.connid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrname <br>}</span>
+</dd></dl>
+<p>
+<span class="bold">SQL statement generated on the database</span>:
+</p>
+<span class="border1"><img src="abdoc_assoc_2.png" width="00489" height="00173" alt="Figure"></span>
+<p>
+The SQL statement generated on the database shows that the path expression is transformed into a <a href="javascript:call_link('abenleft_outer_join_glosry.htm')" class="grey" title="词汇表条目">left outer join</a> on the database. <br><br>
+</p>
+<A name="@@ITOC@@ABENCDS_ASSOC_JOIN_V1_4"></A>
+<p><span class="h2">
+Using a path expression in the <span class="qtext400">WHERE</span> clause
+</span></p>
+<p>
+<span class="bold">Use case</span>: an association is defined and used in the <span class="qtext400">WHERE</span>
+condition of the same CDS view entity. In this example, the association is used, but not exposed, and therefore it cannot be used in path expressions of other CDS entities.
+</p>
+<p>
+<span class="bold">Example</span>:
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity demo_cds_assoc_where <br>
+&nbsp;&nbsp;as select from scarr <br>&nbsp;&nbsp;association to demo_cds_assoc_spfli as _spfli&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on scarr.carrid = _spfli.carrid <br>{ <br>&nbsp;&nbsp;key carrid,&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrname <br>} where _spfli.connid = '....'</span>
+</dd></dl>
+<p>
+<span class="bold">SQL statement generated on the database</span>:
+</p>
+<span class="border1"><img src="abdoc_assoc_3.png" width="00567" height="00196" alt="Figure"></span>
+<p>
+The SQL statement generated on the database shows that the path expression is transformed into a
+<a href="javascript:call_link('abenleft_outer_join_glosry.htm')" class="grey" title="词汇表条目">left outer join</a> with the cardinality many to one. <br><br>
+</p>
+<A name="@@ITOC@@ABENCDS_ASSOC_JOIN_V1_5"></A>
+<p><span class="h2">
+Using an exposed association in an external view
+</span></p>
+<p>
+<span class="bold">Use case</span>: A CDS view entity uses an association that was defined and published
+in another CDS entity. The association is used in a path expression to include a field from the association target in the element list of the CDS view entity.
+</p>
+<p>
+<span class="bold">Example</span>:
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity demo_cds_assoc_external_usage <br>
+&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;demo_cds_assoc_exposition&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrname,&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli.connid <br>&nbsp;&nbsp;&nbsp;&nbsp;} <br> </span>
+</dd></dl>
+<p>
+<span class="bold">SQL statement generated on the database</span>:
+</p>
+<span class="border1"><img src="abdoc_assoc_4.png" width="00772" height="00166" alt="Figure"></span>
+<p>
+The SQL statement generated on the database shows that the path expression is transformed into a
+<a href="javascript:call_link('abenleft_outer_join_glosry.htm')" class="grey" title="词汇表条目">left outer join</a> on the database.
+Note that this happens in the view that uses the association, and not in the view that defines the association. <br><br>
+</p>
+<A name="@@ITOC@@ABENCDS_ASSOC_JOIN_V1_6"></A>
+<p><span class="h2">
+Using an exposed association in ABAP SQL
+</span></p>
+<p>
+<span class="bold">Use case</span>: The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_SELECT_ASSOC</span></span>
+uses an association that was defined and published in a CDS view entity in a path expression in ABAP SQL.
+</p>
+<p>
+<span class="bold">Example</span>:
+</p>
+<dl><dd>
+<span class="qtext">REPORT demo_cds_select_assoc. <br> <br>CLASS demo DEFINITION <br>&nbsp;&nbsp;PUBLIC SECTION. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;CLASS-METHODS main. <br>ENDCLASS. <br> <br>CLASS demo IMPLEMENTATION. <br>&nbsp;&nbsp;METHOD main. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; carrname, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /_spfli[ (*) ]-connid <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_cds_assoc_exposition <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result). <br>&nbsp;&nbsp;ENDMETHOD. <br>ENDCLASS. <br> <br>START-OF-SELECTION. <br>&nbsp;&nbsp;demo=>main( ). <br></span>
+</dd></dl>
+<p>
+<span class="bold">SQL statement generated on the database</span>:
+</p>
+<span class="border1"><img src="abdoc_assoc_5.png" width="00539" height="00179" alt="Figure"></span>
+<p>
+The path expression is transformed into a <a href="javascript:call_link('abenleft_outer_join_glosry.htm')" class="grey" title="词汇表条目">left outer join</a> on the database.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

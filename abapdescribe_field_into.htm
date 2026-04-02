@@ -1,0 +1,273 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPDESCRIBE_FIELD_INTO -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="DESCRIBE FIELD INTO">
+<title>
+DESCRIBE FIELD INTO - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapdescribe_field_into.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapdescribe_field_into.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_working.htm')" class="blue">Processing Internal Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendescribe_field.htm')" class="blue">Attributes of Data Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapdescribe.htm')" class="blue">DESCRIBE</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendescribe_internal.htm')" class="blue">DESCRIBE, Internal Variant</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@DESCRIBE FIELD INTO@@!ABAP_STATEMENT_INT!@@"></A>
+<p><span class="h1">
+DESCRIBE FIELD INTO <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<span class="bold">This statement is for internal use only. <br>It must not be used in application programs.</span> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">DESCRIBE FIELD dobj INTO td.</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+All attributes of the field <span class="qtext">f</span>, its components, subcomponents, and so on,
+are in the output of the field <span class="qtext">td</span> (type description). <span class="qtext">td</span> must have the type <span class="qtext">sydes_desc</span>, which is defined in the
+<a href="javascript:call_link('abentype_pool_glosry.htm')" class="grey" title="词汇表条目">type pool</a> <span class="lnkgrey"><span class="qtext400">SYDES</span></span>.
+</p>
+<p>
+The structure <span class="qtext">sydes_desc</span> has two table-like components <span class="qtext">types</span> and <span class="qtext">names</span>: <br>
+</p>
+<ul class="disc">
+<li>The tree structure of the type belonging to <span class="qtext">f</span> is mapped in <span class="qtext">types</span>.
+The components of a node are stored closely in the table <span class="qtext">types</span>. The beginning
+and end of the line area that represents the components are stored in <span class="qtext">types-from</span>
+and <span class="qtext">types-tp</span>. The reference to the superior node can be found in <span class="qtext">types-back</span>.
+If no superior or subordinate node exists, then this is marked by the value 0 (for the relevance of further components, see the following sections). <br></li>
+</ul>
+<ul class="disc">
+<li>The names of components, types, and so on. are not stored directly in <span class="qtext">types</span>.
+Instead, the components <span class="qtext">types-idx_...</span> hold an index in the name table <span class="qtext">names</span>. The value 0 indicates that there is no reference to the name table. <br>
+ <br><span class="qtext">names</span> contains the names in the component <span class="qtext">names-name</span>,
+possibly split into multiple parts. If a name continues in the following line, this is indicated by an asterisk ('*') in the component <span class="qtext">names-continue</span>. <br></li>
+</ul>
+<p>
+The type description table (<span class="qtext">types</span>) not only stores information about the
+tree structure but also further information about the type of <span class="qtext">f</span> or its components.
+In particular, this includes all information that can be determined using the usual additions of <span class="qtext">DESCRIBE FIELD</span>. In detail, <span class="qtext">types</span> contains the following columns: <br>
+</p>
+<p>
+<span class="qtext">idx_name</span>
+</p>
+<dl><dd>
+Component name <br>
+</dd></dl>
+<p>
+<span class="qtext">idx_user_type</span>
+</p>
+<dl><dd>
+Name of a user-defined type, that is, a type defined by a <a href="javascript:call_link('abaptypes.htm')" class="blue"><span class="qtext">
+TYPES</span></a> statement. Derived types (... <span class="qtext">TYPE A-B</span>) and structures from the ABAP Dictionary are not considered to be user-defined types. <br>
+</dd></dl>
+<p>
+<span class="qtext">context</span>
+</p>
+<dl><dd>
+For user-defined types only: The context in which the type is defined. Possible values are defined in
+the constant <span class="qtext">sydes_context</span> of the type pool <span class="lnkgrey"><span class="qtext400">SYDES</span></span>.
+These constants should only be used to carry out a comparison. The following type contexts are distinguished: <br>
+ <br><span class="qtext">sydes_context-progran</span>: Program-global type <br><span class="qtext">sydes_context-form&nbsp;&nbsp; </span>: <span class="qtext">form</span>-local type <br>
+<span class="qtext">sydes_context-function</span>: <span class="qtext">function</span>-local type <br><span class="qtext">sydes_context-method </span>: <span class="qtext">method</span>-local type <br>
+</dd></dl>
+<p>
+<span class="qtext">idx_context_name</span>
+</p>
+<dl><dd>
+For user-defined types only: <br>In a local context: The name of the <span class="qtext">FORM</span>
+or <span class="qtext">FUNCTION</span> in which the type was defined. The name of the associated program is then the first entry in the name table. <br>
+In a global context: The name of the program in which the type was defined. <br>
+</dd></dl>
+<p>
+<span class="qtext">idx_edit_mask</span>
+</p>
+<dl><dd>
+Conversion routine from the ABAP Dictionary, like the addition <span class="qtext">EDIT MASK</span> in a simple <span class="qtext">DESCRIBE</span>. <br>
+</dd></dl>
+<p>
+<span class="qtext">idx_help_id</span>
+</p>
+<dl><dd>
+Help ID in references to fields from the ABAP Dictionary <br>
+</dd></dl>
+<p>
+<span class="qtext">length</span>
+</p>
+<dl><dd>
+Internal length, like the addition <span class="qtext">LENGTH</span> in a simple <span class="qtext">DESCRIBE</span> <br>
+</dd></dl>
+<p>
+<span class="qtext">output_length</span>
+</p>
+<dl><dd>
+Output length, like the addition <span class="qtext">OUTPUT-LENGTH</span> in a simple <span class="qtext">DESCRIBE</span> <br>
+</dd></dl>
+<p>
+<span class="qtext">decimals</span>
+</p>
+<dl><dd>
+Number of <a href="javascript:call_link('abenfract_digit_glosry.htm')" class="grey" title="词汇表条目">decimal digits</a>, like the addition <span class="qtext">DECIMALS</span> in a simple <span class="qtext">DESCRIBE</span> <br>
+</dd></dl>
+<p>
+<span class="qtext">type</span>
+</p>
+<dl><dd>
+ABAP type, like the addition <span class="qtext">TYPE</span> in a simple <span class="qtext">DESCRIBE</span>. If <span class="qtext">DESCRIBE INTO</span> is applied to a nested structure that contains a
+<a href="javascript:call_link('abenboxed_component_glosry.htm')" class="grey" title="词汇表条目">boxed component</a>, the type is returned with the internal ID <span class="qtext400">j</span>
+(<a href="javascript:call_link('abenstatic_box_glosry.htm')" class="grey" title="词汇表条目">static box</a>).
+</dd></dl>
+<p>
+<span class="qtext">table_kind</span>
+</p>
+<dl><dd>
+The <a href="javascript:call_link('abaptypes_tabkind.htm')" class="blue">table category</a> is stored here for the components
+that represent an internal table. The same values are returned as for the variant <a href="javascript:call_link('abapdescribe_table.htm')" class="blue"><span class="qtext">DESCRIBE TABLE itab KIND
+k</span></a>. For components that do not represent a table, the return value is set to <span class="qtext">sydes_kind-undefined</span>
+(see type pool <span class="lnkgrey"><span class="qtext400">SYDES</span></span>). <br><br>
+</dd></dl>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following definition of the complex data type <span class="qtext">employee_struc</span> is to be assumed <br><br>
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES: <br> <br>&nbsp;&nbsp;BEGIN OF name_struc, <br>&nbsp;&nbsp;&nbsp;&nbsp;first TYPE c LENGTH 20, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;last&nbsp;&nbsp;TYPE c LENGTH 20, <br>&nbsp;&nbsp;END OF name_struc, <br> <br>&nbsp;&nbsp;BEGIN OF absence_time_struc, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;day&nbsp;&nbsp;TYPE d, <br>&nbsp;&nbsp;&nbsp;&nbsp;from TYPE t, <br>&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp; TYPE t, <br>
+&nbsp;&nbsp;END OF absence_time_struc, <br> <br>&nbsp;&nbsp;phone_number TYPE n LENGTH 20, <br> <br>&nbsp;&nbsp;BEGIN OF employee_struc, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LIKE sbook-customid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TYPE name_struc, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;BEGIN OF address, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;street&nbsp;&nbsp;TYPE c LENGTH 30, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zipcode TYPE n LENGTH 4, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;place&nbsp;&nbsp; TYPE c LENGTH 30, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;END OF address, <br>&nbsp;&nbsp;&nbsp;&nbsp;salary_per_month TYPE p LENGTH 10 DECIMALS 3, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;absent&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TYPE STANDARD TABLE OF absence_time_struc <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH NON-UNIQUE DEFAULT KEY, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE STANDARD TABLE OF phone_number <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH NON-UNIQUE DEFAULT KEY, <br>&nbsp;&nbsp;END OF employee_struc. <br><br>
+</span>
+</p>
+<p>
+The structure of the type can be determined by collecting the type pool <span class="qtext400">SYDES</span> as follows: <br><br>
+</p>
+<dl><dd>
+<span class="qtext">DATA: employee TYPE employee_struc, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;td&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TYPE sydes_desc. <br> <br>DESCRIBE FIELD employee INTO td.</span> <br><br>
+</dd></dl>
+<p>
+The following table shows some selected columns of the type description table <span class="qtext">td-types</span>.
+For a better overview, the names of the columns <span class="qtext">idx_name</span>, <span class="qtext">idx_user_type</span>, and <span class="qtext">idx_edit_mask</span> have been shortened: <br><br>
+</p>
+<dl><dd>
+<span class="qtext400">&nbsp;&nbsp; |FROM| TO |BACK|NAME|UTYP|EMSK|TYPE <br>---|----|----|----|----|----|----|---- <br>
+ 01 |&nbsp;&nbsp;2 |&nbsp;&nbsp;7 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;2 |&nbsp;&nbsp;0 |&nbsp;&nbsp;v <br>
+ 02 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;1 |&nbsp;&nbsp;6 |&nbsp;&nbsp;0 |&nbsp;&nbsp;4 |&nbsp;&nbsp;N <br>
+ 03 |&nbsp;&nbsp;8 |&nbsp;&nbsp;9 |&nbsp;&nbsp;1 |&nbsp;&nbsp;7 |&nbsp;&nbsp;5 |&nbsp;&nbsp;0 |&nbsp;&nbsp;u <br>
+ 04 | 10 | 12 |&nbsp;&nbsp;1 |&nbsp;&nbsp;8 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;u <br> 05 |&nbsp;&nbsp;0 |
+&nbsp;0 |&nbsp;&nbsp;1 |&nbsp;&nbsp;9 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;P <br> 06 | 13 | 13 |&nbsp;&nbsp;1 | 11 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;h <br>
+ 07 | 17 | 17 |&nbsp;&nbsp;1 | 12 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;h <br> 08 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;3 | 13 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;C <br>
+ 09 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;3 | 14 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;C <br> 10 |
+&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;4 | 15 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;C <br> 11 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;4 | 16 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;N <br>
+ 12 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;4 | 17 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;C <br> 13 | 14 | 16 |&nbsp;&nbsp;6 |&nbsp;&nbsp;0 | 18 |&nbsp;&nbsp;0 |&nbsp;&nbsp;u <br>
+ 14 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 | 13 | 20 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;D <br> 15 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 | 13 | 21 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;T <br>
+ 16 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 | 13 | 22 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;T <br> 17 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;7 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;0 |&nbsp;&nbsp;N</span> <br><br>
+</dd></dl>
+<p>
+It should be noted that the entries in lines 6 and 7 represent internal tables (ABAP type h). An internal table always has an entry for the associated line type (lines 13 and 17). <br>
+ <br>The indexes in the lines 5 to 7 refer to entries in the name table <span class="qtext">td-names</span>. Taking, for example, line 3, the associated component name in <span class="qtext">td-names</span> is found from line 7
+(<span class="qtext">name</span>) onward and the associated user type from line 5 (<span class="qtext">name_struc</span>) onward. <br>
+ <br>The name table <span class="qtext">td-names</span> contains the following entries. It should be
+noted that the names <span class="qtext400">SALARY_PER_MONTH</span> and <span class="qtext400">ABSENCE_TIME_STRUC</span> are stored in two parts: <br><br>
+</p>
+<dl><dd>
+<span class="qtext400">&nbsp;&nbsp; |CONTINUE|NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |CONTINUE|NAME</span> <br>
+<span class="qtext400">---|--------|--------------&nbsp;&nbsp;&nbsp;&nbsp; ----|--------|--------------</span> <br>
+<span class="qtext400"> 01 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|DESCTEST&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|PHONE</span> <br>
+<span class="qtext400"> 02 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|EMPLOYEE_STRUC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|FIRST</span> <br>
+<span class="qtext400"> 03 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|SBOOK-CUSTOMID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|LAST</span> <br>
+<span class="qtext400"> 04 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|==ALPHA&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|STREET</span> <br>
+<span class="qtext400"> 05 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|NAME_STRUC&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ZIPCODE</span> <br>
+<span class="qtext400"> 06 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ID&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|PLACE</span> <br>
+<span class="qtext400"> 07 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|NAME&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18 |&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;|ABSENCE_TIME_ST</span> <br>
+<span class="qtext400"> 08 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ADDRESS&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|RUC</span> <br>
+<span class="qtext400"> 09 |&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp;&nbsp;|SALARY_PER_MONT&nbsp;&nbsp;&nbsp;&nbsp; 20 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|DAY</span> <br>
+<span class="qtext400"> 10 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|H&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 21 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|FROM</span> <br>
+<span class="qtext400"> 11 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ABSENT&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|TO</span>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

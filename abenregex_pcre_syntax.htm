@@ -1,0 +1,133 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENREGEX_PCRE_SYNTAX -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="regex - PCRE Syntax">
+<title>
+regex - PCRE Syntax - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenregex_pcre_syntax.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenregex_pcre_syntax.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_working.htm')" class="blue">Processing Internal Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_string.htm')" class="blue">Character String and Byte String Processing</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenstring_processing_expr_func.htm')" class="blue">Expressions and Functions for String Processing</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenregular_expressions.htm')" class="blue">Regular Expressions (regex)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenregex_syntax.htm')" class="blue">regex - Syntax</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+regex - PCRE Syntax
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Regular expressions with PCRE syntax can be specified after an addition <span class="qtext">PCRE</span> of
+<a href="javascript:call_link('abenregex_mtch.htm')" class="blue">statements</a> or for the argument <span class="qtext">pcre</span> of
+<a href="javascript:call_link('abenregex_mtch.htm')" class="blue">built-in functions</a>. Respective objects of the
+<a href="javascript:call_link('abenregex_system_classes.htm')" class="blue">system classes</a> <span class="lnkgrey"><span class="qtext400">CL_ABAP_REGEX</span></span>
+and <span class="lnkgrey"><span class="qtext400">CL_ABAP_MATCHER</span></span> can be created with the factory method <span class="qtext400">CREATE_PCRE</span>.
+</p>
+<p>
+Currently, there is no detailed description of the PCRE syntax  for regular expressions in the ABAP keyword documentation.
+</p>
+<ul class="disc">
+<li>For the complete documentation, please refer to:</li>
+</ul>
+<dl><dd>
+<a href="https://perldoc.perl.org/perlre.html" target="_blank" class="blue">Perl documentation <span class="bold">perlre</span></a>
+</dd></dl>
+<ul class="disc">
+<li>For a short syntax overview, please refer to:</li>
+</ul>
+<dl><dd>
+<a href="https://www.pcre.org/current/doc/html/pcre2syntax.html" target="_blank" class="blue">PCRE2 documentation <span class="bold">pcre2syntax man page</span></a>
+</dd></dl>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+The PCRE syntax is more powerful than the POSIX syntax. Furthermore, PCRE regular expressions generally perform better than the POSIX regular expressions supported by ABAP.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+PCRE regular expressions support non-greedy behavior by placing a question mark
+(<span class="qtext400">?</span>) behind wildcard characters as for example the asterisk
+(<span class="qtext400">*</span>). In the following example, the asterisk in the first regular expression
+is greedy and finds everything between the first <span class="qtext400">&lt;i&gt;</span> and the last
+<span class="qtext400">&lt;/i></span>. In the second regular expression, the asterisk is marked as non-greedy and only the substring between the first <span class="qtext400">&lt;i&gt;</span> and the following
+ <span class="qtext400">&lt;/i></span> is found. Non-greedy behavior is not supported in
+<a href="javascript:call_link('abenregex_posix_syntax.htm')" class="blue">POSIX syntax</a> and other workarounds as for example <span class="qtext400">[^&lt;]*</span> have to be used.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(text)&nbsp;&nbsp;= `&lt;i>abc&lt;/i>def&lt;i>ghi&lt;/i>`. <br> <br>FIND PCRE `&lt;i>(.*)&lt;/i>` IN text SUBMATCHES DATA(subm1). <br>
+IF sy-subrc = 0. <br>&nbsp;&nbsp;cl_demo_output=>write( |Greedy: { subm1 }| ). <br>ENDIF. <br> <br>FIND PCRE `&lt;i>(.*?)&lt;/i>` IN text SUBMATCHES DATA(subm2). <br>
+IF sy-subrc = 0. <br>&nbsp;&nbsp;cl_demo_output=>write( |Non-greedy: { subm2 }| ). <br>ENDIF. <br> <br>cl_demo_output=>display( ).
+</span>
+</p>
+<p><span class="h4">
+Copyright Note
+</span></p>
+<p>
+This software uses the <a href="https://www.pcre.org/" target="_blank" class="blue">PCRE2</a> library under the <a href="https://github.com/rurban/pcre/blob/master/LICENCE" target="_blank" class="blue">PCRE2 LICENCE</a>.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

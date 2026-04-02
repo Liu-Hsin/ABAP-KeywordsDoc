@@ -1,0 +1,147 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENREGEX_EXCEPTIONS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="regex - Exceptions">
+<meta name="keywords" content="ABAP, exception, regular expression">
+<title>
+regex - Exceptions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenregex_exceptions.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenregex_exceptions.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_working.htm')" class="blue">Processing Internal Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_string.htm')" class="blue">Character String and Byte String Processing</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenstring_processing_expr_func.htm')" class="blue">Expressions and Functions for String Processing</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenregular_expressions.htm')" class="blue">Regular Expressions (regex)</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+regex - Exceptions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Invalid regular expressions that can be recognized statically lead to syntax errors. Errors that are
+recognized during processing lead to catchable exceptions of classes <span class="qtext400">CX_SY_REGEX_...</span>
+or <span class="qtext400">CX_SY_..._REGEX...</span>. Such exceptions can occur due to invalid syntax or invalid operations.
+</p>
+<p>
+A special exception can occur for a regular expression that has correct syntax but is too complex. Then,
+it cannot be executed by the libraries that are integrated in the ABAP Kernel and an exception of the class <span class="lnkgrey"><span class="qtext400">CX_SY_REGEX_TOO_COMPLEX</span></span> is raised.
+</p>
+<p>
+A regular expression is too complex if the number of transitions exceeds a certain limit. This is usually
+the case for regular expressions that have been programmed disadvantageously or are inadequate because they would lead to extensive backtracking for certain texts.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The occurrence of the <span class="qtext400">CX_SY_REGEX_TOO_COMPLEX</span> exception depends on
+both the regular expression and the text to be matched. A regular expression that works for one text may raise an exception for another text.</li>
+</ul>
+<ul class="disc">
+<li>As a rule, the <a href="http://www.boost.org/doc/libs/1_31_0/libs/regex/doc/index.html" target="_blank" class="blue">Boost.Regex Library</a> is more vulnerable to this error situation than the
+<a href="https://www.pcre.org/" target="_blank" class="blue">PCRE2 library</a>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following code section demonstrates that a rather simple regular expression <span class="qtext400">.*X.*</span> leads to an exception in the POSIX library if the text is several hundred characters or longer. This is a result of the
+<a href="javascript:call_link('abenregex_posix_search.htm')" class="blue">leftmost-longest rule</a> and the greedy behavior of the
+<a href="javascript:call_link('abenregex_posix_syntax_operators.htm')" class="blue">chaining operator</a> <span class="qtext400">*</span> where all occurrences of substrings that match the first part of the regular expression
+(<span class="qtext400">.*</span>) are saved internally until the last <span class="qtext400">X</span>
+has been found. In POSIX regular expressions, a chaining like <span class="qtext400">.*</span>, which
+matches any number of substrings, should therefore be avoided at the beginning of a regular expression.
+In the PCRE library, the same combination of regular expression and text does not lead to an exception.
+Nevertheless, the last part of the example shows that unfavorable combinations can also lead to an exception in the PCRE library.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(text) = repeat( val = `a` occ = `500` ). <br> <br>TRY. <br>&nbsp;&nbsp;&nbsp;&nbsp;FIND REGEX `.*X.*` IN text MATCH OFFSET DATA(moff). <br>
+&nbsp;&nbsp;&nbsp;&nbsp;IF sy-subrc = 0. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |POSIX, offset: { moff }| ). <br>
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |POSIX, nothing found| ). <br>
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF. <br>&nbsp;&nbsp;CATCH cx_sy_regex_too_complex INTO DATA(exc). <br>&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |POSIX: { exc->get_text( ) }| ). <br>
+ENDTRY. <br> <br>TRY. <br>&nbsp;&nbsp;&nbsp;&nbsp;FIND PCRE `.*X.*` IN text MATCH OFFSET moff. <br>&nbsp;&nbsp;&nbsp;&nbsp;IF sy-subrc = 0. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |PCRE, offset: { moff }| ). <br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |PCRE, nothing found| ). <br>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF. <br>
+&nbsp;&nbsp;CATCH cx_sy_regex_too_complex INTO exc. <br>&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |PCRE: { exc->get_text( ) }| ). <br>
+ENDTRY. <br> <br>TRY. <br>&nbsp;&nbsp;&nbsp;&nbsp;FIND PCRE <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(*LIMIT_DEPTH=1)(*LIMIT_MATCH=1)(*NO_START_OPT)(a+a+a+a+a+)+b` <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IN text MATCH OFFSET moff. <br>&nbsp;&nbsp;&nbsp;&nbsp;IF sy-subrc = 0. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |PCRE, offset: { moff }| ). <br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |PCRE, nothing found| ). <br>&nbsp;&nbsp;&nbsp;&nbsp;ENDIF. <br>
+&nbsp;&nbsp;CATCH cx_sy_regex_too_complex INTO exc. <br>&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( |PCRE: { exc->get_text( ) }| ). <br>ENDTRY. <br> <br> <br>cl_demo_output=>display( ).
+</span>
+</p>
+<p>
+In the case of <span class="qtext400">.*X.*</span>, a search is successful for every character string
+that contains at least one <span class="qtext400">X</span> and any number of other characters. For such a search, the use of a regular expression is not necessary at all and can be replaced by
+</p>
+<dl><dd>
+<span class="qtext">FIND SUBSTRING 'X' IN text.</span> <br><span class="qtext">IF sy-subrc = 0.</span> <br><span class="qtext">&nbsp;&nbsp;...</span> <br><span class="qtext">ENDIF.</span>
+</dd></dl>
+<p>
+or by
+</p>
+<dl><dd>
+<span class="qtext">IF text CS 'X'.</span> <br><span class="qtext">&nbsp;&nbsp;...</span> <br><span class="qtext">ENDIF.</span>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

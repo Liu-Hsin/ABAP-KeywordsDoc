@@ -1,0 +1,175 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_F1_DEFINE_GENERIC_ASPECT -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DCL - DEFINE ASPECT">
+<title>
+CDS DCL - DEFINE ASPECT - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_f1_define_generic_aspect.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_f1_define_generic_aspect.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_access_control.htm')" class="blue">ABAP CDS - Access Control</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_dcl_syntax.htm')" class="blue">ABAP CDS - DCL Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_define_accesspolicy.htm')" class="blue">CDS DCL - DEFINE ACCESSPOLICY</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@DEFINE ASPECT AS SELECT FROM@@!ABAP_CDS_DCL_STATEMENT!@@"></A>
+<p><span class="h1">
+CDS DCL - DEFINE ASPECT
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400"> <br><i class=bn>[</i><a href="javascript:call_link('abencds_f1_dcl_as_annotations.htm')" class="blue">aspect_annot</a><i class=bn>]</i> <br>
+<i class=bn>[</i>DEFINE<i class=bn>]</i> ASPECT aspect AS SELECT FROM aspect_entity <br>&nbsp;&nbsp;WITH USER ELEMENT user_element <br>
+{ <br>&nbsp;&nbsp;&nbsp;&nbsp;output1 <i class=bn>[</i>BYPASS WHEN aspect_bypass_condition<i class=bn>]</i> <br>&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>, ... <i class=bn>]</i> <br>}</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a self-defined aspect <span class="qtext400">aspect</span> as part of a
+<a href="javascript:call_link('abencds_access_policy_glosry.htm')" class="grey" title="词汇表条目">CDS access policy</a> defined
+using <a href="javascript:call_link('abencds_f1_define_accesspolicy.htm')" class="blue"><span class="qtext400">DEFINE ACCESSPOLICY</span></a>. The name of the self-defined aspect must be the same as the name of the CDS access policy.
+</p>
+<p>
+The definition of a self-defined aspect contains the following:
+</p>
+<ul class="disc">
+<li>An aspect entity <span class="qtext400">aspect_entity</span>, specified after the name <span class="qtext400">aspect</span>, which is used as a data source.</li>
+</ul>
+<ul class="disc">
+<li>An element <span class="qtext400">user_element</span> of the aspect entity that is used as the input field for the user name of the logged on user.</li>
+</ul>
+<ul class="disc">
+<li>A comma-separated list that specifies the output fields <span class="qtext400">output1, output2, ...</span> of the generic aspect. The specified order applies.</li>
+</ul>
+<ul class="disc">
+<li>Any number of the output fields can be tagged with a condition using the addition <span class="qtext400">BYPASS
+WHEN aspect_bypass_condition</span>. Typical bypass values are <span class="qtext400">*</span> or an empty value.</li>
+</ul>
+<p>
+The following are possible as bypass conditions <span class="qtext400">aspect_bypass_condition</span>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_cond_expr_null_v2.htm')" class="blue"><span class="qtext400">IS <i class=bn>[</i>NOT<i class=bn>]</i> NULL</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_cond_expr_initial_v2.htm')" class="blue"><span class="qtext400">IS <i class=bn>[</i>NOT<i class=bn>]</i> INITIAL</span></a></li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">IS INITIAL OR NULL</span> <br>Is met if the value of the aspect is <span class="qtext400">NULL</span> or the type-compliant initial value.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">= <a href="javascript:call_link('abencds_literal_v2.htm')" class="blue">literal</a></span></li>
+</ul>
+<p>
+At runtime, the field <span class="qtext400">user_element</span> is filled with the user name of the
+current user. The rows produced in the aspect entity are matched with their output fields in the specified
+order and with the elements on the left side of the access condition to which the self-defined aspect
+is assigned. This means those rows in the protected entity meet the condition for which a row exists for the current user in the aspect entity.
+</p>
+<p>
+When the bypass condition is used, the match with this field is not used if this condition exists in
+a row of the aspect entity. A specified value, therefore, (such as an asterisk <span class="qtext400">*</span>) can be used to indicate that any values of the protected entity are allowed.
+</p>
+<p>
+<span class="bold">Special Requirements in the Aspect Entity</span>
+</p>
+<p>
+The content of the aspect entity has a particular relevance for audits by being used in a self-defined aspect in access control.
+</p>
+<p>
+To determine which user had access to particular data at a particular time in a system, it must be possible
+to reconstruct the state of the data of the aspect entity. Existing mechanisms (such as version management
+or change documents) cover this requirement in the case of development objects or PFCG roles, whereas
+aspect entities may freely specify their data sources and cannot control whether these sources are themselves auditable.
+</p>
+<p>
+The development and runtime systems for CDS access control cannot check whether data sources are auditable. To emphasize this requirement, however, the aspect entity must have the following annotations:
+</p>
+<ul class="disc">
+<li>An auditing type with the annotation <span class="qtext400">@AccessControl.auditing.type</span>. Currently only the value <span class="qtext400">#CUSTOM</span> is possible.</li>
+</ul>
+<ul class="disc">
+<li>A component with the annotation <span class="qtext400">@AccessControl.auditing.specification</span> specifying (as text) how the content of the entity is audited. <br><br></li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Just adding the annotations, however, does not activate auditing. This annotation should only be set if it is ensure that auditing takes place.</li>
+</ul>
+<ul class="disc">
+<li>Auditing must respect all data sources of the aspect entity.</li>
+</ul>
+<ul class="disc">
+<li>If auditing cannot be ensured, the aspect entity cannot be used in a self-defined aspect.</li>
+</ul>
+<ul class="disc">
+<li>In ABAP SQL access to a CDS entity assigned a role of this type, self-defined aspects are defined internally using a
+<a href="javascript:call_link('abensubquery_glosry.htm')" class="grey" title="词汇表条目">subquery</a> after <span class="qtext400">EXISTS</span>. <br><br></li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_f1_dcl_as_annotations.htm')" class="blue">CDS DCL - DEFINE ASPECT, aspect_annot</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

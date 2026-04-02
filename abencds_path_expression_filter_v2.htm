@@ -1,0 +1,164 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_PATH_EXPRESSION_FILTER_V2 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - CDS View Entity, path_expr, filter">
+<title>
+CDS DDL - CDS View Entity, path_expr, filter - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_path_expression_filter_v2.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_path_expression_filter_v2.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v2_views.htm')" class="blue">ABAP CDS - View Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_entity.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_operands_and_expr_v2.htm')" class="blue">CDS DDL - SELECT, CDS View Entity, Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">CDS DDL - CDS View Entity, path_expr</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_path_expr_attr_v2.htm')" class="blue">CDS DDL - CDS View Entity, path_expr, attributes</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@WHERE@@!ABAP_CDS_PATH_EXPR!@@"></A>
+<p><span class="h1">
+CDS DDL - CDS View Entity, path_expr, filter
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... <i class=bn>[</i>WHERE<i class=bn>]</i> <a href="javascript:call_link('abencds_conditional_expression_v2.htm')" class="blue">cds_cond</a> ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+<a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">Filter condition</a> for the current
+CDS association. If the join type is explicitly defined with <a href="javascript:call_link('abencds_path_expr_jointype_v2.htm')" class="blue"><span class="qtext400">INNER<i
+class=bn>|</i><i class=bn>{</i>LEFT OUTER<i class=bn>}</i></span></a>, the addition <span class="qtext400">
+WHERE</span> must be specified explicitly. If this is not the case, <span class="qtext400">WHERE</span> must not be specified.
+</p>
+<p>
+A filter condition is a condition <a href="javascript:call_link('abencds_conditional_expression_v2.htm')" class="blue"><span class="qtext400">
+cds_cond</span></a> implemented as an expanded condition for the join when transforming the CDS association into a join.
+</p>
+<p>
+For the operands of the filter condition of a path expression of a <a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>, the following rules apply:
+</p>
+<ul class="disc">
+<li>All relational operators are allowed.</li>
+</ul>
+<ul class="disc">
+<li>The Boolean operators <span class="qtext400">NOT</span>, <span class="qtext400">AND</span>, and <span class="qtext400">OR</span> are allowed.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">lhs</span> expects a <a href="javascript:call_link('abencds_field_v2.htm')" class="blue">field</a> of the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> of the current <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS association</a>.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">rhs</span> expects a <a href="javascript:call_link('abencds_field_v2.htm')" class="blue">field</a> of the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> of the current
+<a href="javascript:call_link('abencds_association_v2.htm')" class="blue">CDS association</a>, a
+<a href="javascript:call_link('abencds_literal_v2.htm')" class="blue">literal</a>, a
+<a href="javascript:call_link('abencds_parameter_v2.htm')" class="blue">parameter</a>, a
+<a href="javascript:call_link('abencds_session_variable_v2.htm')" class="blue">session variable</a>, or a <a href="javascript:call_link('abencds_builtin_functions_v2.htm')" class="blue">built-in function</a>. <br>
+Exception: if the operator <span class="qtext400">LIKE</span> is used, then <span class="qtext400">rhs</span> must be a character literal.</li>
+</ul>
+<ul class="disc">
+<li>Path expressions are not supported.</li>
+</ul>
+<ul class="disc">
+<li>Other <a href="javascript:call_link('abencds_expressions_v2.htm')" class="blue">expressions</a> are not supported.</li>
+</ul>
+<p>
+If no filter condition is specified in the path expression, any default filter condition specified for the <a href="javascript:call_link('abencds_association_v2.htm')" class="blue">CDS association</a> is used.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+In <a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entities</a>, the filter
+conditions of multiple CDS associations are by default compared semantically. If the filter conditions match, the associated join expression is created only once. This generally improves performance.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view entity contains path expressions with filter conditions in its <span class="qtext400">SELECT</span> list that are implemented as join expressions upon activation.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_CDS_ASSOC_FILTER_VE <br>
+&nbsp;&nbsp;as select from demo_join1 <br>&nbsp;&nbsp;association to Demo_Cds_Assoc_Join2 as _demo_join2&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on _demo_join2.d = demo_join1.d <br>{ <br>&nbsp;&nbsp;key a, <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;_demo_join2[inner where d = '1' ].d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as d_2, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_demo_join2[inner where d = '1' ].e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as e_2, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_demo_join2[inner where d = '1' ]. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_demo_join3[inner where i = '2' ].i&nbsp;&nbsp; as i_3, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_demo_join2[inner where d = '1' ]. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_demo_join3[ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inner where i = '2' ].j&nbsp;&nbsp; as j_3 <br>}</span>
+</dd></dl>
+<p>
+The following image shows the joins created on the database:
+</p>
+<span class="border1"><img src="abdoc_path_expr.png" width="00492" height="00213" alt="Figure"></span>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

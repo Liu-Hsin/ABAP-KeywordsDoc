@@ -1,0 +1,333 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENOS_TRANSACTION_COMPS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="OS - Components of the Transaction Service">
+<title>
+OS - Components of the Transaction Service - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenos_transaction_comps.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenos_transaction_comps.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_object_services.htm')" class="blue">Object Services (OS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_object_services_transact.htm')" class="blue">OS - Transaction Service</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@IF_OS_TRANSACTION_MANAGER@@!ABAP_INTERFACE!@@"></A>
+<A NAME="@@CL_OS_SYSTEM@@!ABAP_CLASS!@@"></A>
+<A NAME="@@IF_OS_TRANSACTION@@!ABAP_INTERFACE!@@"></A>
+<p><span class="h1">
+OS - Components of the Transaction Service
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+An object-oriented transaction is represented by a transaction object that is managed by a transaction
+manger (which is also an object). The transaction manager represents the transaction service with respect to the ABAP program.
+</p>
+<p>
+To create a transaction manager, the static method <span class="qtext400">GET_TRANSACTION_MANAGER</span> of the general system service class <span class="lnkgrey"><span class="qtext400">CL_OS_SYSTEM</span></span> is required. The
+<a href="javascript:call_link('abenos_transaction_mode.htm')" class="blue">transaction mode</a> is set with the method <span class="qtext400">INIT_AND_SET_MODES</span> of this class.
+</p>
+<p>
+An ABAP program does not work with the Transaction Manager and the transaction by using class reference
+variables. Instead the program accesses the Transaction Manager and the transaction using the interfaces
+<span class="lnkgrey"><span class="qtext400">IF_OS_TRANSACTION_MANAGER</span></span> and <span class="lnkgrey"><span class="qtext400">IF_OS_TRANSACTION</span></span>.
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENOS_TRANSACTION_COMPS_1" class="blue">Relevant Methods of the System Service</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENOS_TRANSACTION_COMPS_2" class="blue">Methods of the Transaction Manager</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENOS_TRANSACTION_COMPS_3" class="blue">Methods of a Transaction</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENOS_TRANSACTION_COMPS_4" class="blue">Events of a Transaction</A></li>
+</ul>
+<A name="@@ITOC@@ABENOS_TRANSACTION_COMPS_1"></A>
+<p><span class="h2">
+Relevant Methods of the System Service
+</span></p>
+<p>
+Most of the components of the system service class <span class="lnkgrey"><span class="qtext400">CL_OS_SYSTEM</span></span>
+are used internally by the Object Services. Two methods must be used in an application program to be able to work explicitly with object-oriented transactions.
+</p>
+<ul class="disc">
+<li><span class="qtext400">INIT_AND_SET_MODES</span></li>
+</ul>
+<dl><dd>
+This static method initializes the entire Object Services and creates the necessary service objects.
+<span class="qtext400">INIT_AND_SET_MODES</span> is executed no more than once for each ABAP program. Every additional call causes an exception.
+</dd></dl>
+<dl><dd>
+<span class="qtext400">INIT_AND_SET_MODES</span> is used together with the transaction service to set the
+<a href="javascript:call_link('abenos_transaction_mode.htm')" class="blue">transaction mode</a> of the top level transaction.
+The constant <span class="qtext">OSCON_TRUE</span> or <span class="qtext">OSCON_FALSE</span> of type
+pool <span class="qtext">OSCON</span> must be passed to input parameter <span class="qtext">I_EXTERNAL_COMMIT</span>.
+<span class="qtext">OSCON_TRUE</span> sets the compatibility mode for which <span class="qtext">COMMIT
+WORK</span> must be defined explicitly in the program, whereas <span class="qtext">OSCON_FALSE</span>
+sets object-oriented transaction mode, for which an explicit <span class="qtext">COMMIT WORK</span>
+is not allowed. Once the compatibility mode has been set, a top level transaction is implicitly created and started. All other transactions of the program are nested in this transaction.
+</dd></dl>
+<dl><dd>
+Update mode is controlled with the other input parameter <span class="qtext">I_UPDATE_MODE</span> of
+type <span class="qtext">OS_DMODE</span>. Possible input parameters are: <span class="qtext">OSCON_DMODE_DEFAULT</span>
+or <span class="qtext">OSCON_DMODE_UPDATE_TASK</span> for asynchronous updates, <span class="qtext">OSCON_DMODE_UPDATE_TASK_SYNC</span>
+for synchronous updates, <span class="qtext">OSCON_DMODE_LOCAL</span> for local updates, and <span class="qtext">OSCON_DMODE_DIRECT</span>
+for direct saves when using <span class="qtext">COMMIT WORK</span>. The constants <span class="qtext">OSCON_DMODE_LOCAL</span>
+and<span class="qtext">OSCON_DMODE_UPDATE_TASK_SYNC</span> cannot be specified in compatibility mode.
+If local or direct updates are chosen, the statement <span class="qtext">SET UPDATE TASK LOCAL</span> is executed implicitly when the transaction is started.
+</dd></dl>
+<dl><dd>
+<span class="qtext400">INIT_AND_SET_MODES</span> is executed implicitly the first time an Object Services
+class is accessed with the default compatibility mode and asynchronous updates. If <span class="qtext400">INIT_AND_SET_MODES</span>
+is to be executed explicitly, this must be done before an implicit call for it to take effect (the implicit call does not take place).
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">GET_TRANSACTION_MANAGER</span></li>
+</ul>
+<dl><dd>
+This static method returns the return value <span class="qtext">RESULT</span> (of type <span class="qtext">IF_OS_QUERY_MANAGER</span>)
+that contains a reference to the transaction manager. The transaction manager is created when Object Services are initialized.
+</dd></dl>
+<A name="@@ITOC@@ABENOS_TRANSACTION_COMPS_2"></A>
+<p><span class="h2">
+Methods of the Transaction Manager
+</span></p>
+<p>
+The transaction manager manages the object-oriented transactions of the ABAP program and is executed using the interface <span class="lnkgrey"><span class="qtext400">IF_OS_TRANSACTION_MANAGER</span></span>.
+</p>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION_MANAGER~CREATE_TRANSACTION</span></li>
+</ul>
+<dl><dd>
+Creates a transaction and returns a reference to the transaction in return value <span class="qtext">RESULT</span> of type <span class="qtext400">IF_OS_TRANSACTION</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION_MANAGER~GET_CURRENT_TRANSACTION</span></li>
+</ul>
+<dl><dd>
+Returns a reference to the current transaction in return value <span class="qtext">RESULT</span> of type <span class="qtext400">IF_OS_TRANSACTION</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION_MANAGER~GET_TOP_TRANSACTION</span></li>
+</ul>
+<dl><dd>
+Returns a reference to the top level transaction in return value <span class="qtext">RESULT</span> of type <span class="qtext400">IF_OS_TRANSACTION</span>.
+</dd></dl>
+<A name="@@ITOC@@ABENOS_TRANSACTION_COMPS_3"></A>
+<p><span class="h2">
+Methods of a Transaction
+</span></p>
+<p>
+Transactions are controlled using interface <span class="lnkgrey"><span class="qtext400">IF_OS_TRANSACTION</span></span>.
+</p>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~START</span></li>
+</ul>
+<dl><dd>
+Starts the transaction. If a top level transaction does not yet exist, it becomes the top level transaction.
+Otherwise it becomes a subtransaction. A transaction must have status <span class="qtext400">OSCON_TSTATUS_NEW</span>
+so that it can be started. Each transaction thus can only be started once per program. A transaction
+cannot be started again using <span class="qtext">START</span> if it was ended using <span class="qtext">END</span>,
+since this would invalidate the transaction object in the program. A new transaction must be created, but the same reference variable can be used again.
+</dd></dl>
+<dl><dd>
+The <span class="qtext">COMMIT WORK</span> statement is not allowed between the <span class="qtext">START</span> and <span class="qtext">END</span> methods.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~END</span></li>
+</ul>
+<dl><dd>
+Ends the transaction. Changes to persistent objects are stored until the <span class="qtext">COMMIT
+WORK</span> or <span class="qtext">ROLLBACK WORK</span> of the top level transaction. If the transaction
+is a top level transaction, <span class="qtext">COMMIT WORK</span> is raised implicitly when <span class="qtext">END</span>
+is encountered. This starts the updater and invalidates the persistent objects. If a persistent object is accessed again, it is loaded from the database.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~UNDO</span></li>
+</ul>
+<dl><dd>
+Ends the transaction. The changes made to persistent objects in the transaction are canceled and the
+objects are returned to the state they had prior to the transaction. If the transaction is an object-oriented
+top level transaction, <span class="qtext">ROLLBACK WORK</span> is raised implicitly when an <span class="qtext">UNDO</span> is performed.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~END_AND_CHAIN</span></li>
+</ul>
+<dl><dd>
+Ends the transaction and immediately starts a new one. If the transaction is an object-oriented top
+level transaction, changed persistent objects are written to the database but are not invalidated. Returns
+a reference to the current transaction in return value <span class="qtext">RESULT</span> of type <span class="qtext400">IF_OS_TRANSACTION</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~UNDO_AND_CHAIN</span></li>
+</ul>
+<dl><dd>
+Cancels the changes made to persistent objects in the transaction and starts a new transaction. Returns
+a reference to the current transaction in return value <span class="qtext">RESULT</span> of type <span class="qtext400">IF_OS_TRANSACTION</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~REGISTER_CHECK_AGENT</span></li>
+</ul>
+<dl><dd>
+Registers an object as a checking agent, which is called by the transaction for checking purposes before
+the transaction ends. An interface reference to this type of object is passed to the input parameter <span class="qtext">I_CHECK_AGENT</span> of type <span class="qtext">IF_OS_CHECK</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~GET_STATUS</span></li>
+</ul>
+<dl><dd>
+Returns the transaction status in the <span class="qtext">RESULT</span> return value of type <span class="qtext">OS_STATUS</span>.
+The following values (constants of type pool <span class="qtext">OSCON</span>) are possible:
+</dd></dl>
+<ul class="circlem2">
+<li><span class="qtext400">OSCON_TSTATUS_NEW</span> <br>The transaction has not been started. Transactions in this status can only be started using <span class="qtext">START</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">OSCON_TSTATUS_RUNNING</span> <br>The transaction has been started and is active.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">OSCON_TSTATUS_END_REQ</span> <br>The transaction was ended using <span class="qtext400">IF_OS_TRANSACTION~END</span>
+and is just starting a checking agent or is waiting for an event handler.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">OSCON_TSTATUS_FIN_SUCCESS</span> <br>The transaction ended successfully using <span class="qtext400">IF_OS_TRANSACTION~END</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">OSCON_TSTATUS_FIN_UNDO</span> <br>The transaction was ended using <span class="qtext400">IF_OS_TRANSACTION~UNDO</span> and the persistent objects were returned to their initial state.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">OSCON_TSTATUS_FIN_ABORT</span> <br>The transaction was ended using <span class="qtext400">IF_OS_TRANSACTION~UNDO</span> but the persistent objects were not returned to their initial state.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~SET_MODE_UNDO_RELEVANT</span></li>
+</ul>
+<dl><dd>
+Can be used to deactivate the <span class="qtext">UNDO</span> mechanism before a transaction is started,
+for example, to improve performance. This is done by passing the value <span class="qtext">OSCON_FALSE</span>
+to the optional input parameter <span class="qtext">I_UNDO_RELEVANT</span> of the type <span class="qtext">OS_BOOLEAN</span>.
+The default value is <span class="qtext">OSCON_TRUE</span>. This removes the need to save the initial
+status of persistent objects before a change. In compatibility mode, the <span class="qtext">UNDO</span>
+mechanism is deactivated in the top level transaction. Otherwise the <span class="qtext">UNDO</span>
+mechanism is active, unless it was explicitly deactivated using this method. If <span class="qtext400">IF_OS_TRANSACTION~UNDO</span>
+is called in a transaction with a deactivated <span class="qtext">UNDO</span> mechanism, the status of the transaction is <span class="qtext400">OSCON_TSTATUS_FIN_ABORT</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~SET_MODE_UPDATE</span></li>
+</ul>
+<dl><dd>
+Can be used exactly once for the top level transaction before persistent objects are accessed to set
+the update mode. This is only necessary in compatibility mode, where the update mode is normally set
+implicitly the first time a persistent object is accessed using asynchronous updates. This method is
+not necessary for object-oriented transactions. This is because the update mode of the top level transaction
+is set explicitly with <span class="qtext400">CL_OS_SYSTEM=>INIT_AND_SET_MODES</span> or when an OO transaction is created in ABAP Workbench.
+</dd></dl>
+<dl><dd>
+The following values can be passed to the input parameter <span class="qtext">I_UPDATE_MODE</span> of
+type <span class="qtext">OS_DMODE</span>: <span class="qtext">OSCON_DMODE_DEFAULT</span> or <span class="qtext">OSCON_DMODE_UPDATE_TASK</span>
+for asynchronous updates, <span class="qtext">OSCON_DMODE_UPDATE_TASK_SYNC</span> for synchronous updates,
+<span class="qtext">OSCON_DMODE_LOCAL</span> for local updates, and <span class="qtext">OSCON_DMODE_DIRECT</span>
+for direct saves. <span class="qtext">OSCON_DMODE_LOCAL</span> and <span class="qtext">OSCON_DMODE_UPDATE_TASK_SYNC</span> are allowed only in the object-oriented transaction mode.
+</dd></dl>
+<dl><dd>
+If local or direct updates are chosen, the statement <span class="qtext">SET UPDATE TASK LOCAL</span> is executed implicitly when the transaction is started.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~GET_MODES</span></li>
+</ul>
+<dl><dd>
+Provides the attributes of the current transaction in the output parameters: <span class="qtext">E_UNDO_RELEVANT</span>
+of type <span class="qtext">OS_BOOLEAN</span>, <span class="qtext">E_CHAINED</span> of type <span class="qtext">OS_BOOLEAN</span>,
+<span class="qtext">E_UPDATE_MODE_TYPE</span> of type <span class="qtext">OS_DMODE</span> and <span class="qtext">E_EXTERNAL_COMMIT</span> of type <span class="qtext">OS_BOOLEAN</span>.
+</dd></dl>
+<A name="@@ITOC@@ABENOS_TRANSACTION_COMPS_4"></A>
+<p><span class="h2">
+Events of a Transaction
+</span></p>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~SAVE_REQUESTED</span></li>
+</ul>
+<dl><dd>
+The event is raised when a top level transaction is ended using <span class="qtext">END</span> before
+the class agents of the changed persistent objects commit the changes. For class agents that implicitly
+use update modules, the event is raised before the update modules are registered using <span class="qtext">CALL
+FUNCTION IN UPDATE TASK</span>. The event defines the time when the changes to persistent objects should be recorded for class agents with self-programmed change methods.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~SAVE_PREPARED</span></li>
+</ul>
+<dl><dd>
+The event is raised when a top level transaction is ended using <span class="qtext">END</span> after
+the class agents of the changed persistent objects committed the changes. For class agents that use
+update modules implicitly, the event is raised after the update modules are registered using <span class="qtext">CALL
+FUNCTION IN UPDATE TASK</span>. The event defines the time when the changes to database tables in the objects should be recorded for class agents with self-programmed change methods.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IF_OS_TRANSACTION~FINISHED</span></li>
+</ul>
+<dl><dd>
+The event is raised at the actual end of a transaction, regardless of whether it was ended using <span class="qtext">
+END</span> or <span class="qtext">UNDO</span>. An output parameter of type <span class="qtext">OS_STATUS</span> indicates how the transaction was ended.
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

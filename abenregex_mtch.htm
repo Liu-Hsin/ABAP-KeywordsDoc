@@ -1,0 +1,204 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENREGEX_MTCH -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="regex - Searching, Replacing, Matching">
+<meta name="keywords" content="ABAP, check, regular expression">
+<title>
+regex - Searching, Replacing, Matching - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenregex_mtch.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenregex_mtch.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_working.htm')" class="blue">Processing Internal Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_string.htm')" class="blue">Character String and Byte String Processing</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenstring_processing_expr_func.htm')" class="blue">Expressions and Functions for String Processing</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenregular_expressions.htm')" class="blue">Regular Expressions (regex)</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+regex - Searching, Replacing, Matching
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Regular expressions can be used to find and replace substrings of character strings or to check if a
+complete character string  matches its pattern. If a regular expression is applied to a character string
+as a search pattern, a search for matches of the regular expression with substrings of the character
+string is intended. In this case, special characters in the regular expression do not match characters,
+but match positions, thus affecting the type and number of occurrences. If a regular expression is applied to a character string as a search pattern, it is checked whether the character string matches a pattern.
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENREGEX_MTCH_1" class="blue">Searching</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENREGEX_MTCH_2" class="blue">Replacing</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENREGEX_MTCH_3" class="blue">Matching</A></li>
+</ul>
+<A name="@@ITOC@@ABENREGEX_MTCH_1"></A>
+<p><span class="h2">
+Searching
+</span></p>
+<p>
+In order to search for substrings that match a pattern described by a regular expression you can use the following:
+</p>
+<ul class="disc">
+<li>Statement <a href="javascript:call_link('abapfind.htm')" class="blue"><span class="qtext">FIND</span></a> with the addition <a href="javascript:call_link('abapfind_pattern.htm')" class="blue"><span class="qtext">PCRE<i
+class=bn>|</i>REGEX</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>Built-in functions with the argument <a href="javascript:call_link('abenstring_functions_regex.htm')" class="blue"><span class="qtext">pcre<i class=bn>|</i>regex</span></a>:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abensearch_functions.htm')" class="blue"><span class="qtext">find</span>, <span class="qtext">find_...</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencount_functions.htm')" class="blue"><span class="qtext">count</span>, <span class="qtext">count_...</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abenmatch_functions.htm')" class="blue"><span class="qtext">match</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abensubstring_functions.htm')" class="blue"><span class="qtext">substring</span>, <span class="qtext">substring_...</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencontains_functions.htm')" class="blue"><span class="qtext">contains...</span></a></li>
+</ul>
+<ul class="disc">
+<li>Methods of <a href="javascript:call_link('abenregex_system_classes.htm')" class="blue">system class</a> <span class="lnkgrey"><span class="qtext400">CL_ABAP_MATCHER</span></span>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Demonstration of different possibilities for searching substrings that match a regular expression.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(text)&nbsp;&nbsp;= `aaa-bbb-ccc`. <br>DATA(regex) = `\W`. <br> <br>IF contains( val = text pcre = regex ). <br>
+ <br>&nbsp;&nbsp;FIND ALL OCCURRENCES OF PCRE regex IN text MATCH COUNT&nbsp;&nbsp;DATA(cnt) <br>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MATCH LENGTH DATA(len). <br>
+ <br>&nbsp;&nbsp;DATA(off) = find( val = text pcre = regex occ = cnt ). <br> <br>&nbsp;&nbsp;ASSERT count( val = text pcre = regex ) = cnt. <br>
+ <br>&nbsp;&nbsp;DATA(sub) = substring_from( val = text pcre = regex len = len&nbsp;&nbsp;). <br> <br>&nbsp;&nbsp;cl_demo_output=>display( <br>
+&nbsp;&nbsp;&nbsp;&nbsp;|{ cnt } occurrences found.\n| &amp;&amp; <br>&nbsp;&nbsp;&nbsp;&nbsp;|The offset of the last occurrence is { off }.\n| &amp;&amp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;|The first substring that matches is { sub }.| ). <br> <br>ENDIF.
+</span>
+</p>
+<A name="@@ITOC@@ABENREGEX_MTCH_2"></A>
+<p><span class="h2">
+Replacing
+</span></p>
+<p>
+In order to replace substrings that match a pattern described by a regular expression, the following can be used:
+</p>
+<ul class="disc">
+<li>Statement <a href="javascript:call_link('abapreplace.htm')" class="blue"><span class="qtext">REPLACE</span></a> with the addition <a href="javascript:call_link('abapreplace_pattern.htm')" class="blue"><span class="qtext">PCRE<i
+class=bn>|</i>REGEX</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>Built-in function <a href="javascript:call_link('abenreplace_functions.htm')" class="blue"><span class="qtext">replace</span></a> with the argument <a
+ href="javascript:call_link('abenstring_functions_regex.htm')" class="blue"><span class="qtext">pcre<i
+class=bn>|</i>regex</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>Methods of the <a href="javascript:call_link('abenregex_system_classes.htm')" class="blue">system class</a> <span class="lnkgrey"><span class="qtext400">CL_ABAP_MATCHER</span></span>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Demonstration of different possibilities for replacing substrings that match a regular expression.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(text)&nbsp;&nbsp;= `aaa-bbb-ccc`. <br>DATA(regex) = `\W`. <br> <br>REPLACE FIRST OCCURRENCE OF PCRE regex IN text WITH '_'. <br>
+ <br>cl_demo_output=>display( <br>&nbsp;&nbsp;replace( val = text pcre = regex with = `~` ) ).
+</span>
+</p>
+<A name="@@ITOC@@ABENREGEX_MTCH_3"></A>
+<p><span class="h2">
+Matching
+</span></p>
+<p>
+In order to check if a complete character string matches a regular expression, the following can be used:
+</p>
+<ul class="disc">
+<li>Built-in function <a href="javascript:call_link('abenmatches_functions.htm')" class="blue"><span class="qtext">matches</span></a> with the argument <a
+ href="javascript:call_link('abenstring_functions_regex.htm')" class="blue"><span class="qtext">pcre<i
+class=bn>|</i>regex</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>Methods of <a href="javascript:call_link('abenregex_system_classes.htm')" class="blue">system class</a> <span class="lnkgrey"><span class="qtext400">CL_ABAP_MATCHER</span></span>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Demonstration of different possibilities for matching strings with a regular expression.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(text)&nbsp;&nbsp;= `aaa-bbb-ccc`. <br>DATA(regex) = `\w+\W\w+\W\w+`. <br> <br>IF cl_abap_regex=>create_pcre( pattern = regex <br>
+&nbsp;&nbsp;&nbsp;&nbsp; )->create_matcher( text = text )->match( ). <br>&nbsp;&nbsp;ASSERT matches( val = text pcre = regex ). <br>&nbsp;&nbsp;cl_demo_output=>display( 'match' ). <br>ENDIF.
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

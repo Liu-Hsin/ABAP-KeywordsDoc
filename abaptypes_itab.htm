@@ -1,0 +1,186 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPTYPES_ITAB -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="TYPES, TABLE OF">
+<meta name="keywords" content="ABAP, create table type">
+<title>
+TYPES, TABLE OF - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abaptypes_itab.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abaptypes_itab.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendeclarations.htm')" class="blue">Declarations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_declarations.htm')" class="blue">Declaration Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_and_objects.htm')" class="blue">Data Types and Data Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_statements.htm')" class="blue">Declaring Data Types</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abaptypes.htm')" class="blue">TYPES</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@TABLE OF@@TYPES@@"></A>
+<p><span class="h1">
+TYPES, TABLE OF <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abaptypes_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">TYPES table_type <i class=bn>{</i> <i class=bn>{</i>TYPE
+<a href="javascript:call_link('abaptypes_tabkind.htm')" class="blue">tabkind</a> OF <i class=bn>[</i>REF TO<i class=bn>]</i> type<i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <i class=bn>|</i> <i class=bn>{</i>LIKE <a href="javascript:call_link('abaptypes_tabkind.htm')" class="blue">tabkind</a> OF dobj<i class=bn>}</i> <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <i class=bn>[</i><a href="javascript:call_link('abaptypes_keydef.htm')" class="blue">tabkeys</a><i class=bn>]</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i>INITIAL SIZE n<i class=bn>]</i>.</span> <br> <br><br>
+</p>
+<p><span class="h3">
+Addition:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ONE_ADD@1@" class="blue"> <span class="qtext">... INITIAL SIZE n</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This statement defines a table type <span class="qtext">table_type</span> with a specific line type, a table category <span class="qtext">tabkind</span>, and table keys <span class="qtext">tabkeys</span>.
+</p>
+<p>
+ The line type is determined by entering the data type <span class="qtext">type</span> after <span class="qtext">TYPE</span> and data type <span class="qtext">dobj</span> after <span class="qtext">LIKE</span>:
+</p>
+<ul class="disc">
+<li><span class="qtext">type</span> can be a non-generic data type from ABAP Dictionary, a non-generic public data type of a public data type of a global class, a non-generic data type local to a program, or any ABAP type from the
+<a href="javascript:call_link('abenbuilt_in_types_complete.htm')" class="blue">tables</a> of
+<a href="javascript:call_link('abenbuiltin_abap_type_glosry.htm')" class="grey" title="词汇表条目">built-in ABAP types</a>. The generic
+ABAP types <span class="qtext">c</span>, <span class="qtext">n</span>, <span class="qtext">p</span>, and <span class="qtext">x</span> are extended implicitly to the standard length without
+<a href="javascript:call_link('abendecimal_place_glosry.htm')" class="grey" title="词汇表条目">decimal places</a> from the <a href="javascript:call_link('abenbuilt_in_types_complete.htm')" class="blue">tables</a> of built-in ABAP types. <br>
+ <br>If the addition <span class="qtext">REF TO</span> is specified before <span class="qtext">type</span> or <span class="qtext">dobj</span>, the line type is a reference type. The information specified in the section
+<a href="javascript:call_link('abaptypes_references.htm')" class="blue">reference types</a> can then be specified for <span class="qtext">type</span> and <span class="qtext">dobj</span>. <br></li>
+</ul>
+<ul class="disc">
+<li>The same applies to <span class="qtext">dobj</span> as to <a href="javascript:call_link('abaptypes_referring.htm')" class="blue"><span class="qtext">TYPES ... LIKE</span></a>. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Definition of a non-generic sorted table type. The line type corresponds to the structure of the database table <span class="qtext400">SPFLI</span>. Two key fields are defined for the primary table key.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES spfli_sort TYPE SORTED TABLE OF spfli <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH UNIQUE KEY carrid connid. <br><br>
+</span>
+</p>
+<A NAME="@@INITIAL SIZE@@TYPES@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ONE_ADD@1@"></A> <span class="bold">Addition</span>
+</span></p>
+<P>
+<span class="qtext">... INITIAL SIZE n</span> <!-- /A -->  <br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The optional addition <span class="qtext">INITIAL SIZE</span> has two meanings:
+</p>
+<ul class="disc">
+<li><span class="bold">Note for the internal memory management of internal tables</span> <br> <br>Internal
+tables are stored in blocks in the memory. After the optional addition <span class="qtext">INITIAL SIZE</span>,
+a number of lines <span class="qtext">n</span> can be specified directly as a positive number without
++/- sign or as a numeric constant to notify the system of the size of the initial block in the memory
+reserved by the system for an internal table of the table type. By default, and if 0 is specified for <span class="qtext">n</span>, the system automatically allocates a suitable initial memory area. <br>
+ <br>If the initial memory area becomes insufficient, further blocks are created using an internal duplicate
+strategy until a maximum size is reached. After this, all blocks are created with a constant size between 8 and 16 KB. <br>
+ <br>If the value of <span class="qtext">n</span> would cause the initial blocks to become too big, the size of the initial memory area is also determined by the system.</li>
+</ul>
+<ul class="disc">
+<li><span class="bold">Size of Ranking Lists</span> <br> <br>To create a ranking list in the internal
+table using the addition <span class="qtext">SORTED BY</span> of the statement <a href="javascript:call_link('abapappend.htm')" class="blue">
+<span class="qtext">APPEND</span></a>, a value greater than 0 must be specified after <span class="qtext">INITIAL SIZE</span>. This value determines the size of the ranking list. <br><br></li>
+</ul>
+<p><span class="h4">
+Programming Guideline
+</span></p>
+<p>
+<a href="javascript:call_link('abeninitial_memory_requ_guidl.htm')" class="lnkpurple" title="指导原则">Modify the initial memory requirements only for nested tables</a>
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Specifying the initial memory requirement is only recommended if the number of entries in the table
+has been determined in advance and the initial main memory requirement is to be dimensioned in the most
+suitable way. This can be especially important for internal tables that are components of table types and only contain a few lines.</li>
+</ul>
+<ul class="disc">
+<li>Instead of <span class="qtext">APPEND SORTED BY</span>, the statement <span class="qtext">SORT</span>
+should be used so that the addition <span class="qtext">INITIAL SIZE</span> is no longer necessary. t <br><br> <br><br></li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abaptypes_tabkind.htm')" class="blue">TYPES, tabkind</a><br>
+<a href="javascript:call_link('abaptypes_keydef.htm')" class="blue">TYPES, tabkeys</a><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abennested_internal_tables_abexa.htm')" class="blue">itab - Nested Tables</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,127 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENMATHEMATICAL_FUNCTIONS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Numeric Functions (num_func)">
+<meta name="keywords" content="ABAP, numerical function">
+<title>
+Numeric Functions (num_func) - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenmathematical_functions.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenmathematical_functions.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_data_working.htm')" class="blue">Processing Internal Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencompute_expressions.htm')" class="blue">Numeric Calculations</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Numeric Functions (num_func)
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Numeric functions are a type of <a href="javascript:call_link('abenbuilt_in_functions.htm')" class="blue">built-in function</a>.
+The main argument of a numeric function must represent a numeric value. The data type of the return value is determined either by the argument of the function (overloaded functions) or by the function.
+</p>
+<p>
+Outside of an <a href="javascript:call_link('abenarithmetic_expression_glosry.htm')" class="grey" title="词汇表条目">arithmetic expression</a>,
+the main argument of a numeric function must be a single numeric data object. Within an arithmetic expression, the following are possible as main arguments of a numeric function:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abennumeric_data_object_glosry.htm')" class="grey" title="词汇表条目">Numeric data object</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenarithmetic_expression_glosry.htm')" class="grey" title="词汇表条目">Arithmetic expression</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenbuiltin_function_glosry.htm')" class="grey" title="词汇表条目">Built-in function</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenfunctional_method_glosry.htm')" class="grey" title="词汇表条目">Functional method</a></li>
+</ul>
+<p>
+The numeric functions are divided into:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abennumerical_functions.htm')" class="blue">General numeric functions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abennmax_nmin_functions.htm')" class="blue">Numeric extremum functions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenfloating_point_functions.htm')" class="blue">Floating point functions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abendec_floating_point_functions.htm')" class="blue">Rounding functions</a></li>
+</ul>
+<p><span class="h4">
+Catchable exceptions
+</span></p>
+<p>
+The catchable exceptions that can be raised during the calculation of a numeric function are subclasses
+of the classes <span class="qtext400">CX_SY_ARITHMETIC_ERROR</span> and <span class="qtext400">CX_SY_CONVERSION_ERROR</span>.
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abennumerical_functions.htm')" class="blue">num_func - abs, sign, ceil, floor, trunc, frac</a><br>
+<a href="javascript:call_link('abenpower_function.htm')" class="blue">num_func - ipow</a><br>
+<a href="javascript:call_link('abennmax_nmin_functions.htm')" class="blue">num_func - nmax, nmin</a><br>
+<a href="javascript:call_link('abenfloating_point_functions.htm')" class="blue">num_func - acos, sin, tanh, exp, log, sqrt, ...</a><br>
+<a href="javascript:call_link('abendec_floating_point_functions.htm')" class="blue">num_func - round, rescale</a><br>
+<a href="javascript:call_link('abennumerical_functions_abexas.htm')" class="blue">num_func - Examples</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

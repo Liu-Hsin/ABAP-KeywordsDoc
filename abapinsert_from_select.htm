@@ -1,0 +1,250 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPINSERT_FROM_SELECT -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="INSERT, MODIFY dbtab, subquery_clauses">
+<title>
+INSERT, MODIFY dbtab, subquery_clauses - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapinsert_from_select.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapinsert_from_select.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_writing.htm')" class="blue">ABAP SQL - Write Access</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@subquery@@INSERT dbtab@@"></A>
+<A NAME="@@subquery@@MODIFY dbtab@@"></A>
+<p><span class="h1">
+INSERT, MODIFY dbtab, subquery_clauses <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapinsert_dbtab_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <i class=bn>{</i> <a href="javascript:call_link('abapfrom_clause.htm')" class="blue">FROM</a> source <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:call_link('abapfields_clause.htm')" class="blue">FIELDS</a> <a href="javascript:call_link('abapselect_clause.htm')" class="blue">select_clause</a> <i class=bn>}</i> <br>
+&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> <a href="javascript:call_link('abapselect_clause.htm')" class="blue">select_clause</a> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:call_link('abapfrom_clause.htm')" class="blue">FROM</a> source <i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i><a href="javascript:call_link('abapwhere.htm')" class="blue">WHERE</a> <a href="javascript:call_link('abenosql_stmt_logexp.htm')" class="blue">sql_cond</a><i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>
+<a href="javascript:call_link('abapgroupby_clause.htm')" class="blue">GROUP BY</a> group<i class=bn>]</i> <i class=bn>[</i><a href="javascript:call_link('abaphaving_clause.htm')" class="blue">HAVING</a> group_cond<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>
+<a href="javascript:call_link('abaporderby_clause.htm')" class="blue">ORDER BY</a> <a href="javascript:call_link('abapselect_up_to_offset.htm')" class="blue"><i
+class=bn>[</i>UP TO n ROWS <i class=bn>[</i>OFFSET o<i class=bn>]</i><i class=bn>]</i></a><i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i><a href="javascript:call_link('abenosql_db_hints.htm')" class="blue">db_hints</a><i class=bn>]</i>&nbsp;&nbsp;...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Possible <a href="javascript:call_link('abenselect_clauses.htm')" class="blue">clauses and additions</a> of a
+<a href="javascript:call_link('abensubquery_glosry.htm')" class="grey" title="词汇表条目">subquery</a> after the addition <span class="qtext"><span class="qtext">
+FROM</span></span> of the statements <a href="javascript:call_link('abapinsert_dbtab.htm')" class="blue"><span class="qtext">INSERT</span></a>
+and <a href="javascript:call_link('abapmodify_dbtab.htm')" class="blue"><span class="qtext">MODIFY</span></a>. These clauses
+define a result set, which is used as a data source of the <span class="qtext">INSERT</span> or <span class="qtext">INSERT</span> statement.
+</p>
+<p>
+With the exception of the client column, the result set of the subquery must have at least as many columns
+as the primary key of the database table or the DDIC table view filled using the <span class="qtext">INSERT</span>
+statement or modified using the <span class="qtext">MODIFY</span> statement. It cannot, however, have more columns than the target DDIC database table  or view .
+</p>
+<p>
+The following special rules apply:
+</p>
+<ul class="disc">
+<li><span class="qtext">FROM</span> clause</li>
+</ul>
+<ul class="circlem2">
+<li>If the DDIC database table or DDIC view processed using the <span class="qtext">INSERT</span> or <span class="qtext">MODIFY</span> statement is
+<a href="javascript:call_link('abenddic_database_tables_client.htm')" class="blue">client-dependent</a>, at least one data source of the subquery must be client-dependent.</li>
+</ul>
+<ul class="circlem2">
+<li>In the <a href="javascript:call_link('abapfrom_clause.htm')" class="blue"><span class="qtext">FROM</span></a> clause,
+<a href="javascript:call_link('abenopen_sql_client_handling.htm')" class="blue">implicit client handling</a> cannot be switched
+off using the obsolete addition <a href="javascript:call_link('abapselect_client_obsolete.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li>If the subquery uses default client handling or if client handling is switched using <a href="javascript:call_link('abapselect_client.htm')" class="blue">
+<span class="qtext">USING CLIENT</span></a>, implicit client handling in the <span class="qtext">INSERT</span>
+statement or <span class="qtext">MODIFY</span> statement cannot be switched using <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li>If implicit client handling is switched in the subquery using <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">USING <i
+class=bn>[</i>ALL<i class=bn>]</i> CLIENTS <i class=bn>[</i>IN<i class=bn>]</i></span></a>, implicit
+client handling in the <span class="qtext">INSERT</span> statement or <span class="qtext">MODIFY</span>
+statement must be switched using <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a>.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">SELECT</span> clause</li>
+</ul>
+<ul class="circlem2">
+<li>Any <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> lists</a> of the
+subquery specified as comma-separated lists must define one column of the result set for at least every column of the primary key of the DDIC database table or dictionary view in question. <br>
+ <br>If the subquery uses default client handling or switches client handling using <a href="javascript:call_link('abapselect_client.htm')" class="blue">
+<span class="qtext">USING CLIENT</span></a>, no client column can be specified as the first column in
+the <span class="qtext">SELECT</span> list. In other positions, client columns are not interpreted as client columns. <br>
+ <br>If implicit client handling is switched in the subquery using <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">USING <i
+class=bn>[</i>ALL<i class=bn>]</i> CLIENTS <i class=bn>[</i>IN<i class=bn>]</i></span></a>, the first column of the <span class="qtext">SELECT</span> list must be a client column.</li>
+</ul>
+<ul class="circlem2">
+<li>In a <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a> of the
+subquery specified using <span class="qtext">*</span>, the result set produced for at least every column
+of the primary key of the DDIC database table or dictionary view in question must contain a column. <br>
+ <br>If the subquery uses default client handling or switches client handling using <a href="javascript:call_link('abapselect_client.htm')" class="blue">
+<span class="qtext">USING CLIENT</span></a>, the client column of the result set is ignored. <br> <br>If
+implicit client handling is switched in the subquery using <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">USING <i
+class=bn>[</i>ALL<i class=bn>]</i> CLIENTS <i class=bn>[</i>IN<i class=bn>]</i></span></a>, the client column of the result set is respected.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">ORDER BY</span> clause</li>
+</ul>
+<ul class="circlem2">
+<li>The addition <a href="javascript:call_link('abapselect_up_to_offset.htm')" class="blue"><span class="qtext">UP TO n ROWS</span></a>
+can only be used after <a href="javascript:call_link('abaporderby_clause.htm')" class="blue"><span class="qtext">ORDER BY</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li>The addition <a href="javascript:call_link('abapselect_up_to_offset.htm')" class="blue"><span class="qtext">OFFSET</span></a>
+can only be used after <a href="javascript:call_link('abapselect_up_to_offset.htm')" class="blue"><span class="qtext">UP TO n ROWS</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li>An <span class="qtext">ORDER BY</span> clause in a subquery is not supported by all databases. This means a syntax check warning from the
+<a href="javascript:call_link('abenextended_program_check_glosry.htm')" class="grey" title="词汇表条目">extended program check</a> can occur that can be hidden using the pragma <span
+ class="qtext">##db_feature_mode[limit_in_subselect_or_cte]</span>. If this is detected at runtime on
+a database that does not support the pragma, a catchable exception of the class <span class="lnkgrey"><span class="qtext400">CX_SY_SQL_UNSUPPORTED_FEATURE</span></span> is raised.</li>
+</ul>
+<p>
+A further subquery within the subquery cannot access the table or view processed using the <span class="qtext">INSERT</span> or <span class="qtext">MODIFY</span> statement.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>In an ABAP program, it is possible to use the method <span class="qtext400">USE_FEATURES</span>
+of the class <a href="javascript:call_link('abencl_abap_dbfeatures.htm')" class="blue"><span class="qtext400">CL_ABAP_DBFEATURES</span></a> to check whether the current database system or a database system accessed using a
+<a href="javascript:call_link('abensecondary_db_connection_glosry.htm')" class="grey" title="词汇表条目">secondary connection</a> supports <a href="javascript:call_link('abaporderby_clause.htm')" class="blue"><span class="qtext">ORDER BY</span></a> clauses in
+<a href="javascript:call_link('abensubquery_glosry.htm')" class="grey" title="词汇表条目">subqueries</a>. This requires the constant
+<span class="qtext400">LIMIT_IN_SUBSELECT_OR_CTE</span> of this class to be passed to the method in an internal table.</li>
+</ul>
+<ul class="disc">
+<li>If a subquery is used, the ABAP SQL statement bypasses <a href="javascript:call_link('abentable_buffering_glosry.htm')" class="grey" title="词汇表条目">table buffering</a>.</li>
+</ul>
+<ul class="disc">
+<li>Implicit client handling of the subquery is not specified by client handling of the <span class="qtext">INSERT</span>
+statement or <span class="qtext">MODIFY</span> statement An addition <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">
+USING</span></a> or <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a>
+of the <a href="javascript:call_link('abapinsert_dbtab.htm')" class="blue"><span class="qtext">INSERT</span></a> statement or
+<a href="javascript:call_link('abapmodify_dbtab.htm')" class="blue"><span class="qtext">MODIFY</span></a> statement is ignored
+by the subquery. The subquery uses either the current client ID or a client specified in the subquery
+using <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">USING</span></a>. When the result
+of the subquery is written, however, implicit client handling of the <span class="qtext">INSERT</span>
+statement or <span class="qtext">MODIFY</span> statement applies by default. This can be defined using
+the additions <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">USING CLIENT</span></a> or <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>If a <a href="javascript:call_link('abenquery_glosry.htm')" class="grey" title="词汇表条目">query</a> accesses a
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> that is associated with a
+<a href="javascript:call_link('abencds_role_glosry.htm')" class="grey" title="词汇表条目">CDS role</a> and for which
+<a href="javascript:call_link('abencds_access_control_glosry.htm')" class="grey" title="词汇表条目">CDS access control</a> is not
+disabled using the value <span class="qtext400">#NOT_ALLOWED</span> for the annotation <a href="javascript:call_link('abencds_view_anno_v1.htm')" class="blue"><span
+ class="qtext400">@AccessControl.authorizationCheck</span></a> or using the addition <a href="javascript:call_link('abapselect_data_source.htm')" class="blue">
+<span class="qtext">WITH PRIVILEGED ACCESS</span></a> in the <a href="javascript:call_link('abapfrom_clause.htm')" class="blue"><span class="qtext">FROM</span></a> clause, only that data is read implicitly that meets the
+<a href="javascript:call_link('abenaccess_condition_glosry.htm')" class="grey" title="词汇表条目">access condition</a> defined in
+the CDS role. If data cannot be read, ABAP programs cannot distinguish whether this is due to the conditions of the <span class="qtext">SELECT</span> statement, the conditions of the CDS entity, or an associated CDS role. If the
+<a href="javascript:call_link('abencds_mngdddic_view_glosry.htm')" class="grey" title="词汇表条目">CDS-managed DDIC view</a>  of a
+<a href="javascript:call_link('abencds_v1_view_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based view</a> is accessed, no access control takes place.</li>
+</ul>
+<ul class="disc">
+<li>The use of a subquery in the statement <a href="javascript:call_link('abapmodify_dbtab.htm')" class="blue"><span class="qtext">MODIFY</span></a>
+and the us of <span class="qtext">USING CLIENT</span> or an access in the subquery to the DDIC database table or DDIC view that is filled with an <span class="qtext">INSERT</span> statement results in the
+<a href="javascript:call_link('abenopensql_strict_mode_753.htm')" class="blue">strict mode as of Release 7.53</a>. If used, <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">USING <i
+class=bn>[</i>ALL<i class=bn>]</i> CLIENTS <i class=bn>[</i>IN<i class=bn>]</i></span></a> applies <a href="javascript:call_link('abenopensql_strict_mode_754.htm')" class="blue">strict mode from Release 7.54</a>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Inserts columns of a result set formed by an inner join in a database table.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DELETE FROM demo_join1. <br>INSERT demo_join1 <br>&nbsp;&nbsp;FROM TABLE @( VALUE #( ( a = 'a1' b = 'b1' d = 'd1' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( a = 'a2' b = 'b2' d = 'd2' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( a = 'a3' b = 'b3' d = 'd3' ) ) ). <br>
+DELETE FROM demo_join2. <br>INSERT demo_join2 <br>&nbsp;&nbsp;FROM TABLE @( VALUE #( ( d = 'd1' e = 'e1' f = 'f1' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( d = 'd2' e = 'e2' f = 'f2' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( d = 'd3' e = 'e3' f = 'f3' ) ) ). <br>
+ <br>DELETE FROM demo_join3. <br>INSERT demo_join3&nbsp;&nbsp;FROM ( SELECT FROM demo_join1 AS d1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INNER JOIN demo_join2 AS d2 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ON d1~d = d2~d <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS d1~a, d1~b, d2~e, d2~f ). <br>
+ <br>SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_join3 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result). <br> <br>cl_demo_output=>display( result ).
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

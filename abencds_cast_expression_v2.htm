@@ -1,0 +1,1053 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_CAST_EXPRESSION_V2 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - CDS View Entity, cast_expr">
+<title>
+CDS DDL - CDS View Entity, cast_expr - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_cast_expression_v2.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_cast_expression_v2.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v2_views.htm')" class="blue">ABAP CDS - View Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_entity.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_operands_and_expr_v2.htm')" class="blue">CDS DDL - SELECT, CDS View Entity, Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_expressions_v2.htm')" class="blue">CDS DDL - CDS View Entity, Expressions</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@PRESERVING TYPE@@!ABAP_CDS_EXPRESSION!@@"></A>
+<A NAME="@@AS@@!ABAP_CDS_EXPRESSION!@@"></A>
+<A NAME="@@CAST@@!ABAP_CDS_EXPRESSION!@@"></A>
+<p><span class="h1">
+CDS DDL - CDS View Entity, cast_expr
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... CAST( operand AS dtype <i class=bn>[</i>PRESERVING TYPE<i class=bn>]</i>) ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Casting in a <a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue"><span class="qtext400">SELECT</span> statement</a> of a
+<a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>. The cast expression
+converts the value of the operand <span class="qtext400">operand</span> to the ABAP Dictionary type specified by <span class="qtext400">dtype</span>. The result has the type <span class="qtext400">dtype</span>.
+</p>
+<p>
+The following can be specified for <span class="qtext400">dtype</span>:
+</p>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abendata_element_glosry.htm')" class="grey" title="词汇表条目">data element</a>. In this case,
+the optional addition <span class="qtext400">PRESERVING TYPE</span> can be specified. If this addition
+is specified, the built-in data type, the length of the operand and the number of decimal places, and the target data type must match exactly.</li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue">built-in data type</a> in ABAP Dictionary. The addition <span class="qtext400">PRESERVING TYPE</span> cannot be specified in this case.</li>
+</ul>
+<p>
+The following table shows the syntax for specifying built-in data types:
+</p>
+<table border>
+<tr>
+<td><span class="bold">dtype</span></td>
+<td><span class="bold">Dictionary Type</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.char( len )</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CHAR</span></a> with length <span class="qtext400">len</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.clnt<i class=bn>[</i>(3)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CLNT</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.cuky<i class=bn>[</i>(5)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CUKY</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.curr(len,decimals)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CURR</span></a> with length <span class="qtext400">len</span> and <span class="qtext400">decimals</span> decimal places</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.decfloat16<i class=bn>[</i>(16)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DECFLOAT16</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.decfloat34<i class=bn>[</i>(34)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DECFLOAT34</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.dats<i class=bn>[</i>(8)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DATS</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.datn<i class=bn>[</i>(8)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DATN</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.dec(len,decimals)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DEC</span></a> with length <span class="qtext400">len</span> and <span class="qtext400">decimals</span> decimal places</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.fltp<i class=bn>[</i>(16,16)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">FLTP</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int1<i class=bn>[</i>(3)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT1</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int2<i class=bn>[</i>(5)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT2</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int4<i class=bn>[</i>(10)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT4</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int8<i class=bn>[</i>(19)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT8</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.lang<i class=bn>[</i>(1)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">LANG</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.numc( len )</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">NUMC</span></a> with length <span class="qtext400">len</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.quan(len,decimals)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">QUAN</span></a> with length <span class="qtext400">len</span> with <span class="qtext400">decimals</span> decimal places</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.sstring(len)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">SSTRING</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.tims<i class=bn>[</i>(6)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">TIMS</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.timn<i class=bn>[</i>(6)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">TIMN</span></a></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.unit<i class=bn>[</i>(2<i class=bn>|</i>3)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">UNIT</span></a> with length <span class="qtext400">2</span> or <span class="qtext400">3</span> (standard length)</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.utclong<i class=bn>[</i>(27)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">UTCLONG</span></a></td>
+</tr>
+</table><br>
+<p>
+The actual length of the result is defined when the CDS view entity is activated and is at least as
+long as an explicitly defined length <span class="qtext400">len</span>. It is possible, but not mandatory, to specify the length for types with fixed lengths and decimal places.
+</p>
+<p>
+The following can be specified for <span class="qtext400">operand</span>:
+</p>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_literal_v2.htm')" class="blue">literal</a></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_parameter_v2.htm')" class="blue">parameter</a></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_session_variable_v2.htm')" class="blue">session variable</a></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_field_v2.htm')" class="blue">field</a> of a data source
+<a href="javascript:call_link('abencds_data_source_v2.htm')" class="blue"><span class="qtext400">data_source</span></a> of the current CDS view entity</li>
+</ul>
+<ul class="disc">
+<li>An <a href="javascript:call_link('abencds_aggregate_functions_v2.htm')" class="blue">aggregate expression</a></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">path expression</a> that identifies a field
+of a data source <a href="javascript:call_link('abencds_data_source_v2.htm')" class="blue"><span class="qtext400">data_source</span></a></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_builtin_functions_v2.htm')" class="blue">built-in function</a></li>
+</ul>
+<ul class="disc">
+<li>An <a href="javascript:call_link('abencds_arithmetic_expression_v2.htm')" class="blue">arithmetic expression</a></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencds_case_expression_v2.htm')" class="blue">case distinction</a></li>
+</ul>
+<ul class="disc">
+<li>Another, nested cast expression</li>
+</ul>
+<p>
+Cast expressions can be specified in the <a href="javascript:call_link('abencds_select_list_v2.htm')" class="blue"><span class="qtext400">SELECT</span> list</a> and in operand positions of expressions.
+</p>
+<p>
+The following table shows which combinations of built-in data types in ABAP Dictionary can currently be cast to each other and what the prerequisites are in each case. There is a special list of
+<a href="javascript:call_link('abencds_cast_expression_rules_v2.htm')" class="blue">conversion rules</a> for every combination.
+</p>
+<table border>
+<tr>
+<td><span class="bold">from/to</span></td>
+<td><span class="bold"><span class="qtext400">INT1</span></span></td>
+<td><span class="bold"><span class="qtext400">INT2</span></span></td>
+<td><span class="bold"><span class="qtext400">INT4</span></span></td>
+<td><span class="bold"><span class="qtext400">INT8</span></span></td>
+<td><span class="bold"><span class="qtext400">DEC</span></span></td>
+<td><span class="bold"><span class="qtext400">CURR</span></span></td>
+<td><span class="bold"><span class="qtext400">QUAN</span></span></td>
+<td><span class="bold"><span class="qtext400">DECFLOAT16</span></span></td>
+<td><span class="bold"><span class="qtext400">DECFLOAT34</span></span></td>
+<td><span class="bold"><span class="qtext400">FLTP</span></span></td>
+<td><span class="bold"><span class="qtext400">CHAR</span></span></td>
+<td><span class="bold"><span class="qtext400">SSTRING</span></span></td>
+<td><span class="bold"><span class="qtext400">NUMC</span></span></td>
+<td><span class="bold"><span class="qtext400">DATS</span></span></td>
+<td><span class="bold"><span class="qtext400">TIMS</span></span></td>
+<td><span class="bold"><span class="qtext400">DATN</span></span></td>
+<td><span class="bold"><span class="qtext400">TIMN</span></span></td>
+<td><span class="bold"><span class="qtext400">UTCLONG</span></span></td>
+<td><span class="bold"><span class="qtext400">ACCP</span></span></td>
+<td><span class="bold"><span class="qtext400">CLNT</span></span></td>
+<td><span class="bold"><span class="qtext400">LANG</span></span></td>
+<td><span class="bold"><span class="qtext400">UNIT</span></span></td>
+<td><span class="bold"><span class="qtext400">CUKY</span></span></td>
+<td><span class="bold"><span class="qtext400">RAW</span></span></td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">INT1</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">INT2</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">INT4</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">INT8</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">DEC</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">CURR</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">QUAN</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>y</td>
+<td>y</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">DECFLOAT16</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">DECFLOAT34</span></span></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">FLTP</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">CHAR</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">SSTRING</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">NUMC</span></span></td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>z</td>
+<td>z</td>
+<td>z</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>z</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">DATS</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>z</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">TIMS</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>z</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">DATN</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">TIMN</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">UTCLONG</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>x</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">ACCP</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>z</td>
+<td>z</td>
+<td>z</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">CLNT</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>d</td>
+<td>d</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">LANG</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>d</td>
+<td>d</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">UNIT</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>d</td>
+<td>d</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">CUKY</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>d</td>
+<td>d</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="bold"><span class="qtext400">RAW</span></span></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>p</td>
+</tr>
+</table><br>
+<p>
+There are no further restrictions to note in combinations with <span class="qtext400">"x"</span>. The following rules apply to the other combinations:
+</p>
+<ul class="disc">
+<li>In combinations with <span class="qtext400">"y"</span>, the length of the target data type must be sufficient.</li>
+</ul>
+<ul class="disc">
+<li>In combinations with <span class="qtext400">"z"</span>, the lengths of the data types must match exactly.</li>
+</ul>
+<ul class="disc">
+<li>In the case of combinations with <span class="qtext400">"p"</span> or <span class="qtext400">"d"</span>,
+a data element must be specified as the target data type. It is not possible to specify a built-in data type from ABAP Dictionary.</li>
+</ul>
+<ul class="circlem2">
+<li>In combinations with <span class="qtext400">"d"</span>, the data element can have a suitable target type in accordance with the table above and with any length.</li>
+</ul>
+<ul class="circlem2">
+<li>In combinations with <span class="qtext400">"p"</span>, the data element must have the built-in data type and the same length as the data type of the operand.</li>
+</ul>
+<p>
+In the case of incompatible types, the content of the operand is converted to the target type (exceptions
+can be raised if values are not suitable). In compatible types, a syntax check warning occurs (unless the target data type is specified as a data element using the addition <span class="qtext400">PRESERVING TYPE</span>).
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>If a data element is specified for <span class="qtext400">dtype</span>, the result of the expression
+takes on the semantic attribute of the data element. An exception to this is the use of the <span class="qtext400">CAST</span> expression within a case distinction.</li>
+</ul>
+<ul class="disc">
+<li>With the addition <span class="qtext400">PRESERVING TYPE</span>, the data type of the operand stays the same, only the semantic attributes are changed.</li>
+</ul>
+<ul class="disc">
+<li>The characters in the <a href="javascript:call_link('abensurrogate_area_glosry.htm')" class="grey" title="词汇表条目">surrogate area</a> of the
+<a href="javascript:call_link('abensystem_codepage_glosry.htm')" class="grey" title="词汇表条目">system code page</a>
+<a href="javascript:call_link('abenutf16_glosry.htm')" class="grey" title="词汇表条目">UTF-16</a> are handled as two characters in cast expressions for strings. Care should be taken to avoid splitting these characters in truncation operations.</li>
+</ul>
+<ul class="disc">
+<li>When performing a conversion between <a href="javascript:call_link('abenddic_currency_field.htm')" class="blue">currency
+fields</a> with type <span class="qtext400">CURR</span>, it should be noted that <span class="qtext400">CAST</span>
+respects the decimal places defined for the type. In ABAP applications, on the other hand, the position of the decimal point is usually ignored.</li>
+</ul>
+<ul class="disc">
+<li>A <span class="qtext400">CAST</span> expression should be platform-independent. Conversions from
+the type <span class="qtext400">FLTP</span> to other numeric types are not allowed because the result would be platform-dependent.</li>
+</ul>
+<ul class="disc">
+<li>Special built-in <a href="javascript:call_link('abencds_conversion_functions_v2.htm')" class="blue">conversion functions</a> are available for conversions that cannot be covered by a <span class="qtext400">CAST</span> expression:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_conv_func_types_v2.htm')" class="blue"><span class="qtext400">FLTP_TO_DEC</span></a> for converting <span class="qtext400">FLTP</span> to packed numbers.</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_conv_func_types_v2.htm')" class="blue"><span class="qtext400">BINTOHEX</span></a>
+and <a href="javascript:call_link('abencds_conv_func_types_v2.htm')" class="blue"><span class="qtext400">HEXTOBIN</span></a> for conversions of byte strings to character strings and back.</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_conv_func_unit_curr_v2.htm')" class="blue">Conversion functions for units and currencies</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_date_time_conversions_v2.htm')" class="blue">Conversion functions for dates, times, and timestamps</a></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Cast expressions in a <span class="qtext400">SELECT</span> list.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_SALES_CDS_SO_CAST <br>
+&nbsp;&nbsp;as select from DEMO_SALES_CDS_SO <br>&nbsp;&nbsp;&nbsp;&nbsp;association to DEMO_SALES_CDS_SO_I as _item <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on DEMO_SALES_CDS_SO.so_key = _item.so_item_key <br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key so_key, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency_sum, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Semantics.amount.currencyCode: 'currency_sum' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount_sum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as original_amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast(amount_sum as abap.fltp) - <br>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cast(amount_sum as abap.fltp) * 0.03)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as reduced_amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast(amount_sum as abap.fltp) * 0.03&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as overall_savings, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_item.currency, <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_item.posnr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as item_position, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Semantics.amount.currencyCode: 'currency' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_item.gross_amount&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as item_amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast(_item.gross_amount as abap.fltp) * 0.97 as item_savings <br>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</dd></dl>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In the following view entity, the column <span class="qtext400">char1</span> of the DDIC database table
+<span class="lnkgrey"><span class="qtext400">DEMO_EXPRESSIONS</span></span> is cast to the data element
+<span class="qtext400">demo_char_text</span> with the same technical attributes. In this case, it is advisable to specify the addition <span class="qtext400">PRESERVING TYPE</span>.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_CDS_CAST_DATA_ELEMENT_VE <br>
+&nbsp;&nbsp;as select from demo_expressions <br>&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;cast ( char1 as demo_char_text preserving type) as char_with_text <br>&nbsp;&nbsp;};</span>
+</dd></dl>
+<p>
+The following function module call returns the attributes of the view field. The text shows that the
+semantic attributes of the data element were applied. The column <span class="qtext400">char1</span> does not have its own text.
+</p>
+<dl><dd>
+<span class="qtext">DATA dfies_tab TYPE TABLE OF dfies. <br>CALL FUNCTION 'DDIF_FIELDINFO_GET' <br>&nbsp;&nbsp;EXPORTING <br>
+&nbsp;&nbsp;&nbsp;&nbsp;tabname&nbsp;&nbsp; = 'DEMO_CDS_CAST_DATA_ELEMENT_VE' <br>&nbsp;&nbsp;&nbsp;&nbsp;fieldname = 'CHAR_WITH_TEXT' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;langu&nbsp;&nbsp;&nbsp;&nbsp; = sy-langu <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLES <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dfies_tab = dfies_tab. <br>cl_demo_output=>display( dfies_tab[ 1 ]-fieldtext ).</span>
+</dd></dl>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In the following view, a literal is given the technical and semantic attributes of the data element <span class="lnkgrey"><span class="qtext400">S_MANDT</span></span>.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_CDS_CAST_CLNT_VE <br>
+&nbsp;&nbsp;as select from scarr <br>{ <br>&nbsp;&nbsp;key cast ( 'XXX' as s_mandt ) as pseudo_client, <br>&nbsp;&nbsp;key carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrname <br>}</span>
+</dd></dl>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_cast_expression_rules_v2.htm')" class="blue">CDS DDL - CDS View Entity, cast_expr, Conversion Rules</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

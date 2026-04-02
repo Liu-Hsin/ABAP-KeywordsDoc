@@ -1,0 +1,195 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPTYPES_REFERENCES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="TYPES, REF TO">
+<meta name="keywords" content="ABAP, create, reference type">
+<title>
+TYPES, REF TO - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abaptypes_references.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abaptypes_references.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendeclarations.htm')" class="blue">Declarations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_declarations.htm')" class="blue">Declaration Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_and_objects.htm')" class="blue">Data Types and Data Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_statements.htm')" class="blue">Declaring Data Types</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abaptypes.htm')" class="blue">TYPES</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@REF TO@@TYPES@@"></A>
+<p><span class="h1">
+TYPES, REF TO <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abaptypes_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">TYPES ref_type <i class=bn>{</i> <i class=bn>{</i>TYPE REF TO type<i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>|</i> <i class=bn>{</i>LIKE REF TO dobj<i class=bn>}</i> <i class=bn>}</i>.</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The addition <span class="qtext">REF TO</span> defines a data type for a
+<a href="javascript:call_link('abenreference_variable_glosry.htm')" class="grey" title="词汇表条目">reference variable</a>. The static
+type of the reference variable is specified after <span class="qtext">REF TO</span>. The static type
+restricts the object quantity to which a reference variable can point. The dynamic type of a reference
+variable is the data type and the object class to which it points. The static type is always more general or the same as the dynamic type (see also
+<a href="javascript:call_link('abenconversion_references.htm')" class="blue">assignment rules for reference variables</a>).
+</p>
+<p>
+Apart from <span class="qtext">data</span> and <span class="qtext">object</span>, no
+<a href="javascript:call_link('abenbuilt_in_types_generic.htm')" class="blue">generic data types</a> can be specified after <span class="qtext">TYPE REF TO</span>. <br><br>
+</p>
+<p>
+<span class="bold">Types for Data Reference Variables</span>
+</p>
+<p>
+If the predefined generic data type <a href="javascript:call_link('abenbuilt_in_types_generic.htm')" class="blue"><span class="qtext">data</span></a>
+is specified for <span class="qtext">type</span>, a data type for a data reference variable of the generic
+static type <span class="qtext">data</span> is created. Reference variables like these can point to any data objects.
+</p>
+<p>
+If a non-generic data type is specified for <span class="qtext">type</span> (meaning a non-generic data
+type from the ABAP Dictionary, from ABAP CDS, or from the public visibility section of a global class, a non-generic local program type already defined using <span class="qtext">TYPES</span>, or a non-generic
+<a href="javascript:call_link('abenbuilt_in_types_complete.htm')" class="blue">built-in ABAP type</a>), a data type is created
+for a data reference variable with the corresponding static type. Reference variables like these can point to all data objects of the same type.
+</p>
+<p>
+The same applies to <span class="qtext">dobj</span> as to <a href="javascript:call_link('abaptypes_referring.htm')" class="blue"><span class="qtext">
+TYPES ... LIKE</span></a>. A data type is created for a data reference variable whose static type is
+inherited from the data type of the specified data object. Reference variables like these can point to all data objects of the same type.
+</p>
+<p>
+A data reference variable can be dereferenced in different ways, depending on its static type:
+</p>
+<ul class="disc">
+<li>A data reference variable typed generically with <span class="qtext">TYPE REF TO data</span> can
+be dereferenced only in the statement <a href="javascript:call_link('abapassign_mem_area_dynamic_dobj.htm')" class="blue"><span class="qtext">ASSIGN</span></a> with the
+<a href="javascript:call_link('abendereferencing_operat_glosry.htm')" class="grey" title="词汇表条目">dereferencing operator</a> <span class="qtext">->*</span>. <br></li>
+</ul>
+<ul class="disc">
+<li>A data reference variable typed fully with <span class="qtext">TYPE REF TO complete_type</span>
+or <span class="qtext">LIKE REF TO dobj</span> can be dereferenced in all suitable operand positions using the dereferencing operator <span class="qtext">->*</span>. If the static data type is structured, the
+<a href="javascript:call_link('abenobject_component_select_glosry.htm')" class="grey" title="词汇表条目">object component selector</a> enables access to the components of the structure with <span class="qtext">dref->comp</span>. <br><br></li>
+</ul>
+<p>
+<span class="bold">Types for Data Reference Variables</span>
+</p>
+<p>
+If the predefined generic data type <a href="javascript:call_link('abenbuilt_in_types_generic.htm')" class="blue"><span class="qtext">object</span></a>
+is specified for <span class="qtext">type</span>, a data type for a class reference variable of the
+generic static type <span class="qtext">data</span> is created. Reference variables like these can point to instances of any class.
+</p>
+<p>
+If a global or local class is specified for <span class="qtext">type</span>, a data type for a class
+reference variable whose static type is the specified class is created. Reference variables like these
+can point to all instances of the class and its subclasses. A class reference variable can be used to
+access all components of an object. If the static type is the superclass of the dynamic type, the components
+that can be accessed statically are a subset of the components of the dynamic type. All attributes and
+methods of the dynamic type can be accessed using a class reference variable and the dynamic access
+to object attributes (see <span class="qtext">ASSIGN</span>) and the dynamic method call (see <a href="javascript:call_link('abapcall_method_dynamic.htm')" class="blue"><span class="qtext">CALL METHOD</span></a>).
+</p>
+<p>
+If a global or local interface is specified for <span class="qtext">type</span>, a data type for an
+interface reference variable whose static type is the specified interface is created. Reference variables
+like these can point to objects of all classes that implement the interface. When using interface references
+to access components of objects, the name of the static type is always implicitly placed in front of
+the component. An interface reference variable can only be used to access those interface components of an object that are known in the static type. This applies to both dynamic and static access. <br><br>
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The <span class="qtext">TYPE</span> addition can be used to define data types for data reference
+variables and object reference variables. Only data types for data reference variables can be defined using the <span class="qtext">LIKE</span> addition.</li>
+</ul>
+<ul class="disc">
+<li>The predefined generic data type <span class="qtext">any</span> can only be specified after <span class="qtext">TYPE</span>, like all other
+<a href="javascript:call_link('abenbuilt_in_types_generic.htm')" class="blue">generic types</a> apart from <span class="qtext">data</span> and <span class="qtext">object</span>, but not after <span class="qtext">REF TO</span>.</li>
+</ul>
+<ul class="disc">
+<li>Data reference variables can also be declared with the static type of an <a href="javascript:call_link('abaptypes_enum.htm')" class="blue">enumerated type</a> and can then point to data objects of the corresponding type.</li>
+</ul>
+<ul class="disc">
+<li>Since the global <a href="javascript:call_link('abenobject_type_glosry.htm')" class="grey" title="词汇表条目">object types</a> of the
+<a href="javascript:call_link('abenclass_library_glosry.htm')" class="grey" title="词汇表条目">class library</a> are in the same namespace as all
+<a href="javascript:call_link('abenglobal_type_glosry.htm')" class="grey" title="词汇表条目">global types</a> of an AS ABAP, the specification of <span class="qtext">type</span> is always unique. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+This example shows how data types are defined for an interface reference variable and for a class reference variable and how a data reference is defined with the static type of the interface reference variable.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+INTERFACE i1. <br>... <br>ENDINTERFACE. <br> <br>CLASS c1 DEFINITION. <br>&nbsp;&nbsp;PUBLIC SECTION. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;INTERFACES i1. <br>ENDCLASS. <br> <br>TYPES: iref TYPE REF TO i1, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cref TYPE REF TO c1, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dref TYPE REF TO iref. <br><br> <br><br>
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

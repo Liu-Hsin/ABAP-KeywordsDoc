@@ -1,0 +1,150 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_CONDITIONAL_EXPRESSION_V1 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - DDIC-based View, cds_cond">
+<title>
+CDS DDL - DDIC-based View, cds_cond - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_conditional_expression_v1.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_conditional_expression_v1.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_ddic_entity.htm')" class="blue">ABAP CDS - DDIC-Based Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v1_views.htm')" class="blue">ABAP CDS - DDIC-Based Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue">CDS DDL - DEFINE VIEW ddic_based</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_operands_and_expr_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT, Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@NOT@@!ABAP_CDS_DDL_OPERATOR!@@"></A>
+<A NAME="@@AND@@!ABAP_CDS_DDL_OPERATOR!@@"></A>
+<A NAME="@@OR@@!ABAP_CDS_DDL_OPERATOR!@@"></A>
+<A NAME="@@( )@@!ABAP_CDS_DDL_OPERATOR!@@"></A>
+<p><span class="h1">
+CDS DDL - DDIC-based View, cds_cond
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... rel_expr <br>&nbsp;&nbsp;| <i class=bn>[</i>NOT<i class=bn>]</i> cds_cond <i class=bn>[</i>AND<i class=bn>|</i>OR cds_cond<i class=bn>]</i> ...</span>
+</p>
+<p>
+
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Logical expression <span class="qtext400">cds_cond</span> for formulating a condition in ABAP CDS. A
+logical expression is either a single relational expression <span class="qtext400">rel_exp</span>, or
+an expression composed of the Boolean operators <span class="qtext400">NOT</span>, <span class="qtext400">AND</span>,
+<span class="qtext400">OR</span> and one or more logical expressions, in which parentheses are possible. An atomic component of a compound logical expression is always one relational expression.
+</p>
+<p>
+Possible relational expressions <span class="qtext400">rel_expr</span> from which a condition <span class="qtext400">cds_cond</span> can be constructed:
+</p>
+<ul class="disc">
+<li>Comparisons with <a href="javascript:call_link('abencds_cond_expr_comp_v1.htm')" class="blue">comparison operators</a></li>
+</ul>
+<ul class="disc">
+<li>Interval comparisons using <a href="javascript:call_link('abencds_cond_expr_betw_v1.htm')" class="blue"><span class="qtext400">BETWEEN</span></a></li>
+</ul>
+<ul class="disc">
+<li>Pattern comparisons using <a href="javascript:call_link('abencds_cond_expr_like_v1.htm')" class="blue"><span class="qtext400">LIKE</span></a></li>
+</ul>
+<ul class="disc">
+<li>Checks on the <a href="javascript:call_link('abennull_value_glosry.htm')" class="grey" title="词汇表条目">null value</a> using <a href="javascript:call_link('abencds_cond_expr_null_v1.htm')" class="blue"><span class="qtext400">IS NULL</span></a></li>
+</ul>
+<ul class="disc">
+<li>Checks on the <a href="javascript:call_link('abeninitial_value_glosry.htm')" class="grey" title="词汇表条目">initial value</a> using <a
+ href="javascript:call_link('abencds_cond_expr_initial_v1.htm')" class="blue"><span class="qtext400">IS INITIAL</span></a></li>
+</ul>
+<p>
+The Boolean operators work as follows:
+</p>
+<ul class="disc">
+<li><span class="qtext400">NOT</span> negates the result of the following condition.</li>
+</ul>
+<ul class="disc">
+<li>An <span class="qtext400">AND</span> join is true if both joined conditions are true.</li>
+</ul>
+<ul class="disc">
+<li>An <span class="qtext400">OR</span> join is true if at least one of the joined conditions is true.</li>
+</ul>
+<p>
+The operator <span class="qtext400">NOT</span> is a stronger binding than <span class="qtext400">AND</span>,
+which itself is a stronger binding than <span class="qtext400">OR</span>. This produces implicit parentheses, which can be overridden by explicit parentheses.
+</p>
+<p>
+
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_cond_expr_comp_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond, Comparison Operators</a><br>
+<a href="javascript:call_link('abencds_cond_expr_betw_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond, BETWEEN</a><br>
+<a href="javascript:call_link('abencds_cond_expr_like_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond, LIKE</a><br>
+<a href="javascript:call_link('abencds_cond_expr_null_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond, NULL</a><br>
+<a href="javascript:call_link('abencds_cond_expr_initial_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond, INITIAL</a><br>
+<a href="javascript:call_link('abencds_cond_expr_operands_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond, Operands</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

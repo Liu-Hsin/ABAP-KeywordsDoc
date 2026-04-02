@@ -1,0 +1,219 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSHM_AREA_INSTANCE_HANDLE -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Shared Objects - Area Handles">
+<title>
+Shared Objects - Area Handles - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenshm_area_instance_handle.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenshm_area_instance_handle.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencreate_objects.htm')" class="blue">Creating Objects and Values</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_shared_objects.htm')" class="blue">Shared Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenshm_area_instance_access.htm')" class="blue">Shared Objects - Area Instance Versions</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Shared Objects - Area Handles
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<A name="@@ITOC@@ABENSHM_AREA_INSTANCE_HANDLE_1"></A>
+<p><span class="h2">
+Creating Area Handles
+</span></p>
+<p>
+Area handles are instances of the <a href="javascript:call_link('abenarea_class_glosry.htm')" class="grey" title="词汇表条目">area
+class</a> of an area. An individual area handle is created using one of the following static methods from the area class, whereby an associated <a href="javascript:call_link('abenshm_area_instance_locks.htm')" class="blue">area lock</a> is set:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_WRITE</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_UPDATE</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_READ</span></a></li>
+</ul>
+<p>
+There is also the method <a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue"><span class="qtext400">MULTI_ATTACH</span></a>
+to create multiple area handles at once. These methods return a reference to a created area handle. Each area handle is bound to exactly one area instance version. This area instance version has a certain
+<a href="javascript:call_link('abenshm_area_instance_state.htm')" class="blue">state</a>, depending on the method used.
+</p>
+<p>
+Binding an area handle to an area instance version is equivalent to setting one of the following <a href="javascript:call_link('abenshm_area_instance_locks.htm')" class="blue">area locks</a> on the area instance:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_WRITE</span></a>
+and <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_UPDATE</span></a> both create a change lock</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_READ</span></a> creates a read lock</li>
+</ul>
+<A name="@@ITOC@@ABENSHM_AREA_INSTANCE_HANDLE_2"></A>
+<p><span class="h2">
+Creating Area Instance Versions
+</span></p>
+<p>
+The method <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_WRITE</span></a>
+creates a new area instance version if existing locks allow it. By specifying a name, different area
+instances of an area can be created with their own versioning each. If no name is specified, the content
+of constant <span class="qtext400">CL_SHM_AREA=>DEFAULT_INSTANCE</span> is used as the default value.
+It is recommended to always work with explicit and unique names. Until the binding is removed, the bound area instance version can be accessed for changes in the current
+<a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a>.
+</p>
+<A name="@@ITOC@@ABENSHM_AREA_INSTANCE_HANDLE_3"></A>
+<p><span class="h2">
+Changing Area Instance Versions
+</span></p>
+<p>
+The method <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_UPDATE</span></a> does one of the following, if existing locks allow it:
+</p>
+<ul class="disc">
+<li>In areas with <a href="javascript:call_link('abenshm_area_fixed_properties.htm')" class="blue">versioning</a>, it creates a new version as a copy of the active area instance version.</li>
+</ul>
+<ul class="disc">
+<li>In areas without <a href="javascript:call_link('abenshm_area_fixed_properties.htm')" class="blue">versioning</a>, it binds the area handle to an existing active area instance version.</li>
+</ul>
+<p>
+When a name is specified, an area instance is selected. If no name is specified, the content of the
+constant <span class="qtext400">CL_SHM_AREA=>DEFAULT_INSTANCE</span> is used as the default value. Until
+the binding is removed, the bound area instance version can be accessed for changes in the current internal session.
+</p>
+<A name="@@ITOC@@ABENSHM_AREA_INSTANCE_HANDLE_4"></A>
+<p><span class="h2">
+Reading Area Instance Versions
+</span></p>
+<p>
+The method <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_READ</span></a>
+binds the area handle to an existing area instance version if existing locks allow it. When a name is
+specified, an area instance is selected. If no name is specified, the content of the constant <span class="qtext400">
+CL_SHM_AREA=>DEFAULT_INSTANCE</span> is used as the default value. Until the binding is removed, the bound area instance version can be accessed for reads in the current internal session.
+</p>
+<A name="@@ITOC@@ABENSHM_AREA_INSTANCE_HANDLE_5"></A>
+<p><span class="h2">
+Detaching Area Handles
+</span></p>
+<p>
+The following instance methods of the area class remove the binding of an individual area handle:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue"><span class="qtext400">DETACH</span></a> removes a read lock.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue"><span class="qtext400">DETACH_COMMIT</span></a> removes a change lock and confirms the changes that were made.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue"><span class="qtext400">DETACH_ROLLBACK</span></a> removes a change lock without confirming the changes that were made.</li>
+</ul>
+<p>
+In addition, there are the static methods, <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">DETACH_AREA</span></a>
+and <a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue"><span class="qtext400">DETACH_ALL_AREAS</span></a>,
+are used to remove multiple bindings at once. Once the binding between an area handle and the area instance
+version is removed, the area handle is inactive and can no longer be used. Removing a binding also removes the corresponding area lock and might change the state of the relevant area instance version.
+</p>
+<A name="@@ITOC@@ABENSHM_AREA_INSTANCE_HANDLE_6"></A>
+<p><span class="h2">
+Additional Methods
+</span></p>
+<p>
+The methods of the area handles mentioned above are normally used when working with shared objects.
+There are also additional methods also exist for special applications. Transaction <span class="lnkgrey"><span class="qtext400">SHMM</span></span> provides a program-independent user interface for such methods.
+</p>
+<ul class="disc">
+<li>Invalidating versions</li>
+</ul>
+<dl><dd>
+The methods <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext">INVALIDATE_INSTANCE</span></a>
+or <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext">INVALIDATE_AREA</span></a> can
+be used to set one or more active area instance versions to "obsolete". This prevents new read locks from being set for this version, while existing read locks are retained.
+</dd></dl>
+<ul class="disc">
+<li>Deleting versions</li>
+</ul>
+<dl><dd>
+The methods <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext">FREE_INSTANCE</span></a>
+or <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext">FREE_AREA</span></a> can be used
+to set one or more active or obsolete area instance versions to "expired". This removes all read locks and no new read locks can be set on these versions.
+</dd></dl>
+<ul class="disc">
+<li>Information about area instances</li>
+</ul>
+<dl><dd>
+The method <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext">GET_INSTANCE_INFOS</span></a> returns information about all area instances of an AS instance in an internal table.
+</dd></dl>
+<ul class="disc">
+<li>Information about area handles</li>
+</ul>
+<dl><dd>
+The methods <a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue"><span class="qtext">GET_LOCK_KIND</span></a>,
+<span class="qtext">IS_VALID</span>, <a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue"><span class="qtext">IS_ACTIVE_VERSION</span></a>,
+<a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue"><span class="qtext">IS_SHARED</span></a>, <a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue">
+<span class="qtext">HAS_ACTIVE_PROPERTIES</span></a>, and <a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue">
+<span class="qtext">GET_DETACH_INFO</span></a> return information about locks and the state of an area handle.
+</dd></dl>
+<ul class="disc">
+<li>Explicit call of the area constructor</li>
+</ul>
+<dl><dd>
+The method <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext">BUILD</span></a> can be used to call the
+<a href="javascript:call_link('abenshm_area_constructor_class.htm')" class="blue">area constructor</a> of an area explicitly in the current internal session. This method is a standardized mechanism for building area instances.
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

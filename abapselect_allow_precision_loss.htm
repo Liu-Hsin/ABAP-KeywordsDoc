@@ -1,0 +1,113 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPSELECT_ALLOW_PRECISION_LOSS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="sql_agg - ALLOW_PRECISION_LOSS">
+<title>
+sql_agg - ALLOW_PRECISION_LOSS - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapselect_allow_precision_loss.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapselect_allow_precision_loss.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_operands.htm')" class="blue">ABAP SQL - Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">ABAP SQL - SQL Expressions sql_exp</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">sql_exp - sql_agg</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abensql_agg_func.htm')" class="blue">sql_agg - agg_func</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@ALLOW_PRECISION_LOSS@@!ABAP_OSQL_AGG_FUNC!@@"></A>
+<p><span class="h1">
+sql_agg - ALLOW_PRECISION_LOSS <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... ALLOW_PRECISION_LOSS( <a href="javascript:call_link('abensql_agg_func.htm')" class="blue">SUM</a>( <i class=bn>[</i>DISTINCT<i class=bn>]</i>
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">sql_exp</a> )</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The <span class="qtext">ALLOW_PRECISION_LOSS</span> statement can improve the performance of an
+<a href="javascript:call_link('abenaggregate_expression_glosry.htm')" class="grey" title="´Ê»ã±íÌõÄ¿">aggregate expression</a> <a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">
+<span class="qtext">agg_exp</span></a> at the cost of accuracy of the result. This function should only
+be used on decimal values and when loss of precision is acceptable. Currently, <a href="javascript:call_link('abensql_agg_func.htm')" class="blue"><span class="qtext">SUM</span></a> is the only supported aggregate expression.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+A different result is not necessarily obtained when using the <span class="qtext">ALLOW_PRECISION_LOSS</span>
+statement to sum up decimal values. A different result and simultaneous improvement in performance is
+only obtained during certain complex operations. One example is when operations are carried out in a different order to reduce the total number of operations. See the executable example below for further details.
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey">Aggregate function, allow precision loss</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,250 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_COMPOSITION_V2 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - CDS View Entity, COMPOSITION">
+<title>
+CDS DDL - CDS View Entity, COMPOSITION - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_composition_v2.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_composition_v2.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v2_views.htm')" class="blue">ABAP CDS - View Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_entity.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_association_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT, Associations</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@COMPOSITION@@!ABAP_CDS_SELECT!@@"></A>
+<A NAME="@@OF@@!ABAP_CDS_SELECT_COMP!@@"></A>
+<A NAME="@@AS@@!ABAP_CDS_SELECT_COMP!@@"></A>
+<p><span class="h1">
+CDS DDL - CDS View Entity, COMPOSITION
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... COMPOSITION <i class=bn>[</i> [min..max] <i class=bn>]</i> OF target <i class=bn>[</i>AS _compos<i class=bn>]</i> ...</span> <br><br>
+</p>
+<p><span class="h3">
+Additions:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext400">... <i class=bn>[</i>min..max<i class=bn>]</i></span> </A> <br>
+<br><A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext400">... AS _compos</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a <a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">CDS composition</a> with
+the name <span class="qtext400">_compos</span> in a <a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue"><span class="qtext400">SELECT</span> statement</a> of a
+<a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>. A CDS composition associates the current CDS entity, as a
+<a href="javascript:call_link('abencomposition_source_glosry.htm')" class="grey" title="词汇表条目">composition source</a>, with the
+<a href="javascript:call_link('abencomposition_target_glosry.htm')" class="grey" title="词汇表条目">composition target</a> <span class="qtext400">target</span> specified in the definition of the composition. Compositions are specialized
+<a href="javascript:call_link('abencds_association_v2.htm')" class="blue">CDS associations</a> that are characterized by an existential dependency: the composition source represents the
+<a href="javascript:call_link('abenchild_entity_glosry.htm')" class="grey" title="词汇表条目">child entity</a> and it cannot exist without the composition target, which represents the
+<a href="javascript:call_link('abenchild_entity_glosry.htm')" class="grey" title="词汇表条目">parent entity</a>. For example, in sales, a sales order item (child entity) is always part of a sales order (parent entity).
+</p>
+<p>
+The node in which a composition is defined is a parent entity. The target of a composition <span class="qtext400">target</span> is a child entity. The relationship always starts with the child: you first define a
+<a href="javascript:call_link('abencds_to_parent_assoc_v2.htm')" class="blue">to-parent relationship</a> in the child entity
+and afterwards, you define a composition in the parent entity. The other way around results in syntax
+errors. No <span class="qtext400">ON</span> condition is defined explicitly for a composition. The <span class="qtext400">
+ON</span> condition is generated automatically using the <span class="qtext400">ON</span> condition of the to-parent association of the
+<a href="javascript:call_link('abencomposition_target_glosry.htm')" class="grey" title="词汇表条目">composition target</a>.
+</p>
+<p>
+
+</p>
+<p>
+The <a href="javascript:call_link('abencomposition_target_glosry.htm')" class="grey" title="词汇表条目">composition target</a> cannot be specified using a
+<a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">path expression</a> and it must be a
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a>. If <span class="qtext400">target</span> is a CDS abstract entity, the way the composition can be used is restricted.
+</p>
+<p>
+The following applies to the nodes of a composition:
+</p>
+<ul class="disc">
+<li>The target of a composition <span class="qtext400">target</span> cannot be the CDS entity in which this composition is defined.</li>
+</ul>
+<ul class="disc">
+<li>The target of a composition cannot be a root entity.</li>
+</ul>
+<ul class="disc">
+<li>Unless it is a root entity, a parent entity can itself be the target of a composition.</li>
+</ul>
+<ul class="disc">
+<li>A child entity can be the target of exactly one composition. This means that a child entity can have exactly one parent entity.</li>
+</ul>
+<ul class="disc">
+<li>A child entity can itself be a parent entity and define further compositions.</li>
+</ul>
+<p>
+The name of the composition <span class="qtext400">_compos</span> must be added exactly once to the
+<a href="javascript:call_link('abencds_select_list_v2.htm')" class="blue"><span class="qtext400">select_list</span></a> of the
+CDS view entity it is defined in, without attributes and alias. If no name is defined for the composition,
+the name of the composition is the name of the target entity <span class="qtext400">target</span> and
+this name must be made available in the <span class="qtext400">SELECT</span> list. It is not allowed
+to use a composition in a path expression to include a field from the composition target in the same CDS view entity where it is defined.
+</p>
+<p>
+A composition can be accessed as follows:
+</p>
+<ul class="disc">
+<li>If a CDS composition whose <a href="javascript:call_link('abencomposition_target_glosry.htm')" class="grey" title="词汇表条目">composition target</a>  is not abstract is exposed by a
+<a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">path expression</a> in the <span class="qtext400">SELECT</span>
+list of the current <span class="qtext400">SELECT</span> statement, other CDS views or ABAP SQL statement can use it in their path expressions.</li>
+</ul>
+<ul class="disc">
+<li>This is not possible for CDS abstract entities.</li>
+</ul>
+<p>
+The following applies to the compositions:
+</p>
+<ul class="disc">
+<li>Compositions cannot be used locally in a <span class="qtext400">SELECT</span> list, <span class="qtext400">WHERE</span>
+clause, <span class="qtext400">HAVING</span> clause of the CDS view entity that defines them, or in
+<span class="qtext400">EXTEND VIEW ENTITY</span> if this produces a join. This restriction is necessary
+to guarantee that the <span class="qtext400">ON</span> condition for the composition can always be generated from the <span class="qtext400">ON</span> condition of the to-parent association.</li>
+</ul>
+<ul class="disc">
+<li>Compositions can be used in annotations (such as <span class="qtext400">AnnotationRef</span> or <span class="qtext400">ElementRef</span>) in the CDS entities that define them, since this does not produce a join.</li>
+</ul>
+<ul class="disc">
+<li>Compositions can be passed in other data definitions by specifying the name of the composition in
+the <span class="qtext400">SELECT</span> list. In this case, the composition is propagated without the
+semantics of the composition definition. Compositions can be passed using an alias in the <span class="qtext400">SELECT</span> list and the same rules apply as to associations.</li>
+</ul>
+<ul class="disc">
+<li>Compositions can be passed using a filter in the <span class="qtext400">SELECT</span> list. The same rules apply as to associations.</li>
+</ul>
+<ul class="disc">
+<li>Compositions and joins: the use cases and generation of joins described in topic <a href="javascript:call_link('abencds_assoc_join_v2.htm')" class="blue">
+ <span class="qtext400">CDS DDL - CDS View Entity, Associations and Joins</span></a> also apply to CDS compositions, with the exception of use cases 3 and 4.</li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Cyclical dependencies should be avoided when using compositions to prevent problems occurring in mass activations of CDS entities.</li>
+</ul>
+<ul class="disc">
+<li>Unlike in associations, no <span class="qtext400">DEFAULT FILTER</span> can be defined for a composition.</li>
+</ul>
+<ul class="disc">
+<li>Compositions can be given annotations in the element list <span class="qtext400">element_list</span> of the CDS entity in which they are defined. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The CDS view entity <span class="qtext400">DEMO_SALES_CDS_SO_I_VE</span> shown below returns information
+about sales order items. It defines three associations, one of them being a composition. The composition target (i.e. the child entity) is the CDS view entity <span class="qtext400">DEMO_SALES_CDS_SO_I_SL_VE</span>.
+</p>
+<p>
+Explanation: Each sales order item can have one or several schedule lines, but schedule lines can exist only in connection with sales order items.
+</p>
+<p>
+In the <span class="qtext400">SELECT</span> list, the composition <span class="qtext400">_ScheduleLine</span> is exposed, so it can be accessed from external CDS entities.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_SALES_CDS_SO_I_VE <br>
+&nbsp;&nbsp;as select from demo_sales_so_i <br>&nbsp;&nbsp;association&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to parent DEMO_SALES_CDS_SO_VE as _SalesOrder <br>
+&nbsp;&nbsp;&nbsp;&nbsp;on $projection.parent_key = _SalesOrder.so_key <br>&nbsp;&nbsp;composition [0..*] of DEMO_SALES_CDS_SO_I_SL_VE&nbsp;&nbsp; as _ScheduleLine <br>
+&nbsp;&nbsp;association [0..1] to DEMO_SALES_CDS_MATERIAL_VE&nbsp;&nbsp;as _Material <br>&nbsp;&nbsp;&nbsp;&nbsp;on $projection.material = _Material.material <br>
+&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;key so_item_key, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent_key, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posnr, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;material, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Semantics.amount.currencyCode: 'currency' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gross_amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Semantics.quantity.unitOfMeasure: 'unit' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unit, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_SalesOrder, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ScheduleLine, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Material.material as mat <br>&nbsp;&nbsp;}</span> <br><br>
+</dd></dl>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext400">... <i class=bn>[</i>min..max<i class=bn>]</i></span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This addition works in the same way as the addition <a href="javascript:call_link('abencds_association_v2.htm')" class="blue">association</a>. <br><br>
+</p>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext400">... AS _compos</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This addition works in the same way as the addition <a href="javascript:call_link('abencds_association_v2.htm')" class="blue">association</a>. <br><br>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

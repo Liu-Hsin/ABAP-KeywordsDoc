@@ -1,0 +1,153 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSHM_AREA_INSTANCE_STATE -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Shared Objects - States of Area Instance Versions">
+<title>
+Shared Objects - States of Area Instance Versions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenshm_area_instance_state.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenshm_area_instance_state.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencreate_objects.htm')" class="blue">Creating Objects and Values</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_shared_objects.htm')" class="blue">Shared Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenshm_area_instance_access.htm')" class="blue">Shared Objects - Area Instance Versions</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Shared Objects - States of Area Instance Versions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Area instance versions can have the following states.
+</p>
+<ol>
+<li>
+"Under Construction"
+<br></li>
+</ol>
+<dl><dd>
+An area instance version that has a <a href="javascript:call_link('abenshm_area_instance_locks.htm')" class="blue">change lock</a> is being built. Change locks automatically create a version under construction.
+</dd></dl>
+<ol>
+<li>
+"Active"
+<br></li>
+</ol>
+<dl><dd>
+The area instance version whose construction or update was last released using the method <a href="javascript:call_link('abenshm_cl_shm_area.htm')" class="blue">
+<span class="qtext">DETACH_COMMIT</span></a> (and a database commit in the case of transactional areas) is active. All read locks are automatically set to the currently active version.
+</dd></dl>
+<ol>
+<li>
+"Obsolete"
+<br></li>
+</ol>
+<dl><dd>
+If the construction of a new version is completed during read access on the currently active version, the new version becomes active and the version that was previously active becomes obsolete. The
+<a href="javascript:call_link('abenshm_area_instance_locks.htm')" class="blue">read locks</a> on the obsolete version remain until the read is completed, but new read locks for the area instance, however, are always set on the active version.
+</dd></dl>
+<ol>
+<li>
+"Expired"
+<br></li>
+</ol>
+<dl><dd>
+Once the last read lock on an obsolete version is removed, the version expires, that is, it is deleted
+by the Garbage Collector. No locks can be set on expired versions and they are ignored when the version number is determined.
+</dd></dl>
+<p>
+In an area without area instance versioning, there is always only one area instance version that exists
+in one of the states listed above. In an area with versioning, there can be multiple versions of different states in an area instance at the same time:
+</p>
+<ul class="disc">
+<li>Since there can be a maximum of one change lock on an area instance, there is a maximum of one version under construction for each area instance at any given time.</li>
+</ul>
+<ul class="disc">
+<li>There is a maximum of one active version for each area instance.</li>
+</ul>
+<ul class="disc">
+<li>Depending on the maximum number of versions, there can be multiple obsolete versions can exist in parallel.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+If a large number of obsolete area instance versions in an area still have read locks, but there is an updated version in an active state, this can indicate problematic use of shared objects.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In a simple case with a maximum of two versions, the following maximums apply:
+</p>
+<ul class="disc">
+<li>One active version and one version under construction</li>
+</ul>
+<ul class="disc">
+<li>One active version and one obsolete version</li>
+</ul>
+<ul class="disc">
+<li>One version under construction and one obsolete version</li>
+</ul>
+<p>
+
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

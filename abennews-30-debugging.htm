@@ -1,0 +1,118 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENNEWS-30-DEBUGGING -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Debugger in Release 3.0">
+<title>
+Debugger in Release 3.0 - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abennews-30-debugging.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abennews-30-debugging.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abennews.htm')" class="blue">ABAP - Release-Specific Changes</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abennews-30.htm')" class="blue">Changes in Release 3.0</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Debugger in Release 3.0 <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<br><A HREF="#!ABAP_MODIFICATION_1@1@" class="blue"> 1. Debugging system dynpros and system programs </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_2@2@" class="blue"> 2. Debugging ABAP lists </A> <br><br><A HREF="#!ABAP_MODIFICATION_3@3@" class="blue"> 3. Table editor </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_4@4@" class="blue"> 4. Structure expansion </A> <br><br><A HREF="#!ABAP_MODIFICATION_5@5@" class="blue"> 5. Program overview </A> <br><br> <br><br>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_1@1@"></A> <span class="bold">Modification 1</span>
+</span></p>
+<P>
+Debugging system dynpros and system programs <br><br><!-- /A --> <br>There are now special procedures
+for handling <span class="bold">system programs</span> and <span class="bold">system dynpros</span> in ABAP debugging. (System programs are programs with the status 'S' in the program attributes, system dynpros are the
+<a href="javascript:call_link('abendynpro_glosry.htm')" class="grey" title="´Ê»ã±íÌõÄ¿">dynpros</a> of system programs or dynpros that contain only system modules (module name <span class="qtext">SYST</span>-...).) ). <br>
+Examples for system dynpros: list dynpro, selection screen dynpro, ... . <br>System programs and system
+dynpros must be debugged in <span class="bold">system debugging</span>. This can be accessed from anywhere
+in the system by choosing <span class="italic">System &rarr; Utilities &rarr; Debugging System</span> or by choosing <span class="italic">Settings &rarr; System Debugging</span> from the debugger. <br> <br><br> <br><br>
+</P>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_2@2@"></A> <span class="bold">Modification 2</span>
+</span></p>
+<P>
+Debugging ABAP lists <br><br><!-- /A --> <br>It is now possible to track how a list is built. As soon
+as a list is created, it can be displayed by pressing the <span class="qtext500">Display List</span>
+pushbutton in debugging. The display shows all existing lines with their formats. Exception: The only
+exception is the current line, which is not formatted until after <a href="javascript:call_link('abapnew-line.htm')" class="blue"><span class="qtext">NEW-LINE</span></a>. <br> <br><br> <br><br>
+</P>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_3@3@"></A> <span class="bold">Modification 3</span>
+</span></p>
+<P>
+Table editor <br><br><!-- /A --> <br>In the display for internal tables, it is now also possible to change the displayed table. Rows can be changed, inserted, appended, and deleted. <br> <br><br> <br><br>
+</P>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_4@4@"></A> <span class="bold">Modification 4</span>
+</span></p>
+<P>
+Structure expansion <br><br><!-- /A --> <br>In the structure and table displays, structures from fields and tables passed from external programs are now expanded. <br> <br><br> <br><br>
+</P>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_5@5@"></A> <span class="bold">Modification 5</span>
+</span></p>
+<P>
+Program overview <br><br><!-- /A --> <br>A program overview is displayed. This lists all subroutines,
+functions, modules, and events belonging to the current program. The program source code can be displayed by double-clicking a line.
+</P>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,147 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPMETHOD -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="METHOD">
+<meta name="keywords" content="ABAP, METHOD">
+<title>
+METHOD - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapmethod.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapmethod.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_program_layout.htm')" class="blue">Program Structure</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_modularization.htm')" class="blue">Modularization Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_procedures.htm')" class="blue">Procedures</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_methods.htm')" class="blue">Methods</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@METHOD@@!ABAP_STATEMENT!@@"></A>
+<p><span class="h1">
+METHOD <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapmethod_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">METHOD meth.</span> <br><span class="qtext">&nbsp;&nbsp;...</span> <br><span class="qtext">ENDMETHOD.</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Between the statements <span class="qtext">METHOD</span> and <span class="qtext">ENDMETHOD</span>, the functionality of a
+<a href="javascript:call_link('abenmethod_glosry.htm')" class="grey" title="词汇表条目">method</a> <span class="qtext">meth</span> declared using <a href="javascript:call_link('abapclass-methods.htm')" class="blue"><span class="qtext"><i
+class=bn>[</i>CLASS-<i class=bn>]</i></span></a><a href="javascript:call_link('abapmethods.htm')" class="blue"><span class="qtext">METHODS</span></a>
+is implemented in a class. The implementation of a method is only possible in an implementation part
+of a class that was initiated using <a href="javascript:call_link('abapclass.htm')" class="blue"><span class="qtext">CLASS class IMPLEMENTATION</span></a>.
+</p>
+<p>
+Local data types and data objects can be declared within the method. It is also possible to access the formal parameters of the method as well as all components of all instances of its own class.
+</p>
+<p>
+In <a href="javascript:call_link('abeninstance_method_glosry.htm')" class="grey" title="词汇表条目">instance methods</a>, all components of the class and instance of the method can be addressed explicitly using the
+<a href="javascript:call_link('abenself_reference_glosry.htm')" class="grey" title="词汇表条目">self-reference</a> <span class="qtext">me-></span>,
+except by their names. In addition, all components of other instances from the class of the method can be addressed using reference variables.
+</p>
+<p>
+A method can be called <a href="javascript:call_link('abenmethod_calls_static.htm')" class="blue">statically</a> or
+<a href="javascript:call_link('abenmethod_calls_dynamic.htm')" class="blue">dynamically</a>. For static calls, there is a standalone and a functional call form. Dynamic calls are always standalone calls.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>During the implementation of a method of an interface <span class="qtext">intf</span>, either the
+name declared in the prefix with <span class="qtext">intf~</span> or an alias name of the class defined
+with <a href="javascript:call_link('abapaliases.htm')" class="blue"><span class="qtext">ALIASES</span></a>, can be specified
+for <span class="qtext">meth</span>. The method must exist in the interface, otherwise a syntax error
+occurs. If <span class="qtext">intf~</span> is used, a syntax warning occurs for global interfaces only
+if an unused methods is deleted from the global interface, so that initial classes do not immediately become invalid because of this.</li>
+</ul>
+<ul class="disc">
+<li>The addition <a href="javascript:call_link('abapmethod_by_db_proc.htm')" class="blue"><span class="qtext">BY DATABASE PROCEDURE</span></a>
+transforms a method that is implemented in a database-specific language and not in ABAP and is executed in the database system into an
+<a href="javascript:call_link('abenamdp_method_glosry.htm')" class="grey" title="词汇表条目">AMDP method</a>. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In this example, the two methods <span class="qtext">m1</span> and <span class="qtext">m2</span> of
+the class <span class="qtext">c1</span> between <span class="qtext">METHOD</span> and <span class="qtext">ENDMETHOD</span>
+are implemented. Although the local data object <span class="qtext">a1</span> hides the attribute of the same name, the attribute <span class="qtext">a1</span> can be addressed using <span class="qtext">me->a1</span>.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+CLASS c1 DEFINITION. <br>&nbsp;&nbsp;PUBLIC SECTION. <br>&nbsp;&nbsp;&nbsp;&nbsp;METHODS m1 IMPORTING p1 TYPE string. <br>
+&nbsp;&nbsp;PRIVATE SECTION. <br>&nbsp;&nbsp;&nbsp;&nbsp;DATA a1 TYPE string. <br>&nbsp;&nbsp;&nbsp;&nbsp;METHODS m2. <br>
+ENDCLASS. <br>CLASS c1 IMPLEMENTATION. <br>&nbsp;&nbsp;METHOD m1. <br>&nbsp;&nbsp;&nbsp;&nbsp;a1 = p1. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;m2( ). <br>&nbsp;&nbsp;ENDMETHOD. <br>&nbsp;&nbsp;METHOD m2. <br>&nbsp;&nbsp;&nbsp;&nbsp;DATA a1 TYPE string. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;a1 = me->a1. <br>&nbsp;&nbsp;ENDMETHOD. <br>ENDCLASS. <br><br> <br><br> <br>
+</span>
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abapmethod_kernel_module_internal.htm')" class="blue">METHOD, Internal Additions</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

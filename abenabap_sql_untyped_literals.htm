@@ -1,0 +1,136 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENABAP_SQL_UNTYPED_LITERALS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP SQL - Untyped Literals">
+<meta name="keywords" content="ABAP, untyped literal, ABAP SQL">
+<title>
+ABAP SQL - Untyped Literals - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenabap_sql_untyped_literals.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenabap_sql_untyped_literals.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_operands.htm')" class="blue">ABAP SQL - Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abensql_operands.htm')" class="blue">ABAP SQL - SQL Operands sql_elem</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql_literals.htm')" class="blue">ABAP SQL - literal</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP SQL - Untyped Literals
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <i class=bn>{</i> <i class=bn>[</i>+<i class=bn>|</i>-<i class=bn>]</i>n<i class=bn>[</i>n<i
+class=bn>[</i>n<i class=bn>[</i>...<i class=bn>]</i><i class=bn>]</i><i class=bn>]</i> <br>&nbsp;&nbsp;
+&nbsp;<i class=bn>|</i> 'c<i class=bn>[</i>c<i class=bn>[</i>c<i class=bn>[</i>...<i class=bn>]</i><i
+class=bn>]</i><i class=bn>]</i>' <i class=bn>|</i> `<i class=bn>[</i>c<i class=bn>[</i>c<i class=bn>[</i>c<i
+class=bn>[</i>...<i class=bn>]</i><i class=bn>]</i><i class=bn>]</i><i class=bn>]</i>` <i class=bn>}</i> ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Untyped literals in ABAP SQL correspond to general
+<a href="javascript:call_link('abenliteral.htm')" class="blue">ABAP literals</a> and the same rules apply. In ABAP SQL, untyped literals can be specified in read positions of ABAP SQL statements where
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variables</a> are possible. The following applies, depending on the operand position:
+</p>
+<ul class="disc">
+<li>If an untyped literal is specified in an operand position in which it is handled like an
+<a href="javascript:call_link('abensql_elem.htm')" class="blue">elementary SQL expression</a>, the corresponding rules apply and the untyped literal is mapped to a dictionary type and evaluated accordingly on the database.</li>
+</ul>
+<ul class="disc">
+<li>If an untyped literal is specified in an operand position in which it is not handled like an SQL expression, it is handled like a
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variable</a>. If necessary, an ABAP specific type conversion takes place and a
+<a href="javascript:call_link('abapmove_exact.htm')" class="blue">lossless assignment</a>  to the data type required in the operand position must be possible. Non-matching untyped literals produce, depending on the
+<a href="javascript:call_link('abenopensql_strict_modes.htm')" class="blue">syntax check mode</a>, syntax warnings or syntax errors.</li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>While general ABAP supports untyped literals only, ABAP SQL also supports <a href="javascript:call_link('abenabap_sql_typed_literals.htm')" class="blue">typed literals</a> which should be preferred.</li>
+</ul>
+<ul class="disc">
+<li>In some operand positions in which untyped literals are allowed and
+<a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">host expressions</a> are forbidden, an untyped literal can be specified with the syntax <span class="qtext">@( literal
+)</span> and is handled as an untyped literal and not as an expression.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Reading of data from the DDIC database table <span class="lnkgrey"><span class="qtext400">SPFLI</span></span>
+using ABAP SQL. The read rows are specified as untyped text literals in the <span class="qtext">WHERE</span>
+condition. After <span class="qtext">UP TO</span>, an untyped numeric literal specifies the maximum number of rows to read.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT FROM spfli <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS 'Lufthansa' AS name, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cityfrom, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cityto <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE carrid = 'LH'&nbsp;&nbsp;AND <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; countryfr = 'DE' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(wa) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP TO 10 ROWS.
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

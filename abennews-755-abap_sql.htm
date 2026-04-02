@@ -1,0 +1,354 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENNEWS-755-ABAP_SQL -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP SQL in Release 7.55">
+<title>
+ABAP SQL in Release 7.55 - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abennews-755-abap_sql.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abennews-755-abap_sql.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abennews.htm')" class="blue">ABAP - Release-Specific Changes</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abennews-75.htm')" class="blue">Changes in Releases 7.5x</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abennews-755.htm')" class="blue">Changes in Release 7.55</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP SQL in Release 7.55 <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<br><A HREF="#!ABAP_MODIFICATION_1@1@" class="blue"> 1. New aggregate function <span class="qtext">ALLOW_PRECISION_LOSS</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_2@2@" class="blue"> 2. Optional window frame specification within a window function </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_3@3@" class="blue"> 3. New window functions <span class="qtext">FIRST_VALUE</span> and <span class="qtext">LAST_VALUE</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_4@4@" class="blue"> 4. New date/time conversion functions for <span class="qtext400">
+TIMESTAMPL</span>, <span class="qtext400">DATS</span> and <span class="qtext400">TIMS</span> </A> <br><br>
+<A HREF="#!ABAP_MODIFICATION_5@5@" class="blue"> 5. New time stamp functions <span class="qtext">UTCL_CURRENT</span>,
+<span class="qtext">UTCL_ADD_SECONDS</span>, and <span class="qtext">UTCL_SECONDS_BETWEEN</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_6@6@" class="blue"> 6. New date functions <span class="qtext">DATN_DAYS_BETWEEN</span>,
+<span class="qtext">DATN_ADD_DAYS</span>, and <span class="qtext">DATN_ADD_MONTHS</span> </A> <br><br><A HREF="#!ABAP_MODIFICATION_7@7@" class="blue">
+ 7. New additions after the <span class="qtext">ORDER BY</span> clause: <span class="qtext">NULLS FIRST</span> and <span class="qtext">NULLS LAST</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_8@8@" class="blue"> 8. New aggregate functions <span class="qtext">MEDIAN</span>,
+<span class="qtext">STDDEV</span>, <span class="qtext">VAR</span>, <span class="qtext">CORR</span>, and <span class="qtext">CORR_SPEARMAN</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_9@9@" class="blue"> 9. New geometry conversion function <span class="qtext">as_geo_json</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_10@10@" class="blue"> 10. SQL conditions revised </A> <br><br><A HREF="#!ABAP_MODIFICATION_11@11@" class="blue">
+ 11. New window function <span class="qtext">NTILE</span> </A> <br><br><A HREF="#!ABAP_MODIFICATION_12@12@" class="blue">
+ 12. <span class="qtext">SELECT</span>, <span class="qtext">INTO</span> target - host variables can now be declared inline even when the <span class="qtext">FROM</span>-clause is dynamic </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_13@13@" class="blue"> 13. New type conversion functions <span class="qtext">to_clob</span> and <span class="qtext">to_blob</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_14@14@" class="blue"> 14. New currency conversion function <span class="qtext">currency conversion</span> </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_15@15@" class="blue"> 15. Streaming and locators can now be used on SQL expressions </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_16@16@" class="blue"> 16. Further data types allowed in elementary SQL expressions </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_17@17@" class="blue"> 17. Hierarchy load options </A> <br><br><A HREF="#!ABAP_MODIFICATION_18@18@" class="blue"> 18. Typed literals </A> <br>
+<br><A HREF="#!ABAP_MODIFICATION_19@19@" class="blue"> 19. New string functions </A> <br><br><A HREF="#!ABAP_MODIFICATION_20@20@" class="blue"> 20. Addition to the <span class="qtext">UPDATE FROM</span> clause </A> <br><br>
+<A HREF="#!ABAP_MODIFICATION_21@21@" class="blue"> 21. Strict mode of syntax check </A> <br><br> <br><br>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_1@1@"></A> <span class="bold">Modification 1</span>
+</span></p>
+<P>
+<span class="bold">New aggregate function <span class="qtext">ALLOW_PRECISION_LOSS</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abenaggregate_function_glosry.htm')" class="grey" title="词汇表条目">aggregate function</a> in combination with the
+<a href="javascript:call_link('abenaggregate_expression_glosry.htm')" class="grey" title="词汇表条目">aggregate expression</a>  <a href="javascript:call_link('abensql_agg_func.htm')" class="blue"><span class="qtext">SUM</span></a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abapselect_allow_precision_loss.htm')" class="blue"><span class="qtext">ALLOW_PRECISION_LOSS</span></a> <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_2@2@"></A> <span class="bold">Modification 2</span>
+</span></p>
+<P>
+<span class="bold">Optional window frame specification within a window function</span> <br><br><!-- /A -->
+</P>
+<p>
+The optional <a href="javascript:call_link('abapselect_over.htm')" class="blue">window frame specification</a> allows to define
+a subset of rows within a window, called frame. Frames are determined with respect to the current row, which enables the frame to move within a window. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_3@3@"></A> <span class="bold">Modification 3</span>
+</span></p>
+<P>
+<span class="bold">New window functions <span class="qtext">FIRST_VALUE</span> and <span class="qtext">LAST_VALUE</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abenwindow_function_glosry.htm')" class="grey" title="词汇表条目">window functions</a> in
+<a href="javascript:call_link('abenwindow_expression_glosry.htm')" class="grey" title="词汇表条目">window expressions</a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_win_func.htm')" class="blue"><span class="qtext">FIRST_VALUE</span></a> and <a href="javascript:call_link('abensql_win_func.htm')" class="blue"><span class="qtext">LAST_VALUE</span></a>. <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_4@4@"></A> <span class="bold">Modification 4</span>
+</span></p>
+<P>
+<span class="bold">New date/time conversion functions</span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue">date/time conversion functions</a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue"><span class="qtext">TSTMPL_TO_UTCL</span></a>
+and <a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue"> <span class="qtext">TSTMPL_FROM_UTCL</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue"><span class="qtext">DATS_TO_DATN</span></a>
+and <a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue"> <span class="qtext">DATS_FROM_DATN</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue"><span class="qtext">TIMS_TO_TIMN</span></a>
+and <a href="javascript:call_link('abensql_date_time_conversions.htm')" class="blue"> <span class="qtext">TIMS_FROM_TIMN</span></a> <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_5@5@"></A> <span class="bold">Modification 5</span>
+</span></p>
+<P>
+<span class="bold">New time stamp functions <span class="qtext">UTCL_CURRENT</span>, <span class="qtext">UTCL_ADD_SECONDS</span>, and <span class="qtext">UTCL_SECONDS_BETWEEN</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abensql_timestamp_func.htm')" class="blue"> time stamp functions</a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_timestamp_func.htm')" class="blue"><span class="qtext">UTCL_CURRENT</span></a>, <a href="javascript:call_link('abensql_timestamp_func.htm')" class="blue">
+<span class="qtext">UTCL_ADD_SECONDS</span></a>, and <a href="javascript:call_link('abensql_timestamp_func.htm')" class="blue"><span class="qtext">UTCL_SECONDS_BETWEEN</span></a>. <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_6@6@"></A> <span class="bold">Modification 6</span>
+</span></p>
+<P>
+<span class="bold">New date functions <span class="qtext">DATN_DAYS_BETWEEN</span>, <span class="qtext">DATN_ADD_DAYS</span>, and <span class="qtext">DATN_ADD_MONTHS</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abensql_date_func.htm')" class="blue"> date functions</a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_date_func.htm')" class="blue"><span class="qtext">DATN_DAYS_BETWEEN</span></a>, <a href="javascript:call_link('abensql_date_func.htm')" class="blue">
+<span class="qtext">DATN_ADD_DAYS</span></a>, and <a href="javascript:call_link('abensql_date_func.htm')" class="blue"><span class="qtext">DATN_ADD_MONTHS</span></a>. <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_7@7@"></A> <span class="bold">Modification 7</span>
+</span></p>
+<P>
+<span class="bold">New additions after the  <span class="qtext">ORDER BY</span> clause: <span class="qtext">NULLS FIRST</span> and <span class="qtext">NULLS LAST</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following additions after the <a href="javascript:call_link('abaporderby_clause.htm')" class="blue"><span class="qtext">ORDER BY</span></a> clause:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abaporderby_clause.htm')" class="blue"><span class="qtext">NULLS
+FIRST</span></a> and <a href="javascript:call_link('abaporderby_clause.htm')" class="blue"><span class="qtext">NULLS LAST</span></a>. <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_8@8@"></A> <span class="bold">Modification 8</span>
+</span></p>
+<P>
+<span class="bold">New aggregate functions <span class="qtext">MEDIAN</span>, <span class="qtext">STDDEV</span>,
+<span class="qtext">VAR</span>, <span class="qtext">CORR</span>, and <span class="qtext">CORR_SPEARMAN</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abensql_agg_func.htm')" class="blue">aggregate functions</a>:
+</p>
+<ul class="disc">
+<li><span class="qtext">MEDIAN</span>, <span class="qtext">STDDEV</span>, <span class="qtext">VAR</span>, <span class="qtext">CORR</span>, and <span class="qtext">CORR_SPEARMAN</span>. <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_9@9@"></A> <span class="bold">Modification 9</span>
+</span></p>
+<P>
+<span class="bold">New geometry conversion function  <span class="qtext">as_geo_json</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abensql_geo_conv_func.htm')" class="blue">geometry conversion function</a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_geo_conv_func.htm')" class="blue"><span class="qtext">as_geo_json</span></a> <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_10@10@"></A> <span class="bold">Modification 10</span>
+</span></p>
+<P>
+<span class="bold">SQL Conditions Revised</span> <br><br><!-- /A -->
+</P>
+<ul class="disc">
+<li>The operator <a href="javascript:call_link('abenwhere_logexp_list_in.htm')" class="blue"><span class="qtext">IN</span></a> can now be used with a
+<a href="javascript:call_link('abenwhere_logexp_list_in.htm')" class="blue">subquery that returns value tuples</a>.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abenopen_sql_builtin_functions.htm')" class="blue">SQL functions</a> and
+<a href="javascript:call_link('abensql_cast.htm')" class="blue">cast expressions</a> can now be used as operands on the right side of
+<a href="javascript:call_link('abenwhere_logexp_compare.htm')" class="blue">comparison operators</a>. <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_11@11@"></A> <span class="bold">Modification 11</span>
+</span></p>
+<P>
+<span class="bold">New window function <span class="qtext">NTILE</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the following new <a href="javascript:call_link('abenwindow_function_glosry.htm')" class="grey" title="词汇表条目">window function</a> in
+<a href="javascript:call_link('abenwindow_expression_glosry.htm')" class="grey" title="词汇表条目">window expressions</a>:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abensql_win_func.htm')" class="blue"><span class="qtext">NTILE</span></a> <br><br> <br><br></li>
+</ul>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_12@12@"></A> <span class="bold">Modification 12</span>
+</span></p>
+<P>
+<span class="bold"><span class="qtext">SELECT</span>, <span class="qtext">INTO</span>  target modification</span> <br><br><!-- /A -->
+</P>
+<p>
+When using <span class="qtext">SELECT, INTO target</span>, host variables can now be declared inline
+even when the <span class="qtext">FROM</span>-clause is dynamic, as long as all fields of the <span class="qtext">
+SELECT</span> list  are known statically. Previously, the structure of the result set, including <span class="qtext">
+SELECT</span> list, <span class="qtext">FROM</span> clause, and any indicators needed to be static. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_13@13@"></A> <span class="bold">Modification 13</span>
+</span></p>
+<P>
+<span class="bold">New type conversion function <span class="qtext"> to_clob</span> and <span class="qtext">to_blob</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the new <a href="javascript:call_link('abensql_type_conv_func.htm')" class="blue">type conversion functions</a>
+<a href="javascript:call_link('abensql_type_conv_func.htm')" class="blue"><span class="qtext">to_clob</span></a> and <a href="javascript:call_link('abensql_type_conv_func.htm')" class="blue"><span class="qtext">to_blob</span></a>. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_14@14@"></A> <span class="bold">Modification 14</span>
+</span></p>
+<P>
+<span class="bold"> New currency conversion function <span class="qtext">currency conversion</span></span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the new currency conversion function <a href="javascript:call_link('abensql_curr_unit_conv_func.htm')" class="blue"><span class="qtext">currency_conversion</span></a>. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_15@15@"></A> <span class="bold">Modification 15</span>
+</span></p>
+<P>
+<span class="bold"> Streaming and locators can now be used on SQL expressions</span> <br><br><!-- /A -->
+</P>
+<p>
+Streaming and locators can now be used in combination with SQL expressions such as <a href="javascript:call_link('abensql_type_conv_func.htm')" class="blue">
+<span class="qtext">TO_CLOB</span></a>, <a href="javascript:call_link('abensql_type_conv_func.htm')" class="blue"><span class="qtext">TO_BLOB</span></a>,
+and <a href="javascript:call_link('abensql_geo_conv_func.htm')" class="blue"><span class="qtext">AS_GEO_JSON</span></a>. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_16@16@"></A> <span class="bold">Modification 16</span>
+</span></p>
+<P>
+<span class="bold">Further data types allowed in elementary SQL expressions</span> <br><br><!-- /A -->
+</P>
+<p>
+<a href="javascript:call_link('abensql_elem.htm')" class="blue">Elementary SQL expressions</a> can now also have the dictionary data types <span class="qtext400">STRING</span> and <span class="qtext400">RAWSTRING</span>. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_17@17@"></A> <span class="bold">Modification 17</span>
+</span></p>
+<P>
+<span class="bold">Hierarchy load options</span> <br><br><!-- /A -->
+</P>
+<p>
+
+</p>
+<p>
+The <a href="javascript:call_link('abenhierarchy_generator_glosry.htm')" class="grey" title="词汇表条目">hierarchy generator</a>
+<a href="javascript:call_link('abenselect_hierarchy_generator.htm')" class="blue"><span class="qtext">HIERARCHY</span></a> can now use the new addition <span class="qtext">LOAD BULK<i
+class=bn>|</i>INCREMENTAL<i class=bn>|</i>load_option</span> to specify the load policy for a generated hierarchy. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_18@18@"></A> <span class="bold">Modification 18</span>
+</span></p>
+<P>
+<span class="bold">Typed literals</span> <br><br><!-- /A -->
+</P>
+<p>
+<a href="javascript:call_link('abenabap_sql_typed_literals.htm')" class="blue">Typed literals</a> for many ABAP Dictionary types are now available in ABAP SQL. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_19@19@"></A> <span class="bold">Modification 19</span>
+</span></p>
+<P>
+<span class="bold">New string functions</span> <br><br><!-- /A -->
+</P>
+<p>
+ABAP SQL now supports the new string functions <a href="javascript:call_link('abensql_string_func.htm')" class="blue"><span class="qtext">
+REPLACE_REGEXPR</span></a>, <a href="javascript:call_link('abensql_string_func.htm')" class="blue"><span class="qtext">LIKE_REGEXPR</span></a>,
+and <a href="javascript:call_link('abensql_string_func.htm')" class="blue"><span class="qtext">OCCURRENCES_REGEXPR</span></a> that support regular expressions. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_20@20@"></A> <span class="bold">Modification 20</span>
+</span></p>
+<P>
+<span class="bold">Addition to the <span class="qtext">UPDATE FROM</span> clause</span> <br><br><!-- /A -->
+</P>
+<p>
+<a href="javascript:call_link('abapupdate_set_indicator.htm')" class="blue">Set indicators</a> can now be used as addition after
+the <a href="javascript:call_link('abapupdate_source.htm')" class="blue"><span class="qtext">UPDATE FROM</span></a>-clause to indicate columns for update. <br><br> <br><br>
+</p>
+<p><span class="h4">
+<A NAME="!ABAP_MODIFICATION_21@21@"></A> <span class="bold">Modification 21</span>
+</span></p>
+<P>
+<span class="bold">Strict Mode in the Syntax Check</span> <br><br><!-- /A -->
+</P>
+<p>
+If one the new features listed above is used in an ABAP SQL statement, the syntax check is performed in a
+<a href="javascript:call_link('abenopensql_strict_mode_755.htm')" class="blue">strict mode</a>, which handles the statement more strictly than the regular syntax check. <br><br> <br><br>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

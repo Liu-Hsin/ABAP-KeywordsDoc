@@ -1,0 +1,301 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSQL_CURR_UNIT_CONV_FUNC -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="sql_func - Unit and Currency Conversion Functions">
+<title>
+sql_func - Unit and Currency Conversion Functions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abensql_curr_unit_conv_func.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abensql_curr_unit_conv_func.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_operands.htm')" class="blue">ABAP SQL - Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">ABAP SQL - SQL Expressions sql_exp</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abensql_builtin_func.htm')" class="blue">sql_exp - sql_func</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_builtin_functions.htm')" class="blue">ABAP SQL - Built-In Functions sql_func</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_special_functions.htm')" class="blue">sql_func - Special Functions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_conversion_functions.htm')" class="blue">sql_func - Conversion Functions</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@CURRENCY_CONVERSION@@!ABAP_OSQL_FUNC!@@"></A>
+<p><span class="h1">
+sql_func - Unit and Currency Conversion Functions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... CURRENCY_CONVERSION( p1 = a1, p2 = a2, ... ) ...</span> <br><br>
+</p>
+<p><span class="h2">
+Variants:
+</span></p>
+<P>
+   <A HREF="#!ABAP_VARIANT_1@1@" class="blue"> 1. <span class="qtext">... CURRENCY_CONVERSION( p1 = a1, p2 = a2, ... )</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Functions for converting between units currencies in an ABAP SQL statement. The functions have
+<a href="javascript:call_link('abenkeyword_parameter_glosry.htm')" class="grey" title="词汇表条目">keyword parameters</a> <span class="qtext">p1</span>,
+<span class="qtext">p2</span>, ... (some of which are optional), to which actual parameters <span class="qtext">a1</span>,
+<span class="qtext">a2</span>, ... must be assigned  using <span class="qtext">=</span> when a function is called.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Currently, only currency conversions are possible in ABAP SQL. But it is planned to implement <a href="javascript:call_link('abencds_conv_func_unit_curr_v2.htm')" class="blue">unit conversions</a> as in ABAP CDS. <br><br>
+</p>
+<p><span class="h2">
+<A NAME="!ABAP_VARIANT_1@1@"></A> <span class="bold">Variant 1</span>
+</span></p>
+<P>
+<span class="qtext">... CURRENCY_CONVERSION( p1 = a1, p2 = a2, ... )</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The function <span class="qtext">CURRENCY_CONVERSION</span> performs a currency conversion for the value
+passed to the formal parameter <span class="qtext">amount</span>. The result has the same data type
+as the formal parameter passed to <span class="qtext">amount</span>. The currency conversion is performed
+on the basis of the client-dependent rules saved in the DDIC database tables <span class="qtext400">TCUR...</span>
+of package <span class="lnkgrey"><span class="qtext400">SFIB</span></span>. These rules can be edited using transaction <span class="lnkgrey"><span class="qtext400">OB08</span></span>.
+</p>
+<p>
+The table below shows the actual parameters <span class="qtext">p1</span>, <span class="qtext">p2</span>, ... and their meaning.
+</p>
+<table border>
+<tr>
+<td><span class="bold">Formal Parameter</span></td>
+<td><span class="bold">Optional</span></td>
+<td><span class="bold">Meaning</span></td>
+<td><span class="bold">Data Type</span></td>
+<td><span class="bold">Actual Parameter</span></td>
+</tr>
+<tr>
+<td><span class="qtext">amount</span></td>
+<td><span class="qtext400">-</span></td>
+<td>Inbound value</td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DEC</span></a>, <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue">
+ <span class="qtext400">CURR</span></a>, <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">QUAN</span></a>
+with two decimal places; <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DECFLOAT34</span></a></td>
+<td><a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a></td>
+</tr>
+<tr>
+<td><span class="qtext">source_currency</span></td>
+<td><span class="qtext400">-</span></td>
+<td>Source currency from column <span class="qtext400">WAERS</span> of the DDIC database table <span class="lnkgrey"><span class="qtext400">TCURC</span></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CUKY</span></a></td>
+<td><a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a></td>
+</tr>
+<tr>
+<td><span class="qtext">target_currency</span></td>
+<td><span class="qtext400">-</span></td>
+<td>Target currency from column <span class="qtext400">WAERS</span> of the DDIC database table <span class="lnkgrey"><span class="qtext400">TCURC</span></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CUKY</span></a></td>
+<td><a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a></td>
+</tr>
+<tr>
+<td><span class="qtext">exchange_rate_date</span></td>
+<td><span class="qtext400">-</span></td>
+<td>Exchange rate date for column <span class="qtext400">GDATU</span> of the DDIC database table <span class="lnkgrey"><span class="qtext400">TCURR</span></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DATS</span></a></td>
+<td><a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a></td>
+</tr>
+<tr>
+<td><span class="qtext">exchange_rate_type</span></td>
+<td><span class="qtext400">X</span></td>
+<td>Exchange rate type from column <span class="qtext400">KURST</span> of the DDIC database table <span class="lnkgrey"><span class="qtext400">TCURR</span></span>, default value: <span class="qtext400">"M"</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CHAR</span></a></td>
+<td><a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a></td>
+</tr>
+<tr>
+<td><span class="qtext">client</span></td>
+<td><span class="qtext400">X</span></td>
+<td>Client whose rules are used to perform the currency conversion. Default: Content of the client column of the current row</td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CLNT</span></a></td>
+<td><a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a></td>
+</tr>
+<tr>
+<td><span class="qtext">round</span></td>
+<td><span class="qtext400">X</span></td>
+<td>Not possible for amount type <span class="qtext400">D34N</span>; if <span class="qtext400">X</span>
+(default value), the intermediate result of the conversion is rounded to the end result using commercial rounding; otherwise it is truncated</td>
+<td>ABAP type <span class="qtext">c</span> of length 1</td>
+<td><a href="javascript:call_link('abenabap_sql_literals.htm')" class="blue">Literal</a> or <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host constant</a></td>
+</tr>
+<tr>
+<td><span class="qtext">decimal_shift</span></td>
+<td><span class="qtext400">X</span></td>
+<td>Not possible for amount type <span class="qtext400">D34N</span>; if <span class="qtext400">X</span>
+(default value), the decimal places of the source value are moved as specified by the decimal places of the source currency (see below).</td>
+<td>ABAP type <span class="qtext">c</span> of length 1</td>
+<td><a href="javascript:call_link('abenabap_sql_literals.htm')" class="blue">Literal</a> or <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host constant</a></td>
+</tr>
+<tr>
+<td><span class="qtext">decimal_shift_back</span></td>
+<td><span class="qtext400">X</span></td>
+<td>Not possible for amount type <span class="qtext400">D34N</span>; if <span class="qtext400">X</span>
+(default value), the decimal places of the result are moved as specified by the decimal places of the target currency (see below).</td>
+<td>ABAP type <span class="qtext">c</span> of length 1</td>
+<td><a href="javascript:call_link('abenabap_sql_literals.htm')" class="blue">Literal</a> or <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host constant</a></td>
+</tr>
+<tr>
+<td><span class="qtext">on_error</span></td>
+<td><span class="qtext400">X</span></td>
+<td>Error handling. If <span class="qtext">fail</span> (default value), an error raises an exception; if <span class="qtext">set_to_null</span>, the result is reset to the
+<a href="javascript:call_link('abennull_value_glosry.htm')" class="grey" title="词汇表条目">null value</a></td>
+<td><a href="javascript:call_link('abenenumerated_type_glosry.htm')" class="grey" title="词汇表条目">Enumerated type</a> <span class="qtext400">ON_ERROR</span>
+of class <span class="lnkgrey"><span class="qtext400">SQL_CURRENCY_CONVERSION</span></span></td>
+<td>Allowed <a href="javascript:call_link('abenenumerated_value_glosry.htm')" class="grey" title="词汇表条目">enumerated value</a></td>
+</tr>
+</table><br>
+<p>
+<span class="bold">Handling the Decimal Places</span>
+</p>
+<ul class="disc">
+<li>The value passed is rounded to two decimal places before it is converted.</li>
+</ul>
+<ul class="disc">
+<li>Before the conversion, the value is multiplied by 10 to the power of the number of decimal places of the source currency.</li>
+</ul>
+<ul class="disc">
+<li>If the value <span class="qtext400">X</span> is passed to the parameter <span class="qtext">decimal_shift</span>,
+the value passed is multiplied by 10 to the power of two minus the number of decimal places of the source currency before it is converted.</li>
+</ul>
+<ul class="disc">
+<li>If the value  <span class="qtext400">X</span> is passed to the parameter <span class="qtext">decimal_shift_back</span>,
+the result is divided by 10 to the power of two minus the number of decimal places of the target currency before it is converted.</li>
+</ul>
+<ul class="disc">
+<li>After the conversion, the result is divided by 10 to the power of the number of decimal places of the target currency.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<ul class="disc">
+<li>The conversion is performed on the database, which means that part of the calculation takes place
+using different rounding rules from ABAP. No matter how the conversion is made, the same results cannot
+be expected as when using standard function modules for currency conversion, since these modules are generally less precise and round the intermediate results accordingly.</li>
+</ul>
+<ul class="disc">
+<li>The parameter <span class="qtext">decimal_shift</span> is intended to set the source value to the
+number of decimal places of the source currency before the conversion. Because of that, its technical
+type, <a href="javascript:call_link('abenddic_currency_field.htm')" class="blue"><span class="qtext400">CURR</span></a> must
+have two decimal places. The parameter <span class="qtext">decimal_shift_back</span> is intended to perform the reverse operation.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following is an excerpt of the program <span class="lnkgrey"><span class="qtext400">DEMO_ASQL_CURRENCY_CONVERSION</span></span>.
+The <span class="qtext">SELECT</span> statement calls a currency conversion in its <span class="qtext">SELECT</span>
+list for the column <span class="qtext400">AMOUNT</span> of the DDIC database table <span class="lnkgrey"><span class="qtext400">
+DEMO_PRICES</span></span>. The target currency is passed as a host variable. In the event of an error,
+for example when a currency is not available, an exception is raised. As a comparison, the same conversion
+is also performed using the function module <span class="lnkgrey"><span class="qtext400">CONVERT_TO_LOCAL_CURRENCY</span></span>.
+As a prerequisite for the example, the currencies and conversion rules must be available in the corresponding DDIC database tables.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA currency TYPE c LENGTH 5 VALUE 'USD'. <br> <br>... <br> <br>SELECT FROM demo_prices <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS id, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency_conversion( <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount = amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source_currency = currency, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target_currency = @currency, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exchange_rate_date = @sy-datlo, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round = 'X', <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on_error = <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@sql_currency_conversion=>c_on_error-fail ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AS amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@currency AS currency <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO TABLE @DATA(converted_prices_asql).
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+In the program <span class="lnkgrey"><span class="qtext400">DEMO_ASQL_FUNC_CURR_CONV</span></span>,
+the SQL function <span class="qtext">CURRENCY_CONVERSION</span> is used in a subquery of a <span class="qtext">MODIFY</span> statement.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA currency TYPE c LENGTH 5 VALUE 'USD'. <br> <br>... <br> <br>MODIFY demo_prices FROM <br>&nbsp;&nbsp;( SELECT FROM demo_prices <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS id, <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currency_conversion( <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount = amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source_currency = currency, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target_currency = @currency, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exchange_rate_date = @sy-datlo, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on_error = <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@sql_currency_conversion=>c_on_error-fail ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AS amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@currency&nbsp;&nbsp;AS currency <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY id ).
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

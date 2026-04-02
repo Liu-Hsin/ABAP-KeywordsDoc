@@ -1,0 +1,405 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_EXTEND_VIEW -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - EXTEND VIEW ddic_based_view">
+<title>
+CDS DDL - EXTEND VIEW ddic_based_view - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_extend_view.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_extend_view.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_extension.htm')" class="blue">ABAP CDS - View extension</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_extend_view.htm')" class="blue">CDS DDL - EXTEND VIEW</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@EXTEND VIEW@@!ABAP_CDS_DDL_STATEMENT!@@"></A>
+<A NAME="@@WITH@@!ABAP_CDS_EXTEND_VIEW!@@"></A>
+<p><span class="h1">
+CDS DDL - EXTEND VIEW ddic_based_view
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400"><a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue">@AbapCatalog.sqlViewAppendName: 'CDS_APPEND_VIEW'</a> <br>
+<i class=bn>[</i><a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue">@extension_annot1</a><i class=bn>]</i> <br>
+<i class=bn>[</i><a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue">@extension_annot2</a><i class=bn>]</i> <br>
+... <br>EXTEND VIEW ddic_based_view <i class=bn>|</i> projection_view <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WITH cds_view_extension <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>association1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; association2 ...<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ select_list_extension } <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>GROUP BY field1, field2, ...&nbsp;&nbsp;<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>UNION <i class=bn>[</i>ALL<i class=bn>]</i> { ... }<i class=bn>]</i> <i class=bn>[</i>;<i class=bn>]</i></span> <br><br>
+</p>
+<p><span class="h3">
+Additions:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext400">... GROUP BY field1, field2, ...</span> </A> <br>
+<br><A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext400">... UNION <i class=bn>[</i>ALL<i class=bn>]</i> { ... }</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Extends an existing <a href="javascript:call_link('abencds_v1_view_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based view</a> <span class="qtext400">ddic_based_view</span> or an existing
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a> <span class="qtext400">projection_view</span> using a
+<a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extension</a> <span class="qtext400">cds_view_extension</span> in the
+<a href="javascript:call_link('abencds_ddl_glosry.htm')" class="grey" title="词汇表条目">CDS DDL</a>.
+</p>
+<p>
+A CDS view extended using this variant of the statement <span class="qtext400">EXTEND VIEW</span> must be based on a
+<a href="javascript:call_link('abencds_mngdddic_view_glosry.htm')" class="grey" title="词汇表条目">CDS-managed DDIC view</a>. The extended CDS view must be specified under the name of its
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a>. The name of the
+<a href="javascript:call_link('abencds_mngdddic_view_glosry.htm')" class="grey" title="词汇表条目">CDS-managed DDIC view</a> cannot be specified.
+</p>
+<p>
+As a prerequisite for the enhancement of the CDS view with the statement <span class="qtext400">EXTEND VIEW</span>, the elements of the
+<a href="javascript:call_link('abenannotation_array_glosry.htm')" class="grey" title="词汇表条目">annotation array</a>
+ <a href="javascript:call_link('abencds_view_anno_v1.htm')" class="blue"><span class="qtext400">AbapCatalog.viewEnhancementCategory[
+]</span></a> must be specified accordingly in its definition with <a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue"><span class="qtext400">DEFINE VIEW</span></a>:
+</p>
+<ul class="disc">
+<li>By default or if only the value <span class="qtext400">#PROJECTION_LIST</span> is specified, views without
+<a href="javascript:call_link('abencds_aggregate_functions_v1.htm')" class="blue">aggregate expressions</a> in the <span class="qtext400">SELECT</span>
+list and without a <a href="javascript:call_link('abencds_union_v1.htm')" class="blue"><span class="qtext400">UNION</span></a> clause can be extended.</li>
+</ul>
+<ul class="disc">
+<li>In order to extend views that have <a href="javascript:call_link('abencds_aggregate_functions_v1.htm')" class="blue">aggregate
+expressions</a> in the <span class="qtext400">SELECT</span> list, the annotation array must contain the value <span class="qtext400">#GROUP_BY</span> alongside <span class="qtext400">#PROJECTION_LIST</span>.</li>
+</ul>
+<ul class="disc">
+<li>In order to extend views that contain <a href="javascript:call_link('abencds_union_v1.htm')" class="blue"><span class="qtext400">UNION</span></a>
+clauses, the annotation array must contain the value <span class="qtext400">#UNION</span> alongside <span class="qtext400">#PROJECTION_LIST</span>.</li>
+</ul>
+<ul class="disc">
+<li>If the annotation array contains the value <span class="qtext400">#NONE</span>, the view cannot be extended.</li>
+</ul>
+<p>
+CDS views with an explicit <a href="javascript:call_link('abencds_name_list_v1.htm')" class="blue">name list</a> cannot currently be extended. CDS view extensions themselves cannot be extended.
+</p>
+<p>
+<span class="qtext400">EXTEND VIEW</span> is used to make the following modification-free extensions:
+</p>
+<ul class="disc">
+<li>The elements of the extension list <span class="qtext400">select_list_extension</span> specified
+after <span class="qtext400">EXTEND VIEW</span> are added to the existing <span class="qtext400">SELECT</span>
+list. At least one element must be added. It is possible to access all fields of the data sources used in the extended CDS view in the extension list <span class="qtext400">select_list_extension</span>. The list can have all
+<a href="javascript:call_link('abencds_select_list_entry_v1.htm')" class="blue">elements</a> of a <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue"><span class="qtext400">SELECT</span> list</a>, except
+<a href="javascript:call_link('abencds_aggregate_functions_v1.htm')" class="blue">aggregate expressions</a>. The following can also be specified:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_parameter_v1.htm')" class="blue">Input parameters</a> of the extended CDS view</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">Path expressions</a> for dedicated CDS associations and for CDS associations of the extended CDS view</li>
+</ul>
+<ul class="circlem2">
+<li>Other <a href="javascript:call_link('abencds_operands_and_expr_v1.htm')" class="blue">literals, expressions and functions</a></li>
+</ul>
+<dl><dd>
+If an appended element already occurs in the existing <span class="qtext400">SELECT</span> list or if
+a different extension occurs, it must be given an alternative element name using <span class="qtext400">AS</span>. An appended field cannot be defined as a key field using <span class="qtext400">KEY</span>.
+</dd></dl>
+<ul class="disc">
+<li>The optional CDS associations <a href="javascript:call_link('abencds_association_v1.htm')" class="blue"><span class="qtext400">association1</span></a>,
+<a href="javascript:call_link('abencds_association_v1.htm')" class="blue"><span class="qtext400">association2</span></a>, ...
+specified after <span class="qtext400">EXTEND VIEW</span> can be added to the existing <span class="qtext400">SELECT</span> statement.</li>
+</ul>
+<p>
+If the original view contains <a href="javascript:call_link('abencds_aggregate_functions_v1.htm')" class="blue">aggregate expressions</a>,
+further aggregate expressions can be added to it in <span class="qtext400">select_list_extension</span>.
+If the original view does not contain any aggregate expressions, this is not possible. If other elements
+are added to a CDS view with aggregate expressions, its <a href="javascript:call_link('abencds_group_by_v1.htm')" class="blue"><span class="qtext400">
+GROUP-BY</span></a> clause must be extended accordingly using the addition <span class="qtext400">GROUP BY</span> of the association <span class="qtext400">EXTEND VIEW</span>
+</p>
+<p>
+If the original view contains <a href="javascript:call_link('abencds_union_v1.htm')" class="blue"><span class="qtext400">UNION</span></a>,
+equivalent <span class="qtext400">UNION</span> additions must be used in the statement <span class="qtext400">EXTEND VIEW</span>.
+</p>
+<p>
+The annotation <a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue"><span class="qtext400">AbapCatalog.sqlViewAppendName</span></a>
+must be specified before the view extension itself is defined using <span class="qtext400">EXTEND VIEW</span>.
+Further annotations <a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue"><span class="qtext400">extension_annot1</span></a>,
+<a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue"><span class="qtext400">extension_annot2</span></a>, ... can also be specified. This is optional.
+</p>
+<p>
+Two repository objects are created for a CDS view extension that is defined using <span class="qtext400">EXTEND VIEW</span>. A name must be specified for each of the two objects:
+</p>
+<ul class="disc">
+<li>The actual name <span class="qtext400">cds_view_extension</span> of the CDS view extension is specified after the keywords <span class="qtext400">EXTEND VIEW</span>. This name follows the same rules as the name of an
+<a href="javascript:call_link('abenddic_append_view_glosry.htm')" class="grey" title="词汇表条目">DDIC append view</a>, but can have up to 30 characters.</li>
+</ul>
+<ul class="disc">
+<li>The name <span class="qtext400">CDS_APPEND_VIEW</span> for a
+<a href="javascript:call_link('abenddic_append_view_glosry.htm')" class="grey" title="词汇表条目">append view</a> in ABAP Dictionary must be specified in quotation marks after the
+<a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue">annotation</a> <span class="qtext400">@AbapCatalog.sqlViewAppendName</span>
+created when the CDS view extension was activated. This name is subject to the same rules as the name of a
+<a href="javascript:call_link('abendatabase_view_glosry.htm')" class="grey" title="词汇表条目">DDIC database view</a> in ABAP Dictionary. The new DDIC append view extends the
+<a href="javascript:call_link('abencds_mngdddic_view_glosry.htm')" class="grey" title="词汇表条目">CDS-managed DDIC view</a> of the
+extended CDS view. The name given to the DDIC append view can no longer be changed after the CDS view extension is transported into a follow-on system.</li>
+</ul>
+<p>
+<a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extensions</a> are connected to
+<a href="javascript:call_link('abenswitch_framework_glosry.htm')" class="grey" title="词汇表条目">Switch Framework</a> whenever they are defined in a
+<a href="javascript:call_link('abenpackage_glosry.htm')" class="grey" title="词汇表条目">package</a> that is assigned a <a href="javascript:call_link('abenswitch_glosry.htm')" class="grey" title="词汇表条目">switch</a>.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Every CDS view extension has its own <a href="javascript:call_link('abenddl_source_code_glosry.htm')" class="grey" title="词汇表条目">
+DDL source code</a>. The DDL source code in a CDS view extension is edited in a different editor from the DDL source code of a
+<a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a>. The ADT documentation describes how these types of source code are created. DDL source code can also be displayed in
+<a href="javascript:call_link('abenrepository_browser_glosry.htm')" class="grey" title="词汇表条目">Repository Browser</a> in <a href="javascript:call_link('abenabap_workbench_glosry.htm')" class="grey" title="词汇表条目">ABAP Workbench</a>.</li>
+</ul>
+<ul class="disc">
+<li>An existing CDS view can be extended using multiple CDS view extensions.</li>
+</ul>
+<ul class="disc">
+<li>The name of the new DDIC append view and of the actual CDS view extension should be located in the
+customer namespace (or in the namespace of a partner or special development) to protect it against being overwritten by upgrades or new releases.</li>
+</ul>
+<ul class="disc">
+<li>Currently it is not possible to define extension categories for CDS views. The following restrictions apply for this reason:</li>
+</ul>
+<ul class="circlem2">
+<li>CDS views have the property <span class="qtext400">can be extended in any way</span> with respect to the
+<a href="javascript:call_link('abenddic_structures_enh_cat.htm')" class="blue">extension category of DDIC structures</a>. The consequences of this must be respected when extending a CDS view.</li>
+</ul>
+<ul class="circlem2">
+<li>The attributes of a CDS view defined using <a href="javascript:call_link('abencds_view_anno_v1.htm')" class="blue">annotations</a>, such as switching on
+<a href="javascript:call_link('abentable_buffering_glosry.htm')" class="grey" title="词汇表条目">table buffering</a>, cannot currently be modified using extensions.</li>
+</ul>
+<ul class="disc">
+<li>It is advisable to make no extensions to CDS views from basis packages. These CDS views are intended for internal use only and can be modified in incompatible ways.</li>
+</ul>
+<ul class="disc">
+<li>The DDL source code of a CDS view extension does not need to have the same name as the CDS view extension entity, but it is advisable to use the name of the entity.</li>
+</ul>
+<ul class="disc">
+<li>Once the DDL source code of a CDS view extension has been transported, the following relationships are committed and can no longer be changed:</li>
+</ul>
+<ul class="circlem2">
+<li>The combination of the name of the source code and the names of the view extension defined there and its DDIC append view. These can no can longer be modified by being renamed.</li>
+</ul>
+<ul class="circlem2">
+<li>The assignment of the view extension to the extended view. The name <span class="qtext400">ddic_based_view</span> after <span class="qtext400">EXTEND VIEW</span> can no longer be modified.</li>
+</ul>
+<ul class="disc">
+<li>No addition <a href="javascript:call_link('abencds_define_root_view_v1.htm')" class="blue"><span class="qtext400">ROOT</span></a> can be specified in the statement <span class="qtext400">EXTEND VIEW</span> to transform a regular view to a
+<a href="javascript:call_link('abenroot_entity_glosry.htm')" class="grey" title="词汇表条目">root entity</a>.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection views</a>
+can be extended with the statement <span class="qtext400">EXTEND VIEW</span>. This is supported for
+compatibility and migration reasons. However, the syntax elements specific to projection views are not
+supported with this variant of view extension. It is recommended to use the statement <span class="qtext400">EXTEND VIEW ENTITY</span> for extensions of CDS projection views instead.</li>
+</ul>
+<ul class="disc">
+<li>If you, for some reason, extend a CDS projection view with <span class="qtext400">EXTEND VIEW</span>, the
+<a href="javascript:call_link('abencds_mngdddic_view_glosry.htm')" class="grey" title="词汇表条目">CDS-managed DDIC view</a> is omitted
+(as CDS projection views don't have any DDIC artefact), and entity annotations referring to the CDS-managed DDIC view are ignored.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view extension
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewAppendName: 'DEMO_CDS_EXTENS' <br>extend view demo_cds_original_view with demo_cds_view_extension&nbsp;&nbsp;<br>
+&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;spfli.distance, <br>&nbsp;&nbsp;&nbsp;&nbsp;spfli.distid as unit <br>&nbsp;&nbsp;};</span>
+</dd></dl>
+<p>
+adds two view fields to the existing CDS view
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMO_CDS_ORIG' <br>@AccessControl.authorizationCheck: #NOT_REQUIRED <br>
+@AbapCatalog.viewEnhancementCategory: [#PROJECTION_LIST] <br>@EndUserText.label: 'Further information about the CDS entity' <br>
+define view demo_cds_original_view&nbsp;&nbsp;<br>&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spfli <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;join scarr on <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scarr.carrid = spfli.carrid <br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key scarr.carrname&nbsp;&nbsp;&nbsp;&nbsp; as carrier, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key spfli.connid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as flight, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spfli.cityfrom&nbsp;&nbsp;&nbsp;&nbsp; as departure, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spfli.cityto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as destination <br>&nbsp;&nbsp;&nbsp;&nbsp;};</span> .
+</dd></dl>
+<p>
+ The DDIC append view <span class="lnkgrey"><span class="qtext400">DEMO_CDS_EXTENS</span></span> is
+created in ABAP Dictionary. The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_VIEW_EXTENSION</span></span>
+uses the statement <a href="javascript:call_link('abapselect.htm')" class="blue"><span class="qtext">SELECT</span></a> to access the enhanced view and also displays the components of the dictionary structures in question. <br><br>
+</p>
+<A NAME="@@GROUP BY@@!ABAP_CDS_EXTEND_VIEW!@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext400">... GROUP BY field1, field2, ...</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This addition must be specified if elements not defined using aggregate expressions are added to a view with
+<a href="javascript:call_link('abencds_aggregate_functions_v1.htm')" class="blue">aggregate expressions</a>. These elements
+must be specified after <span class="qtext400">GROUP BY</span> add extend the <a href="javascript:call_link('abencds_group_by_v1.htm')" class="blue">
+<span class="qtext400">GROUP-BY</span></a> clause of the original view. With respect to the extended
+view, the extended <span class="qtext400">GROUP-BY</span> clause must follow the general rules for a <span class="qtext400">GROUP-BY</span> clause.
+</p>
+<p>
+The addition cannot be specified if the definition of the original view does not contain any aggregate expressions in its <span class="qtext400">SELECT</span> list.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Extensions of a view with aggregate expressions require it to contain the annotation array <span class="qtext400">viewEnhancementCategory[ ]</span> with the value <span class="qtext400">#GROUP_BY</span>.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view extension
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewAppendName: 'DEMO_CDS_EXTAGG' <br>extend view demo_cds_aggregate with demo_cds_extend_aggregate <br>
+&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;connid,&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;sum(distance) as sum_distance <br>&nbsp;&nbsp;} <br>&nbsp;&nbsp;group by <br>&nbsp;&nbsp;&nbsp;&nbsp;connid;</span>
+</dd></dl>
+<p>
+extends the existing CDS view
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMO_CDS_AGG' <br>@AccessControl.authorizationCheck: #NOT_REQUIRED <br>
+@AbapCatalog.viewEnhancementCategory: [#PROJECTION_LIST,#GROUP_BY] <br>define view demo_cds_aggregate <br>
+&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;spfli&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum(fltime) as sum_fltime <br>
+&nbsp;&nbsp;&nbsp;&nbsp;} <br>&nbsp;&nbsp;&nbsp;&nbsp;group by <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carrid;</span> .
+</dd></dl>
+<p>
+A database field <span class="qtext400">connid</span> and an aggregate expression <span class="qtext400">sum(distance)</span>
+are added to the <span class="qtext400">SELECT</span> list. Accordingly, the addition <span class="qtext400">GROUP
+BY</span> must be used to add the database field to the <span class="qtext400">GROUP-BY</span> clause of the original view. <br><br>
+</p>
+<A NAME="@@ALL@@!ABAP_CDS_EXTEND_VIEW!@@"></A>
+<A NAME="@@UNION@@!ABAP_CDS_EXTEND_VIEW!@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext400">... UNION <i class=bn>[</i>ALL<i class=bn>]</i> { ... }</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This addition must be specified when a view with <a href="javascript:call_link('abencds_union_v1.htm')" class="blue"><span class="qtext400">UNION</span></a>
+clauses is extended. A corresponding <span class="qtext400">UNION</span> addition must be specified
+for each <span class="qtext400">UNION</span> clause of the original view. The addition <span class="qtext400">ALL</span>
+must be specified each time it is specified in the associated <span class="qtext400">UNION</span> clause
+of the original view. The curly brackets can contain elements that extend the <span class="qtext400">SELECT</span>
+list of the associated <span class="qtext400">UNION</span> clause of the original view. As specified
+by the <span class="qtext400">SELECT</span> list extended using <span class="qtext400">select_list_extension</span>,
+the <span class="qtext400">UNION</span> clauses must be extended so that the rules for <span class="qtext400">UNION</span> clauses are not broken in the extended view.
+</p>
+<p>
+The addition cannot be specified if the definition of the original view does not have a <span class="qtext400">UNION</span> clause.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Extensions of a view with <span class="qtext400">UNION</span> clauses require it to contain the annotation array <span class="qtext400">viewEnhancementCategory[
+]</span> with the value <span class="qtext400">#UNION</span>.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view extension
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewAppendName: 'DEMO_CDS_EXTUNI' <br>extend view demo_cds_union with demo_cds_extend_union <br>
+&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;c as c3, <br>&nbsp;&nbsp;&nbsp;&nbsp;d as c4 <br>&nbsp;&nbsp;} <br>
+union <br>&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;f as c3, <br>&nbsp;&nbsp;&nbsp;&nbsp;g as c4 <br>&nbsp;&nbsp;} <br>
+union all <br>&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;k as c3, <br>&nbsp;&nbsp;&nbsp;&nbsp;l as c4 <br>&nbsp;&nbsp;};</span>
+</dd></dl>
+<p>
+extends the existing CDS view
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMO_CDS_UIO' <br>@AccessControl.authorizationCheck: #NOT_REQUIRED <br>
+@AbapCatalog.viewEnhancementCategory: [#PROJECTION_LIST,#UNION] <br>define view demo_cds_union <br>&nbsp;&nbsp;as select from <br>
+&nbsp;&nbsp;&nbsp;&nbsp;demo_join1 <br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a as c1, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b as c2 <br>&nbsp;&nbsp;&nbsp;&nbsp;} <br>union select from <br>&nbsp;&nbsp;demo_join2 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d as c1, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e as c2 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;} <br>union all select from <br>&nbsp;&nbsp;demo_join3 <br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i as c1, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j as c2 <br>&nbsp;&nbsp;&nbsp;&nbsp;};</span> .
+</dd></dl>
+<p>
+The original view has two <span class="qtext400">UNION</span> clauses represented using corresponding
+<span class="qtext400">UNION</span> additions in the definition of the CDS view extension. Two elements with matching types are added to the three <span class="qtext400">SELECT</span> lists of the original view.
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue">CDS DDL - EXTEND VIEW, extension_annot</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

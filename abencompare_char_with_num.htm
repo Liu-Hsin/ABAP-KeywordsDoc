@@ -1,0 +1,87 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCOMPARE_CHAR_WITH_NUM -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABENCOMPARE_CHAR_WITH_NUM">
+<title>
+ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencompare_char_with_num.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencompare_char_with_num.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p>
+<span class="bold">Value Ranges and Length Adjustments</span>
+</p>
+<ul class="disc">
+<li>When the types <span class="qtext">string</span> and <span class="qtext">c</span> are compared with
+packed numbers of the type <span class="qtext">p</span>, the comparison type <span class="qtext">p</span>
+has 31 places with the number of decimal places of the operand of type <span class="qtext">p</span>, which can raise exceptions if overflows occur.</li>
+</ul>
+<ul class="disc">
+<li>When the type <span class="qtext">n</span> is compared with packed numbers of the type <span class="qtext">p</span>,
+the numeric text can contain up to 31 digits, excluding leading zeros and regardless of how many decimal places are in the operand with type <span class="qtext">p</span>.</li>
+</ul>
+<ul class="disc">
+<li>When the types <span class="qtext">string</span>, <span class="qtext">c</span>, and <span class="qtext">n</span>
+are compared with integers of the types <span class="qtext">int8</span>, <span class="qtext">i</span>,
+<span class="qtext">s</span>, and <span class="qtext">b</span>, the numeric value in the character-like
+operand does not have to fit the value range of the comparison type <span class="qtext">i</span>. If the numeric value is not in the value range, the comparison returns the correct result and no exception is raised.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

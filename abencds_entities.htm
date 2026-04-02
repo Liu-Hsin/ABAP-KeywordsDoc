@@ -1,0 +1,211 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_ENTITIES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP CDS - Data Definitions">
+<title>
+ABAP CDS - Data Definitions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_entities.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_entities.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP CDS - Data Definitions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+CDS data definitions are written in the CDS data definition language
+(<a href="javascript:call_link('abencds_ddl_glosry.htm')" class="grey" title="词汇表条目">CDS DDL</a>) of
+<a href="javascript:call_link('abenabap_cds_glosry.htm')" class="grey" title="词汇表条目">ABAP CDS</a>. With CDS data definitions, the following
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entities</a> or
+<a href="javascript:call_link('abencds_ddic_based_entity_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based entities</a>  an be defined or enhanced:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entities</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection views</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table functions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchies</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_custom_entity_glosry.htm')" class="grey" title="词汇表条目">CDS custom entities</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entities</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_v1_view_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based views</a></li>
+</ul>
+<p>
+A <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> is a structured object
+in ABAP CDS. When a DDL source code with a CDS data definition is activated, the CDS entity is created
+in form of a metadata representation in system tables. The CDS entities themselves are not transported.
+Instead they are created after the transport of a DDL source code when this code is activated in the target system. Each CDS entity is defined in a separate piece of
+<a href="javascript:call_link('abenddl_source_code_glosry.htm')" class="grey" title="词汇表条目">DDL source code</a> in the
+<a href="javascript:call_link('abenadt_glosry.htm')" class="grey" title="词汇表条目">ABAP Development Tools (ADT)</a>. In the development
+tools, CDS entities are only visible as CDS definitions in their DDL source code. The ABAP runtime environment
+and other frameworks access the internal metadata of CDS entities. For example, the ABAP runtime environment recognizes a CDS entity as a
+<a href="javascript:call_link('abenglobal_type_glosry.htm')" class="grey" title="词汇表条目">global type</a> or as a potential data source of ABAP SQL statements. The name of a CDS must be unique accordingly.
+</p>
+<p>
+A <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> represents the following type properties (or signature) as a global data type:
+</p>
+<ul class="disc">
+<li>Metadata defined using <a href="javascript:call_link('abencds_annotation_glosry.htm')" class="grey" title="词汇表条目">CDS annotations</a></li>
+</ul>
+<ul class="disc">
+<li>A structured type defined using an element list</li>
+</ul>
+<ul class="disc">
+<li>Optionally parameter interface defined using input parameters</li>
+</ul>
+<ul class="disc">
+<li>Optionally <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS associations</a> exposed in the element list</li>
+</ul>
+<p>
+In ABAP CDS, a non-abstract CDS entity can be used as a
+<a href="javascript:call_link('abendata_source_glosry.htm')" class="grey" title="词汇表条目">data source</a> in other CDS entities.
+In ABAP, a CDS entity can be specified after the <span class="qtext">TYPE</span> addition to reference
+its structure type and its components in ABAP programs. The components of the structured type are, as
+usual, specified using the structure component selector <span class="qtext">cds_entity-comp</span>. The attributes of the structured type can be evaluated using
+<a href="javascript:call_link('abenrun_time_type_identific_glosry.htm')" class="grey" title="词汇表条目">RTTI</a>. Non-abstract CDS entities can be accessed in ABAP SQL read statements or
+<a href="javascript:call_link('abenamdp_glosry.htm')" class="grey" title="词汇表条目">AMDP</a>  but not in <a href="javascript:call_link('abennative_sql_glosry.htm')" class="grey" title="词汇表条目">Native SQL</a>.
+</p>
+<p>
+A <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> cannot be used as a
+data type in ABAP Dictionary. It cannot, for example, be used as a type of a substructure, as an include structure, or as the row type of a table type.
+</p>
+<p>
+The following sections describe the possible CDS entities and the associated DDL statements:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_v2_views.htm')" class="blue">CDS view entities</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_proj_views.htm')" class="blue">CDS projection views</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_table_functions.htm')" class="blue">CDS table functions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_hierarchies.htm')" class="blue">CDS hierarchies</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_custom_entities.htm')" class="blue">CDS custom entities</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_abstract_entities.htm')" class="blue">CDS abstract entities</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_ddic_entity.htm')" class="blue">CDS DDIC-based entities</a></li>
+</ul>
+<p>
+A further section describes the problems that can arise due to <a href="javascript:call_link('abencds_cycle_problems.htm')" class="blue">cyclical dependencies</a> between CDS entities.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>CDS entities are in the namespace of all <a href="javascript:call_link('abenglobal_type_glosry.htm')" class="grey" title="词汇表条目">global types</a> of an AS ABAP.</li>
+</ul>
+<ul class="disc">
+<li>If a CDS role is defined for a non-abstract CDS entity using the
+<a href="javascript:call_link('abencds_dcl_glosry.htm')" class="grey" title="词汇表条目">CDS DCL</a> statement <a href="javascript:call_link('abencds_f1_define_role.htm')" class="blue">
+<span class="qtext400">DEFINE ROLE</span></a>, implicit access control is applied when the CDS entity is accessed in ABAP SQL. Only that data can be accessed that meets the
+<a href="javascript:call_link('abenaccess_condition_glosry.htm')" class="grey" title="词汇表条目">access conditions</a>. Access control
+can be switched off using the value <span class="qtext400">#NOT_ALLOWED</span> for the annotation <span class="qtext400">
+@AccessControl.authorizationCheck</span> and using the addition <a href="javascript:call_link('abapselect_data_source.htm')" class="blue">
+<span class="qtext">WITH PRIVILEGED ACCESS</span></a> in the <a href="javascript:call_link('abapfrom_clause.htm')" class="blue"><span class="qtext">FROM</span></a> clause of an ABAP SQL query</li>
+</ul>
+<ul class="disc">
+<li>Once a piece of DDL source code has been activated, its name(s) is/are stable and cannot be modified.
+Moreover, a CDS entity cannot be transformed into a different category of CDS entity after activation. <br>
+The same applies to the DDL source code of a <a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extension</a> (and, if available, its
+<a href="javascript:call_link('abenddic_append_view_glosry.htm')" class="grey" title="词汇表条目">DDIC append view</a>).</li>
+</ul>
+<ul class="disc">
+<li>The DDL source code of a data definition for a CDS entity is edited in a different editor than the
+<a href="javascript:call_link('abenddla_source_code_glosry.htm')" class="grey" title="词汇表条目">DDLA source code</a> of a
+<a href="javascript:call_link('abencds_anno_definition_glosry.htm')" class="grey" title="词汇表条目">CDS annotation definition</a>, the
+<a href="javascript:call_link('abenddlx_source_code_glosry.htm')" class="grey" title="词汇表条目">DDLX source code</a> of a
+<a href="javascript:call_link('abencds_metadata_extension_glosry.htm')" class="grey" title="词汇表条目">CDS metadata extension</a>, and the
+<a href="javascript:call_link('abendcl_source_code_glosry.htm')" class="grey" title="词汇表条目">DCL source code</a> of a
+<a href="javascript:call_link('abencds_role_glosry.htm')" class="grey" title="词汇表条目">CDS role</a> for
+<a href="javascript:call_link('abencds_access_control_glosry.htm')" class="grey" title="词汇表条目">CDS access control</a>. The
+<a href="javascript:call_link('abenadt_glosry.htm')" class="grey" title="词汇表条目">ADT</a> documentation describes how the different types of source code are created. DDL source code can also be displayed in
+<a href="javascript:call_link('abenrepository_browser_glosry.htm')" class="grey" title="词汇表条目">Repository Browser</a> in <a href="javascript:call_link('abenabap_workbench_glosry.htm')" class="grey" title="词汇表条目">ABAP Workbench</a>.</li>
+</ul>
+<ul class="disc">
+<li>The program <span class="lnkgrey"><span class="qtext400">DEMO_SHOW_DDL_SOURCE</span></span> displays DDL source code for CDS entities in SAP GUI.</li>
+</ul>
+<ul class="disc">
+<li>A structure type defined using a CDS entity exists alongside the <a href="javascript:call_link('abenddic_structures.htm')" class="blue">DDIC structures</a> in ABAP Dictionary.</li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a><br>
+<a href="javascript:call_link('abencds_cycle_problems.htm')" class="blue">ABAP CDS - Cyclical Dependencies</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

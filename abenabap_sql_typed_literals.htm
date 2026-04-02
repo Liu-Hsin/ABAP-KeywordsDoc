@@ -1,0 +1,498 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENABAP_SQL_TYPED_LITERALS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP SQL - Typed Literals">
+<meta name="keywords" content="ABAP, typed literal, ABAP SQL">
+<title>
+ABAP SQL - Typed Literals - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenabap_sql_typed_literals.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenabap_sql_typed_literals.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_operands.htm')" class="blue">ABAP SQL - Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abensql_operands.htm')" class="blue">ABAP SQL - SQL Operands sql_elem</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql_literals.htm')" class="blue">ABAP SQL - literal</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@INT1@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@INT2@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@INT4@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@INT8@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DEC@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DECFLOAT16@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DF16_DEC@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DF16_RAW@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DECFLOAT34@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DF34_DEC@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DF34_RAW@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@D16D@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@D16R@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@D34D@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@D34R@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DECFLOAT16_DEC@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DECFLOAT34_DEC@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@FLTP@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@CHAR@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@STRING@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@SSTRING@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@RAW@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@RAWSTRING@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@NUMC@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@CLNT@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@LANG@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DATS@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@DATN@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@TIMS@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@TIMN@@!ABAP_SQL_LITERAL!@@"></A>
+<A NAME="@@UTCLONG@@!ABAP_SQL_LITERAL!@@"></A>
+<p><span class="h1">
+ABAP SQL - Typed Literals
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... dtype`...`</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Typed literals can be created for all <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"> built-in ABAP
+Dictionary types</a> with the exception of <span class="qtext400">LCHR</span>, <span class="qtext400">LRAW</span>,
+<span class="qtext400">GEOM_EWKB</span>, <span class="qtext400">PREC</span>, <span class="qtext400">ACCP</span>,
+<span class="qtext400">DF16_SCL</span>, and <span class="qtext400">DF34_SCL</span>. A typed literal can be used in read positions of ABAP SQL statements where
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variables</a> are possible and where it is always treated as an
+<a href="javascript:call_link('abensql_elem.htm')" class="blue">elementary SQL expression</a> of the specified data type. It is passed without an ABAP specific type conversion to the database and evaluated there.
+</p>
+<p>
+<span class="qtext">dtype</span> is the name of a built-in dictionary type and it is followed by the
+character-like representation of the value in single backquotes (`). Only those values can be specified that are accepted by the data type of the literal.
+</p>
+<p>
+When using the <a href="javascript:call_link('abenliteral_operator_glosry.htm')" class="grey" title="词汇表条目">literal operator</a>
+for concatenating two typed literals of the same type to single character literal, the data type <span class="qtext">
+dtype</span> is specified only once before the first subliteral. The syntax is, for example: <span class="qtext"> INT8`123` &amp; `456`</span>.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Typed literals should be used instead of untyped literals. They offer many advantages, such as more
+flexibility with regard to the data type they can have, explicit type declaration, and checking type compatibility of the value specified.</li>
+</ul>
+<ul class="disc">
+<li>The maximum length of the content of a typed literal is 255 and can be restricted further by the
+<a href="javascript:call_link('abenvalue_range_glosry.htm')" class="grey" title="词汇表条目">value range</a> of the data type. The
+maximum row length in the ABAP Editor is 255 characters, which means that a literal with 255 characters
+cannot be specified within a single row of a program due to the type name and the backquotes. The maximum length of 255 characters can be achieved only by using the
+<a href="javascript:call_link('abenliteral_operator.htm')" class="blue">literal operator</a> &amp;.</li>
+</ul>
+<p>
+Typed literals can be split into the following categories:
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_1" class="blue">Typed numeric literals</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_2" class="blue">Typed character literals</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_3" class="blue">Typed byte literals</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_4" class="blue">Typed literals for character-like types with special semantics</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_5" class="blue">Typed date and time literals</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_6" class="blue">Typed currency and quantity literals</A></li>
+</ul>
+<A name="@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_1"></A>
+<p><span class="h2">
+Typed numeric literals
+</span></p>
+<p>
+The following table describes the typed numeric literals:
+</p>
+<table border>
+<tr>
+<td><span class="bold">Syntax</span></td>
+<td><span class="bold">Name</span></td>
+<td><span class="bold">Possible Characters</span></td>
+</tr>
+<tr>
+<td><span class="qtext">INT1`...`</span><br><span class="qtext">INT2`...`</span><br><span class="qtext">INT4`...`</span><br> <span class="qtext">INT8`...`</span></td>
+<td><a href="javascript:call_link('abeninteger_literal_glosry.htm')" class="grey" title="词汇表条目">Integer literal</a></td>
+<td>Uninterrupted string of digits, with an optional sign + or - as a prefix. At least one digit must be specified. The value of the number must be in the value range of the respective
+<a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue">dictionary type</a>. An empty literal <span class="qtext">``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">DEC`...`</span></td>
+<td><a href="javascript:call_link('abenpacked_number_literal_glosry.htm')" class="grey" title="词汇表条目">Packed number literal</a></td>
+<td>String of digits with a maximum of one decimal point (.). This point can be located in front of,
+between, or after the digits. The string can be prefixed with an optional sign + or -. At least one
+and no more than 31 digits can be specified. The maximum number of decimal places is 14. The length
+used in the memory and the number of decimal places is determined by the number of digits specified. An empty literal <span class="qtext">``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">DECFLOAT16`...`</span><br> <i class=bn>|</i> <span class="qtext">D16N`...`</span><br><span class="qtext">DF16_RAW`...`</span><br> <i
+class=bn>|</i> <span class="qtext">D16R`...`</span> <br><span class="qtext">DECFLOAT34`...`</span><br> <i
+class=bn>|</i> <span class="qtext">D34N`...`</span><br><span class="qtext">DF34_RAW`...`</span><br> <i class=bn>|</i> <span class="qtext">D34R`...`</span></td>
+<td><a href="javascript:call_link('abendecfloat_literal_glosry.htm')" class="grey" title="词汇表条目">Decimal floating point literal</a></td>
+<td>Mantissa followed by an optional exponent. The mantissa is a string of digits with a maximum of
+one decimal point (.). This point can be located in front of, between, or after the digits. The string can be prefixed with an optional sign + or -. Length restrictions, typing conventions, and scaling rules of the respective
+<a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue">dictionary type</a> apply. An empty literal <span class="qtext">``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">DF16_DEC`...`</span><br> <i class=bn>|</i> <span class="qtext">D16D`...`</span><br><span class="qtext">DF34_DEC`...`</span><br> <i class=bn>|</i> <span class="qtext">D34D`...`</span></td>
+<td><a href="javascript:call_link('abendecfloat_literal_glosry.htm')" class="grey" title="词汇表条目">Decimal floating point literal</a></td>
+<td>The rules for <a href="javascript:call_link('abenpacked_number_literal_glosry.htm')" class="grey" title="词汇表条目">packed number
+literals</a> (see above) apply. Furthermore, <span class="qtext400">DF16_DEC</span> can have a maximum length of 16 digits. An empty literal <span class="qtext">``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">FLTP`...`</span></td>
+<td><a href="javascript:call_link('abenbinfloat_literal_glosry.htm')" class="grey" title="词汇表条目">Binary floating point literal</a></td>
+<td>Mantissa followed by an optional exponent. The mantissa is a string of digits with a maximum of
+one decimal point (.). This point can be located in front of, between, or after the digits. The string
+can be prefixed with an optional sign + or -. The maximum number of valid places is 16. An empty literal <span class="qtext">``</span> is not allowed.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>For all numeric literals, the rule applies that not more than one zero is allowed on the left side of the decimal point. Thus, <span class="qtext">DEC`00.00`</span> is not allowed and <span class="qtext">INT1`00`</span> as
+<a href="javascript:call_link('abeninteger_literal_glosry.htm')" class="grey" title="词汇表条目">integer literal</a> is not allowed either. This rule is verified by the syntax check.</li>
+</ul>
+<ul class="disc">
+<li>A zero with a sign + or - is not allowed for <a href="javascript:call_link('abeninteger_literal_glosry.htm')" class="grey" title="词汇表条目">integer literals</a> and
+<a href="javascript:call_link('abendecfloat_literal_glosry.htm')" class="grey" title="词汇表条目"> packed number literals</a>. For example, <span class="qtext">INT4`-0`</span> is not allowed. This rule is verified by the syntax check.</li>
+</ul>
+<ul class="disc">
+<li>For all <a href="javascript:call_link('abendecfloat_literal_glosry.htm')" class="grey" title="词汇表条目">decimal floating point literals</a>, there are alternative notations for the data type. This is indicated in the table above by the <i
+class=bn>|</i> sign.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Use of a typed numeric literal in a <span class="qtext">WHERE</span> condition.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_ddic_types <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE int8 = int8`32984723948723` <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result). <br><br>
+</span>
+</p>
+<A name="@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_2"></A>
+<p><span class="h2">
+Typed character literals
+</span></p>
+<p>
+The following table describes the typed character literals:
+</p>
+<table border>
+<tr>
+<td><span class="bold">Syntax</span></td>
+<td><span class="bold">Name</span></td>
+<td><span class="bold">Possible Characters</span></td>
+</tr>
+<tr>
+<td><span class="qtext">CHAR`...`</span></td>
+<td><a href="javascript:call_link('abentext_field_literal_glosry.htm')" class="grey" title="词汇表条目">Text field literal</a></td>
+<td>String of any alphanumeric characters. The length of a text field literal must lie between 1 and
+255 characters. An empty text field literal <span class="qtext">CHAR``</span> is allowed and denotes
+the initial value of one blank. To represent a quotation mark in a text field literal, two consecutive quotation marks must be specified.</td>
+</tr>
+<tr>
+<td><span class="qtext">STRING`...`</span><br><span class="qtext">SSTRING`...`</span></td>
+<td><a href="javascript:call_link('abentext_string_literal_glosry.htm')" class="grey" title="词汇表条目">Text string literal</a></td>
+<td>String of any alphanumeric characters. A typed text string literal can have a maximum of 255 characters.
+A typed text string literal can be empty and the typed text string literal <span class="qtext">STRING``</span>
+represents an empty string with length 0. To represent a backquote in a text string literal, two consecutive backquotes must be specified.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Use of a typed character literal in a <span class="qtext">WHERE</span> condition.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM demo_ddic_types <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE char10 = char`hallo` <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO TABLE @DATA(result). <br><br>
+</span>
+</p>
+<A name="@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_3"></A>
+<p><span class="h2">
+Typed byte literals
+</span></p>
+<p>
+The following table describes the typed byte literals:
+</p>
+<table border>
+<tr>
+<td><span class="bold">Syntax</span></td>
+<td><span class="bold">Name</span></td>
+<td><span class="bold">Possible Characters</span></td>
+</tr>
+<tr>
+<td><span class="qtext">RAW`...`</span></td>
+<td><a href="javascript:call_link('abenbyte_field_literal_glosry.htm')" class="grey" title="词汇表条目">Byte field literal</a></td>
+<td>String including the characters 0-9 and A-F. No other characters are allowed. The number of characters
+must be even. At least two characters must be specified. An empty literal <span class="qtext">RAW``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">RAWSTRING`...`</span></td>
+<td><a href="javascript:call_link('abenbyte_string_literal_glosry.htm')" class="grey" title="词汇表条目">Byte string literal</a></td>
+<td>String including the characters 0-9 and A-F. No other characters are allowed. The number of characters
+must be even. The empty byte string literal <span class="qtext">RAWSTRING``</span> represents an empty byte string.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The specified characters are used to represent byte values in a hexadecimal format.</li>
+</ul>
+<ul class="disc">
+<li>The letters A-F must be in uppercase.</li>
+</ul>
+<ul class="disc">
+<li>If <a href="javascript:call_link('abenabap_sql_untyped_literals.htm')" class="blue">untyped character literals</a> are used
+for hexadecimal values, the number of characters may be odd and the value is padded on the right with hexadecimal 0 in accordance with the <a href="javascript:call_link('abenconversion_type_c.htm')" class="blue">conversion rules</a>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Use of a typed byte field literal in a <span class="qtext">WHERE</span> condition.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM demo_ddic_types <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE raw1 = raw`11` <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO TABLE @DATA(result). <br><br> <br><br>
+</span>
+</p>
+<A name="@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_4"></A>
+<p><span class="h2">
+Typed literals for character-like types with special semantics
+</span></p>
+<p>
+The following table describes the typed literals for character-like types with special semantics:
+</p>
+<table border>
+<tr>
+<td><span class="bold">Syntax</span></td>
+<td><span class="bold">Name</span></td>
+<td><span class="bold">Possible Characters</span></td>
+</tr>
+<tr>
+<td><span class="qtext">NUMC`...`</span></td>
+<td><a href="javascript:call_link('abennumeric_text_literal_glosry.htm')" class="grey" title="词汇表条目">Numeric text literal</a></td>
+<td>Character string consisting of the digits 0 to 9. The length of a numeric text literal must lie
+between 1 and 255 characters. Empty numeric text literals <span class="qtext">NUMC``</span> or blanks within numeric text literals are not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">CLNT`...`</span></td>
+<td><a href="javascript:call_link('abenclient_literal_glosry.htm')" class="grey" title="词汇表条目">Client literal</a></td>
+<td>String of any alphanumeric characters with a length of exactly 3 characters. Trailing blanks are
+not allowed. An empty literal <span class="qtext">CLNT``</span> is allowed and denotes the initial value of three blanks.</td>
+</tr>
+<tr>
+<td><span class="qtext">LANG`...`</span></td>
+<td><a href="javascript:call_link('abenlang_key_literal_glosry.htm')" class="grey" title="词汇表条目">Language key literal</a></td>
+<td>A language key literal can contain any alphanumeric character and it consists of exactly one character.
+A blank space is not allowed. An empty literal <span class="qtext">LANG``</span> is allowed and denotes a blank.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Use of a typed numeric text literal in a <span class="qtext">WHERE</span> condition.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM demo_ddic_types <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE numc1 = numc`1234` <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO TABLE @DATA(result). <br><br>
+</span>
+</p>
+<A name="@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_5"></A>
+<p><span class="h2">
+Typed date and time literals
+</span></p>
+<p>
+The following table describes the typed date and time literals:
+</p>
+<table border>
+<tr>
+<td><span class="bold">Syntax</span></td>
+<td><span class="bold">Name</span></td>
+<td><span class="bold">Possible Characters</span></td>
+</tr>
+<tr>
+<td><span class="qtext">DATS`...`</span><br><span class="qtext">DATN`...`</span></td>
+<td><a href="javascript:call_link('abendate_literal_glosry.htm')" class="grey" title="词汇表条目">Date literal</a></td>
+<td>Character string that represents a date in the format <span class="qtext400">YYYYMMDD</span>. Must
+contain a valid date according to the rules for valid dates described for time stamp literals below. An empty string <span class="qtext">``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">TIMS`...`</span><br><span class="qtext">TIMN`...`</span></td>
+<td><a href="javascript:call_link('abentime_literal_glosry.htm')" class="grey" title="词汇表条目">Time literal</a></td>
+<td>Character string that represents a time in the format <span class="qtext400">HHMMSS</span>. Must
+contain a valid time according to the rules for valid times described for time stamp literals below. An empty literal <span class="qtext">``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">UTCLONG`...`</span></td>
+<td><a href="javascript:call_link('abentime_stamp_literal_glosry.htm')" class="grey" title="词汇表条目">Time stamp literal</a></td>
+<td>Character string that represents a <a href="javascript:call_link('abentime_stamp_glosry.htm')" class="grey" title="词汇表条目">
+time stamp</a> in the format <span class="qtext400">YYYY-MM-DDTHH:MM:SS,SSSSSSS</span>, precise to 100
+nanoseconds. <span class="qtext400">YYYY-MM-DD</span> consists of eight digits separated by hyphens.
+They must represent dates that are valid in accordance with the calendar rules: <span class="qtext400">YYYY</span>
+(year): 0001 to 9999, <span class="qtext400">mm</span> (month): 01 to 12, <span class="qtext400">DD</span>
+(day): 01 to 31. "1582-10-05" to "1582-10-14" are skipped due to the conversion from the Julian to the
+Gregorian calendar. The letter "T" between the date and the time must be specified exactly as it is
+here. <span class="qtext400">HH:MM:SS,SSSSSSS</span> consists of digits separated by colons and a comma.
+They must represent a time in a 24-hour range in the format <span class="qtext400">HHMMSS</span>: 00
+to 23 for <span class="qtext400">HH</span> (hours) and 00 to 59 for <span class="qtext400">MM</span>
+(minutes) and 00 to 59 for <span class="qtext400">SS,SSSSSSS</span> (seconds with a maximum of seven
+decimal places). More than seven decimal places can be specified, however the digits after the seventh
+decimal place must be "0". The comma does not have to be specified. No other characters are allowed. An empty literal <span class="qtext">UTCLONG``</span> is allowed and denotes the initial value.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+60 cannot be specified in a time, either as minutes or as seconds. In particular, this means that <a href="javascript:call_link('abenleap_second_glosry.htm')" class="grey" title="词汇表条目">leap seconds</a> cannot be specified.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Use of typed literals as operands in <a href="javascript:call_link('abenopen_sql_date_time_functions.htm')" class="blue">SQL date and time functions</a>.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT SINGLE <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_expressions <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FIELDS <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; utcl_add_seconds( utclong`2020-04-01T12:01:01,2`,50 ) AS utcl, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; datn_add_months( datn`17890101`,15 ) AS add_months, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tims_is_valid( tims`121300` ) AS tims <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO @DATA(result). <br><br>
+</span>
+</p>
+<A name="@@ITOC@@ABENABAP_SQL_TYPED_LITERALS_6"></A>
+<p><span class="h2">
+Typed currency and quantity literals
+</span></p>
+<p>
+The following table describes the typed currency and quantity literals:
+</p>
+<table border>
+<tr>
+<td><span class="bold">Syntax</span></td>
+<td><span class="bold">Name</span></td>
+<td><span class="bold">Possible Characters</span></td>
+</tr>
+<tr>
+<td><span class="qtext">CURR`...`</span></td>
+<td><a href="javascript:call_link('abencurrency_literal_glosry.htm')" class="grey" title="词汇表条目">Currency field literal</a></td>
+<td>Uninterrupted string of digits with an optional sign + or - as a prefix. Cannot contain more than
+one decimal point (.). At least one and no more than 31 digits can be specified. The maximum number
+of decimal places is 14. Not more than one zero is allowed on the left side of the decimal point. A zero with a sign + or - is not allowed. An empty literal <span class="qtext">CURR``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">CUKY`...`</span></td>
+<td><a href="javascript:call_link('abencurrency_key_literal_glosry.htm')" class="grey" title="词汇表条目">Currency key literal</a></td>
+<td>String of any alphanumeric characters with a maximum of 5 characters. Trailing blanks are not allowed. An empty literal <span class="qtext">CUKY``</span> is allowed and denotes five blanks.</td>
+</tr>
+<tr>
+<td><span class="qtext">QUAN`...`</span></td>
+<td><a href="javascript:call_link('abenquantity_field_literal_glosry.htm')" class="grey" title="词汇表条目">Quantity field literal</a></td>
+<td>Uninterrupted string of digits with an optional sign + or - as a prefix. Cannot contain more than
+one decimal point (.). At least one and no more than 31 digits can be specified. The maximum number
+of decimal places is 14. Not more than one zero is allowed on the left side of the decimal point. A zero with a sign + or - is not allowed. An empty literal <span class="qtext">QUAN``</span> is not allowed.</td>
+</tr>
+<tr>
+<td><span class="qtext">UNIT`...`</span></td>
+<td><a href="javascript:call_link('abenunit_key_literal_glosry.htm')" class="grey" title="词汇表条目">Unit key literal</a></td>
+<td>String of any alphanumeric characters with a maximum of 3 characters. An empty literal <span class="qtext">UNIT``</span> is allowed and denotes two blanks.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Use of a typed currency field literal in a <span class="qtext">WHERE</span> condition.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM demo_ddic_types <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE curr10_2 = curr`123.43` <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO TABLE @DATA(result).
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

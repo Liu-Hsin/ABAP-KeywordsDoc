@@ -1,0 +1,347 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_TYPING -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - typing">
+<title>
+CDS DDL - typing - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_typing.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_typing.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_ddl_common_elements.htm')" class="blue">ABAP CDS - Common DDL Elements</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+CDS DDL - typing
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... dtype <i class=bn>|</i> data_element&nbsp;&nbsp;...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Types elements or parameters of <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entities</a> in
+<a href="javascript:call_link('abencds_ddl_glosry.htm')" class="grey" title="词汇表条目">CDS DDL</a>. The following is typed:
+</p>
+<ul class="disc">
+<li>Elements of CDS entities:</li>
+</ul>
+<ul class="circlem2">
+<li>Elements of the element list <a href="javascript:call_link('abencds_f1_return_list.htm')" class="blue"><span class="qtext400">element_list</span></a> in a
+<a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Elements of the element list <a href="javascript:call_link('abencds_f1_custom_element_list.htm')" class="blue"><span class="qtext400">element_list</span></a> in a
+<a href="javascript:call_link('abencds_custom_entity_glosry.htm')" class="grey" title="词汇表条目">CDS custom entity</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Elements of the element list <a href="javascript:call_link('abencds_f1_absent_element_list.htm')" class="blue"><span class="qtext400">element_list</span></a> of a
+<a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entity</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Elements of the element list <a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue"><span class="qtext400">element_list</span></a> in a
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a>.</li>
+</ul>
+<ul class="disc">
+<li>Input parameters of CDS entities</li>
+</ul>
+<ul class="circlem2">
+<li>Input parameters of the parameter list <a href="javascript:call_link('abencds_parameter_list_v2.htm')" class="blue"><span class="qtext400">parameter_list</span></a> in a
+<a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a></li>
+</ul>
+<ul class="circlem2">
+<li>Input parameters of the parameter list <a href="javascript:call_link('abencds_f1_func_parameter_list.htm')" class="blue"><span class="qtext400">parameter_list</span></a> in a
+<a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Input parameters of the parameter list <a href="javascript:call_link('abencds_f1_hiera_parameter_list.htm')" class="blue"><span class="qtext400">parameter_list</span></a> in a
+<a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchy</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Input parameters of the parameter list <a href="javascript:call_link('abencds_f1_entity_parameter_list.htm')" class="blue"><span class="qtext400">parameter_list</span></a> in an
+<a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entity</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>Input parameters of the parameter list <a href="javascript:call_link('abencds_parameter_list_v1.htm')" class="blue"><span class="qtext400">parameter_list</span></a> in a
+<a href="javascript:call_link('abencds_v1_view_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based view</a></li>
+</ul>
+<p>
+Typing can be specified either directly with <span class="qtext400">dtype</span> using a
+<a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue">built-in data type</a> in ABAP Dictionary, or using
+the name of a data element <span class="qtext400">data_element</span>. The table below shows the possible
+options for <span class="qtext400">dtype</span> and their meanings. The last two columns indicate whether the typing is possible for elements or input parameters.
+</p>
+<table border>
+<tr>
+<td><span class="qtext400"><span class="bold">dtype</span></span></td>
+<td><span class="bold">Built-In Data Type in ABAP Dictionary</span></td>
+<td><span class="bold">Element</span></td>
+<td><span class="bold">Parameter</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.accp(6)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">ACCP</span></a> (only in a table function)</td>
+<td>x</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.char( len )</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CHAR</span></a> with length <span class="qtext400">len</span></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.clnt<i class=bn>[</i>(3)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CLNT</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.cuky<i class=bn>[</i>(5)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CUKY</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.curr(len,dec)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">CURR</span></a> with length <span class="qtext400">len</span> and with <span class="qtext400">dec</span> decimal places</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.d16n<i class=bn>[</i>(16)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DECFLOAT16</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.d34n<i class=bn>[</i>(34)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DECFLOAT34</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.datn<i class=bn>[</i>(8)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DATN</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.dats<i class=bn>[</i>(8)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DATS</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.dec(len,dec)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">DEC</span></a> with length <span class="qtext400">len</span> and with <span class="qtext400">dec</span> decimal places</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.fltp<i class=bn>[</i>(16,16)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">FLTP</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.geom_ewkb</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">GEOM_EWKB</span></a></td>
+<td>x</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int1<i class=bn>[</i>(3)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT1</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int2<i class=bn>[</i>(5)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT2</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int4<i class=bn>[</i>(10)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT4</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.int8<i class=bn>[</i>(19)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT8</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.lang<i class=bn>[</i>(1)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">LANG</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.numc( len )</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">NUMC</span></a> with length <span class="qtext400">len</span></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.quan(len,dec)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">QUAN</span></a> with length <span class="qtext400">len</span> and with <span class="qtext400">dec</span> decimal places</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.raw(len)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">RAW</span></a> with length <span class="qtext400">len</span></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.rawstring</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">RAWSTRING</span></a></td>
+<td>x</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.sstring(len)</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">SSTRING</span></a> with length <span class="qtext400">len</span></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.string</span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">STRING</span></a></td>
+<td>x</td>
+<td>-</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.timn<i class=bn>[</i>(6)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">TIMN</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.tims<i class=bn>[</i>(6)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">TIMS</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.unit<i class=bn>[</i>(2<i class=bn>|</i>3)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">UNIT</span></a> with length <span class="qtext400">2</span> or <span class="qtext400">3</span> (standard length)</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><span class="qtext400">abap.utcl<i class=bn>[</i>(27)<i class=bn>]</i></span></td>
+<td><a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">UTCLONG</span></a></td>
+<td>x</td>
+<td>x</td>
+</tr>
+</table><br>
+<p>
+With <span class="qtext400">len</span> and <span class="qtext400">dec</span>, values must be specified
+for the length and decimal places of the respective generic types. The values specified here in parentheses
+must be within the value ranges allowed by ABAP Dictionary. For data types with fixed lengths and decimal
+places, it is possible, but not mandatory to specify the predefined value for length and decimal places.
+The exception in this regard is <span class="qtext400">abap.accp</span>: this type has the predefined length of 6, which must always be specified in brackets. For <span class="qtext400">data_element</span>, every ABAP Dictionary
+<a href="javascript:call_link('abenddic_data_elements.htm')" class="blue">data element</a> whose built-in type is listed in the table above can be specified.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Currently, only elementary data types are supported, but no structured or tabular parameters.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view entity has two input parameters. <span class="qtext400">p_date</span> is typed
+with data element <span class="lnkgrey"><span class="qtext400">DEMODATE</span></span> and <span class="qtext400">p_num</span>
+is typed with the built-in data type <span class="qtext400">DEC</span> with a specified length and number of decimal places.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_CDS_PARAMETER_TYPE_VE <br>
+&nbsp;&nbsp;with parameters <br>&nbsp;&nbsp;&nbsp;&nbsp;p_date :demodate, <br>&nbsp;&nbsp;&nbsp;&nbsp;p_num&nbsp;&nbsp;:abap.dec( 10, 3 ) <br>
+&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;demo_expressions <br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key id, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$parameters.p_date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as col_date, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$parameters.p_num + dec3 as col_num <br>&nbsp;&nbsp;&nbsp;&nbsp;};</span>
+</dd></dl>
+<p>
+The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_PARAMETER_TYPE</span></span> accesses the view using the following <span class="qtext">SELECT</span> statement:
+</p>
+<dl><dd>
+<span class="qtext">SELECT id, col_date, col_num <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_cds_parameter_type_ve( p_date = @sy-datlo, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p_num&nbsp;&nbsp;= '1.234' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result).</span>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>
