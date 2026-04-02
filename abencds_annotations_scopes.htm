@@ -1,0 +1,184 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_ANNOTATIONS_SCOPES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP CDS - Scopes for Annotations">
+<title>
+ABAP CDS - Scopes for Annotations - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_annotations_scopes.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_annotations_scopes.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_annotations.htm')" class="blue">ABAP CDS - Annotations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_anno_usage.htm')" class="blue">ABAP CDS - Specifying Annotations</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP CDS - Scopes for Annotations
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abencds_annotations.htm')" class="blue">Annotations</a> can be specified in ABAP CDS source code for the following scopes by using
+<a href="javascript:call_link('abencds_annotations_syntax.htm')" class="blue">annotation syntax</a>. The scopes in which an
+annotation can be specified are determined with the <a href="javascript:call_link('abencds_f1_define_anno_annos.htm')" class="blue"><span class="qtext400">@Scope</span></a> annotation in the corresponding annotation definition.
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_ddl_glosry.htm')" class="grey" title="词汇表条目">CDS DDL</a>:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_define_anno_annos.htm')" class="blue">Annotation definition annotations</a> for a
+<a href="javascript:call_link('abencds_anno_definition_glosry.htm')" class="grey" title="词汇表条目">CDS annotation definition</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_define_annotation.htm')" class="blue"><span class="qtext400">DEFINE ANNOTATION</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_entity_annotations.htm')" class="blue">Entity annotations</a> for a <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> <br>
+in front of the statements <a href="javascript:call_link('abencds_define_view_entity.htm')" class="blue"><span class="qtext400">DEFINE
+VIEW ENTITY</span></a>, <a href="javascript:call_link('abencds_define_view_as_projection.htm')" class="blue"><span class="qtext400">DEFINE
+VIEW ENTITY AS PROJECTION</span></a>, <a href="javascript:call_link('abencds_f1_define_table_function.htm')" class="blue"><span class="qtext400">
+DEFINE TABLE FUNCTION</span></a>, <a href="javascript:call_link('abencds_f1_define_abstract_entity.htm')" class="blue"><span class="qtext400">
+DEFINE ABSTRACT ENTITY</span></a>, and <a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue"><span class="qtext400">DEFINE VIEW</span></a></li>
+</ul>
+<ul class="circlem2">
+<li>View annotations for a <a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a>. View annotations are subdivided into: <br>
+ <br><a href="javascript:call_link('abencds_view_entity_anno.htm')" class="blue">View entity annotations</a> in front of the statement <a
+ href="javascript:call_link('abencds_define_view_entity.htm')" class="blue"><span class="qtext400">DEFINE VIEW ENTITY</span></a> <br> <br>
+<a href="javascript:call_link('abencds_proj_view_annotations.htm')" class="blue">Projection view annotations</a> in front of
+the statement <a href="javascript:call_link('abencds_define_view_as_projection.htm')" class="blue"><span class="qtext400">DEFINE VIEW ENTITY AS PROJECTION</span></a> <br>
+ <br><a href="javascript:call_link('abencds_view_anno_v1.htm')" class="blue">DDIC-based view annotations</a> in front of the
+statement <a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue"><span class="qtext400">DEFINE VIEW</span></a> <br>
+ <br>Which view annotation can be used where is not governed by the <a href="javascript:call_link('abencds_f1_define_anno_annos.htm')" class="blue">
+<span class="qtext400">@Scope</span></a> annotation, but is documented for each <span class="qtext400">DEFINE</span> statement.</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_extend_view_annotations.htm')" class="blue">Extension annotations</a> for a <a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extension</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_extend_view.htm')" class="blue"><span class="qtext400">EXTEND VIEW</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_function_annotations.htm')" class="blue">Function annotations</a> for a <a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_define_table_function.htm')" class="blue"><span class="qtext400">DEFINE TABLE FUNCTION</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_hierarchy_annotations.htm')" class="blue">Hierarchy annotations</a> for a <a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchy</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_define_hierarchy.htm')" class="blue"><span class="qtext400">DEFINE HIERARCHY</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_parameter_annotations.htm')" class="blue">Parameter annotations</a> for a
+<a href="javascript:call_link('abencds_f1_param.htm')" class="blue">parameter</a> of a <a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a> <br>
+in front of and after the <a href="javascript:call_link('abencds_f1_param.htm')" class="blue">parameter</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_parameter_annotations.htm')" class="blue">Parameter annotations</a> for a
+<a href="javascript:call_link('abencds_f1_func_parameter_list.htm')" class="blue">parameter</a> of a <a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a> <br>
+in front of and after the <a href="javascript:call_link('abencds_f1_param.htm')" class="blue">parameter</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_parameter_annotations.htm')" class="blue">Parameter annotations</a> for a
+<a href="javascript:call_link('abencds_f1_entity_parameter_list.htm')" class="blue">parameter</a> of an <a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entity</a> <br>
+in front of the <a href="javascript:call_link('abencds_f1_param.htm')" class="blue">parameter</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_element_annotation.htm')" class="blue">Element annotations</a> for an element of the <span class="qtext400">SELECT</span> list of a
+<a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a> <br>in front of and after the element</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_element_annotation.htm')" class="blue">Element annotations</a> for an
+<a href="javascript:call_link('abencds_f1_return_list_element.htm')" class="blue">element</a> in the
+<a href="javascript:call_link('abencds_f1_return_list.htm')" class="blue">element list</a> of a <a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a> <br>
+in front of and after the <a href="javascript:call_link('abencds_f1_return_list_element.htm')" class="blue">element</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_metadata_ext_annos.htm')" class="blue">Metadata extension annotations</a> for a
+<a href="javascript:call_link('abencds_metadata_extension_glosry.htm')" class="grey" title="词汇表条目">CDS metadata extension</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_annotate_view.htm')" class="blue"><span class="qtext400">ANNOTATE</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_sdl_glosry.htm')" class="grey" title="词汇表条目">CDS SDL</a>:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_define_service_annos.htm')" class="blue">Service definition annotations</a> for a
+<a href="javascript:call_link('abencds_service_definition_glosry.htm')" class="grey" title="词汇表条目">CDS service definition</a> <br>
+In the statement <a href="javascript:call_link('abensrvd_define_service.htm')" class="blue"><span class="qtext400">DEFINE SERVICE</span></a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_dcl_glosry.htm')" class="grey" title="词汇表条目">CDS DCL</a>:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_dcl_role_annotations.htm')" class="blue">Role annotations</a> for a <a href="javascript:call_link('abencds_role_glosry.htm')" class="grey" title="词汇表条目">CDS role</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_define_role.htm')" class="blue"><span class="qtext400">DEFINE ROLE</span></a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_dcl_ap_annotations.htm')" class="blue">Access policy annotation</a> for a <a href="javascript:call_link('abencds_access_policy_glosry.htm')" class="grey" title="词汇表条目">CDS access policy</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_f1_dcl_pm_annotations.htm')" class="blue">PFCG mapping annotation</a> for a <a href="javascript:call_link('abencds_pfcg_mapping_glosry.htm')" class="grey" title="词汇表条目">PFCG mapping</a> <br>
+in front of the statement <a href="javascript:call_link('abencds_f1_define_pfcg_mapping.htm')" class="blue"><span class="qtext400">DEFINE PFCG_MAPPING</span></a></li>
+</ul>
+<p>
+The ABAP Annotations that are possible for a scope are documented under
+<a href="javascript:call_link('abenabap_annotation_glosry.htm')" class="grey" title="词汇表条目">ABAP annotations</a>. For framework-specific annotations by SAP, see the tables in the document
+<a href="javascript:call_link('abencds_annotations_frmwrk.htm')" class="blue">Framework-specific annotations</a>.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+The annotations specified in the source code of a CDS entity can be annotated or overridden using the annotations of <a href="javascript:call_link('abencds_metadata_extension_glosry.htm')" class="grey" title="词汇表条目">CDS metadata extensions</a>.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,130 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_OPERANDS_AND_EXPR_V1 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - DDIC-based View, SELECT, Operands and Expressions">
+<title>
+CDS DDL - DDIC-based View, SELECT, Operands and Expressions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_operands_and_expr_v1.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_operands_and_expr_v1.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_ddic_entity.htm')" class="blue">ABAP CDS - DDIC-Based Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v1_views.htm')" class="blue">ABAP CDS - DDIC-Based Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue">CDS DDL - DEFINE VIEW ddic_based</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+CDS DDL - DDIC-based View, SELECT, Operands and Expressions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_operands_v1.htm')" class="blue">Elementary operands</a>:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_literal_v1.htm')" class="blue">Literals</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_field_v1.htm')" class="blue">Fields of data sources</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_parameter_v1.htm')" class="blue">Parameters</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_session_variable_v1.htm')" class="blue">Session variables</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_expressions_v1.htm')" class="blue">Expressions</a>:</li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_arithmetic_expression_v1.htm')" class="blue">Arithmetic expressions</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_aggregate_functions_v1.htm')" class="blue">Aggregate expressions</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_case_expression_v1.htm')" class="blue">Case distinction</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_cast_expression_v1.htm')" class="blue">Casting</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abencds_builtin_functions_v1.htm')" class="blue">Built-in Functions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_conditional_expression_v1.htm')" class="blue">Conditions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">Path expressions</a></li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_select_parameters_v1.htm')" class="blue">Passing actual parameters to input parameters</a></li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_operands_v1.htm')" class="blue">CDS DDL - DDIC-based View, Elementary CDS Operands</a><br>
+<a href="javascript:call_link('abencds_expressions_v1.htm')" class="blue">CDS DDL - DDIC-based View, Expressions</a><br>
+<a href="javascript:call_link('abencds_conditional_expression_v1.htm')" class="blue">CDS DDL - DDIC-based View, cds_cond</a><br>
+<a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">CDS DDL - DDIC-based View, path_expr</a><br>
+<a href="javascript:call_link('abencds_select_parameters_v1.htm')" class="blue">CDS DDL - DDIC-based View, CDS parameter passing</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

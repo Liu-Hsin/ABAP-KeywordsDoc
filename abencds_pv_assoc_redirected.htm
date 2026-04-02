@@ -1,0 +1,301 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_PV_ASSOC_REDIRECTED -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - projection_view, REDIRECTED TO">
+<title>
+CDS DDL - projection_view, REDIRECTED TO - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_pv_assoc_redirected.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_pv_assoc_redirected.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_views.htm')" class="blue">ABAP CDS - Projection Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_as_projection.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY AS PROJECTION</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">CDS DDL - projection_view, element_list</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_view_expose_assoc.htm')" class="blue">CDS DDL - projection_view, expose_assoc</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@REDIRECTED TO@@!ABAP_CDS_DEF_VIEW_PROJ!@@"></A>
+<A NAME="@@REDIRECTED TO COMPOSITION CHILD@@!ABAP_CDS_DEF_VIEW_PROJ!@@"></A>
+<A NAME="@@REDIRECTED TO PARENT@@!ABAP_CDS_DEF_VIEW_PROJ!@@"></A>
+<p><span class="h1">
+CDS DDL - projection_view, REDIRECTED TO
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400"> ... <i class=bn>{</i>association<i class=bn>[</i>
+[<a href="javascript:call_link('abencds_pv_assoc_modified.htm')" class="blue">filter</a>]<i class=bn>]</i> <i class=bn>[</i>AS alias<i class=bn>]</i>: REDIRECTED TO projection_view<i class=bn>}</i> <br>
+&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i>composition<i class=bn>[</i>
+[<a href="javascript:call_link('abencds_pv_assoc_modified.htm')" class="blue">filter</a>]<i class=bn>]</i> <i class=bn>[</i>AS alias<i class=bn>]</i>: REDIRECTED TO COMPOSITION CHILD projection view<i class=bn>}</i> <br>
+&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i>to-parent association<i class=bn>[</i>
+[<a href="javascript:call_link('abencds_pv_assoc_modified.htm')" class="blue">filter</a>]<i class=bn>]</i> <i class=bn>[</i>AS alias<i class=bn>]</i>: REDIRECTED TO PARENT projection view<i class=bn>}</i></span> <br><br>
+</p>
+<p><span class="h2">
+Variants:
+</span></p>
+<P>
+   <A HREF="#!ABAP_VARIANT_1@1@" class="blue"> 1. <span class="qtext400">... REDIRECTED TO projection_view</span> </A> <br>
+<br><A HREF="#!ABAP_VARIANT_2@2@" class="blue"> 2. <span class="qtext400">... REDIRECTED TO COMPOSITION CHILD projection view</span> </A> <br>
+<br><A HREF="#!ABAP_VARIANT_3@3@" class="blue"> 3. <span class="qtext400">... REDIRECTED TO PARENT projection view</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+It is possible to expose a <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS association</a>, a
+<a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">CDS composition</a>, or a
+<a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">CDS to-parent association</a> of the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a> in a
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a>. If
+the target of the association does not change in the projection layer, the associations can be exposed directly. If the target entity is also projected, the association can be redirected to the target projection view.
+</p>
+<p>
+With redirection, a specialized CDS association can lose its specialization and become a simple CDS
+association. Concretely, this means that you can redirect a CDS composition or a CDS to-parent association
+with the keyword <span class="qtext400">REDIRECTED TO</span> and then it is exposed as a simple CDS
+association. The other way around is not possible - a simple CDS association cannot be specialized.
+Thus, you cannot use the addition <span class="qtext400">REDIRECTED TO COMPOSITION CHILD</span> or <span class="qtext400">REDIRECTED TO PARENT</span> to redirect a simple CDS association. <br><br>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The projection view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_PV_SO</span></span> is based on the CDS view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_CDS_SO</span></span>. It replaces the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association targets</a> of the associations with other CDS projection views where required.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #CHECK <br>@EndUserText.label: 'Projection View SO' <br>
+@Metadata.allowExtensions: true <br>define root view entity DEMO_SALES_PV_SO&nbsp;&nbsp;<br>&nbsp;&nbsp;as projection on DEMO_SALES_CDS_SO <br>
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;key so_key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as SalesOrderKey, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as SalesOrderExternalId,&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifecycle_status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as LifecycleStatus,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ObjectModel.text.element: ['BuyerDescription'] <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buyer_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as BuyerId,&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Buyer.family_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as BuyerDescription,&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created_by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as CreatedBy, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_changed_by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as LastChangedBy, <br> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ObjectModel.virtualElementCalculatedBy:&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ABAP:CL_DEMO_SALES_VIRT_ELEM_EXIT' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual ValidToDate : abap.dats(8), <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Buyer&nbsp;&nbsp;&nbsp;&nbsp;: redirected to DEMO_SALES_PV_BUPA, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ShipTo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as _ShipToPartner&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: redirected to DEMO_SALES_PV_BUPA, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEMO_SALES_CDS_SO.ship_to_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as ShipToPartner, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Items&nbsp;&nbsp;&nbsp;&nbsp;: redirected to composition child DEMO_SALES_PV_SO_I, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Items[*:posnr &lt;= 3]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as _TopItems&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: redirected to DEMO_SALES_PV_SO_I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>}</span> <br><br>
+</dd></dl>
+<p><span class="h2">
+<A NAME="!ABAP_VARIANT_1@1@"></A> <span class="bold">Variant 1</span>
+</span></p>
+<P>
+<span class="qtext400">... REDIRECTED TO projection_view</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Redirects a <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS association</a> to a new <a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>.
+</p>
+<p>
+The following applies to the redirection of a CDS association:
+</p>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">projection_view</span> must be a projection view based on the original target of the association.</li>
+</ul>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">projection_view</span> can be the CDS projection view <span class="qtext400">projection_view</span> itself only if the projected CDS association is a
+<a href="javascript:call_link('abenself_association_glosry.htm')" class="grey" title="词汇表条目">self association</a>.</li>
+</ul>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">REDIRECTED TO</span> cannot be specified using a path expression.</li>
+</ul>
+<ul class="disc">
+<li>The CDS projection view <span class="qtext400">projection_view</span> can be used multiple times
+as the redirection target of the projected CDS associations in the CDS projection view <span class="qtext400">projection_view</span>. The following syntax is valid:</li>
+</ul>
+<dl><dd>
+<span class="qtext400">_Assoc1: REDIRECTED TO projection_view, <br>_Assoc2: REDIRECTED TO projection_view</span>
+</dd></dl>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>When the keyword <span class="qtext400">REDIRECTED TO</span> is used on specialized CDS associations (such as
+<a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">CDS compositions</a> and
+<a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">CDS to-parent associations</a>),
+they become non-specialized and are handled as CDS associations. Compositions and to-parent associations
+which are projected in this way never define compositions and to-parent associations in the projection view. <br><br></li>
+</ul>
+<p><span class="h2">
+<A NAME="!ABAP_VARIANT_2@2@"></A> <span class="bold">Variant 2</span>
+</span></p>
+<P>
+<span class="qtext400">... REDIRECTED TO COMPOSITION CHILD projection_view</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Redirects a <a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">CDS composition</a> to a new
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>. If the
+addition <span class="qtext400">COMPOSITION CHILD</span> is omitted, then the composition loses its specialization and is projected as a normal CDS association.
+</p>
+<p>
+The following applies to the redirection of a CDS composition:
+</p>
+<ul class="disc">
+<li>The CDS association redirected using the addition <span class="qtext400">REDIRECTED TO COMPOSITION CHILD</span> must be a CDS composition.</li>
+</ul>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">REDIRECTED TO COMPOSITION CHILD</span> must
+be the projection of the original target of the association. Therefore, the target cannot be a root projection view.</li>
+</ul>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">REDIRECTED TO COMPOSITION CHILD</span> cannot be specified using a path expression.</li>
+</ul>
+<ul class="disc">
+<li>The target of <span class="qtext400">REDIRECTED TO COMPOSITION CHILD</span> cannot be the CDS projection view <span class="qtext400">projection_view</span> itself. A
+<a href="javascript:call_link('abenself_association_glosry.htm')" class="grey" title="词汇表条目">self association</a> is not possible.</li>
+</ul>
+<ul class="disc">
+<li>The redirection target <span class="qtext400">projection_view</span> must project exactly one to-parent
+association to its composition parent. This to-parent association must exist before the composition can be projected in the projection view.</li>
+</ul>
+<ul class="disc">
+<li>The redirection target <span class="qtext400">projection_view</span> can be used only once in a CDS composition and multiple times in CDS associations. This is demonstrated in the following simplified example:</li>
+</ul>
+<ul class="circlem2">
+<li>This is valid</li>
+</ul>
+<dl><dd>
+<span class="qtext400">_Assoc1: REDIRECTED TO COMPOSITION CHILD projection_view, <br>_Assoc2: REDIRECTED TO projection_view</span>
+</dd></dl>
+<ul class="circlem2">
+<li>This is not valid</li>
+</ul>
+<dl><dd>
+<span class="qtext400">_Assoc1: REDIRECTED TO COMPOSITION CHILD projection_view, <br>_Assoc2: REDIRECTED TO PARENT<i class=bn>|</i><i class=bn>{</i>COMPOSITION CHILD<i class=bn>}</i> projection_view</span> <br><br>
+</dd></dl>
+<p><span class="h2">
+<A NAME="!ABAP_VARIANT_3@3@"></A> <span class="bold">Variant 3</span>
+</span></p>
+<P>
+<span class="qtext400">... REDIRECTED TO PARENT projection_view</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Redirects a <a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">to-parent association</a> to a new
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>. If the
+addition <span class="qtext400">PARENT</span> is omitted, then the to-parent association loses its specialization and is projected as a normal CDS association.
+</p>
+<p>
+The following applies to the redirection of a CDS to-parent association:
+</p>
+<ul class="disc">
+<li>The CDS association <span class="qtext400">to_parent_assoc</span> projected with this syntax must be defined as a CDS to-parent association in the underlying CDS view.</li>
+</ul>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">REDIRECTED TO PARENT</span> should be the projection of the original target of the to-parent association.</li>
+</ul>
+<ul class="disc">
+<li>The target of the redirection <span class="qtext400">REDIRECTED TO PARENT</span> cannot be specified using a path expression.</li>
+</ul>
+<ul class="disc">
+<li>The addition <span class="qtext400">REDIRECTED TO PARENT</span> can be used no more than once in
+the definition of a CDS projection view. This means that a CDS projection view can have no more than one parent entity.</li>
+</ul>
+<ul class="disc">
+<li>The redirection target cannot be the CDS projection view <span class="qtext400">projection_view</span> itself. A
+<a href="javascript:call_link('abenself_association_glosry.htm')" class="grey" title="词汇表条目">self association</a> is not possible.</li>
+</ul>
+<ul class="disc">
+<li>The redirection target <span class="qtext400">projection_view</span> can be used only once in a
+CDS to-parent association and multiple times in CDS associations. This is demonstrated in the following simplified example:</li>
+</ul>
+<ul class="circlem2">
+<li>This is valid</li>
+</ul>
+<dl><dd>
+<span class="qtext400">_Assoc1: REDIRECTED TO PARENT projection_view, <br>_Assoc2: REDIRECTED TO projection_view</span>
+</dd></dl>
+<ul class="circlem2">
+<li>This is not valid</li>
+</ul>
+<dl><dd>
+<span class="qtext400">_Assoc1: REDIRECTED TO PARENT projection_view, <br>_Assoc2: REDIRECTED TO PARENT<i class=bn>|</i><i class=bn>{</i>COMPOSITION CHILD<i class=bn>}</i> projection_view</span> <br><br>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

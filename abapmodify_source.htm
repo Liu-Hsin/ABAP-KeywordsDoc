@@ -1,0 +1,390 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPMODIFY_SOURCE -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="MODIFY dbtab, source">
+<title>
+MODIFY dbtab, source - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapmodify_source.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapmodify_source.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_writing.htm')" class="blue">ABAP SQL - Write Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapmodify_dbtab.htm')" class="blue">MODIFY dbtab</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+MODIFY dbtab, source <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapmodify_dbtab_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">...&nbsp;&nbsp;@wa<i class=bn>|</i>@( expr ) <br>&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> TABLE @itab<i class=bn>|</i>@( expr ) <i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;( SELECT <a href="javascript:call_link('abapinsert_from_select.htm')" class="blue">subquery_clauses</a> <i class=bn>[</i>
+<a href="javascript:call_link('abapunion.htm')" class="blue">UNION ...</a><i class=bn>]</i> ) ...</span> <br><br>
+</p>
+<p><span class="h2">
+Alternatives:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ALTERNATIVE_1@1@" class="blue"> 1. <span class="qtext">... @wa<i class=bn>|</i>@( expr )</span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_2@2@" class="blue"> 2. <span class="qtext">... TABLE @itab<i class=bn>|</i>@( expr )</span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_3@3@" class="blue"> 3. <span class="qtext">... ( SELECT subquery_clauses <i class=bn>[</i>UNION ...<i class=bn>]</i> ) ...</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+A non-table-like data object <span class="qtext">wa</span> can be specified after <span class="qtext">FROM</span>
+in the statement <a href="javascript:call_link('abapmodify_dbtab.htm')" class="blue"><span class="qtext">MODIFY</span></a> and an internal table or a parenthesized
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">subquery</a> can be specified after <span class="qtext">TABLE</span>. The work area and the internal table can be specified as a
+<a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">host variable</a> or a
+<a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">host expression</a>. On the one hand the content
+of the data objects or the result set of the subquery determines whether the rows are inserted or changed, and on the other hand, which values are inserted or used for changes.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Host variables without the escape character <span class="qtext">@</span> are
+<a href="javascript:call_link('abenopen_sql_hostvar_obsolete.htm')" class="blue">obsolete</a>. The escape character <span class="qtext">@</span> must be specified in the
+<a href="javascript:call_link('abenopensql_strict_modes.htm')" class="blue">strict modes</a> of the syntax check from Release 7.40, SP05. <br><br>
+</p>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_1@1@"></A> <span class="bold">Alternative 1</span>
+</span></p>
+<P>
+<span class="qtext">... @wa<i class=bn>|</i>@( expr )</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+When a non-table-like work area that meets the <a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">requirements</a>
+for use in ABAP SQL statements is specified as a host variable <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue">
+<span class="qtext">@wa</span></a> or host expression <a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue"><span class="qtext">@( expr
+)</span></a>, a row is found in the DDIC database table or view that has the same content in the
+<a href="javascript:call_link('abenprimary_key_glosry.htm')" class="grey" title="词汇表条目">primary key</a> as the corresponding initial part of the work area.
+</p>
+<ul class="disc">
+<li>If a row like this is found, this row is overwritten in accordance with the same rules as for the statement <a href="javascript:call_link('abapupdate_source.htm')" class="blue"><span class="qtext">UPDATE</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>If a row like this is not found, a new row is inserted according to the same rules as for the statement <a href="javascript:call_link('abapinsert_source.htm')" class="blue"><span class="qtext">INSERT</span></a>.</li>
+</ul>
+<p>
+If the change would produce a duplicate entry in a unique secondary index, it is not executed and <span class="qtext">sy-subrc</span> is set to 4.
+</p>
+<p>
+<a href="javascript:call_link('abenopen_sql_client_handling.htm')" class="blue">Implicit ABAP SQL client handling</a> applies, in which a
+<a href="javascript:call_link('abenclient_identifier_glosry.htm')" class="grey" title="词汇表条目">client ID</a> specified in <span class="qtext">
+wa</span> is ignored. The current client is used by default. The addition <a href="javascript:call_link('abapiumd_client.htm')" class="blue">
+<span class="qtext">USING CLIENT</span></a> can be used to switch to an explicitly specified client.
+The addition <a href="javascript:call_link('abapiumd_client.htm')" class="blue"><span class="qtext">CLIENT SPECIFIED</span></a> can be used to switch to the client specified in <span class="qtext">wa</span>.
+</p>
+<p>
+<a href="javascript:call_link('abenview_glosry.htm')" class="grey" title="词汇表条目">Views</a> whose fields are all key fields should not be written to using <span class="qtext">MODIFY FROM</span>. For
+<a href="javascript:call_link('abendatabase_view_glosry.htm')" class="grey" title="词汇表条目">DDIC database views</a>, this produces a syntax check warning and for
+<a href="javascript:call_link('abenddic_proj_view_glosry.htm')" class="grey" title="词汇表条目">DDIC projection views</a> a syntax error or runtime error.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The <span class="qtext">wa</span> work area should always be declared with reference to the DDIC database table or the
+<a href="javascript:call_link('abendictionary_view_glosry.htm')" class="grey" title="词汇表条目">DDIC view</a> in ABAP Dictionary. For the derivation of
+<a href="javascript:call_link('abenlob_handle_structure_glosry.htm')" class="grey" title="词汇表条目">LOB handle structures</a>, there are special
+<a href="javascript:call_link('abaptypes_lob_handle.htm')" class="blue">additions</a> of the statements <span class="qtext">TYPES</span> and <span class="qtext"><i class=bn>[</i>CLASS-<i class=bn>]</i>DATA</span>.</li>
+</ul>
+<ul class="disc">
+<li>Exceptions due to invalid values can also be raised in compatible work areas. For example, components
+of the types <span class="qtext">d</span> and <span class="qtext">t</span> can contain invalid dates
+and times that are not accepted by columns of the types <span class="qtext400">DATN</span> and <span class="qtext400">TIMN</span>.</li>
+</ul>
+<ul class="disc">
+<li>If a <a href="javascript:call_link('abenconstructor_expression_glosry.htm')" class="grey" title="词汇表条目">constructor expression</a> is specified as a
+<a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">host expression</a> for the work area <span class="qtext">
+wa</span>, for which the data type is inferred using the <span class="qtext">#</span> character, a structure consisting of all the database table columns is created as the type.</li>
+</ul>
+<ul class="disc">
+<li>If the DDIC database table or DDIC view is specified statically, a
+<a href="javascript:call_link('abapmodify_obsolete.htm')" class="blue">short form</a> can be specified outside of classes. This means that the work area specified using <span class="qtext">FROM wa</span> can be omitted. The prerequisite is that a
+<a href="javascript:call_link('abentable_work_area_glosry.htm')" class="grey" title="词汇表条目">table work area</a> <span class="qtext">dbtab</span>
+for the respective DDIC database table or the DDIC view is declared using the statement <span class="qtext">TABLES</span>.
+The system enhances the <span class="qtext">MODIFY</span> statement implicitly with the addition <span class="qtext">FROM dbtab</span>. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Create or change a <a href="javascript:call_link('abenmessage_glosry.htm')" class="grey" title="词汇表条目">message</a> in DDIC database
+table <span class="lnkgrey"><span class="qtext400">T100</span></span>. If there is no message with the
+number 100 in the <span class="qtext400">MYMSGCLASS</span> message class in English, it will be created. Otherwise only the text is changed.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(message_wa) = VALUE t100( <br>&nbsp;&nbsp;sprsl = 'EN' <br>&nbsp;&nbsp;arbgb = 'MYMSGCLASS' <br>&nbsp;&nbsp;msgnr = '100' <br>
+&nbsp;&nbsp;text =&nbsp;&nbsp;'Some new message ...' ). <br> <br>MODIFY t100 FROM @message_wa.
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The same example as before, but with a host expression.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+MODIFY t100 FROM @( VALUE #( <br>&nbsp;&nbsp;sprsl = 'EN' <br>&nbsp;&nbsp;arbgb = 'MYMSGCLASS' <br>&nbsp;&nbsp;msgnr = '100' <br>&nbsp;&nbsp;text&nbsp;&nbsp;= 'Some new message ...'&nbsp;&nbsp;) ). <br><br>
+</span>
+</p>
+<A NAME="@@TABLE@@MODIFY dbtab@@"></A>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_2@2@"></A> <span class="bold">Alternative 2</span>
+</span></p>
+<P>
+<span class="qtext">... TABLE @itab<i class=bn>|</i>@( expr )</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+When an internal table is specified as a host variable <a href="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue"><span class="qtext">
+@itab</span></a> or host expression <a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue"><span class="qtext">@( expr
+)</span></a>, its rows are evaluated to overwrite existing rows or to insert new rows. The row type of the internal table must meet the
+<a href="javascript:call_link('abenopen_sql_wa.htm')" class="blue">prerequisites</a> for use in ABAP SQL statements.
+</p>
+<p>
+This behavior is platform-dependent and follows one of the following patterns depending on the database system:
+</p>
+<ul class="disc">
+<li><span class="qtext">UPDATE</span> followed by <span class="qtext">INSERT</span>:</li>
+</ul>
+<ul class="circlem2">
+<li>First, the same function as for <a href="javascript:call_link('abapupdate_source.htm')" class="blue"><span class="qtext">UPDATE FROM TABLE</span></a> is executed for all rows of the internal table.</li>
+</ul>
+<ul class="circlem2">
+<li>Next, the same function as for <a href="javascript:call_link('abapinsert_source.htm')" class="blue"><span class="qtext">INSERT FROM TABLE</span></a> is executed for all rows. Here, any rows that have the same
+<a href="javascript:call_link('abenprimary_key_glosry.htm')" class="grey" title="词汇表条目">primary key</a> or unique <a href="javascript:call_link('abensecondary_index_glosry.htm')" class="grey" title="词汇表条目">secondary index</a> are ignored.</li>
+</ul>
+<dl><dd>
+Here, the processing of the rows in the internal table can also be split into blocks depending on the database system.
+</dd></dl>
+<ul class="disc">
+<li>Row by row <span class="qtext">MODIFY</span></li>
+</ul>
+<dl><dd>
+In a loop, each row in the internal table is processed in accordance with the rule above for <span class="qtext">MODIFY
+... FROM wa</span>. Here, the database system specifies whether processing continues in cases where a row cannot be inserted due to a unique secondary index.
+</dd></dl>
+<p>
+These two platform-dependent processing methods can produce different results in cases where the DDIC database table has unique secondary indexes (see <span class="lnkgrey">executable example</span>).
+</p>
+<p>
+If the change to a row in the internal table would produce a duplicate entry in a unique secondary index,
+the corresponding row is not inserted and <span class="qtext">sy-subrc</span> is set to 4. If the internal
+table is empty, no rows are processed. However <span class="qtext">sy-subrc</span> is still set to 0. The system field <span class="qtext">sy-dbcnt</span> is set to the number of rows that are actually processed.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>To prevent platform-dependent behavior, <span class="qtext">MODIFY ... FROM itab</span> should only
+be applied to DDIC database tables without unique secondary indexes. If not, the required behavior must
+be programmed explicitly using <span class="qtext">UPDATE</span> and <span class="qtext">INSERT</span> or using <span class="qtext">LOOP AT itab</span> and <span class="qtext">MODIFY</span>.</li>
+</ul>
+<ul class="disc">
+<li>If a <a href="javascript:call_link('abenconstructor_expression_glosry.htm')" class="grey" title="词汇表条目">constructor expression</a> as a
+<a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">host expression</a> is specified as an internal
+table <span class="qtext">itab</span>, for which the data type is inferred using the <span class="qtext">#</span>
+character, a structured standard table whose line type consists of all the database table columns with an empty table key is created as the type.</li>
+</ul>
+<ul class="disc">
+<li>When an internal table is specified, <a href="javascript:call_link('abenlocator_glosry.htm')" class="grey" title="词汇表条目">locators</a> can be used as a source, but no
+<a href="javascript:call_link('abenwriter_stream_glosry.htm')" class="grey" title="词汇表条目">writer streams</a> can be created.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Create or change multiple rows in DDIC database table <span class="lnkgrey"><span class="qtext400">DEMO_UPDATE</span></span>.
+This DDIC database table does not have a unique secondary index and the result is therefore not platform-specific.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES itab TYPE TABLE OF demo_update WITH EMPTY KEY. <br> <br>DATA(itab) = VALUE itab( <br>&nbsp;&nbsp;( id = 'X' col1 =&nbsp;&nbsp;1 col2 =&nbsp;&nbsp;2 col3 =&nbsp;&nbsp;3 col4 =&nbsp;&nbsp;4 ) <br>
+&nbsp;&nbsp;( id = 'Y' col1 = 11 col2 = 12 col3 = 13 col4 = 14 ) <br>&nbsp;&nbsp;( id = 'Z' col1 = 21 col2 = 22 col3 = 23 col4 = 24 ) ). <br> <br>MODIFY demo_update FROM TABLE @itab.
+</span>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The same example as before, but with a host expression.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+MODIFY demo_update FROM TABLE @( <br>&nbsp;&nbsp;VALUE #( ( id = 'X' col1 =&nbsp;&nbsp;1 col2 =&nbsp;&nbsp;2 col3 =&nbsp;&nbsp;3 col4 =&nbsp;&nbsp;4 ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( id = 'Y' col1 = 11 col2 = 12 col3 = 13 col4 = 14 ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( id = 'Z' col1 = 21 col2 = 22 col3 = 23 col4 = 24 ) ) ).
+</span>
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey"><span class="qtext">MODIFY FROM TABLE</span></span> <br><br>
+</p>
+<A NAME="@@( SELECT ... )@@MODIFY dbtab@@"></A>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_3@3@"></A> <span class="bold">Alternative 3</span>
+</span></p>
+<P>
+<span class="qtext">... ( SELECT subquery_clauses <i class=bn>[</i>UNION ...<i class=bn>]</i> ) ...</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+If a parenthesized <a href="javascript:call_link('abensubquery_glosry.htm')" class="grey" title="词汇表条目">subquery</a> is specified,
+the rows in the result set defined by <a href="javascript:call_link('abapinsert_from_select.htm')" class="blue"><span class="qtext">subquery_clauses</span></a>
+are evaluated to overwrite the existing rows or to insert new rows. The language element <a href="javascript:call_link('abapunion.htm')" class="blue">
+<span class="qtext">UNION</span></a> can be used to combine the result sets of multiple subqueries.
+In this case, special rules <a href="javascript:call_link('abapunion_clause.htm')" class="blue"><span class="qtext">query_clauses</span></a> apply for specifying clauses.
+</p>
+<p>
+When used with a subquery, the statement <span class="qtext">MODIFY</span> is platform-dependent, like when an internal table is specified, and follows one of the two following patterns:
+</p>
+<ul class="disc">
+<li><span class="qtext">UPDATE</span> followed by <span class="qtext">INSERT</span></li>
+</ul>
+<ul class="disc">
+<li>Row by row <span class="qtext">MODIFY</span></li>
+</ul>
+<p>
+With respect to the following actions,
+</p>
+<ul class="disc">
+<li>client handling,</li>
+</ul>
+<ul class="disc">
+<li>inserting or modifying the data in the DDIC database table or view , and</li>
+</ul>
+<ul class="disc">
+<li>handling of null values,</li>
+</ul>
+<p>
+the same rules and notes apply as when using a subquery as a
+<a href="javascript:call_link('abapinsert_source.htm')" class="blue">data source</a> of the statement <a href="javascript:call_link('abapinsert_dbtab.htm')" class="blue"><span class="qtext">INSERT</span></a>. In particular, a subquery cannot be used if
+<a href="javascript:call_link('abenddic_database_tables_protocol.htm')" class="blue">logging</a> is enabled for the table that is modified.
+</p>
+<p>
+If the result set of the subquery is empty, no rows are processed and <span class="qtext">sy-subrc</span> is set to 4.
+</p>
+<p>
+A subquery in the statement <span class="qtext">MODIFY</span> is not supported by all databases. This means a syntax check warning from the
+<a href="javascript:call_link('abenextended_program_check_glosry.htm')" class="grey" title="词汇表条目">extended program check</a>
+can occur that can be hidden using the pragma <span class="qtext">##db_feature_mode[modify_from_select]</span>.
+If this is detected at runtime on a database that does not support the pragma, a catchable exception of the class <span class="lnkgrey"><span class="qtext400">CX_SY_SQL_UNSUPPORTED_FEATURE</span></span> is raised.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The constant <span class="qtext400">MODIFY_FROM_SELECT</span> of the class <a href="javascript:call_link('abencl_abap_dbfeatures.htm')" class="blue">
+<span class="qtext400">CL_ABAP_DBFEATURES</span></a> can be used to query whether the current database supports subqueries in the statement <span class="qtext">MODIFY</span>.</li>
+</ul>
+<ul class="disc">
+<li>When a subquery is used in the statement <span class="qtext">MODIFY</span>, the syntax check is performed in
+<a href="javascript:call_link('abenopensql_strict_mode_753.htm')" class="blue">strict mode</a> from Release 7.53, which handles the statement more strictly than the regular syntax check.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+A subquery of the statement <span class="qtext">MODIFY</span> reads all rows in the database table <span class="qtext">
+demo_join3</span> and uses the result set to modify the database table <span class="qtext">demo_join1</span>.
+Two rows of the result set overwrite existing rows in <span class="qtext">demo_join1</span> and a row
+is inserted. Only if logging is disabled for DDIC database table <span class="qtext400">DEMO_JOIN1</span>,
+a subquery can be used. Otherwise, the data must be inserted into an internal table that serves as a source for the modification.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DELETE FROM demo_join1. <br>INSERT demo_join1 <br>&nbsp;&nbsp;FROM TABLE @( VALUE #( ( a = 'a1' b = 'b1' c = 'c1' d = 'd1' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( a = 'a2' b = 'b2' c = 'c2' d = 'd2' ) ) ). <br>
+DELETE FROM demo_join3. <br>INSERT demo_join3 <br>&nbsp;&nbsp;FROM TABLE @( VALUE #( ( i = 'a1' j = 'j1' k = 'k1' l = 'l1' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( i = 'a2' j = 'j2' k = 'k2' l = 'l2' ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( i = 'i3' j = 'j3' k = 'k3' l = 'l3' ) ) ). <br>
+ <br>IF cl_dbi_utilities=>is_logging_on( 'DEMO_JOIN1' ) IS INITIAL. <br>&nbsp;&nbsp;MODIFY demo_join1 FROM ( SELECT i, j, k, l FROM demo_join3 ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ##logging_versus_from_select[demo_join1]. <br>ELSE. <br>
+&nbsp;&nbsp;SELECT i, j, k, l FROM demo_join3 <br>&nbsp;&nbsp;&nbsp;&nbsp;INTO TABLE @DATA(buffer). <br>
+&nbsp;&nbsp;MODIFY demo_join1 FROM TABLE @buffer. <br>ENDIF. <br> <br>SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_join1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result). <br> <br>cl_demo_output=>display( result ).
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,111 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_BUSINESS_SERVICES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP CDS - RAP Business Services (BS)">
+<title>
+ABAP CDS - RAP Business Services (BS) - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_business_services.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_business_services.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_rap_objects.htm')" class="blue">ABAP CDS - RAP Objects</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP CDS - RAP Business Services (BS)
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+A <a href="javascript:call_link('abenbusiness_service_glosry.htm')" class="grey" title="词汇表条目">business service</a> is a
+<a href="javascript:call_link('abenrestful_glosry.htm')" class="grey" title="词汇表条目">RESTful</a> service provided by
+<a href="javascript:call_link('abenas_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a> as part of
+<a href="javascript:call_link('abenabap_rap_glosry.htm')" class="grey" title="词汇表条目">ABAP RAP</a>. A business service consists mainly of the following parts:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_service_definitions.htm')" class="blue">Service definition</a></li>
+</ul>
+<dl><dd>
+A service definition is a <a href="javascript:call_link('abencds_object_glosry.htm')" class="grey" title="词汇表条目">CDS object</a> that exposes the CDS entities in
+<a href="javascript:call_link('abencds_source_code_glosry.htm')" class="grey" title="词汇表条目">CDS source code</a> accessed using the business service.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_service_bindings.htm')" class="blue">Service binding</a></li>
+</ul>
+<dl><dd>
+A service binding is a <a href="javascript:call_link('abenrepository_object_glosry.htm')" class="grey" title="词汇表条目">repository object</a> that binds a service definition to a
+<a href="javascript:call_link('abenrestful_glosry.htm')" class="grey" title="词汇表条目">RESTful</a> protocol and uses this protocol to publish the business.
+</dd></dl>
+<p>
+A business service can be used to both read and write to AS ABAP. In the latter case, the CDS entity exposed by the service definition must be the root entity of a
+<a href="javascript:call_link('abenrap_bo_glosry.htm')" class="grey" title="词汇表条目">RAP business object</a> for which there is a
+<a href="javascript:call_link('abencds_behavior_definition_glosry.htm')" class="grey" title="词汇表条目">CDS behavior definition</a> and a behavior pool.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+A service definition can be published by multiple service bindings using different protocols.
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_service_definitions.htm')" class="blue">ABAP CDS - Service Definitions</a><br>
+<a href="javascript:call_link('abencds_service_bindings.htm')" class="blue">ABAP CDS - Service Bindings</a><br>
+<a href="javascript:call_link('abenservice_bindings_abexas.htm')" class="blue">ABAP CDS - Consuming Business Services</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,102 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPCALL_EXCEPTIONS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAPCALL_EXCEPTIONS">
+<title>
+ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapcall_exceptions.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapcall_exceptions.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p>
+<span class="qtext">EXCEPTIONS</span> can be used to assign return values to
+<a href="javascript:call_link('abenexceptions_non_class.htm')" class="blue">non-class-based exceptions</a> <span class="qtext">exc1
+exc2 ...</span> declared in the parameter interface. Each exception <span class="qtext">exc1 exc2 ...</span>
+that the caller wants to handle must be assigned to a directly specified number <span class="qtext">n1 n2 ...</span> All numbers between 0 and 65535 can be specified. The behavior outside of this range is undefined.
+</p>
+<p>
+By specifying <span class="qtext">OTHERS</span> as the last entry after <span class="qtext">EXCEPTIONS</span>,
+a common return value can be assigned to all exceptions not specified explicitly in <span class="qtext">exc1
+exc2...</span>. This is done by assigning a number <span class="qtext">n_others</span>. The same return
+value can be assigned to different exceptions (including <span class="qtext">OTHERS</span>). The behavior when an exception is raised is as follows:
+</p>
+<ul class="disc">
+<li>If the statement <a href="javascript:call_link('abapraise_exception.htm')" class="blue"><span class="qtext">RAISE</span></a>
+or <a href="javascript:call_link('abapmessage_raising.htm')" class="blue"><span class="qtext">MESSAGE RAISING</span></a> is
+used to raise an exception <span class="qtext">exc1 exc2 ...</span> to which a return value is assigned,
+the statement is terminated immediately, any procedure parameters passed by value are not filled, and
+the number <span class="qtext">n1 n2 ...</span> assigned to the exception is available to be evaluated in <span class="qtext">sy-subrc</span> .</li>
+</ul>
+<ul class="disc">
+<li>If the call of an exception raised by <a href="javascript:call_link('abapraise_exception.htm')" class="blue"><span class="qtext">RAISE</span></a> does not assign a return value, the program is terminated with a runtime error.</li>
+</ul>
+<ul class="disc">
+<li>If the call of an exception raised by <a href="javascript:call_link('abapmessage_raising.htm')" class="blue"><span class="qtext">MESSAGE RAISING</span></a> does not assign a return value, the
+<a href="javascript:call_link('abenmessage_glosry.htm')" class="grey" title="词汇表条目">message</a> is sent, and the system resumes in accordance with the message type.</li>
+</ul>
+<p>
+If no exception is raised, a call sets <span class="qtext">sy-subrc</span> to 0.
+</p>
+<p>
+The addition <span class="qtext">EXCEPTIONS</span> cannot be specified in the call if <span class="qtext">RAISING</span> is used to declare
+<a href="javascript:call_link('abenclass_based_exception_glosry.htm')" class="grey" title="词汇表条目">class-based exceptions</a> in the parameter interface of the called procedure.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

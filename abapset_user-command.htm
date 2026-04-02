@@ -1,0 +1,144 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPSET_USER-COMMAND -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="SET USER-COMMAND">
+<meta name="keywords" content="ABAP, SET USER-COMMAND">
+<title>
+SET USER-COMMAND - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapset_user-command.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapset_user-command.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_screens.htm')" class="blue">SAP GUI User Dialogs</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_dynpro_list.htm')" class="blue">Classic Lists</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_lists_interactive.htm')" class="blue">Lists - Event Blocks</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@SET USER-COMMAND@@!ABAP_STATEMENT!@@"></A>
+<p><span class="h1">
+SET USER-COMMAND <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapset_user-command_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">SET USER-COMMAND fcode.</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Raises a list event with a function code specified in <span class="qtext">fcode</span>. <span class="qtext">fcode</span> must be a
+<a href="javascript:call_link('abencharlike_data_object_glosry.htm')" class="grey" title="词汇表条目">character-like data object</a>.
+This statement can be used when creating a list. After completion, but before display of the current
+list, the runtime environment responds as if a user action were performed in the displayed list using the function code specified in <span class="qtext">fcode</span>.
+</p>
+<p>
+The assignment of list events to function codes corresponds to the description under <a href="javascript:call_link('abapat_user-command.htm')" class="blue"><span class="qtext">AT USER-COMMAND</span></a>:
+</p>
+<ul class="disc">
+<li>The predefined function codes of the tables specified under <span class="qtext">AT USER-COMMAND</span> are caught by the runtime environment</li>
+</ul>
+<ul class="disc">
+<li>The function codes <span class="qtext400">"PICK"</span> and <span class="qtext400">"PFnn"</span>
+raise the events <a href="javascript:call_link('abapat_line-selection.htm')" class="blue"><span class="qtext">AT LINE-SELECTION</span></a> or <a href="javascript:call_link('abapat_pfnn.htm')" class="blue"><span class="qtext">AT PFnn</span></a></li>
+</ul>
+<ul class="disc">
+<li>all other functions raise the event <a href="javascript:call_link('abapat_user-command.htm')" class="blue"><span class="qtext">AT USER-COMMAND</span></a></li>
+</ul>
+<p>
+If the corresponding event block is implemented, the value of <span class="qtext">sy-lsind</span> is increased by one and the event block is executed.
+</p>
+<p>
+If multiple <span class="qtext">SET USER-COMMAND</span> statements are used when creating a list, all are ignored except the last one. <br><br>
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The function code <span class="qtext400">"PICK"</span> only raises an event if the cursor is positioned on a list line.</li>
+</ul>
+<ul class="disc">
+<li>If a function code is assigned to the <span class="qtext500">Return</span> key in the current
+<a href="javascript:call_link('abengui_status_glosry.htm')" class="grey" title="词汇表条目">GUI status</a>, this function code is used instead of the one specified in <span class="qtext">fcode</span>. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Creates (program-driven) one basic list and two details lists and displays a search dialog box in the
+second details list using the predefined function code <span class="qtext400">"%SC"</span>. The statement
+<span class="qtext">SET CURSOR</span> is used to position the cursor in a list line in the event block <span class="qtext">AT LINE-SELECTION</span> to enable the function code <span class="qtext400">"PICK"</span>.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+START-OF-SELECTION. <br>&nbsp;&nbsp;SET USER-COMMAND 'MYCOMM'. <br>&nbsp;&nbsp;WRITE 'Basic List'. <br> <br>
+AT USER-COMMAND. <br>&nbsp;&nbsp;CASE sy-ucomm. <br>&nbsp;&nbsp;&nbsp;&nbsp;WHEN 'MYCOMM'. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE 'Details List from USER-COMMAND,'. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WRITE: 'SY-LSIND', sy-lsind. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET CURSOR LINE 1. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET USER-COMMAND 'PICK'. <br>&nbsp;&nbsp;ENDCASE. <br> <br>AT LINE-SELECTION. <br>
+&nbsp;&nbsp;WRITE 'Details List from LINE-SELECTION,'. <br>&nbsp;&nbsp;WRITE: 'SY-LSIND', sy-lsind. <br>&nbsp;&nbsp;SET USER-COMMAND '%SC'. <br><br>
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

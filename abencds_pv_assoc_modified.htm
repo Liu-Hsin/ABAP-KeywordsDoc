@@ -1,0 +1,242 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_PV_ASSOC_MODIFIED -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - projection_view, modified association">
+<title>
+CDS DDL - projection_view, modified association - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_pv_assoc_modified.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_pv_assoc_modified.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_views.htm')" class="blue">ABAP CDS - Projection Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_as_projection.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY AS PROJECTION</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">CDS DDL - projection_view, element_list</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_view_expose_assoc.htm')" class="blue">CDS DDL - projection_view, expose_assoc</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+CDS DDL - projection_view, modified association
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400"> ... _association<i class=bn>[</i>[filter]<i class=bn>]</i> AS _newAlias <i class=bn>[</i>: REDIRECTED TO projection_view<i class=bn>]</i></span> <br><br>
+</p>
+<p><span class="h3">
+Additions:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext400">... filter</span> </A> <br><br>
+<A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext400">... AS alias</span> </A> <br><br>
+<A HREF="#!ABAP_ADDITION_3@3@" class="blue"> 3. <span class="qtext400">... REDIRECTED TO proj_view</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+It is possible to modify existing associations in a
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a>. That means that additional
+<a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter conditions</a> can be added to an association which is already exposed by the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a>. In this way, the
+<a href="javascript:call_link('abencardinality_glosry.htm')" class="grey" title="词汇表条目">cardinality</a> of an association can be changed implicitly. The modified association can then be given a new
+<a href="javascript:call_link('abenalias_glosry.htm')" class="grey" title="词汇表条目">alias name</a>. Redirection to a new
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> is possible if the target of the association is also projected.
+</p>
+<p>
+You can also pick fields from a modified association in the element list of a CDS projection view using a
+<a href="javascript:call_link('abenpath_expression_glosry.htm')" class="grey" title="词汇表条目">path expression</a>.
+<a href="javascript:call_link('abenpath_expression_glosry.htm')" class="grey" title="词汇表条目">Path expressions</a> for modified
+associations can be constructed as explained in topic <a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">CDS
+DDL - <span class="qtext400">path_expr</span></a>. The following rules and restrictions apply in addition to the general rules for CDS path expressions:
+</p>
+<ul class="disc">
+<li>The result set of the CDS projection view must be the same as the result set of the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a>. Therefore, the target cardinality of each traversed association must be 1. This can also be achieved by using a
+<a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter condition</a>.</li>
+</ul>
+<ul class="disc">
+<li>Association chaining is allowed for field selection, as long as all associations traversed have a target cardinality of 1.</li>
+</ul>
+<ul class="disc">
+<li>The keyword <a href="javascript:call_link('abencds_proj_view_element.htm')" class="blue"><span class="qtext400">LOCALIZED</span></a>
+can be used to display text elements in the user's logon language. All previous association paths must be filtered to 1.</li>
+</ul>
+<ul class="disc">
+<li>It is possible to pass parameters in association paths.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+A CDS association can be exposed multiple times with various alternative element names. This makes it
+possible to use different filter conditions <a href="javascript:call_link('abencds_proj_view_cond_expr.htm')" class="blue"><span class="qtext400">cds_cond</span></a>. <br><br>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS projection view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_PV_SO_MODIFY</span></span>
+is a projection of the CDS view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_CDS_SO</span></span>.
+It exposes the association <span class="qtext400">_Items</span> twice. The first time, all original
+properties are kept. The second time, the association is modified with a filter. The new alias name
+<span class="qtext400">_TopItems</span> is assigned and by using the keyword <span class="qtext400">REDIRECTED
+TO</span>, the specialization as composition child is lost and the association is projected as a simple CDS association.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #CHECK <br> <br>define root view entity DEMO_SALES_PV_SO_MODIFY <br>
+&nbsp;&nbsp;as projection on DEMO_SALES_CDS_SO&nbsp;&nbsp;&nbsp;&nbsp;<br>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;key so_key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as SalesOrderKey, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as SalesOrderExternalId,&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifecycle_status&nbsp;&nbsp;&nbsp;&nbsp; as LifecycleStatus,&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buyer_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as BuyerId,&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Buyer.family_name&nbsp;&nbsp; as BuyerDescription,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created_by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as CreatedBy, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_changed_by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as LastChangedBy, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;_Items:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirected to composition child DEMO_SALES_PV_MODIFY_1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Items[*:posnr &lt;= 3] as _TopItems: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redirected to DEMO_SALES_PV_MODIFY_1 <br>}</span> <br><br> <br><br>
+</dd></dl>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext400">[filter]</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+An association in a CDS projection view can be modified by adding a filter <span class="qtext400">filter</span>
+in square brackets [ ] when the association is exposed in the element list. The filter can consist of two attributes, namely cardinality and
+<a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter condition</a>. Here are the rules for filters for modified association in CDS projection views:
+</p>
+<ul class="disc">
+<li>A filter can consist of two attributes: cardinality and <a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter condition</a>. The filter is specified in the following way: <br>
+<span class="qtext400">[<i class=bn>[</i>cardinality:<i class=bn>]</i> cds_cond ]</span> <br>Example: <span class="qtext400">_Assoc[1:field1 = 5].</span></li>
+</ul>
+<ul class="disc">
+<li>The prefix <span class="qtext400">$projection.</span> can be used within a filter to access an element from the projection list <br>
+Example: <span class="qtext400">_Assoc[1:field1 = $projection.field1] as _alias</span></li>
+</ul>
+<ul class="disc">
+<li>For the <a href="javascript:call_link('abenfilter_condition_glosry.htm')" class="grey" title="词汇表条目">filter condition</a>, the rules for conditions in a filter condition of a path expression of a CDS view apply. See topic
+<a href="javascript:call_link('abencds_path_expression_filter_v2.htm')" class="blue">CDS DDL - View Entity, path_expr, filter</a>.</li>
+</ul>
+<ul class="disc">
+<li>The cardinality of an association might implicitly be changed when a filter is added. If this is
+the case, and only in this case, the new cardinality can be specified in square brackets. A filter can never consist of a new cardinality alone.</li>
+</ul>
+<ul class="disc">
+<li>The <span class="qtext400">max</span> cardinality of a filtered association must be lower than or equal to the <span class="qtext400">max</span> cardinality of the original association.</li>
+</ul>
+<ul class="disc">
+<li>It is not possible to specify <a href="javascript:call_link('abenjoin_type_glosry.htm')" class="grey" title="词汇表条目">join type</a> characteristics in the filter. <br><br></li>
+</ul>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext400">... AS _newAlias</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines the name <span class="qtext400">_newAlias</span> as new alias name for a modified association upon exposure. The name <span class="qtext400">_newAlias</span> must comply with the naming rules for
+<a href="javascript:call_link('abencds_general_syntax_rules.htm')" class="blue">names</a>. <br><br>
+</p>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_3@3@"></A> <span class="bold">Addition 3</span>
+</span></p>
+<P>
+<span class="qtext400">REDIRECTED TO proj_view</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+If the target of a modified association  is also projected, the association can be redirected to the
+target projection view. The general rules for redirection are explained in topic <a href="javascript:call_link('abencds_proj_view_expose_assoc.htm')" class="blue">
+CDS DDL - <span class="qtext400"> projection_view</span> <span class="qtext400">expose_assoc</span></a>. In addition, the following rules and restrictions apply to modified associations in CDS projection views:
+</p>
+<ul class="disc">
+<li>It is possible to redirect modified associations using the keyword <a href="javascript:call_link('abencds_proj_view_expose_assoc.htm')" class="blue"><span class="qtext400">REDIRECTED TO</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>The additions <span class="qtext400">REDIRECTED TO COMPOSITION CHILD</span> and <span class="qtext400">REDIRECTED TO PARENT</span> are not allowed.
+<a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">To-parent associations</a> and
+<a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">compositions</a> can be redirected as simple <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS associations</a>.</li>
+</ul>
+<ul class="disc">
+<li>Redirected associations can be enhanced by an <a href="javascript:call_link('abenalias_glosry.htm')" class="grey" title="词汇表条目">alias name</a>.</li>
+</ul>
+<ul class="disc">
+<li>Associations exposed via association chains must not be redirected. <br><br></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

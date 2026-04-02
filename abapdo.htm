@@ -1,0 +1,168 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPDO -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="DO">
+<meta name="keywords" content="ABAP, DO">
+<title>
+DO - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapdo.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapdo.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_flow_logic.htm')" class="blue">Program Flow Logic</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencontrol_structures.htm')" class="blue">Control Structures</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_loops.htm')" class="blue">Loops</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@DO@@!ABAP_STATEMENT!@@"></A>
+<p><span class="h1">
+DO <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapdo_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">DO <i class=bn>[</i>n TIMES<i class=bn>]</i>. <br>&nbsp;&nbsp;<i class=bn>[</i>statement_block<i class=bn>]</i> <br>ENDDO.</span> <br><br>
+</p>
+<p><span class="h3">
+Addition:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ONE_ADD@1@" class="blue"> <span class="qtext">... n TIMES</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Unconditional loop. The statements <span class="qtext">DO</span> and <span class="qtext">ENDDO</span> define a control structure, which can contain a complete
+<a href="javascript:call_link('abenstatement_block_glosry.htm')" class="grey" title="词汇表条目">statement block</a> <span class="qtext">statement_block</span>.
+</p>
+<p>
+Without the addition <span class="qtext">n TIMES</span>, the statement block is repeated until it is exited using one of the statements for
+<a href="javascript:call_link('abenleave_loops.htm')" class="blue">exiting loops</a>. In particular, the statement <a href="javascript:call_link('abapexit_loop.htm')" class="blue">
+<span class="qtext">EXIT</span></a> is intended for exiting a loop completely. Within the statement
+block, the system field <span class="qtext">sy-index</span>  contains the number of previous loop passes,
+including the current pass. In nested loops, <span class="qtext">sy-index</span> always refers to the current loop.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>If the addition <span class="qtext">n TIMES</span> is not specified, the loop has to be terminated by a statement; otherwise it is executed endlessly. A maximum runtime can be configured using the
+<a href="javascript:call_link('abenprofile_parameter_glosry.htm')" class="grey" title="词汇表条目">profile parameters</a> <span class="lnkgrey"><span
+ class="qtext400">rdisp/scheduler/prio_low/max_runtime</span></span>, <span class="lnkgrey"><span class="qtext400">rdisp/scheduler/prio_normal/max_runtime</span></span>,
+and <span class="lnkgrey"><span class="qtext400">rdisp/scheduler/prio_high/max_runtime</span></span>. If this is exceeded, the program is terminated by the runtime environment.</li>
+</ul>
+<ul class="disc">
+<li>If <span class="qtext">DO</span> loops are used to construct values or fill internal tables, they
+can usually be expressed more elegantly using conditional iterations with <a href="javascript:call_link('abenfor_conditional.htm')" class="blue"><span class="qtext">FOR</span></a> in constructor expressions.</li>
+</ul>
+<ul class="disc">
+<li>The obsolete addition <a href="javascript:call_link('abapdo_varying.htm')" class="blue"><span class="qtext">VARYING</span></a> can be used to process a sequence of data objects in the memory. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Exit a <span class="qtext">DO</span> loop based on a condition.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA(str) = `xxx`. <br>DO. <br>&nbsp;&nbsp;str = str &amp;&amp; str. <br>&nbsp;&nbsp;IF strlen( str ) > 10000. <br>&nbsp;&nbsp;&nbsp;&nbsp;EXIT. <br>&nbsp;&nbsp;ENDIF. <br>ENDDO. <br><br>
+</span>
+</p>
+<A NAME="@@TIMES@@DO@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ONE_ADD@1@"></A> <span class="bold">Addition</span>
+</span></p>
+<P>
+<span class="qtext">... n TIMES</span> <!-- /A -->  <br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The addition <span class="qtext">n TIMES</span> limits the number of loop passes in a <span class="qtext">DO</span> loop. <span class="qtext">n</span> is a
+<a href="javascript:call_link('abennumerical_expr_position_glosry.htm')" class="grey" title="词汇表条目">numeric expression position</a> of operand type <span class="qtext">i</span>.
+</p>
+<p>
+The numeric value of <span class="qtext">n</span> when entering the loop determines the maximum number
+of times the statement block is executed. The control structure ignores changes to the value <span class="qtext">n</span>
+within the loop. If <span class="qtext">n</span> contains a value less than or equal to 0, the statement block is not executed. <br><br>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Calculation and display of the first ten square numbers in a <span class="qtext">DO</span> loop.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA square TYPE i. <br> <br>DO 10 TIMES. <br>&nbsp;&nbsp;square = ipow( base = sy-index exp = 2 ). <br>&nbsp;&nbsp;cl_demo_output=>write( |{ sy-index } { square }| ). <br>ENDDO. <br>cl_demo_output=>display( ). <br><br>
+</span>
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abapenddo.htm')" class="blue">ENDDO</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

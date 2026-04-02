@@ -1,0 +1,1042 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENABAP_SUBJECTS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP Subject Directory">
+<title>
+ABAP Subject Directory - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenabap_subjects.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenabap_subjects.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP Subject Directory
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<A HREF="#A" class="blue">A</A>
+<A HREF="#B" class="blue">B</A>
+<A HREF="#C" class="blue">C</A>
+<A HREF="#D" class="blue">D</A>
+<A HREF="#E" class="blue">E</A>
+<A HREF="#F" class="blue">F</A>
+<A HREF="#G" class="blue">G</A>
+<A HREF="#H" class="blue">H</A>
+<A HREF="#I" class="blue">I</A>
+<A HREF="#J" class="blue">J</A>
+<A HREF="#K" class="blue">K</A>
+<A HREF="#L" class="blue">L</A>
+<A HREF="#M" class="blue">M</A>
+<A HREF="#N" class="blue">N</A>
+<A HREF="#O" class="blue">O</A>
+<A HREF="#P" class="blue">P</A>
+<A HREF="#Q" class="blue">Q</A>
+<A HREF="#R" class="blue">R</A>
+<A HREF="#S" class="blue">S</A>
+<A HREF="#T" class="blue">T</A>
+<A HREF="#U" class="blue">U</A>
+<A HREF="#V" class="blue">V</A>
+<A HREF="#W" class="blue">W</A>
+<A HREF="#X" class="blue">X</A>
+<br><br>
+<A HREF="javascript:call_link('abencds_annotations_abap.htm')" class="blue"> <br>@, ABAP annotation</a>
+<A HREF="javascript:call_link('abencds_annotations_frmwrk.htm')" class="blue"> <br>@, framework specific annotation</a>
+<A HREF="javascript:call_link('abencds_annotations_sap.htm')" class="blue"> <br>@, SAP annotation</a>
+<A HREF="javascript:call_link('abenequals_arith_expr.htm')" class="blue"> <br>=, assignment operator</a>
+<A HREF="javascript:call_link('abenamdp_logical_db_schemas.htm')" class="blue"> <br>$ABAP.schema, AMDP macro</a>
+<A HREF="javascript:call_link('abenamdp_abap_types.htm')" class="blue"> <br>$ABAP.type, AMDP macro</a>
+<br><br><A NAME="A"></A><span class="h2">A</span><br><br>
+<A HREF="javascript:call_link('abenabap_bdl.htm')" class="blue"> <br>ABAP Behavior Definition Language</a>
+<A HREF="javascript:call_link('abencds.htm')" class="blue"> <br>ABAP CDS</a>
+<A HREF="javascript:call_link('abenabap_channels.htm')" class="blue"> <br>ABAP Channel</a>
+<A HREF="javascript:call_link('abencds.htm')" class="blue"> <br>ABAP Core Data Services</a>
+<A HREF="javascript:call_link('abenabap_daemon.htm')" class="blue"> <br>ABAP Daemon</a>
+<A HREF="javascript:call_link('abenadbc.htm')" class="blue"> <br>ABAP Database Donnectivity</a>
+<A HREF="javascript:call_link('abenabap_dictionary.htm')" class="blue"> <br>ABAP Dictionary</a>
+<A HREF="javascript:call_link('abendoccomment.htm')" class="blue"> <br>ABAP doc</a>
+<A HREF="javascript:call_link('abenabap_language_files.htm')" class="blue"> <br>ABAP file interface</a>
+<A HREF="javascript:call_link('abenabap_versions.htm')" class="blue"> <br>ABAP language version</a>
+<A HREF="javascript:call_link('abenabap_managed_db_objects.htm')" class="blue"> <br>ABAP Managed Database Object</a>
+<A HREF="javascript:call_link('abenmemory_organization.htm')" class="blue"> <br>ABAP memory</a>
+<A HREF="javascript:call_link('abenamc.htm')" class="blue"> <br>ABAP Messaging Channels</a>
+<A HREF="javascript:call_link('abenabap_objects_oview.htm')" class="blue"> <br>ABAP Objects</a>
+<A HREF="javascript:call_link('abenabap_overview.htm')" class="blue"> <br>ABAP programing language</a>
+<A HREF="javascript:call_link('abenapc.htm')" class="blue"> <br>ABAP Push Channels</a>
+<A HREF="javascript:call_link('abennews.htm')" class="blue"> <br>ABAP release news</a>
+<A HREF="javascript:call_link('abenmemory_organization.htm')" class="blue"> <br>ABAP session</a>
+<A HREF="javascript:call_link('abenopensql.htm')" class="blue"> <br>ABAP SQL</a>
+<A HREF="javascript:call_link('abenabap_statements_overview.htm')" class="blue"> <br>ABAP statement</a>
+<A HREF="javascript:call_link('abenabap_syntax.htm')" class="blue"> <br>ABAP syntax</a>
+<A HREF="javascript:call_link('abenabap-testcockpit_guidl.htm')" class="blue"> <br>ABAP Test Cockpit</a>
+<A HREF="javascript:call_link('abenbuilt_in_types_complete.htm')" class="blue"> <br>ABAP type</a>
+<A HREF="javascript:call_link('abentypes_objects_oview.htm')" class="blue"> <br>ABAP type concept</a>
+<A HREF="javascript:call_link('abentypes_objects_oview.htm')" class="blue"> <br>ABAP type hierachy</a>
+<A HREF="javascript:call_link('abenabap_unit.htm')" class="blue"> <br>ABAP Unit</a>
+<A HREF="javascript:call_link('abenabap_versions.htm')" class="blue"> <br>ABAP version</a>
+<A HREF="javascript:call_link('abenabap_words.htm')" class="blue"> <br>ABAP word</a>
+<A HREF="javascript:call_link('abenamdp_macros.htm')" class="blue"> <br>ABAP, AMDP macro</a>
+<A HREF="javascript:call_link('abenbehavior_pool_glosry.htm')" class="blue"> <br>ABP</a>
+<A HREF="javascript:call_link('abentype_names.htm')" class="blue"> <br>absolute type name</a>
+<A HREF="javascript:call_link('abencds_abstract_entities.htm')" class="blue"> <br>abstract entity</a>
+<A HREF="javascript:call_link('abencds_abstract_entities.htm')" class="blue"> <br>abstract entity, ABAP CDS</a>
+<A HREF="javascript:call_link('abeninheritance_abstract_final.htm')" class="blue"> <br>abstract method, class</a>
+<A HREF="javascript:call_link('abencds_access_control.htm')" class="blue"> <br>access control, ABAP CDS,</a>
+<A HREF="javascript:call_link('abenitab_access.htm')" class="blue"> <br>access, internal table</a>
+<A HREF="javascript:call_link('abenfrontend_services.htm')" class="blue"> <br>access, presentation server</a>
+<A HREF="javascript:call_link('abentyping_arith_expr.htm')" class="blue"> <br>actual parameter, function, expression</a>
+<A HREF="javascript:call_link('abenadbc.htm')" class="blue"> <br>ADBC</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>addition</a>
+<A HREF="javascript:call_link('abeninternal_session.htm')" class="blue"> <br>additional program group</a>
+<A HREF="javascript:call_link('abenfile_interface_naming.htm')" class="blue"> <br>address, file</a>
+<A HREF="javascript:call_link('abenadt_glosry.htm')" class="blue"> <br>ADT</a>
+<A HREF="javascript:call_link('abapselect_aggregate.htm')" class="blue"> <br>aggregate</a>
+<A HREF="javascript:call_link('abapselect_aggregate.htm')" class="blue"> <br>aggregate expression</a>
+<A HREF="javascript:call_link('abensql_agg_func.htm')" class="blue"> <br>aggregate function</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>alignment, classic list</a>
+<A HREF="javascript:call_link('abenalignment.htm')" class="blue"> <br>alignment, memory</a>
+<A HREF="javascript:call_link('abenamc.htm')" class="blue"> <br>AMC</a>
+<A HREF="javascript:call_link('abenamdp.htm')" class="blue"> <br>AMDP</a>
+<A HREF="javascript:call_link('abenamhc_glosry.htm')" class="blue"> <br>AMHC</a>
+<A HREF="javascript:call_link('abencds_annotations_syntax.htm')" class="blue"> <br>annotation syntax, ABAP CDS</a>
+<A HREF="javascript:call_link('abencds_annotations.htm')" class="blue"> <br>annotations, ABAP CDS</a>
+<A HREF="javascript:call_link('abenanonymous_components.htm')" class="blue"> <br>anonymous component</a>
+<A HREF="javascript:call_link('abenapc.htm')" class="blue"> <br>APC</a>
+<A HREF="javascript:call_link('abenmemory_organization.htm')" class="blue"> <br>application server</a>
+<A HREF="javascript:call_link('abenshm_area_constructor_class.htm')" class="blue"> <br>area constructor</a>
+<A HREF="javascript:call_link('abenshm_area_constructor_class.htm')" class="blue"> <br>area constructor class</a>
+<A HREF="javascript:call_link('abapcompute_arith.htm')" class="blue"> <br>arithmetic calculation</a>
+<A HREF="javascript:call_link('abapcompute_arith.htm')" class="blue"> <br>arithmetic expression</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>arithmetic operator</a>
+<A HREF="javascript:call_link('abenas_abap_glosry.htm')" class="blue"> <br>AS ABAP</a>
+<A HREF="javascript:call_link('abenapplication_server_glosry.htm')" class="blue"> <br>AS instance</a>
+<A HREF="javascript:call_link('abencharacter_sets.htm')" class="blue"> <br>ASCII</a>
+<A HREF="javascript:call_link('abenabap_asjson.htm')" class="blue"> <br>asJSON</a>
+<A HREF="javascript:call_link('abapassert.htm')" class="blue"> <br>assertion</a>
+<A HREF="javascript:call_link('abencorresponding.htm')" class="blue"> <br>assign. structure component</a>
+<A HREF="javascript:call_link('abenvalue_assignments.htm')" class="blue"> <br>assignment</a>
+<A HREF="javascript:call_link('abenequals_operator.htm')" class="blue"> <br>assignment operator</a>
+<A HREF="javascript:call_link('abenconversion_rules.htm')" class="blue"> <br>assignment rules</a>
+<A HREF="javascript:call_link('abenabap_data_move.htm')" class="blue"> <br>assignment, value</a>
+<A HREF="javascript:call_link('abencds_association_v2.htm')" class="blue"> <br>association, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_association_v1.htm')" class="blue"> <br>association, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abaptypes_mesh_association.htm')" class="blue"> <br>association, mesh</a>
+<A HREF="javascript:call_link('abencds_f1_absent_association.htm')" class="blue"> <br>associations, abstract CDS entity</a>
+<A HREF="javascript:call_link('abenabap_xslt_asxml.htm')" class="blue"> <br>asXML</a>
+<A HREF="javascript:call_link('abapcall_function_starting.htm')" class="blue"> <br>asynchronous RFC</a>
+<A HREF="javascript:call_link('abapcommit.htm')" class="blue"> <br>asynchronous update</a>
+<A HREF="javascript:call_link('abenclass_attributes.htm')" class="blue"> <br>attribute</a>
+<A HREF="javascript:call_link('abenbc_authority_check.htm')" class="blue"> <br>authorization</a>
+<A HREF="javascript:call_link('abapauthority-check.htm')" class="blue"> <br>authorization check</a>
+<A HREF="javascript:call_link('abendataset_auth.htm')" class="blue"> <br>authorization, file accesses</a>
+<br><br><A NAME="B"></A><span class="h2">B</span><br><br>
+<A HREF="javascript:call_link('abapformat.htm')" class="blue"> <br>background color, classic list</a>
+<A HREF="javascript:call_link('abapcall_function_background_unit.htm')" class="blue"> <br>background RFC</a>
+<A HREF="javascript:call_link('abenbadi_enhancement.htm')" class="blue"> <br>BAdI</a>
+<A HREF="javascript:call_link('abenlist_overview.htm')" class="blue"> <br>basic classic list</a>
+<A HREF="javascript:call_link('abenrfc_protocol.htm')" class="blue"> <br>basXML</a>
+<A HREF="javascript:call_link('abenbatch_input_table.htm')" class="blue"> <br>batch input table</a>
+<A HREF="javascript:call_link('abenabap_bdl.htm')" class="blue"> <br>Behavior Definition Language</a>
+<A HREF="javascript:call_link('abapcompute_bit.htm')" class="blue"> <br>binary calculation</a>
+<A HREF="javascript:call_link('abenbinary_functions.htm')" class="blue"> <br>binary function</a>
+<A HREF="javascript:call_link('abapcompute_bit.htm')" class="blue"> <br>bit expression</a>
+<A HREF="javascript:call_link('abenbit_functions.htm')" class="blue"> <br>bit function</a>
+<A HREF="javascript:call_link('abapset_blank_lines.htm')" class="blue"> <br>blank line, classic list</a>
+<A HREF="javascript:call_link('abapselection-screen_block.htm')" class="blue"> <br>block, selection screen</a>
+<A HREF="javascript:call_link('abenbusiness_object_glosry.htm')" class="blue"> <br>BO, business object</a>
+<A HREF="javascript:call_link('abenboole_functions.htm')" class="blue"> <br>boolean function</a>
+<A HREF="javascript:call_link('abenlogexp_boole.htm')" class="blue"> <br>boolean operator</a>
+<A HREF="javascript:call_link('abenboxed_components.htm')" class="blue"> <br>boxed component</a>
+<A HREF="javascript:call_link('abapbreak-point.htm')" class="blue"> <br>breakpoint</a>
+<A HREF="javascript:call_link('abenlist_overview.htm')" class="blue"> <br>buffer, classic list</a>
+<A HREF="javascript:call_link('abenbuilt_in_types_complete.htm')" class="blue"> <br>built-in ABAP type</a>
+<A HREF="javascript:call_link('abenbuilt_in_objects.htm')" class="blue"> <br>built-in data object</a>
+<A HREF="javascript:call_link('abenbuilt_in_types.htm')" class="blue"> <br>built-in data type</a>
+<A HREF="javascript:call_link('abenddic_builtin_types_intro.htm')" class="blue"> <br>built-in data type, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenbuilt_in_functions.htm')" class="blue"> <br>built-in function</a>
+<A HREF="javascript:call_link('abenddic_builtin_functions.htm')" class="blue"> <br>built-in function, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenopen_sql_builtin_functions.htm')" class="blue"> <br>built-in function, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_builtin_functions_v2.htm')" class="blue"> <br>built-in function, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_builtin_functions_v1.htm')" class="blue"> <br>built-in function, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abentable_functions.htm')" class="blue"> <br>built-in function,internal table</a>
+<A HREF="javascript:call_link('abenbyteorder.htm')" class="blue"> <br>byte sequence</a>
+<A HREF="javascript:call_link('abenstring_processing_strings.htm')" class="blue"> <br>byte string</a>
+<A HREF="javascript:call_link('abenddic_character_byte_types.htm')" class="blue"> <br>byte string, ABAP Dictionary</a>
+<br><br><A NAME="C"></A><span class="h2">C</span><br><br>
+<A HREF="javascript:call_link('abenhana_cached_views.htm')" class="blue"> <br>cached view, SAP HANA</a>
+<A HREF="javascript:call_link('abencompute_expressions.htm')" class="blue"> <br>calculation</a>
+<A HREF="javascript:call_link('abencompute_expressions.htm')" class="blue"> <br>calculation expression</a>
+<A HREF="javascript:call_link('abenbitexp_length.htm')" class="blue"> <br>calculation length</a>
+<A HREF="javascript:call_link('abenarith_type.htm')" class="blue"> <br>calculation rule</a>
+<A HREF="javascript:call_link('abencompute_expressions.htm')" class="blue"> <br>calculation statement</a>
+<A HREF="javascript:call_link('abenarith_type.htm')" class="blue"> <br>calculation type</a>
+<A HREF="javascript:call_link('abenselection_screen_call.htm')" class="blue"> <br>call selection screen</a>
+<A HREF="javascript:call_link('abapcall_method_static_chain.htm')" class="blue"> <br>call, chained method</a>
+<A HREF="javascript:call_link('abapleave_to_list-processing.htm')" class="blue"> <br>call, classic list</a>
+<A HREF="javascript:call_link('abapcall_screen.htm')" class="blue"> <br>call, dynpro</a>
+<A HREF="javascript:call_link('abenabap_submit_report.htm')" class="blue"> <br>call, executable program</a>
+<A HREF="javascript:call_link('abapcall_function.htm')" class="blue"> <br>call, function module</a>
+<A HREF="javascript:call_link('abapcall_method_functional.htm')" class="blue"> <br>call, functional method</a>
+<A HREF="javascript:call_link('abenmethod_calls.htm')" class="blue"> <br>call, method</a>
+<A HREF="javascript:call_link('abenabap_program_call.htm')" class="blue"> <br>call, program</a>
+<A HREF="javascript:call_link('abapcall_method_static_short.htm')" class="blue"> <br>call, standalone method</a>
+<A HREF="javascript:call_link('abapperform.htm')" class="blue"> <br>call, subroutine</a>
+<A HREF="javascript:call_link('abenabap_call_transaction.htm')" class="blue"> <br>call, transaction</a>
+<A HREF="javascript:call_link('abenconstructor_expression_cast.htm')" class="blue"> <br>casting operator</a>
+<A HREF="javascript:call_link('abensystem-exceptions.htm')" class="blue"> <br>catchable runtime error</a>
+<A HREF="javascript:call_link('abencds.htm')" class="blue"> <br>CDS</a>
+<A HREF="javascript:call_link('abencds_access_control.htm')" class="blue"> <br>CDS access control</a>
+<A HREF="javascript:call_link('abencds_ddic_entity.htm')" class="blue"> <br>CDS DDIC-based entity</a>
+<A HREF="javascript:call_link('abencds_v1_views.htm')" class="blue"> <br>CDS DDIC-based view</a>
+<A HREF="javascript:call_link('abencds_hierarchies.htm')" class="blue"> <br>CDS hierarchy</a>
+<A HREF="javascript:call_link('abencds_proj_views.htm')" class="blue"> <br>CDS projection view</a>
+<A HREF="javascript:call_link('abencds_table_functions.htm')" class="blue"> <br>CDS table function</a>
+<A HREF="javascript:call_link('abencds_v2_views.htm')" class="blue"> <br>CDS view entity</a>
+<A HREF="javascript:call_link('abencds_database_view.htm')" class="blue"> <br>CDS-managed DDIC view</a>
+<A HREF="javascript:call_link('abenchained_statements.htm')" class="blue"> <br>chained statement</a>
+<A HREF="javascript:call_link('abenuntyped_character_literals.htm')" class="blue"> <br>character literal</a>
+<A HREF="javascript:call_link('abencharacter_sets.htm')" class="blue"> <br>character set</a>
+<A HREF="javascript:call_link('abenstring_processing_strings.htm')" class="blue"> <br>character string</a>
+<A HREF="javascript:call_link('abapcompute_string.htm')" class="blue"> <br>character string expression</a>
+<A HREF="javascript:call_link('abenstring_functions.htm')" class="blue"> <br>character string function</a>
+<A HREF="javascript:call_link('abenregex_posix_syntax_operators.htm')" class="blue"> <br>character string pattern</a>
+<A HREF="javascript:call_link('abenstring_templates.htm')" class="blue"> <br>character string template</a>
+<A HREF="javascript:call_link('abenddic_character_byte_types.htm')" class="blue"> <br>character string, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenddic_database_tables_checktab.htm')" class="blue"> <br>check table</a>
+<A HREF="javascript:call_link('abenregex_mtch.htm')" class="blue"> <br>check, regular expression</a>
+<A HREF="javascript:call_link('abentyping_check.htm')" class="blue"> <br>check, typing</a>
+<A HREF="javascript:call_link('abapparameters_screen.htm')" class="blue"> <br>checkbox, selection screen</a>
+<A HREF="javascript:call_link('abapwrite_list_elements.htm')" class="blue"> <br>checkboxe, classic list</a>
+<A HREF="javascript:call_link('abencheckpoints.htm')" class="blue"> <br>checkpoint</a>
+<A HREF="javascript:call_link('abenfrontend_services.htm')" class="blue"> <br>CL_GUI_FRONTEND_SERVICES</a>
+<A HREF="javascript:call_link('abencl_sql_connection.htm')" class="blue"> <br>CL_SQL_CONNECTION, ADBC</a>
+<A HREF="javascript:call_link('abencl_sql_prepared_statement.htm')" class="blue"> <br>CL_SQL_PREPARED_STATEMENT,ADBC</a>
+<A HREF="javascript:call_link('abencl_sql_statement.htm')" class="blue"> <br>CL_SQL_STATEMENT, ADBC</a>
+<A HREF="javascript:call_link('abenclasses.htm')" class="blue"> <br>class</a>
+<A HREF="javascript:call_link('abenclass_components.htm')" class="blue"> <br>class component</a>
+<A HREF="javascript:call_link('abenclass_component_selector.htm')" class="blue"> <br>class component selector</a>
+<A HREF="javascript:call_link('abenclass_interace_pools.htm')" class="blue"> <br>class pool</a>
+<A HREF="javascript:call_link('abenamdp_classes.htm')" class="blue"> <br>class, AMDP</a>
+<A HREF="javascript:call_link('abenabap_dynpro_list.htm')" class="blue"> <br>classic list</a>
+<A HREF="javascript:call_link('abenopen_sql_client_handling.htm')" class="blue"> <br>client handling</a>
+<A HREF="javascript:call_link('abapclose_dataset.htm')" class="blue"> <br>close, file</a>
+<A HREF="javascript:call_link('abencode_inspector_guidl.htm')" class="blue"> <br>Code Inspector</a>
+<A HREF="javascript:call_link('abentext_environment.htm')" class="blue"> <br>code page</a>
+<A HREF="javascript:call_link('abapformat.htm')" class="blue"> <br>color, classic list</a>
+<A HREF="javascript:call_link('abencomment.htm')" class="blue"> <br>comment</a>
+<A HREF="javascript:call_link('abenddic_database_tables_gtt.htm')" class="blue"> <br>COMMIT_GTT_ERROR</a>
+<A HREF="javascript:call_link('abenlogexp_comp.htm')" class="blue"> <br>comparison</a>
+<A HREF="javascript:call_link('abenlogexp_comp.htm')" class="blue"> <br>comparison expression</a>
+<A HREF="javascript:call_link('abenlogexp_op.htm')" class="blue"> <br>comparison operator</a>
+<A HREF="javascript:call_link('abenlogexp_rules.htm')" class="blue"> <br>comparison rule</a>
+<A HREF="javascript:call_link('abenlogexp_rules_operands.htm')" class="blue"> <br>comparison type</a>
+<A HREF="javascript:call_link('abencompatibility.htm')" class="blue"> <br>compatible</a>
+<A HREF="javascript:call_link('abencompatibility.htm')" class="blue"> <br>compatible data type</a>
+<A HREF="javascript:call_link('abeninheritance_name_space.htm')" class="blue"> <br>component namespace, inheritance</a>
+<A HREF="javascript:call_link('abenconstructor_expr_corresponding.htm')" class="blue"> <br>component operator</a>
+<A HREF="javascript:call_link('abenldb_oview.htm')" class="blue"> <br>component, logical database</a>
+<A HREF="javascript:call_link('abenconcatenation_functions.htm')" class="blue"> <br>concatenation function</a>
+<A HREF="javascript:call_link('abenasql_cond.htm')" class="blue"> <br>condition, ABAP SQL</a>
+<A HREF="javascript:call_link('abenabap_branches.htm')" class="blue"> <br>conditional branch</a>
+<A HREF="javascript:call_link('abenconditional_expressions.htm')" class="blue"> <br>conditional expression</a>
+<A HREF="javascript:call_link('abenddic_deprecation.htm')" class="blue"> <br>CONFIGURATIONDEPRECATIONCODE, check table</a>
+<A HREF="javascript:call_link('abenclass_types_constants.htm')" class="blue"> <br>constant, class</a>
+<A HREF="javascript:call_link('abenconstructor.htm')" class="blue"> <br>constructor</a>
+<A HREF="javascript:call_link('abenconstructor_expressions.htm')" class="blue"> <br>constructor expression</a>
+<A HREF="javascript:call_link('abenconstructor_expressions.htm')" class="blue"> <br>constructor operator</a>
+<A HREF="javascript:call_link('abeninheritance_constructors.htm')" class="blue"> <br>constructor, inheritance,</a>
+<A HREF="javascript:call_link('abencontext.htm')" class="blue"> <br>context</a>
+<A HREF="javascript:call_link('abenstring_templates_separators.htm')" class="blue"> <br>control character, string template</a>
+<A HREF="javascript:call_link('abencontrol_structures.htm')" class="blue"> <br>control structure</a>
+<A HREF="javascript:call_link('abenconversion_rules.htm')" class="blue"> <br>conversion</a>
+<A HREF="javascript:call_link('abenddic_conversion_functions.htm')" class="blue"> <br>conversion function, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abencds_conversion_functions_v2.htm')" class="blue"> <br>conversion function, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_conversion_functions_v1.htm')" class="blue"> <br>conversion function, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abenconstructor_expression_conv.htm')" class="blue"> <br>conversion operator</a>
+<A HREF="javascript:call_link('abenconversion_exits.htm')" class="blue"> <br>conversion routine</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>conversion routine, classic list</a>
+<A HREF="javascript:call_link('abenconversion_rules.htm')" class="blue"> <br>conversion rule</a>
+<A HREF="javascript:call_link('abencountry_formats.htm')" class="blue"> <br>country-specific format</a>
+<A HREF="javascript:call_link('abenselection_screen_create.htm')" class="blue"> <br>create selection screen</a>
+<A HREF="javascript:call_link('abaptypes_itab.htm')" class="blue"> <br>create table type</a>
+<A HREF="javascript:call_link('abapclass.htm')" class="blue"> <br>create, class</a>
+<A HREF="javascript:call_link('abenabap_lists.htm')" class="blue"> <br>create, classic list</a>
+<A HREF="javascript:call_link('abapconstants.htm')" class="blue"> <br>create, constant</a>
+<A HREF="javascript:call_link('abapmethods_constructor.htm')" class="blue"> <br>create, constructor</a>
+<A HREF="javascript:call_link('abapcreate_data.htm')" class="blue"> <br>create, data object</a>
+<A HREF="javascript:call_link('abendialog_module.htm')" class="blue"> <br>create, dialog module</a>
+<A HREF="javascript:call_link('abapdata_simple.htm')" class="blue"> <br>create, elementary dara object</a>
+<A HREF="javascript:call_link('abaptypes_simple.htm')" class="blue"> <br>create, elementary type</a>
+<A HREF="javascript:call_link('abenevents.htm')" class="blue"> <br>create, event</a>
+<A HREF="javascript:call_link('abapmethods_event_handler.htm')" class="blue"> <br>create, event handler</a>
+<A HREF="javascript:call_link('abenexception_class_create.htm')" class="blue"> <br>create, exception class</a>
+<A HREF="javascript:call_link('abapmethods_functional.htm')" class="blue"> <br>create, functional method</a>
+<A HREF="javascript:call_link('abapevents.htm')" class="blue"> <br>create, instance event</a>
+<A HREF="javascript:call_link('abapmethods.htm')" class="blue"> <br>create, instance method</a>
+<A HREF="javascript:call_link('abapcreate_object.htm')" class="blue"> <br>create, instance of a class</a>
+<A HREF="javascript:call_link('abapinterface.htm')" class="blue"> <br>create, interface</a>
+<A HREF="javascript:call_link('abeninterface_work_area_glosry.htm')" class="blue"> <br>create, interface work area</a>
+<A HREF="javascript:call_link('abapdata_itab.htm')" class="blue"> <br>create, internal table</a>
+<A HREF="javascript:call_link('abenabap_messages_storing.htm')" class="blue"> <br>create, message</a>
+<A HREF="javascript:call_link('abenmethods.htm')" class="blue"> <br>create, method</a>
+<A HREF="javascript:call_link('abencreate_objects.htm')" class="blue"> <br>create, object</a>
+<A HREF="javascript:call_link('abapcreate_object_area_handle.htm')" class="blue"> <br>create, object in shared memory</a>
+<A HREF="javascript:call_link('abapparameters.htm')" class="blue"> <br>create, parameter</a>
+<A HREF="javascript:call_link('abapinsert_report.htm')" class="blue"> <br>create, program</a>
+<A HREF="javascript:call_link('abapdata_ranges.htm')" class="blue"> <br>create, ranges table</a>
+<A HREF="javascript:call_link('abaptypes_references.htm')" class="blue"> <br>create, reference type</a>
+<A HREF="javascript:call_link('abapdata_references.htm')" class="blue"> <br>create, reference variable</a>
+<A HREF="javascript:call_link('abapselect-options.htm')" class="blue"> <br>create, selection criterion</a>
+<A HREF="javascript:call_link('abapcreate_object_area_handle.htm')" class="blue"> <br>create, shared object</a>
+<A HREF="javascript:call_link('abapclass-data.htm')" class="blue"> <br>create, static attribute</a>
+<A HREF="javascript:call_link('abapclass-events.htm')" class="blue"> <br>create, static event</a>
+<A HREF="javascript:call_link('abapclass-methods.htm')" class="blue"> <br>create, static method</a>
+<A HREF="javascript:call_link('abapstatics.htm')" class="blue"> <br>create, static variable</a>
+<A HREF="javascript:call_link('abapdata_struc.htm')" class="blue"> <br>create, structure</a>
+<A HREF="javascript:call_link('abaptypes_struc.htm')" class="blue"> <br>create, structure type</a>
+<A HREF="javascript:call_link('abenabap_subroutines.htm')" class="blue"> <br>create, subroutine</a>
+<A HREF="javascript:call_link('abaptables.htm')" class="blue"> <br>create, table work area</a>
+<A HREF="javascript:call_link('abapmethods_testing.htm')" class="blue"> <br>create, test method</a>
+<A HREF="javascript:call_link('abapinsert_textpool.htm')" class="blue"> <br>create, text element</a>
+<A HREF="javascript:call_link('abencts_glosry.htm')" class="blue"> <br>CTS</a>
+<A HREF="javascript:call_link('abenddic_currency_field.htm')" class="blue"> <br>currency field</a>
+<A HREF="javascript:call_link('abapopen_cursor.htm')" class="blue"> <br>cursor, database</a>
+<A HREF="javascript:call_link('abencx_sql_exception.htm')" class="blue"> <br>CX_SQL_EXCEPTION, ADBC</a>
+<A HREF="javascript:call_link('abenexceptions_procedures.htm')" class="blue"> <br>CX_SY_NO_HANDLER</a>
+<A HREF="javascript:call_link('abencds_cycle_problems.htm')" class="blue"> <br>cycle problems, ABAP CDS</a>
+<br><br><A NAME="D"></A><span class="h2">D</span><br><br>
+<A HREF="javascript:call_link('abendata_cluster.htm')" class="blue"> <br>data cluster</a>
+<A HREF="javascript:call_link('abentransaction.htm')" class="blue"> <br>data consistency</a>
+<A HREF="javascript:call_link('abenddic_data_elements.htm')" class="blue"> <br>data element, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abendata_objects.htm')" class="blue"> <br>data object</a>
+<A HREF="javascript:call_link('abenoperands_data_objects.htm')" class="blue"> <br>data object, operand position</a>
+<A HREF="javascript:call_link('abendescribe_field.htm')" class="blue"> <br>data object, property</a>
+<A HREF="javascript:call_link('abendata_reference_type.htm')" class="blue"> <br>data reference</a>
+<A HREF="javascript:call_link('abendata_types.htm')" class="blue"> <br>data type</a>
+<A HREF="javascript:call_link('abenitab_data_type.htm')" class="blue"> <br>data type, internal table</a>
+<A HREF="javascript:call_link('abenddic_data_types.htm')" class="blue"> <br>data type,ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenabap_sql.htm')" class="blue"> <br>database accesse</a>
+<A HREF="javascript:call_link('abendb_commit.htm')" class="blue"> <br>database commit</a>
+<A HREF="javascript:call_link('abenosql_db_hints.htm')" class="blue"> <br>database hint</a>
+<A HREF="javascript:call_link('abendb_lock.htm')" class="blue"> <br>database lock</a>
+<A HREF="javascript:call_link('abendb_transaction.htm')" class="blue"> <br>database LUW</a>
+<A HREF="javascript:call_link('abenldb_program.htm')" class="blue"> <br>database program, logical database</a>
+<A HREF="javascript:call_link('abendb_rollback.htm')" class="blue"> <br>database rollback</a>
+<A HREF="javascript:call_link('abenddic_database_tables.htm')" class="blue"> <br>database table, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenddic_database_views.htm')" class="blue"> <br>database view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenabap_hana.htm')" class="blue"> <br>database, SAP HANA</a>
+<A HREF="javascript:call_link('abendate_formats.htm')" class="blue"> <br>date format</a>
+<A HREF="javascript:call_link('abencountry.htm')" class="blue"> <br>date format, formatting setting</a>
+<A HREF="javascript:call_link('abenddic_date_time_functions.htm')" class="blue"> <br>date/time function, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenopen_sql_date_time_functions.htm')" class="blue"> <br>date/time function, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_date_time_functions_v2.htm')" class="blue"> <br>date/time function, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_date_time_functions_v1.htm')" class="blue"> <br>date/time function, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abencds_f1_dcl_syntax.htm')" class="blue"> <br>DCL, ABAP CDS</a>
+<A HREF="javascript:call_link('abenabap_dictionary.htm')" class="blue"> <br>DDIC</a>
+<A HREF="javascript:call_link('abenddic_views.htm')" class="blue"> <br>DDIC view</a>
+<A HREF="javascript:call_link('abencds_ddic_entity.htm')" class="blue"> <br>DDIC-based entity, ABAP CDS</a>
+<A HREF="javascript:call_link('abencds_v1_views.htm')" class="blue"> <br>DDIC-based view, ABAP CDS,</a>
+<A HREF="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue"> <br>DDL, ABAP CDS</a>
+<A HREF="javascript:call_link('abenddic_decimal_floating_point.htm')" class="blue"> <br>decimal floating point number, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>decimal place, classic list</a>
+<A HREF="javascript:call_link('abendeclaration_positions.htm')" class="blue"> <br>declaration position</a>
+<A HREF="javascript:call_link('abapfield-symbols.htm')" class="blue"> <br>declare, field symbol</a>
+<A HREF="javascript:call_link('abenmemory_consumption_4.htm')" class="blue"> <br>deep component, complex data object</a>
+<A HREF="javascript:call_link('abenmemory_consumption.htm')" class="blue"> <br>deep data object</a>
+<A HREF="javascript:call_link('abendata_objects_structure.htm')" class="blue"> <br>deep structure</a>
+<A HREF="javascript:call_link('abenitab_key_secondary_update.htm')" class="blue"> <br>delayed update</a>
+<A HREF="javascript:call_link('abapdelete_dbtab.htm')" class="blue"> <br>delete entry, database table</a>
+<A HREF="javascript:call_link('abapdelete_dataset.htm')" class="blue"> <br>delete, file</a>
+<A HREF="javascript:call_link('abenddic_database_tables_delivery.htm')" class="blue"> <br>delivery class, database table</a>
+<A HREF="javascript:call_link('abenddic_deprecation.htm')" class="blue"> <br>deprecated data, check table</a>
+<A HREF="javascript:call_link('abensap_lock.htm')" class="blue"> <br>dequeue, lock function module</a>
+<A HREF="javascript:call_link('abendereferencing_operator.htm')" class="blue"> <br>dereferencing operator</a>
+<A HREF="javascript:call_link('abendescriptive_functions.htm')" class="blue"> <br>description function</a>
+<A HREF="javascript:call_link('abenabap_xml.htm')" class="blue"> <br>deserialization</a>
+<A HREF="javascript:call_link('abenrfc_destination.htm')" class="blue"> <br>destination, RFC</a>
+<A HREF="javascript:call_link('abenc_destructor.htm')" class="blue"> <br>destructor</a>
+<A HREF="javascript:call_link('abenlist_overview.htm')" class="blue"> <br>detail, classic list</a>
+<A HREF="javascript:call_link('abapwindow.htm')" class="blue"> <br>dialog box, classic list</a>
+<A HREF="javascript:call_link('abenddic_builtin_types.htm')" class="blue"> <br>dictionary type</a>
+<A HREF="javascript:call_link('abenddic_builtin_type_usage.htm')" class="blue"> <br>dictionary type, use</a>
+<A HREF="javascript:call_link('abenddic_views.htm')" class="blue"> <br>dictionary view</a>
+<A HREF="javascript:call_link('abenitab_key_secondary_update.htm')" class="blue"> <br>direct update</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>display currency, classic list</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>display unit, classic list</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>division</a>
+<A HREF="javascript:call_link('abenddic_domains.htm')" class="blue"> <br>domain</a>
+<A HREF="javascript:call_link('abenconversion_references.htm')" class="blue"> <br>down cast</a>
+<A HREF="javascript:call_link('abenitab_key_secondary_duplicates.htm')" class="blue"> <br>duplicates, internal table</a>
+<A HREF="javascript:call_link('abapassign_mem_area_dynamic_access.htm')" class="blue"> <br>dynamic access</a>
+<A HREF="javascript:call_link('abapassign_mem_area_dynamic_access.htm')" class="blue"> <br>dynamic attribute access</a>
+<A HREF="javascript:call_link('abenmethod_calls_dynamic.htm')" class="blue"> <br>dynamic call, method</a>
+<A HREF="javascript:call_link('abenmemory_consumption.htm')" class="blue"> <br>dynamic data object</a>
+<A HREF="javascript:call_link('abapcall_method_dynamic.htm')" class="blue"> <br>dynamic invoke</a>
+<A HREF="javascript:call_link('abenabap_language_dynamic.htm')" class="blue"> <br>dynamic program</a>
+<A HREF="javascript:call_link('abenfree_selections.htm')" class="blue"> <br>dynamic selection</a>
+<A HREF="javascript:call_link('abenldb_free_selections.htm')" class="blue"> <br>dynamic selection, logical database</a>
+<A HREF="javascript:call_link('abenconversion_references.htm')" class="blue"> <br>dynamic type</a>
+<A HREF="javascript:call_link('abenabap_dynpros.htm')" class="blue"> <br>dynpro</a>
+<br><br><A NAME="E"></A><span class="h2">E</span><br><br>
+<A HREF="javascript:call_link('abencharacter_sets.htm')" class="blue"> <br>EBCDIC</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>edit mask, classic list</a>
+<A HREF="javascript:call_link('abenabap_lists_complex.htm')" class="blue"> <br>edit, classic list buffer</a>
+<A HREF="javascript:call_link('abenabap_language_dynamic.htm')" class="blue"> <br>edit, dynamic program</a>
+<A HREF="javascript:call_link('abenstring_templates_expressions.htm')" class="blue"> <br>embedded expression, string template</a>
+<A HREF="javascript:call_link('abeneml.htm')" class="blue"> <br>EML</a>
+<A HREF="javascript:call_link('abenitab_empty_key.htm')" class="blue"> <br>empty, table key</a>
+<A HREF="javascript:call_link('abapopen_dataset_linefeed.htm')" class="blue"> <br>end of line marking</a>
+<A HREF="javascript:call_link('abenend_processing_blocks.htm')" class="blue"> <br>end, processing block</a>
+<A HREF="javascript:call_link('abenddic_structures_enh_cat.htm')" class="blue"> <br>enhancement category</a>
+<A HREF="javascript:call_link('abenenhancement_framework.htm')" class="blue"> <br>enhancement concept</a>
+<A HREF="javascript:call_link('abenenhancement_framework.htm')" class="blue"> <br>enhancement framework</a>
+<A HREF="javascript:call_link('abenbadi_enhancement.htm')" class="blue"> <br>enhancement, BAdI</a>
+<A HREF="javascript:call_link('abensap_lock.htm')" class="blue"> <br>enqueue, lock function module</a>
+<A HREF="javascript:call_link('abenenumerated_types_usage.htm')" class="blue"> <br>enumerated objects</a>
+<A HREF="javascript:call_link('abenenumerated_types_usage.htm')" class="blue"> <br>enumerated variable</a>
+<A HREF="javascript:call_link('abaptypes_enum.htm')" class="blue"> <br>enumeration type</a>
+<A HREF="javascript:call_link('abenepp.htm')" class="blue"> <br>EPP</a>
+<A HREF="javascript:call_link('abenevent_blocks.htm')" class="blue"> <br>event block</a>
+<A HREF="javascript:call_link('abenexceptions_events.htm')" class="blue"> <br>event handler, class-based exception</a>
+<A HREF="javascript:call_link('abenevents_overview.htm')" class="blue"> <br>event, ABAP Objects</a>
+<A HREF="javascript:call_link('abenclass_events.htm')" class="blue"> <br>event, class</a>
+<A HREF="javascript:call_link('abenabap_lists_interactive.htm')" class="blue"> <br>event, classic list</a>
+<A HREF="javascript:call_link('abeninheritance_events.htm')" class="blue"> <br>event, inheritance</a>
+<A HREF="javascript:call_link('abapat_selection-screen.htm')" class="blue"> <br>event, selection screen</a>
+<A HREF="javascript:call_link('abenldb_examples.htm')" class="blue"> <br>example, logical database</a>
+<A HREF="javascript:call_link('abenabap_examples.htm')" class="blue"> <br>examples, ABAP</a>
+<A HREF="javascript:call_link('abenabap_exceptions.htm')" class="blue"> <br>exception</a>
+<A HREF="javascript:call_link('abenexception_categories.htm')" class="blue"> <br>exception category</a>
+<A HREF="javascript:call_link('abenexceptions_classes.htm')" class="blue"> <br>exception class</a>
+<A HREF="javascript:call_link('abenabap_exception_classes.htm')" class="blue"> <br>exception class, ABAP statement</a>
+<A HREF="javascript:call_link('abenabap_exceptions.htm')" class="blue"> <br>exception handling</a>
+<A HREF="javascript:call_link('abenexception_texts.htm')" class="blue"> <br>exception text</a>
+<A HREF="javascript:call_link('abenexceptions.htm')" class="blue"> <br>exception, class-based</a>
+<A HREF="javascript:call_link('abenregex_exceptions.htm')" class="blue"> <br>exception, regular expression</a>
+<A HREF="javascript:call_link('abennativesql.htm')" class="blue"> <br>EXEC SQL, Native SQL</a>
+<A HREF="javascript:call_link('abenldb_usage_executable.htm')" class="blue"> <br>executable program, logical database</a>
+<A HREF="javascript:call_link('abenabap_leave_program.htm')" class="blue"> <br>exit program</a>
+<A HREF="javascript:call_link('abapleave_list-processing.htm')" class="blue"> <br>exit, classic list</a>
+<A HREF="javascript:call_link('abapleave_screen.htm')" class="blue"> <br>exit, dynpro</a>
+<A HREF="javascript:call_link('abenleave_loops.htm')" class="blue"> <br>exit, loop</a>
+<A HREF="javascript:call_link('abenexpressions.htm')" class="blue"> <br>expression</a>
+<A HREF="javascript:call_link('abentable_expressions.htm')" class="blue"> <br>expression, internal table</a>
+<A HREF="javascript:call_link('abenextended_functional_positions.htm')" class="blue"> <br>extended functional operand position</a>
+<A HREF="javascript:call_link('abenextended_program_check_guidl.htm')" class="blue"> <br>extended program check</a>
+<A HREF="javascript:call_link('abencall_procedures_extern.htm')" class="blue"> <br>external procedure call</a>
+<A HREF="javascript:call_link('abenddic_external_views.htm')" class="blue"> <br>external view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenexternal_views.htm')" class="blue"> <br>external view, SAP HANA</a>
+<A HREF="javascript:call_link('abenabap_extracts_extended.htm')" class="blue"> <br>extract</a>
+<br><br><A NAME="F"></A><span class="h2">F</span><br><br>
+<A HREF="javascript:call_link('abendynp_field_help.htm')" class="blue"> <br>field help</a>
+<A HREF="javascript:call_link('abenldb_field_selections.htm')" class="blue"> <br>field selection, logical database</a>
+<A HREF="javascript:call_link('abenabap_field_symbols.htm')" class="blue"> <br>field symbol</a>
+<A HREF="javascript:call_link('abenfield-symbol_inline.htm')" class="blue"> <br>field symbol, inline declaration</a>
+<A HREF="javascript:call_link('abencds_field_v2.htm')" class="blue"> <br>field, CDS view entity</a>
+<A HREF="javascript:call_link('abenabap_dynpros_fields.htm')" class="blue"> <br>field, dynpro</a>
+<A HREF="javascript:call_link('abenabap_language_files.htm')" class="blue"> <br>file</a>
+<A HREF="javascript:call_link('abenfrontend_services.htm')" class="blue"> <br>file, presentation server</a>
+<A HREF="javascript:call_link('abenmemory_consumption_4.htm')" class="blue"> <br>fill level, complex data objects</a>
+<A HREF="javascript:call_link('abenopen_sql_path_filter.htm')" class="blue"> <br>filter condition, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_path_expr_attr_v2.htm')" class="blue"> <br>filter condition, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_path_expr_attr_v1.htm')" class="blue"> <br>filter condition, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abenopen_sql_path_filter.htm')" class="blue"> <br>filter, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_path_expr_attr_v2.htm')" class="blue"> <br>filter, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_path_expr_attr_v1.htm')" class="blue"> <br>filter, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abeninheritance_abstract_final.htm')" class="blue"> <br>final, method, class</a>
+<A HREF="javascript:call_link('abenfixed_point_arith_external.htm')" class="blue"> <br>fixed point arithmetic, external procedure call</a>
+<A HREF="javascript:call_link('abendata_objects_structure.htm')" class="blue"> <br>flat structure</a>
+<A HREF="javascript:call_link('abenfloating_point_functions.htm')" class="blue"> <br>floating point function</a>
+<A HREF="javascript:call_link('abenabap_flow_logic.htm')" class="blue"> <br>flow control</a>
+<A HREF="javascript:call_link('abenabap_dynpros_dynpro_statements.htm')" class="blue"> <br>flow logic, dynpro</a>
+<A HREF="javascript:call_link('abenfor_itab.htm')" class="blue"> <br>for expression, table iteration</a>
+<A HREF="javascript:call_link('abenddic_database_tables_forkeyrel.htm')" class="blue"> <br>foreign key, database table</a>
+<A HREF="javascript:call_link('abenformal_parameters_oview.htm')" class="blue"> <br>formal parameter</a>
+<A HREF="javascript:call_link('abapwrite_int_options.htm')" class="blue"> <br>format output, classic list</a>
+<A HREF="javascript:call_link('abapformat.htm')" class="blue"> <br>format, classic list</a>
+<A HREF="javascript:call_link('abencountry.htm')" class="blue"> <br>formatting setting</a>
+<A HREF="javascript:call_link('abenunicode_fragment_view.htm')" class="blue"> <br>fragment view</a>
+<A HREF="javascript:call_link('abapformat.htm')" class="blue"> <br>frame, classic list</a>
+<A HREF="javascript:call_link('abenfriends.htm')" class="blue"> <br>friend</a>
+<A HREF="javascript:call_link('abenfriends.htm')" class="blue"> <br>friendship, class</a>
+<A HREF="javascript:call_link('abenddic_database_tables_index.htm')" class="blue"> <br>full text index, database table</a>
+<A HREF="javascript:call_link('abenoperands_expressions.htm')" class="blue"> <br>function and expression, operand position</a>
+<A HREF="javascript:call_link('abenamdp_function_methods.htm')" class="blue"> <br>function implememtation, AMDP</a>
+<A HREF="javascript:call_link('abenfunctional_positions.htm')" class="blue"> <br>functional operand position</a>
+<br><br><A NAME="G"></A><span class="h2">G</span><br><br>
+<A HREF="javascript:call_link('abengeneral_expression_positions.htm')" class="blue"> <br>general expression position</a>
+<A HREF="javascript:call_link('abennumerical_functions.htm')" class="blue"> <br>general numerical function</a>
+<A HREF="javascript:call_link('abapgenerate_subroutine_pool.htm')" class="blue"> <br>generate, subroutine pool</a>
+<A HREF="javascript:call_link('abenbuilt_in_types_generic.htm')" class="blue"> <br>generic type</a>
+<A HREF="javascript:call_link('abenclasses.htm')" class="blue"> <br>global class</a>
+<A HREF="javascript:call_link('abenglobal_parameters_obsolete.htm')" class="blue"> <br>global interface, function module</a>
+<A HREF="javascript:call_link('abenglobal_parameters_obsolete.htm')" class="blue"> <br>global parameter</a>
+<A HREF="javascript:call_link('abenddic_database_tables_gtt.htm')" class="blue"> <br>global temporary table, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abengrouping_function.htm')" class="blue"> <br>grouping function</a>
+<A HREF="javascript:call_link('abapgrouping_sets_clause.htm')" class="blue"> <br>grouping set</a>
+<A HREF="javascript:call_link('abenglobal_temporary_table_glosry.htm')" class="blue"> <br>GTT</a>
+<br><br><A NAME="H"></A><span class="h2">H</span><br><br>
+<A HREF="javascript:call_link('abenabap_hana.htm')" class="blue"> <br>HANA</a>
+<A HREF="javascript:call_link('abenitab_header_line.htm')" class="blue"> <br>header line, internal table</a>
+<A HREF="javascript:call_link('abenddic_help_views.htm')" class="blue"> <br>help view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abencds_hierarchies.htm')" class="blue"> <br>hierarchy, ABAP CDS</a>
+<A HREF="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue"> <br>host constant, ABAP SQL</a>
+<A HREF="javascript:call_link('abapexec_host.htm')" class="blue"> <br>host constant, EXEC SQL</a>
+<A HREF="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue"> <br>host expression, ABAP SQL</a>
+<A HREF="javascript:call_link('abenopen_sql_host_variables.htm')" class="blue"> <br>host variable, ABAP SQL</a>
+<A HREF="javascript:call_link('abapexec_host.htm')" class="blue"> <br>host variable, EXEC SQL</a>
+<A HREF="javascript:call_link('abenhta_glosry.htm')" class="blue"> <br>HTA</a>
+<A HREF="javascript:call_link('abenicf.htm')" class="blue"> <br>http</a>
+<A HREF="javascript:call_link('abenicf.htm')" class="blue"> <br>https</a>
+<br><br><A NAME="I"></A><span class="h2">I</span><br><br>
+<A HREF="javascript:call_link('abenicf.htm')" class="blue"> <br>ICF</a>
+<A HREF="javascript:call_link('abapwrite_list_elements.htm')" class="blue"> <br>icon, classic list</a>
+<A HREF="javascript:call_link('abenabap_xslt_id.htm')" class="blue"> <br>id, identity transformation</a>
+<A HREF="javascript:call_link('abendialog_module.htm')" class="blue"> <br>implement, dialog module</a>
+<A HREF="javascript:call_link('abenabap_functions.htm')" class="blue"> <br>implement, function module</a>
+<A HREF="javascript:call_link('abeninterfaces.htm')" class="blue"> <br>implement, interface</a>
+<A HREF="javascript:call_link('abenabap_methods.htm')" class="blue"> <br>implement, method</a>
+<A HREF="javascript:call_link('abenabap_subroutines.htm')" class="blue"> <br>implement, subroutine</a>
+<A HREF="javascript:call_link('abendynp_subscreen.htm')" class="blue"> <br>include directly, subscreen</a>
+<A HREF="javascript:call_link('abenabap_language_include.htm')" class="blue"> <br>include program</a>
+<A HREF="javascript:call_link('abenmacro_include.htm')" class="blue"> <br>include, macro</a>
+<A HREF="javascript:call_link('abenline_index_function.htm')" class="blue"> <br>index function</a>
+<A HREF="javascript:call_link('abenddic_database_tables_index.htm')" class="blue"> <br>index, database table</a>
+<A HREF="javascript:call_link('abeninheritance.htm')" class="blue"> <br>inheritance</a>
+<A HREF="javascript:call_link('abapdata_options.htm')" class="blue"> <br>initial value</a>
+<A HREF="javascript:call_link('abenutclong.htm')" class="blue"> <br>initial value, time stamp</a>
+<A HREF="javascript:call_link('abeninitializations.htm')" class="blue"> <br>initialization</a>
+<A HREF="javascript:call_link('abentest_seams.htm')" class="blue"> <br>injection</a>
+<A HREF="javascript:call_link('abeninline_declarations.htm')" class="blue"> <br>inline declaration</a>
+<A HREF="javascript:call_link('abapselect_join.htm')" class="blue"> <br>inner join</a>
+<A HREF="javascript:call_link('abapformat.htm')" class="blue"> <br>input field, classic list</a>
+<A HREF="javascript:call_link('abendynp_field_help.htm')" class="blue"> <br>input help</a>
+<A HREF="javascript:call_link('abapinsert_dbtab.htm')" class="blue"> <br>insert entry, database table</a>
+<A HREF="javascript:call_link('abeninsert_functions.htm')" class="blue"> <br>insert, function</a>
+<A HREF="javascript:call_link('abenclass_events.htm')" class="blue"> <br>instance event</a>
+<A HREF="javascript:call_link('abenconstructor_expression_new.htm')" class="blue"> <br>instance operator</a>
+<A HREF="javascript:call_link('abencreate_objects.htm')" class="blue"> <br>instanciation</a>
+<A HREF="javascript:call_link('abeninheritance_instantiation.htm')" class="blue"> <br>instantitaion, inheritance</a>
+<A HREF="javascript:call_link('abeninterfac.htm')" class="blue"> <br>interface</a>
+<A HREF="javascript:call_link('abeninterface_component_selector.htm')" class="blue"> <br>interface component selector</a>
+<A HREF="javascript:call_link('abenfunction_parameters.htm')" class="blue"> <br>interface parameter, function module</a>
+<A HREF="javascript:call_link('abenclass_interace_pools.htm')" class="blue"> <br>interface pool</a>
+<A HREF="javascript:call_link('abeninternal_session.htm')" class="blue"> <br>interface work area</a>
+<A HREF="javascript:call_link('abeninheritance_interfaces.htm')" class="blue"> <br>interface, inheritance</a>
+<A HREF="javascript:call_link('abencall_procedures_intern.htm')" class="blue"> <br>internal procedure call</a>
+<A HREF="javascript:call_link('abenitab_oview.htm')" class="blue"> <br>internal table</a>
+<A HREF="javascript:call_link('abenicf.htm')" class="blue"> <br>Internet Communication Framework</a>
+<A HREF="javascript:call_link('abenwait.htm')" class="blue"> <br>interruption</a>
+<A HREF="javascript:call_link('abendb_isolation.htm')" class="blue"> <br>isolation level</a>
+<A HREF="javascript:call_link('abeniteration_expressions.htm')" class="blue"> <br>iteration expression</a>
+<A HREF="javascript:call_link('abenabap_ixml_lib.htm')" class="blue"> <br>iXML</a>
+<A HREF="javascript:call_link('abenabap_ixml_lib.htm')" class="blue"> <br>iXML library</a>
+<br><br><A NAME="J"></A><span class="h2">J</span><br><br>
+<A HREF="javascript:call_link('abenabap_java_script.htm')" class="blue"> <br>JavaScript</a>
+<A HREF="javascript:call_link('abenabap_json.htm')" class="blue"> <br>JSON</a>
+<A HREF="javascript:call_link('abenabap_json_xml.htm')" class="blue"> <br>JSON-XML</a>
+<br><br><A NAME="K"></A><span class="h2">K</span><br><br>
+<A HREF="javascript:call_link('abenkernel_methods.htm')" class="blue"> <br>kernel method</a>
+<A HREF="javascript:call_link('abenitab_key.htm')" class="blue"> <br>key, internal table</a>
+<A HREF="javascript:call_link('abenobjects_keywords.htm')" class="blue"> <br>keyword, ABAP Objects</a>
+<br><br><A NAME="L"></A><span class="h2">L</span><br><br>
+<A HREF="javascript:call_link('abenamdp_hdb_l_internal.htm')" class="blue"> <br>L, AMDP</a>
+<A HREF="javascript:call_link('abenlanguage.htm')" class="blue"> <br>language</a>
+<A HREF="javascript:call_link('abencds_language_elements.htm')" class="blue"> <br>language element, ABAP CDS,</a>
+<A HREF="javascript:call_link('abenlanguage.htm')" class="blue"> <br>language environment</a>
+<A HREF="javascript:call_link('abenlanguage_settings.htm')" class="blue"> <br>language setting</a>
+<A HREF="javascript:call_link('abentext_environment.htm')" class="blue"> <br>language, text environment</a>
+<A HREF="javascript:call_link('abenitab_key_secondary_update.htm')" class="blue"> <br>lazy update</a>
+<A HREF="javascript:call_link('abenldb_usage_function.htm')" class="blue"> <br>LDB_PROCESS, logical database</a>
+<A HREF="javascript:call_link('abenleave_processing_blocks.htm')" class="blue"> <br>leave, processing block</a>
+<A HREF="javascript:call_link('abenlength_functions.htm')" class="blue"> <br>length function</a>
+<A HREF="javascript:call_link('abaplet.htm')" class="blue"> <br>let expression</a>
+<A HREF="javascript:call_link('abenlist_overview.htm')" class="blue"> <br>level, classic list</a>
+<A HREF="javascript:call_link('abapnew-line.htm')" class="blue"> <br>line break, classic list</a>
+<A HREF="javascript:call_link('abendescriptive_functions_table.htm')" class="blue"> <br>line function</a>
+<A HREF="javascript:call_link('abapwrite_list_elements.htm')" class="blue"> <br>line, classic list</a>
+<A HREF="javascript:call_link('abapselection-screen_uline.htm')" class="blue"> <br>line, selection screen</a>
+<A HREF="javascript:call_link('abenabap_dynpro_list.htm')" class="blue"> <br>list</a>
+<A HREF="javascript:call_link('abenliteral.htm')" class="blue"> <br>literal</a>
+<A HREF="javascript:call_link('abenliteral_operator.htm')" class="blue"> <br>literal operator</a>
+<A HREF="javascript:call_link('abenabap_sql_literals.htm')" class="blue"> <br>literal, ABAP SQL</a>
+<A HREF="javascript:call_link('abentyping_literals.htm')" class="blue"> <br>literal, actual parameter</a>
+<A HREF="javascript:call_link('abencds_literal_v2.htm')" class="blue"> <br>literal, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_literal_v1.htm')" class="blue"> <br>literal, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abenlob_interfaces.htm')" class="blue"> <br>LOB interface</a>
+<A HREF="javascript:call_link('abenclasses.htm')" class="blue"> <br>local class</a>
+<A HREF="javascript:call_link('abapset_update_task_local.htm')" class="blue"> <br>local update</a>
+<A HREF="javascript:call_link('abentext_environment.htm')" class="blue"> <br>locale</a>
+<A HREF="javascript:call_link('abenlocators.htm')" class="blue"> <br>locator, ABAP SQL</a>
+<A HREF="javascript:call_link('abentransaction.htm')" class="blue"> <br>lock</a>
+<A HREF="javascript:call_link('abensap_lock.htm')" class="blue"> <br>lock object</a>
+<A HREF="javascript:call_link('abenldb.htm')" class="blue"> <br>logical database</a>
+<A HREF="javascript:call_link('abenlogexp.htm')" class="blue"> <br>logical expression, ABAP</a>
+<A HREF="javascript:call_link('abenasql_cond.htm')" class="blue"> <br>logical expression, ABAP SQL</a>
+<A HREF="javascript:call_link('abenlogic_functions.htm')" class="blue"> <br>logical function</a>
+<A HREF="javascript:call_link('abentransaction.htm')" class="blue"> <br>logical unit of work</a>
+<A HREF="javascript:call_link('abenlogon_language.htm')" class="blue"> <br>logon language</a>
+<A HREF="javascript:call_link('abenabap_loops.htm')" class="blue"> <br>loop</a>
+<A HREF="javascript:call_link('abenlossless_move.htm')" class="blue"> <br>lossless assignment</a>
+<A HREF="javascript:call_link('abenlossless_calculation.htm')" class="blue"> <br>lossless calculation</a>
+<A HREF="javascript:call_link('abenconstructor_expression_exact.htm')" class="blue"> <br>lossless operator</a>
+<A HREF="javascript:call_link('abentransaction.htm')" class="blue"> <br>LUW</a>
+<br><br><A NAME="M"></A><span class="h2">M</span><br><br>
+<A HREF="javascript:call_link('abenabap_macros.htm')" class="blue"> <br>macro</a>
+<A HREF="javascript:call_link('abeninternal_session.htm')" class="blue"> <br>main program</a>
+<A HREF="javascript:call_link('abeninternal_session.htm')" class="blue"> <br>main program group</a>
+<A HREF="javascript:call_link('abentextpool.htm')" class="blue"> <br>maintain, text element</a>
+<A HREF="javascript:call_link('abenddic_maintenance_views.htm')" class="blue"> <br>maintenance view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenabap_xslt_asxml_named.htm')" class="blue"> <br>mapping, asXML</a>
+<A HREF="javascript:call_link('abennumerical_functions.htm')" class="blue"> <br>mathematic function</a>
+<A HREF="javascript:call_link('abapcompute_arith.htm')" class="blue"> <br>mathematical calculation</a>
+<A HREF="javascript:call_link('abenmemory_consumption_2.htm')" class="blue"> <br>maximum size, dynamic data object</a>
+<A HREF="javascript:call_link('abenmemory_consumption_2.htm')" class="blue"> <br>maximum size, internal table</a>
+<A HREF="javascript:call_link('abenmemory_consumption_2.htm')" class="blue"> <br>maximum size, string</a>
+<A HREF="javascript:call_link('abencds_metadata_extension_glosry.htm')" class="blue"> <br>MDE</a>
+<A HREF="javascript:call_link('abenmemory_consumption.htm')" class="blue"> <br>memory management, deep data object</a>
+<A HREF="javascript:call_link('abenorganization_of_modules.htm')" class="blue"> <br>memory organization</a>
+<A HREF="javascript:call_link('abenmemory_consumption_1.htm')" class="blue"> <br>memory requirement, deep data object</a>
+<A HREF="javascript:call_link('abenabap_meshes.htm')" class="blue"> <br>mesh</a>
+<A HREF="javascript:call_link('abenmesh_pathes.htm')" class="blue"> <br>mesh path</a>
+<A HREF="javascript:call_link('abenmesh_path_expression.htm')" class="blue"> <br>mesh path expression</a>
+<A HREF="javascript:call_link('abenabap_messages.htm')" class="blue"> <br>message</a>
+<A HREF="javascript:call_link('abenabap_message_apc_server.htm')" class="blue"> <br>message, apc processing</a>
+<A HREF="javascript:call_link('abenabap_message_batch_job.htm')" class="blue"> <br>message, background processing</a>
+<A HREF="javascript:call_link('abenabap_message_batch_input.htm')" class="blue"> <br>message, batch input</a>
+<A HREF="javascript:call_link('abenabap_message_control.htm')" class="blue"> <br>message, control processing</a>
+<A HREF="javascript:call_link('abenabap_message_exit.htm')" class="blue"> <br>message, conversion routine</a>
+<A HREF="javascript:call_link('abenabap_message_dialog.htm')" class="blue"> <br>message, dialog processing</a>
+<A HREF="javascript:call_link('abenabap_message_http_server.htm')" class="blue"> <br>message, ICF processing</a>
+<A HREF="javascript:call_link('abenabap_message_procedure.htm')" class="blue"> <br>message, procedure</a>
+<A HREF="javascript:call_link('abenabap_message_rfc.htm')" class="blue"> <br>message, RFC processing</a>
+<A HREF="javascript:call_link('abenabap_message_update.htm')" class="blue"> <br>message, update</a>
+<A HREF="javascript:call_link('abencds_meta_data_extensions.htm')" class="blue"> <br>metadata extension</a>
+<A HREF="javascript:call_link('abenmethod_calls_static.htm')" class="blue"> <br>meth( ), method call</a>
+<A HREF="javascript:call_link('abenclass_methods.htm')" class="blue"> <br>method</a>
+<A HREF="javascript:call_link('abeninheritance_redefinition.htm')" class="blue"> <br>method redefinition</a>
+<A HREF="javascript:call_link('abenamdp_methods.htm')" class="blue"> <br>method, AMDP</a>
+<A HREF="javascript:call_link('abenicf_mime_pictures_abexa.htm')" class="blue"> <br>mime repository, ICF</a>
+<A HREF="javascript:call_link('abapcall_screen.htm')" class="blue"> <br>modal dialog box</a>
+<A HREF="javascript:call_link('abapselection-screen_modif_id.htm')" class="blue"> <br>modification group, selection screen</a>
+<A HREF="javascript:call_link('abapmodify_dbtab.htm')" class="blue"> <br>modify entry, database table</a>
+<A HREF="javascript:call_link('abenabap_language_modularization.htm')" class="blue"> <br>modularization</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>modulo</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>multiplication</a>
+<br><br><A NAME="N"></A><span class="h2">N</span><br><br>
+<A HREF="javascript:call_link('abenabap_words.htm')" class="blue"> <br>name</a>
+<A HREF="javascript:call_link('abennaming_conventions.htm')" class="blue"> <br>namespace</a>
+<A HREF="javascript:call_link('abennaming_conventions.htm')" class="blue"> <br>naming convention</a>
+<A HREF="javascript:call_link('abenconversion_references.htm')" class="blue"> <br>narrowing cast</a>
+<A HREF="javascript:call_link('abennative_sql.htm')" class="blue"> <br>Native SQL</a>
+<A HREF="javascript:call_link('abenadbc.htm')" class="blue"> <br>Native SQL, ADBC</a>
+<A HREF="javascript:call_link('abeninterface_composition.htm')" class="blue"> <br>nested interfaces</a>
+<A HREF="javascript:call_link('abenopen_sql_null_values.htm')" class="blue"> <br>null value, ABAP SQL</a>
+<A HREF="javascript:call_link('abennumber_formats.htm')" class="blue"> <br>number format</a>
+<A HREF="javascript:call_link('abencountry.htm')" class="blue"> <br>number format, formatting setting</a>
+<A HREF="javascript:call_link('abenuntyped_number_literals.htm')" class="blue"> <br>numeric literal</a>
+<A HREF="javascript:call_link('abennumber_types.htm')" class="blue"> <br>numeric type</a>
+<A HREF="javascript:call_link('abencompute_expressions.htm')" class="blue"> <br>numerical calculation</a>
+<A HREF="javascript:call_link('abennumber_types.htm')" class="blue"> <br>numerical data type</a>
+<A HREF="javascript:call_link('abennumeric_expression_positions.htm')" class="blue"> <br>numerical expression position</a>
+<A HREF="javascript:call_link('abenmathematical_functions.htm')" class="blue"> <br>numerical function</a>
+<br><br><A NAME="O"></A><span class="h2">O</span><br><br>
+<A HREF="javascript:call_link('abenobject.htm')" class="blue"> <br>object</a>
+<A HREF="javascript:call_link('abenobject_component_selector.htm')" class="blue"> <br>object component selector</a>
+<A HREF="javascript:call_link('abenobject_orientation.htm')" class="blue"> <br>object orientation</a>
+<A HREF="javascript:call_link('abenreferences.htm')" class="blue"> <br>object reference</a>
+<A HREF="javascript:call_link('abenclass_attributes_as_key.htm')" class="blue"> <br>object reference, internal table</a>
+<A HREF="javascript:call_link('abenabap_object_services.htm')" class="blue"> <br>Object Services</a>
+<A HREF="javascript:call_link('abenabap_obsolete.htm')" class="blue"> <br>obsolete</a>
+<A HREF="javascript:call_link('abenabap_obsolete.htm')" class="blue"> <br>obsolete language element</a>
+<A HREF="javascript:call_link('abenoperand_positions_obsolete.htm')" class="blue"> <br>obsolete operand position</a>
+<A HREF="javascript:call_link('abenoffset_length.htm')" class="blue"> <br>offset/length specification</a>
+<A HREF="javascript:call_link('abenole2.htm')" class="blue"> <br>OLE</a>
+<A HREF="javascript:call_link('abenole2.htm')" class="blue"> <br>OLE interface</a>
+<A HREF="javascript:call_link('abapopen_dataset.htm')" class="blue"> <br>open, file</a>
+<A HREF="javascript:call_link('abenoperands.htm')" class="blue"> <br>operand</a>
+<A HREF="javascript:call_link('abendata_objects_usage.htm')" class="blue"> <br>operand type</a>
+<A HREF="javascript:call_link('abenabap_system_commands.htm')" class="blue"> <br>operating system statement</a>
+<A HREF="javascript:call_link('abenoperators.htm')" class="blue"> <br>operator</a>
+<A HREF="javascript:call_link('abapselect_join.htm')" class="blue"> <br>outer join</a>
+<A HREF="javascript:call_link('abenwrite_formats.htm')" class="blue"> <br>output format, predefined</a>
+<A HREF="javascript:call_link('abenwrite_output_length.htm')" class="blue"> <br>output length, predefined</a>
+<br><br><A NAME="P"></A><span class="h2">P</span><br><br>
+<A HREF="javascript:call_link('abapnew-page.htm')" class="blue"> <br>page break, classic list</a>
+<A HREF="javascript:call_link('abenformal_parameters_oview.htm')" class="blue"> <br>parameter interface</a>
+<A HREF="javascript:call_link('abenfunction.htm')" class="blue"> <br>parameter interface, function module</a>
+<A HREF="javascript:call_link('abapmethods_parameters.htm')" class="blue"> <br>parameter interface, method</a>
+<A HREF="javascript:call_link('abapform_parameters.htm')" class="blue"> <br>parameter interface, subroutine</a>
+<A HREF="javascript:call_link('abenbit_brackets.htm')" class="blue"> <br>parentheses in binary expression</a>
+<A HREF="javascript:call_link('abenarith_brackets.htm')" class="blue"> <br>parentheses, arithmetic expression</a>
+<A HREF="javascript:call_link('abenlogexp_boole.htm')" class="blue"> <br>parentheses, logical expression</a>
+<A HREF="javascript:call_link('abenoffset_length.htm')" class="blue"> <br>partial field access</a>
+<A HREF="javascript:call_link('abenformal_parameters_oview.htm')" class="blue"> <br>pass by reference</a>
+<A HREF="javascript:call_link('abenformal_parameters_oview.htm')" class="blue"> <br>pass by value</a>
+<A HREF="javascript:call_link('abenopen_sql_path.htm')" class="blue"> <br>path expression, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_path_expression_v2.htm')" class="blue"> <br>path expression, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_path_expression_v1.htm')" class="blue"> <br>path expression, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abenpcp.htm')" class="blue"> <br>PCP</a>
+<A HREF="javascript:call_link('abenpcre_glosry.htm')" class="blue"> <br>PCRE</a>
+<A HREF="javascript:call_link('abenpcre_glosry.htm')" class="blue"> <br>PCRE1</a>
+<A HREF="javascript:call_link('abenregex_posix_syntax_specials.htm')" class="blue"> <br>pecial character, regular expression</a>
+<A HREF="javascript:call_link('abenopen_sql_perfo.htm')" class="blue"> <br>performance, ABAP SQL</a>
+<A HREF="javascript:call_link('abenconversion_perfo.htm')" class="blue"> <br>performance, conversion</a>
+<A HREF="javascript:call_link('abenitab_perfo.htm')" class="blue"> <br>performance, internal table</a>
+<A HREF="javascript:call_link('abenabap_object_services_persist.htm')" class="blue"> <br>persistence service</a>
+<A HREF="javascript:call_link('abenabap_messages_storing.htm')" class="blue"> <br>placeholder &amp;, message</a>
+<A HREF="javascript:call_link('abeninheritance_references.htm')" class="blue"> <br>polymorphism, inheritance</a>
+<A HREF="javascript:call_link('abapposition.htm')" class="blue"> <br>position, classic list</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>power</a>
+<A HREF="javascript:call_link('abenpcre_glosry.htm')" class="blue"> <br>pPCRE2</a>
+<A HREF="javascript:call_link('abenpragma.htm')" class="blue"> <br>pragma</a>
+<A HREF="javascript:call_link('abenpredicate.htm')" class="blue"> <br>predicate</a>
+<A HREF="javascript:call_link('abenpredicate_expressions.htm')" class="blue"> <br>predicate expression</a>
+<A HREF="javascript:call_link('abenpredicate_functions.htm')" class="blue"> <br>predicate function</a>
+<A HREF="javascript:call_link('abenpredicate_expressions.htm')" class="blue"> <br>predicate operator</a>
+<A HREF="javascript:call_link('abenddic_database_tables_index.htm')" class="blue"> <br>primary index, database table</a>
+<A HREF="javascript:call_link('abenitab_key_primary.htm')" class="blue"> <br>primary key</a>
+<A HREF="javascript:call_link('abenitab_key_primary.htm')" class="blue"> <br>primary table key</a>
+<A HREF="javascript:call_link('abenabap_language_procedures.htm')" class="blue"> <br>procedure</a>
+<A HREF="javascript:call_link('abencall_procedures.htm')" class="blue"> <br>procedure call</a>
+<A HREF="javascript:call_link('abenprogram_groups.htm')" class="blue"> <br>procedure call, program groups</a>
+<A HREF="javascript:call_link('abenexceptions_procedures.htm')" class="blue"> <br>procedure, class-based exception</a>
+<A HREF="javascript:call_link('abenselection_screen_events.htm')" class="blue"> <br>process selection screen</a>
+<A HREF="javascript:call_link('abenabap_data_string.htm')" class="blue"> <br>process, byte string</a>
+<A HREF="javascript:call_link('abenabap_data_string.htm')" class="blue"> <br>process, character string</a>
+<A HREF="javascript:call_link('abendate_time_processing.htm')" class="blue"> <br>process, date/time</a>
+<A HREF="javascript:call_link('abenprocess_functions.htm')" class="blue"> <br>processing function</a>
+<A HREF="javascript:call_link('abapset_extended_check.htm')" class="blue"> <br>program check, extended</a>
+<A HREF="javascript:call_link('abenprogram_constructor.htm')" class="blue"> <br>program constructor</a>
+<A HREF="javascript:call_link('abenprogram_directives.htm')" class="blue"> <br>program directive</a>
+<A HREF="javascript:call_link('abeninternal_session.htm')" class="blue"> <br>program group</a>
+<A HREF="javascript:call_link('abenabap_program_statement.htm')" class="blue"> <br>program introduction</a>
+<A HREF="javascript:call_link('abenabap_program_layout.htm')" class="blue"> <br>program structure</a>
+<A HREF="javascript:call_link('abenprogram_type_oview.htm')" class="blue"> <br>program type</a>
+<A HREF="javascript:call_link('abencds_proj_views.htm')" class="blue"> <br>projection view, ABAP CDS</a>
+<A HREF="javascript:call_link('abenddic_projection_views.htm')" class="blue"> <br>projection view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenrfc_protocol.htm')" class="blue"> <br>protocol, RFC</a>
+<A HREF="javascript:call_link('abenamdp_procedure_methods.htm')" class="blue"> <br>prozedure definition, AMDP</a>
+<A HREF="javascript:call_link('abenpseudo_comment.htm')" class="blue"> <br>pseudo comment</a>
+<A HREF="javascript:call_link('abapselection-screen_pushbutton.htm')" class="blue"> <br>push button, selection screen</a>
+<A HREF="javascript:call_link('abenpcp.htm')" class="blue"> <br>Push Channel Protocol</a>
+<br><br><A NAME="Q"></A><span class="h2">Q</span><br><br>
+<A HREF="javascript:call_link('abenddic_quantity_field.htm')" class="blue"> <br>quantity field</a>
+<A HREF="javascript:call_link('abenabap_object_services_query.htm')" class="blue"> <br>query service</a>
+<br><br><A NAME="R"></A><span class="h2">R</span><br><br>
+<A HREF="javascript:call_link('abapparameters_screen.htm')" class="blue"> <br>radio button, selection screen</a>
+<A HREF="javascript:call_link('abapraise_event.htm')" class="blue"> <br>raise, event</a>
+<A HREF="javascript:call_link('abenrandom_number_class.htm')" class="blue"> <br>random number</a>
+<A HREF="javascript:call_link('abaptypes_ranges.htm')" class="blue"> <br>ranges table</a>
+<A HREF="javascript:call_link('abenarap_glosry.htm')" class="blue"> <br>RAP</a>
+<A HREF="javascript:call_link('abenrap_bo_glosry.htm')" class="blue"> <br>RAP BO</a>
+<A HREF="javascript:call_link('abenabp_handler_class.htm')" class="blue"> <br>RAP handler class</a>
+<A HREF="javascript:call_link('abapimport_medium.htm')" class="blue"> <br>read data cluster, ABAP memory</a>
+<A HREF="javascript:call_link('abapimport_medium.htm')" class="blue"> <br>read data cluster, shared memory</a>
+<A HREF="javascript:call_link('abapselect.htm')" class="blue"> <br>read, database table</a>
+<A HREF="javascript:call_link('abapread_dataset.htm')" class="blue"> <br>read, file</a>
+<A HREF="javascript:call_link('abapread_report.htm')" class="blue"> <br>read, program</a>
+<A HREF="javascript:call_link('abapread_textpool.htm')" class="blue"> <br>read, text element</a>
+<A HREF="javascript:call_link('abendata_objects_usage_reading.htm')" class="blue"> <br>reading position</a>
+<A HREF="javascript:call_link('abapmethods_redefinition.htm')" class="blue"> <br>redefine, method</a>
+<A HREF="javascript:call_link('abeninheritance_redefinition.htm')" class="blue"> <br>redefinition, method</a>
+<A HREF="javascript:call_link('abenconstructor_expression_reduce.htm')" class="blue"> <br>reduction operator</a>
+<A HREF="javascript:call_link('abendata_references.htm')" class="blue"> <br>reference</a>
+<A HREF="javascript:call_link('abenconstructor_expression_ref.htm')" class="blue"> <br>reference operator</a>
+<A HREF="javascript:call_link('abenregular_expressions.htm')" class="blue"> <br>regex</a>
+<A HREF="javascript:call_link('abapset_handler.htm')" class="blue"> <br>register, event handler</a>
+<A HREF="javascript:call_link('abenregular_expressions.htm')" class="blue"> <br>regular expression</a>
+<A HREF="javascript:call_link('abenasql_cond.htm')" class="blue"> <br>relational expression, ABAP SQL,</a>
+<A HREF="javascript:call_link('abennews-30.htm')" class="blue"> <br>release 3.0</a>
+<A HREF="javascript:call_link('abennews-40.htm')" class="blue"> <br>release 4.0</a>
+<A HREF="javascript:call_link('abennews-40.htm')" class="blue"> <br>release 4.5</a>
+<A HREF="javascript:call_link('abennews-46a.htm')" class="blue"> <br>release 4.6a</a>
+<A HREF="javascript:call_link('abennews-46c.htm')" class="blue"> <br>release 4.6c</a>
+<A HREF="javascript:call_link('abennews-610.htm')" class="blue"> <br>release 6.10</a>
+<A HREF="javascript:call_link('abennews-620.htm')" class="blue"> <br>release 6.20</a>
+<A HREF="javascript:call_link('abennews-640.htm')" class="blue"> <br>release 6.40</a>
+<A HREF="javascript:call_link('abennews-70.htm')" class="blue"> <br>release 7.0</a>
+<A HREF="javascript:call_link('abennews-740.htm')" class="blue"> <br>release 7.40</a>
+<A HREF="javascript:call_link('abennews.htm')" class="blue"> <br>release-specific changes</a>
+<A HREF="javascript:call_link('abenrfc.htm')" class="blue"> <br>Remote Function Call</a>
+<A HREF="javascript:call_link('abenreplace_functions.htm')" class="blue"> <br>replace function</a>
+<A HREF="javascript:call_link('abenddic_replacement_objects.htm')" class="blue"> <br>replacement object, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenregex_posix_replace.htm')" class="blue"> <br>replacement pattern</a>
+<A HREF="javascript:call_link('abenabap_processing_blocks.htm')" class="blue"> <br>reporting event</a>
+<A HREF="javascript:call_link('abenutclong.htm')" class="blue"> <br>representation, time stamp</a>
+<A HREF="javascript:call_link('abapparameters_screen.htm')" class="blue"> <br>required field, selection screen</a>
+<A HREF="javascript:call_link('abenabap_words.htm')" class="blue"> <br>reserved name</a>
+<A HREF="javascript:call_link('abenresumable_exception_glosry.htm')" class="blue"> <br>resumable exception</a>
+<A HREF="javascript:call_link('abentyping_return_values.htm')" class="blue"> <br>return value, functional method</a>
+<A HREF="javascript:call_link('abenrfc.htm')" class="blue"> <br>RFC</a>
+<A HREF="javascript:call_link('abendec_floating_point_functions.htm')" class="blue"> <br>rounding function</a>
+<A HREF="javascript:call_link('abenrtti.htm')" class="blue"> <br>RTTC</a>
+<A HREF="javascript:call_link('abenrtti.htm')" class="blue"> <br>RTTI</a>
+<A HREF="javascript:call_link('abenrtti.htm')" class="blue"> <br>RTTS</a>
+<A HREF="javascript:call_link('abentyping_check_general.htm')" class="blue"> <br>rules, typing</a>
+<A HREF="javascript:call_link('abenrtti.htm')" class="blue"> <br>Run Time Type Creation</a>
+<A HREF="javascript:call_link('abenrtti.htm')" class="blue"> <br>Run Time Type Information</a>
+<A HREF="javascript:call_link('abenrtti.htm')" class="blue"> <br>Run Time Type Services</a>
+<A HREF="javascript:call_link('abennoncat_exceptions.htm')" class="blue"> <br>runtime error</a>
+<A HREF="javascript:call_link('abenabap_runtime_measurements.htm')" class="blue"> <br>runtime measurement</a>
+<br><br><A NAME="S"></A><span class="h2">S</span><br><br>
+<A HREF="javascript:call_link('abenfile_interface_authority.htm')" class="blue"> <br>S_DATASET, authorization object</a>
+<A HREF="javascript:call_link('abenfile_interface_authority.htm')" class="blue"> <br>S_PATH, authorization object</a>
+<A HREF="javascript:call_link('abensap_cloud_platform_glosry.htm')" class="blue"> <br>SAP CP</a>
+<A HREF="javascript:call_link('abenabap_hana.htm')" class="blue"> <br>SAP HANA</a>
+<A HREF="javascript:call_link('abensap_lock.htm')" class="blue"> <br>SAP lock</a>
+<A HREF="javascript:call_link('abensap_luw.htm')" class="blue"> <br>SAP LUW</a>
+<A HREF="javascript:call_link('abenabap_xslt_asxml_schema.htm')" class="blue"> <br>schema data type, XML</a>
+<A HREF="javascript:call_link('abenabap_dynpros_screen.htm')" class="blue"> <br>screen layout, dynpro</a>
+<A HREF="javascript:call_link('abensearch_functions.htm')" class="blue"> <br>search function</a>
+<A HREF="javascript:call_link('abenldb_search_help.htm')" class="blue"> <br>search help, logical database</a>
+<A HREF="javascript:call_link('abenregex_posix_search.htm')" class="blue"> <br>search pattern</a>
+<A HREF="javascript:call_link('abenopensql_multiconnect.htm')" class="blue"> <br>secondary connection</a>
+<A HREF="javascript:call_link('abenopensql_multiconnect.htm')" class="blue"> <br>secondary database connection</a>
+<A HREF="javascript:call_link('abenddic_database_tables_index.htm')" class="blue"> <br>secondary index, database table</a>
+<A HREF="javascript:call_link('abenitab_key_secondary.htm')" class="blue"> <br>secondary key</a>
+<A HREF="javascript:call_link('abenitab_key_secondary.htm')" class="blue"> <br>secondary table key</a>
+<A HREF="javascript:call_link('abenabap_security.htm')" class="blue"> <br>security</a>
+<A HREF="javascript:call_link('abenabap_security.htm')" class="blue"> <br>security hints</a>
+<A HREF="javascript:call_link('abensegment_functions.htm')" class="blue"> <br>segment function</a>
+<A HREF="javascript:call_link('abapat_line-selection.htm')" class="blue"> <br>select line, classic list</a>
+<A HREF="javascript:call_link('abenselection_screen.htm')" class="blue"> <br>selection screen</a>
+<A HREF="javascript:call_link('abenldb_selection_views.htm')" class="blue"> <br>selection view, logical database</a>
+<A HREF="javascript:call_link('abenldb_selections.htm')" class="blue"> <br>selection, logical databases</a>
+<A HREF="javascript:call_link('abenoperands_names.htm')" class="blue"> <br>selector</a>
+<A HREF="javascript:call_link('abapmessage.htm')" class="blue"> <br>send, message</a>
+<A HREF="javascript:call_link('abenabap_dynpros_processing.htm')" class="blue"> <br>sequence, dynpro</a>
+<A HREF="javascript:call_link('abenabap_xml.htm')" class="blue"> <br>serialization</a>
+<A HREF="javascript:call_link('abenopensql_multiconnect.htm')" class="blue"> <br>service connection</a>
+<A HREF="javascript:call_link('abencds_session_variable_v2.htm')" class="blue"> <br>session variable, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_session_variable_v1.htm')" class="blue"> <br>session variable, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abenhana_session_variables.htm')" class="blue"> <br>session variable, SAP HANA</a>
+<A HREF="javascript:call_link('abenset_references.htm')" class="blue"> <br>set reference variable</a>
+<A HREF="javascript:call_link('abapassign.htm')" class="blue"> <br>set, field symbol</a>
+<A HREF="javascript:call_link('abapset_pf-status_dynpro.htm')" class="blue"> <br>set, GUI status</a>
+<A HREF="javascript:call_link('abapset_titlebar_dynpro.htm')" class="blue"> <br>set, GUI title</a>
+<A HREF="javascript:call_link('abapset_screen.htm')" class="blue"> <br>set, next dynpro</a>
+<A HREF="javascript:call_link('abapget_reference.htm')" class="blue"> <br>set, reference</a>
+<A HREF="javascript:call_link('abapnew-page_print.htm')" class="blue"> <br>set, spool parameter</a>
+<A HREF="javascript:call_link('abenspa_gpa.htm')" class="blue"> <br>set/get parameter</a>
+<A HREF="javascript:call_link('abenmemory_organization.htm')" class="blue"> <br>shared memory</a>
+<A HREF="javascript:call_link('abenabap_shared_objects.htm')" class="blue"> <br>shared objects</a>
+<A HREF="javascript:call_link('abenmemory_consumption_3.htm')" class="blue"> <br>sharing</a>
+<A HREF="javascript:call_link('abenshift_functions.htm')" class="blue"> <br>shift function</a>
+<A HREF="javascript:call_link('abensystem_id_glosry.htm')" class="blue"> <br>SID</a>
+<A HREF="javascript:call_link('abendistance_functions.htm')" class="blue"> <br>similarity function</a>
+<A HREF="javascript:call_link('abenabap_st.htm')" class="blue"> <br>Simple Transformation</a>
+<A HREF="javascript:call_link('abenregex_posix_syntax_signs.htm')" class="blue"> <br>single character pattern</a>
+<A HREF="javascript:call_link('abenicf.htm')" class="blue"> <br>SMTP</a>
+<A HREF="javascript:call_link('abensource_code_enhancement.htm')" class="blue"> <br>source code enhancement</a>
+<A HREF="javascript:call_link('abensource_code_enhancement.htm')" class="blue"> <br>source code plug-in</a>
+<A HREF="javascript:call_link('abenspa_gpa.htm')" class="blue"> <br>spa/gpa parameter</a>
+<A HREF="javascript:call_link('abenddic_special_functions.htm')" class="blue"> <br>special function, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenopen_sql_special_functions.htm')" class="blue"> <br>special function, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_special_functions_v2.htm')" class="blue"> <br>special function, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_special_functions_v1.htm')" class="blue"> <br>special function, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abendynp_splitter_control_spcl.htm')" class="blue"> <br>splitter control</a>
+<A HREF="javascript:call_link('abenprint.htm')" class="blue"> <br>spool</a>
+<A HREF="javascript:call_link('abenprint.htm')" class="blue"> <br>spool classic list</a>
+<A HREF="javascript:call_link('abenprint_parameters_window.htm')" class="blue"> <br>spool dialog</a>
+<A HREF="javascript:call_link('abenprint_parameters_window.htm')" class="blue"> <br>spool dialog box</a>
+<A HREF="javascript:call_link('abenprint_parameters.htm')" class="blue"> <br>spool parameter</a>
+<A HREF="javascript:call_link('abenprint_spool.htm')" class="blue"> <br>spool request</a>
+<A HREF="javascript:call_link('abenprint.htm')" class="blue"> <br>spooling</a>
+<A HREF="javascript:call_link('abenfile_interface_authority.htm')" class="blue"> <br>SPTH, database table</a>
+<A HREF="javascript:call_link('abapsql_expr.htm')" class="blue"> <br>SQL expression</a>
+<A HREF="javascript:call_link('abensql_functions.htm')" class="blue"> <br>SQL function, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenopen_sql_functions.htm')" class="blue"> <br>SQL function, ABAP SQL</a>
+<A HREF="javascript:call_link('abencds_sql_functions_v2.htm')" class="blue"> <br>SQL function, CDS view entity</a>
+<A HREF="javascript:call_link('abencds_sql_functions_v1.htm')" class="blue"> <br>SQL function, DDIC-based CDS view</a>
+<A HREF="javascript:call_link('abenamdp_hdb_sqlscript.htm')" class="blue"> <br>SQLscript, AMDP</a>
+<A HREF="javascript:call_link('abensql_script.htm')" class="blue"> <br>SQLscript, database procedure proxy</a>
+<A HREF="javascript:call_link('abenabap_st.htm')" class="blue"> <br>ST</a>
+<A HREF="javascript:call_link('abenopensql_multiconnect.htm')" class="blue"> <br>standard connection</a>
+<A HREF="javascript:call_link('abenitab_standard_key.htm')" class="blue"> <br>standard key</a>
+<A HREF="javascript:call_link('abapselection-screen_standard.htm')" class="blue"> <br>standard selection screen</a>
+<A HREF="javascript:call_link('abenabap_statements.htm')" class="blue"> <br>statement</a>
+<A HREF="javascript:call_link('abenabap_objects_statements.htm')" class="blue"> <br>statement, ABAP Objects</a>
+<A HREF="javascript:call_link('abenfile_interface_statements.htm')" class="blue"> <br>statement, file interface</a>
+<A HREF="javascript:call_link('abentable_processing_statements.htm')" class="blue"> <br>statement, internal table</a>
+<A HREF="javascript:call_link('abeninheritance_statical.htm')" class="blue"> <br>static attribute, inheritance</a>
+<A HREF="javascript:call_link('abenstatic_boxes.htm')" class="blue"> <br>static box</a>
+<A HREF="javascript:call_link('abenmethod_calls_static.htm')" class="blue"> <br>static call, method</a>
+<A HREF="javascript:call_link('abenclass_events.htm')" class="blue"> <br>static event</a>
+<A HREF="javascript:call_link('abenconversion_references.htm')" class="blue"> <br>static type</a>
+<A HREF="javascript:call_link('abensteploop.htm')" class="blue"> <br>step loop</a>
+<A HREF="javascript:call_link('abapexec_procedure.htm')" class="blue"> <br>stored procedure</a>
+<A HREF="javascript:call_link('abenstreaming.htm')" class="blue"> <br>streaming</a>
+<A HREF="javascript:call_link('abenstreams_locators.htm')" class="blue"> <br>streaming and locator, ABAP SQL</a>
+<A HREF="javascript:call_link('abenopen_sql_streaming.htm')" class="blue"> <br>streaming, ABAP SQL</a>
+<A HREF="javascript:call_link('abenopensql_strict_modes.htm')" class="blue"> <br>strict mode, ABAP SQL</a>
+<A HREF="javascript:call_link('abenstring.htm')" class="blue"> <br>string</a>
+<A HREF="javascript:call_link('abapcompute_string.htm')" class="blue"> <br>string expression</a>
+<A HREF="javascript:call_link('abenstring_functions.htm')" class="blue"> <br>string function</a>
+<A HREF="javascript:call_link('abenstring_operators.htm')" class="blue"> <br>string operator</a>
+<A HREF="javascript:call_link('abenstring_templates.htm')" class="blue"> <br>string template</a>
+<A HREF="javascript:call_link('abenddic_character_byte_types.htm')" class="blue"> <br>string, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abendata_objects_structure.htm')" class="blue"> <br>structure</a>
+<A HREF="javascript:call_link('abenstructure_component_selector.htm')" class="blue"> <br>structure component selector</a>
+<A HREF="javascript:call_link('abenunicode_fragment_view.htm')" class="blue"> <br>structure fragment view</a>
+<A HREF="javascript:call_link('abenddic_structures.htm')" class="blue"> <br>structure, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenldb_structure.htm')" class="blue"> <br>structure, logical database</a>
+<A HREF="javascript:call_link('abendynp_subscreens.htm')" class="blue"> <br>subscreen</a>
+<A HREF="javascript:call_link('abapselection-screen_tabbed.htm')" class="blue"> <br>subscreen, selection screen</a>
+<A HREF="javascript:call_link('abensubstring_functions.htm')" class="blue"> <br>substring function</a>
+<A HREF="javascript:call_link('abenarith_operators.htm')" class="blue"> <br>subtraction</a>
+<A HREF="javascript:call_link('abenabap_sxml_lib.htm')" class="blue"> <br>sXML</a>
+<A HREF="javascript:call_link('abenabap_sxml_lib.htm')" class="blue"> <br>sXML library</a>
+<A HREF="javascript:call_link('abenabap_system_commands_appl_sxpg.htm')" class="blue"> <br>SXPG framework</a>
+<A HREF="javascript:call_link('abenabap_system_commands_appl_sxpg.htm')" class="blue"> <br>SXPG, operating system statement</a>
+<A HREF="javascript:call_link('abapwrite_list_elements.htm')" class="blue"> <br>symbol, classic list</a>
+<A HREF="javascript:call_link('abapcall_function_destination.htm')" class="blue"> <br>synchronous RFC</a>
+<A HREF="javascript:call_link('abapcommit.htm')" class="blue"> <br>synchronous update</a>
+<A HREF="javascript:call_link('abenabap_syntax.htm')" class="blue"> <br>syntax</a>
+<A HREF="javascript:call_link('abensyntax_check_guidl.htm')" class="blue"> <br>syntax check</a>
+<A HREF="javascript:call_link('abensyntax_obsolete.htm')" class="blue"> <br>syntax forms, obsolete</a>
+<A HREF="javascript:call_link('abenbdl_syntax.htm')" class="blue"> <br>syntax, ABAP BDL</a>
+<A HREF="javascript:call_link('abencds_syntax.htm')" class="blue"> <br>syntax, ABAP CDS</a>
+<A HREF="javascript:call_link('abenregex_syntax.htm')" class="blue"> <br>syntax, regular expression</a>
+<A HREF="javascript:call_link('abenexceptions_system_response.htm')" class="blue"> <br>system behaviour, class-based exception</a>
+<A HREF="javascript:call_link('abenabap_system_commands.htm')" class="blue"> <br>system command</a>
+<A HREF="javascript:call_link('abensystem_fields.htm')" class="blue"> <br>system field</a>
+<A HREF="javascript:call_link('abensystem_fields_internal.htm')" class="blue"> <br>system field, internal</a>
+<A HREF="javascript:call_link('abensystem_fields_obsolete.htm')" class="blue"> <br>system field, obsolete</a>
+<A HREF="javascript:call_link('abensystem_id_glosry.htm')" class="blue"> <br>system ID</a>
+<A HREF="javascript:call_link('abapcall_function_update.htm')" class="blue"> <br>system_update_task_ill_stmt</a>
+<br><br><A NAME="T"></A><span class="h2">T</span><br><br>
+<A HREF="javascript:call_link('abencountry_formats.htm')" class="blue"> <br>T005X, database table</a>
+<A HREF="javascript:call_link('abensap_puffering.htm')" class="blue"> <br>table buffering</a>
+<A HREF="javascript:call_link('abenddic_database_tables_tab_type.htm')" class="blue"> <br>table category, database table</a>
+<A HREF="javascript:call_link('abendynp_table_controls.htm')" class="blue"> <br>table control</a>
+<A HREF="javascript:call_link('abentable_expressions.htm')" class="blue"> <br>table expression</a>
+<A HREF="javascript:call_link('abentable_functions.htm')" class="blue"> <br>table function</a>
+<A HREF="javascript:call_link('abencds_table_functions.htm')" class="blue"> <br>table functions, ABAP CDS</a>
+<A HREF="javascript:call_link('abenitab_key.htm')" class="blue"> <br>table key</a>
+<A HREF="javascript:call_link('abaptypes_tabkind.htm')" class="blue"> <br>table kind</a>
+<A HREF="javascript:call_link('abapform_tables.htm')" class="blue"> <br>table parameter</a>
+<A HREF="javascript:call_link('abenitab_data_type.htm')" class="blue"> <br>table type</a>
+<A HREF="javascript:call_link('abenddic_table_types.htm')" class="blue"> <br>table type, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenddic_table_views.htm')" class="blue"> <br>table view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abendynp_tabstrip.htm')" class="blue"> <br>tabstrip control</a>
+<A HREF="javascript:call_link('abapselection-screen_tabbed.htm')" class="blue"> <br>tabstrip, selection screen</a>
+<A HREF="javascript:call_link('abenapc.htm')" class="blue"> <br>TCP</a>
+<A HREF="javascript:call_link('abencompatibility.htm')" class="blue"> <br>technical type attribute</a>
+<A HREF="javascript:call_link('abenabap_tests.htm')" class="blue"> <br>test program</a>
+<A HREF="javascript:call_link('abentest_seams.htm')" class="blue"> <br>test seam</a>
+<A HREF="javascript:call_link('abentext_pool.htm')" class="blue"> <br>text element</a>
+<A HREF="javascript:call_link('abentext_environment.htm')" class="blue"> <br>text environment</a>
+<A HREF="javascript:call_link('abentext_pool.htm')" class="blue"> <br>text pool</a>
+<A HREF="javascript:call_link('abentext_symbols.htm')" class="blue"> <br>text symbol</a>
+<A HREF="javascript:call_link('abentime_formats.htm')" class="blue"> <br>time format</a>
+<A HREF="javascript:call_link('abencountry.htm')" class="blue"> <br>time format, formatting setting</a>
+<A HREF="javascript:call_link('abentime_stamps.htm')" class="blue"> <br>time stamp</a>
+<A HREF="javascript:call_link('abenutclong.htm')" class="blue"> <br>time stamp field</a>
+<A HREF="javascript:call_link('abentimestamp_functions.htm')" class="blue"> <br>time stamp function</a>
+<A HREF="javascript:call_link('abenutclong.htm')" class="blue"> <br>time stamp type</a>
+<A HREF="javascript:call_link('abentime_stamps_packed.htm')" class="blue"> <br>time stamp, packed numbers</a>
+<A HREF="javascript:call_link('abentime_zone_rules.htm')" class="blue"> <br>time zone</a>
+<A HREF="javascript:call_link('abentime_stamps_packed.htm')" class="blue"> <br>TIMESTAMP, data element</a>
+<A HREF="javascript:call_link('abentime_stamps_packed.htm')" class="blue"> <br>TIMESTAMPL, data element</a>
+<A HREF="javascript:call_link('abenabap_statements.htm')" class="blue"> <br>token</a>
+<A HREF="javascript:call_link('abenstring_processing_trail_blanks.htm')" class="blue"> <br>trailing space</a>
+<A HREF="javascript:call_link('abenabap_object_services_transact.htm')" class="blue"> <br>transaction service</a>
+<A HREF="javascript:call_link('abenrfc_obsolete.htm')" class="blue"> <br>transactional, RFC</a>
+<A HREF="javascript:call_link('abentypes_objects_oview.htm')" class="blue"> <br>type concept</a>
+<A HREF="javascript:call_link('abaptype-pool.htm')" class="blue"> <br>type group</a>
+<A HREF="javascript:call_link('abenddic_type_groups.htm')" class="blue"> <br>type group, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abentypes_objects_oview.htm')" class="blue"> <br>type hierarchy</a>
+<A HREF="javascript:call_link('abenclass_types_constants.htm')" class="blue"> <br>type, class</a>
+<A HREF="javascript:call_link('abenabap_messages_types.htm')" class="blue"> <br>type, message</a>
+<A HREF="javascript:call_link('abenabap_sql_typed_literals.htm')" class="blue"> <br>typed literal, ABAP SQL</a>
+<A HREF="javascript:call_link('abentyping.htm')" class="blue"> <br>typing</a>
+<br><br><A NAME="U"></A><span class="h2">U</span><br><br>
+<A HREF="javascript:call_link('abencharacter_sets.htm')" class="blue"> <br>Unicode</a>
+<A HREF="javascript:call_link('abenunit_glosry.htm')" class="blue"> <br>unit of measure</a>
+<A HREF="javascript:call_link('abenabap_sql_untyped_literals.htm')" class="blue"> <br>untyped literal, ABAP SQL</a>
+<A HREF="javascript:call_link('abenconversion_references.htm')" class="blue"> <br>up cast</a>
+<A HREF="javascript:call_link('abensap_luw.htm')" class="blue"> <br>update</a>
+<A HREF="javascript:call_link('abapupdate.htm')" class="blue"> <br>update entry, database table</a>
+<A HREF="javascript:call_link('abenabap_dynpros_gui.htm')" class="blue"> <br>user interface</a>
+<A HREF="javascript:call_link('abenmemory_organization.htm')" class="blue"> <br>user memory</a>
+<A HREF="javascript:call_link('abenuser_sessions.htm')" class="blue"> <br>user session</a>
+<A HREF="javascript:call_link('abencl_system_uuid.htm')" class="blue"> <br>UUID</a>
+<br><br><A NAME="V"></A><span class="h2">V</span><br><br>
+<A HREF="javascript:call_link('abenlifetime_and_visibility.htm')" class="blue"> <br>validity</a>
+<A HREF="javascript:call_link('abenconstructor_expression_value.htm')" class="blue"> <br>value operator</a>
+<A HREF="javascript:call_link('abendata_inline.htm')" class="blue"> <br>variable, inline declaration</a>
+<A HREF="javascript:call_link('abencds_v2_views.htm')" class="blue"> <br>view entity, ABAP CDS</a>
+<A HREF="javascript:call_link('abenddic_views.htm')" class="blue"> <br>view, ABAP Dictionary</a>
+<A HREF="javascript:call_link('abenlifetime_and_visibility.htm')" class="blue"> <br>visibility</a>
+<A HREF="javascript:call_link('abenclass_visibility.htm')" class="blue"> <br>visibility section</a>
+<A HREF="javascript:call_link('abeninheritance_visibility.htm')" class="blue"> <br>visibility, inheritance</a>
+<br><br><A NAME="W"></A><span class="h2">W</span><br><br>
+<A HREF="javascript:call_link('abenapc.htm')" class="blue"> <br>websockets</a>
+<A HREF="javascript:call_link('abenconversion_references.htm')" class="blue"> <br>widening cast</a>
+<A HREF="javascript:call_link('abapexport_data_cluster_medium.htm')" class="blue"> <br>write data cluster, ABAP memory,</a>
+<A HREF="javascript:call_link('abapexport_data_cluster_medium.htm')" class="blue"> <br>write data cluster, shared memory</a>
+<A HREF="javascript:call_link('abaptransfer.htm')" class="blue"> <br>write, file</a>
+<A HREF="javascript:call_link('abendata_objects_usage_writing.htm')" class="blue"> <br>writing position</a>
+<A HREF="javascript:call_link('abenwsp_glosry.htm')" class="blue"> <br>WSP</a>
+<br><br><A NAME="X"></A><span class="h2">X</span><br><br>
+<A HREF="javascript:call_link('abenabap_xml.htm')" class="blue"> <br>XML</a>
+<A HREF="javascript:call_link('abenrfc_protocol.htm')" class="blue"> <br>xRFC</a>
+<A HREF="javascript:call_link('abensap_hana_access.htm')" class="blue"> <br>XS, SAP HANA</a>
+<A HREF="javascript:call_link('abensap_hana_access_xsa.htm')" class="blue"> <br>xsa, SAP HANA</a>
+<A HREF="javascript:call_link('abensap_hana_access_xsc.htm')" class="blue"> <br>xsc, SAP HANA</a>
+<A HREF="javascript:call_link('abenabap_xslt.htm')" class="blue"> <br>XSL transformations</a>
+<A HREF="javascript:call_link('abenabap_xslt.htm')" class="blue"> <br>XSLT</a>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

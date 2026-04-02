@@ -1,0 +1,153 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENOS_EXCEPTIONS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="OS - Exception Classes">
+<title>
+OS - Exception Classes - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenos_exceptions.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenos_exceptions.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_object_services.htm')" class="blue">Object Services (OS)</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+OS - Exception Classes
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+The exception classes of Object Services start with the prefix <span class="qtext400">CX_OS_</span>.
+The exceptions of category <span class="qtext400">CX_DYNAMIC_CHECK</span> are propagated to the caller by Object Services and must be handled by the consumer.
+</p>
+<p>
+The subclasses <span class="qtext400">CX_OS_NO_CHECK_CONTAINER</span> and <span class="qtext400">CX_OS_MIGRATION</span>
+of <span class="qtext400">CX_NO_CHECK</span> are for internal purposes: The first, as a container, allows
+exceptions of the <span class="qtext400">CX_DYNAMIC_CHECK</span> category from internal event handlers to be propagated, while the second is used for migration purposes.
+</p>
+<p>
+For a more detailed description of the exception classes, see the relevant class documentation.
+</p>
+<p>
+<span class="qtext400"> <br><span class="lnkgrey"><span class="qtext400">CX_ROOT</span></span> <br>&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_DYNAMIC_CHECK</span></span> <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_ERROR</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_CHECK_AGENT_FAILED</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_CLASS_NOT_FOUND</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT</span></span> <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_NOT_FOUND</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_EXISTING</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_NOT_EXISTING</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_NOT_REFRESHABLE</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_NOT_RELEASABLE</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_REFERENCE</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_STATE</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_QUERY_ERROR</span></span> <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_QUERY_ATTRIBUTE_ERROR</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_QUERY_EXPR_FACT_ERROR</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_QUERY_PARAMETER_ERROR</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;|
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_QUERY_PARSE_ERROR</span></span> <br>
+&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_TRANSACTION</span></span> <br>&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_NO_CHECK</span></span> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_SYSTEM_ERROR</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_DB</span></span> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_DB_SELECT</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_DB_INSERT</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_DB_UPDATE</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_DB_DELETE</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_DUPLICATE_OBJECT</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_INCONSISTENT_OBJECT</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_INTERNAL_ERROR</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_NO_IMPLEMENTATION</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_REFERENCE</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_OBJECT_STATE</span></span> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_SYSTEM</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;| <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+&nbsp;&nbsp;&nbsp;|--<span class="lnkgrey"><span class="qtext400">CX_OS_TRANSACTION_MODE</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_MIGRATION</span></span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="lnkgrey"><span class="qtext400">CX_OS_NO_CHECK_CONTAINER</span></span> <br></span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

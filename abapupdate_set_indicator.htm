@@ -1,0 +1,244 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPUPDATE_SET_INDICATOR -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="UPDATE dbtab, set indicators">
+<title>
+UPDATE dbtab, set indicators - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapupdate_set_indicator.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapupdate_set_indicator.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_writing.htm')" class="blue">ABAP SQL - Write Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapupdate.htm')" class="blue">UPDATE dbtab</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapupdate_source.htm')" class="blue">UPDATE dbtab, source</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@SET INDICATORS@@UPDATE dbtab@@"></A>
+<A NAME="@@SET STRUCTURE@@UPDATE dbtab@@"></A>
+<A NAME="@@NOT SET STRUCTURE@@UPDATE dbtab@@"></A>
+<p><span class="h1">
+UPDATE dbtab, set indicators <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapupdate_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... INDICATORS <i class=bn>{</i><i class=bn>[</i>NOT<i class=bn>]</i> SET STRUCTURE set_ind<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>|</i> (indicator_syntax) ...</span> <br><br>
+</p>
+<p><span class="h2">
+Alternatives:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ALTERNATIVE_1@1@" class="blue"> 1. <span class="qtext">... INDICATORS <i class=bn>[</i>NOT<i class=bn>]</i> SET STRUCTURE set_ind</span> </A> <br>
+<br><A HREF="#!ABAP_ALTERNATIVE_2@2@" class="blue"> 2. <span class="qtext">... INDICATORS (indicator_syntax)</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The addition <span class="qtext">INDICATORS</span> of the <span class="qtext">UPDATE FROM</span> clause can be used to specify
+<a href="javascript:call_link('abenset_indicator_glosry.htm')" class="grey" title="词汇表条目">set indicators</a> for a
+<a href="javascript:call_link('abenwork_area_glosry.htm')" class="grey" title="词汇表条目">work area</a> or for an
+<a href="javascript:call_link('abeninternal_table_glosry.htm')" class="grey" title="词汇表条目">internal table</a>. The purpose of
+set indicators is to indicate columns for change. <span class="qtext">UPDATE FROM</span> without indicators
+overwrites all fields of a row but when set indicators are used, only the indicated fields are updated.
+The addition can be specified only after <span class="qtext">UPDATE FROM</span> for structured work
+areas <span class="qtext">wa</span> or internal tables <span class="qtext">itab</span> with a structured
+line type. The source work area or internal table must have as last field a structure <span class="qtext">set_ind</span>
+with the same number of components as the DDIC database table to be updated, and each component serves as set indicator for one row. There is a static variant and a dynamic variant.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+<a href="javascript:call_link('abenset_indicator_glosry.htm')" class="grey" title="词汇表条目">Set indicators</a> enforce <a href="javascript:call_link('abenopensql_strict_mode_755.htm')" class="blue"> strict mode from Release 7.55</a>. <br><br>
+</p>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_1@1@"></A> <span class="bold">Alternative 1</span>
+</span></p>
+<P>
+ <span class="qtext">... INDICATORS <i class=bn>[</i>NOT<i class=bn>]</i> SET STRUCTURE set_ind</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The <a href="javascript:call_link('abenset_indicator_glosry.htm')" class="grey" title="词汇表条目">set indicator</a> <span class="qtext">set_ind</span>
+indicates which fields of a database are to be updated by the <span class="qtext">UPDATE FROM</span>
+clause. <span class="qtext">set_ind</span> must be included in the source work area or source internal
+table as last field and it must contain one component for each column of the DDIC database table to
+be changed. All individual components of <span class="qtext">set_ind</span> must have either the data
+type <span class="qtext">c</span> and length 1, or the data type <span class="qtext">x</span> and length
+1. The <span class="qtext">UPDATE FROM</span> clause checks the content of <span class="qtext">set_ind</span>
+and updates only fields that are marked with 'X' (data type <span class="qtext">c</span>) or '1' (data type <span class="qtext">x</span>). Fields which contain any other character or digit are not updated.
+</p>
+<p>
+When using the addition <span class="qtext">INDICATORS NOT SET</span>, the reverse logic is applied:
+all fields are updated, except the ones marked with 'X' (data type <span class="qtext">c</span>) or '1' (data type <span class="qtext">x</span>).
+</p>
+<p>
+Key fields must always be included in the indicator structure. However, the set indicators don't have any effect on key fields.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Set indicators work for normal structures as well as for
+<a href="javascript:call_link('abenlob_handle_structure_glosry.htm')" class="grey" title="词汇表条目">LOB handle structures</a>. If the source work area or internal table contains
+<a href="javascript:call_link('abenlob_handle_component_glosry.htm')" class="grey" title="词汇表条目">LOB handle components</a> that are not marked for update, the
+<a href="javascript:call_link('abenlob_glosry.htm')" class="grey" title="词汇表条目">LOBs</a> they refer to are not updated either. As without set indicators,
+<a href="javascript:call_link('abenlob_handle_glosry.htm')" class="grey" title="词汇表条目">LOB handles</a> should always be closed, regardless of whether they were marked for update or not.</li>
+</ul>
+<ul class="disc">
+<li>Work areas with set indicators can be defined with the addition <a href="javascript:call_link('abaptypes_indicators.htm')" class="blue">
+<span class="qtext">INDICATORS</span></a> to the <a href="javascript:call_link('abaptypes.htm')" class="blue"><span class="qtext">TYPES</span></a> statement.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+An internal table <span class="qtext">int_tab</span> is defined as source structure. By using the addition
+<a href="javascript:call_link('abaptypes_indicators.htm')" class="blue"><span class="qtext">INDICATORS</span></a> to the <a href="javascript:call_link('abaptypes.htm')" class="blue">
+ <span class="qtext">TYPES</span></a> statement, it consists of the structure of the DDIC database table <span class="qtext400">DEMO_UPDATE</span> as well as the
+<a href="javascript:call_link('abenindicator_structure_glosry.htm')" class="grey" title="词汇表条目">indicator structures</a> <span class="qtext">
+col_ind</span> as last component, which mirrors the structure of the DDIC database table. Three rows
+are chosen to be updated. From these rows, however, only the field <span class="qtext400">COL4</span>
+is marked for update. When the <span class="qtext">UPDATE FROM</span> statement is carried out, only
+the three indicated fields are updated. Without the set indicators, the three rows would have been overwritten entirely and all fields for which no value was specified would have been initialized (see image below).
+</p>
+<p>
+Note: The following code is an extract from the executable example <span class="lnkgrey"><span class="qtext">UPDATE,
+SET INDICATORS</span></span>. The results shown in the image can be replicated with the executable example.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES ind_wa TYPE demo_update WITH INDICATORS col_ind <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TYPE abap_bool. <br>
+DATA ind_tab TYPE TABLE OF ind_wa. <br> <br>ind_tab = VALUE #( <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( id = 'D' col4 = 4000 col_ind-col4 = abap_true ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( id = 'E' col4 = 5000 col_ind-col4 = abap_true ) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( id = 'F' col4 = 6000 col_ind-col4 = abap_true ) ). <br>
+ <br>UPDATE demo_update FROM TABLE @ind_tab <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INDICATORS SET STRUCTURE col_ind.
+</span>
+</p>
+<p>
+<span class="qtext">result1</span> shows the result with set indicators, <span class="qtext">result2</span> without set indicators <br>
+</p>
+<span class="border1"><img src="abdoc_set_indicators.png" width="00227" height="00313" alt="Figure"></span>
+<p>
+
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey"><span class="qtext">UPDATE, SET INDICATORS</span></span> <br><br>
+</p>
+<p><span class="h2">
+<A NAME="!ABAP_ALTERNATIVE_2@2@"></A> <span class="bold">Alternative 2</span>
+</span></p>
+<P>
+<span class="qtext">... INDICATORS (indicator_syntax)</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Instead of the static specification, a parenthesized data object <span class="qtext">indicator_syntax</span>
+can be specified after <span class="qtext">INDICATORS</span>. This data object must contain the syntax
+shown for the static specification when the statement is executed. The syntax in <span class="qtext">indicator_syntax</span>
+is not case-sensitive. If the data object <span class="qtext">indicator_syntax</span> has no content, then the addition has no effect.
+</p>
+<p><span class="h4">
+Security Hint
+</span></p>
+<p>
+ If used incorrectly, dynamic programming techniques can present a serious security risk. Any dynamic
+content that is passed to a program from the outside must be checked thoroughly or masked before it
+is used in dynamic statements. This can be done using the system class <span class="lnkgrey"><span class="qtext400">CL_ABAP_DYN_PRG</span></span>
+or the built-in function <a href="javascript:call_link('abenescape_functions.htm')" class="blue"><span class="qtext">escape</span></a>. See
+<a href="javascript:call_link('abensql_inj_dyn_tokens_scrty.htm')" class="blue">SQL Injections Using Dynamic Tokens</a>.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+This example is similar to the example for specifying information statically. The DDIC database table
+<span class="qtext400">DEMO_UPDATE</span> is updated from the work area <span class="qtext">col_ind</span>
+and only the column <span class="qtext400">COL4</span> is marked for update. In contrast to the first
+example, the set indicator is specified dynamically. The program <span class="lnkgrey"><span class="qtext400">DEMO_UPDATE_SET_IND_DYN</span></span>
+fills the DDIC database table with values, carries out the <span class="qtext">UPDATE FROM</span> statement, and displays the result.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES ind_wa TYPE demo_update WITH INDICATORS col_ind. <br>DATA&nbsp;&nbsp;ind_wa TYPE ind_wa. <br> <br>
+DATA(indicator_syntax) = `SET STRUCTURE col_ind`. <br> <br>ind_wa = VALUE #( id = 'I' col4 = 4000 col_ind-col4 = '01' ). <br> <br>UPDATE demo_update FROM @ind_wa INDICATORS (indicator_syntax). <br><br>
+</span>
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abenupdate_set_indicators_abexa.htm')" class="blue">UPDATE, SET INDICATORS</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,378 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPSELECT_OVER -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="sql_exp - sql_win">
+<title>
+sql_exp - sql_win - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapselect_over.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapselect_over.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_external_data.htm')" class="blue">Processing External Data</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_sql.htm')" class="blue">ABAP Database Access</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopensql.htm')" class="blue">ABAP SQL</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenopen_sql_operands.htm')" class="blue">ABAP SQL - Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">ABAP SQL - SQL Expressions sql_exp</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@OVER@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@PARTITION@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@ORDER BY@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@ROWS BETWEEN@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@( )@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<p><span class="h1">
+sql_exp - sql_win <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <a href="javascript:call_link('abensql_win_func.htm')" class="blue">win_func</a> OVER( <i class=bn>[</i>PARTITION
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">sql_exp1</a>, <a href="javascript:call_link('abapsql_expr.htm')" class="blue">sql_exp2</a> ...<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i>ORDER BY
+<a href="javascript:call_link('abenopen_sql_columns.htm')" class="blue">col1</a> <i class=bn>[</i>ASCENDING<i class=bn>|</i>DESCENDING<i class=bn>]</i>, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:call_link('abenopen_sql_columns.htm')" class="blue">col2</a> <i class=bn>[</i>ASCENDING<i class=bn>|</i>DESCENDING<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i>ROWS BETWEEN <i class=bn>{</i>UNBOUNDED PRECEDING<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i><i class=bn>{</i>CURRENT ROW<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i><i class=bn>{</i>(n) PRECEDING<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i><i class=bn>{</i>(n) FOLLOWING<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>{</i>UNBOUNDED FOLLOWING<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i><i class=bn>{</i>CURRENT ROW<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i><i class=bn>{</i>(n) PRECEDING<i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;<i class=bn>|</i><i class=bn>{</i>(n) FOLLOWING<i class=bn>}</i><i class=bn>]</i><i class=bn>]</i> ) ...</span> <br><br>
+</p>
+<p><span class="h3">
+Additions:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext">... ORDER BY col1 <i class=bn>[</i>ASCENDING<i
+class=bn>|</i>DESCENDING<i class=bn>]</i>, col2 <i class=bn>[</i>ASCENDING<i class=bn>|</i>DESCENDING<i class=bn>]</i>, ...</span> </A> <br>
+<br><A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext">... ROWS BETWEEN ...</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+<a href="javascript:call_link('abenwindow_expression_glosry.htm')" class="grey" title="词汇表条目">Window expression</a> in ABAP SQL. A window expression uses a
+<a href="javascript:call_link('abenwindow_function_glosry.htm')" class="grey" title="词汇表条目">window function</a> to determine an individual value from the rows of a
+<a href="javascript:call_link('abenwindow_glosry.htm')" class="grey" title="词汇表条目">window</a> of the result set of a
+<a href="javascript:call_link('abenquery_glosry.htm')" class="grey" title="词汇表条目">query</a>. A window expression can be specified as an
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expression</a> or as an argument of any SQL expressions, except for
+<a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">aggregate</a> and window expressions for defining a
+column <a href="javascript:call_link('abapselect_clause_col_spec.htm')" class="blue"><span class="qtext">col_spec</span></a>
+of the result set in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span>
+list</a> of a query. In each row of the result set, the result of the calculation is placed in the column defined in this way.
+</p>
+<p>
+A window expression consists of a window function <a href="javascript:call_link('abensql_win_func.htm')" class="blue"><span class="qtext">win_func</span></a> followed by the addition <span class="qtext">OVER( ... )</span> in whose parentheses the
+<a href="javascript:call_link('abenwindow_glosry.htm')" class="grey" title="词汇表条目">window</a> on the result set is defined for whose rows the window function is evaluated:
+</p>
+<ul class="disc">
+<li><span class="qtext">PARTITION <a href="javascript:call_link('abapsql_expr.htm')" class="blue">sql_exp1</a>, <a href="javascript:call_link('abapsql_expr.htm')" class="blue">sql_exp2</a> ...</span></li>
+</ul>
+<dl><dd>
+The optional addition <span class="qtext">PARTITION</span> defines the windows using a comma-separated
+list of SQL expressions <span class="qtext">sql_exp1</span>, <span class="qtext">sql_exp2</span>, ... . A window is constructed of the rows of the result set for which all SQL expressions have the same result. All
+<a href="javascript:call_link('abapsql_expr.htm')" class="blue">SQL expressions</a> except for
+<a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">aggregate expressions</a> and window expressions can
+be used. The window function is calculated for the rows of the respective current window. If <span class="qtext">PARTITION</span>
+is not specified, a single window is constructed that comprises all rows of the result set.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext">ORDER BY</span></li>
+</ul>
+<dl><dd>
+The optional addition <span class="qtext">ORDER BY</span> introduces both an order and a frame within the current window, which further restricts the rows for which the window function is calculated. It is also a prerequisite for certain
+<a href="javascript:call_link('abenranking_function_glosry.htm')" class="grey" title="词汇表条目">ranking functions</a>.
+</dd></dl>
+<p>
+If a window expression is used in the <span class="qtext">SELECT</span> list of a <span class="qtext">SELECT</span>
+statement with <a href="javascript:call_link('abapgroupby_clause.htm')" class="blue"><span class="qtext">GROUP BY</span></a>
+clause, the windows are defined in the merged result list and aggregate expressions can be used as arguments
+of the window functions. Each column that is specified in any position in the window expression must also be specified in the <span class="qtext">GROUP BY</span> clause.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>A window expression works in a similar way to an
+<a href="javascript:call_link('abapselect_aggregate.htm')" class="blue">aggregate expression</a>, whereby the addition <span class="qtext">
+PARTITION</span> assumes the role of the <a href="javascript:call_link('abapgroupby_clause.htm')" class="blue"><span class="qtext">GROUP
+BY</span></a> clause. Unlike aggregate expressions, however, there is no aggregation of the rows defined
+via <span class="qtext">PARTITION</span>, rather these are retained and are all assigned the value calculated via the window expression.</li>
+</ul>
+<ul class="disc">
+<li>The window functions of a window expression work with the rows of a virtual table, which is defined
+by the specifications after <span class="qtext">OVER</span>. Using the addition <a href="javascript:call_link('abaporderby_clause.htm')" class="blue">
+<span class="qtext">ORDER BY</span></a> of the <span class="qtext">SELECT</span> statement has no effect
+on the result of a window expression. However, the rows of the result set can themselves be sorted according to the results of window expressions by using their alias name.</li>
+</ul>
+<ul class="disc">
+<li>A window expression can only be specified in the result set in the <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">SELECT</span> list</a> of a query. It cannot be used like an
+<a href="javascript:call_link('abenaggregate_expression_glosry.htm')" class="grey" title="词汇表条目">aggregate expression</a> in
+the <a href="javascript:call_link('abapgroupby_clause.htm')" class="blue"><span class="qtext">GROUP BY</span></a> or <a href="javascript:call_link('abaphaving_clause.htm')" class="blue"><span class="qtext">HAVING</span></a> clause.</li>
+</ul>
+<ul class="disc">
+<li>By using window expressions in other SQL expressions, calculations can be performed, which combine
+values of the current row with the results of window expressions, for example, the percentage of a column in the current window, or the distance to the minimum or maximum value of the current window.</li>
+</ul>
+<ul class="disc">
+<li>Window expressions are not supported by all databases. In an ABAP program, it is possible to use
+the method <span class="qtext400">USE_FEATURES</span> of the class <a href="javascript:call_link('abencl_abap_dbfeatures.htm')" class="blue">
+<span class="qtext400">CL_ABAP_DBFEATURES</span></a> to check whether the current database system or a database system accessed using a
+<a href="javascript:call_link('abensecondary_db_connection_glosry.htm')" class="grey" title="词汇表条目">secondary connection</a>
+supports the use of window expressions. This requires the constant <span class="qtext400">WINDOWING</span> of this class to be passed to the method in an internal table.</li>
+</ul>
+<p><span class="h4">
+Executable Examples
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey">Window Expressions</span></li>
+</ul>
+<ul class="disc">
+<li><span class="lnkgrey">Window expressions without partition</span> <br><br></li>
+</ul>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext">... ORDER BY col1 <i class=bn>[</i>ASCENDING<i class=bn>|</i>DESCENDING<i class=bn>]</i>, col2 <i class=bn>[</i>ASCENDING<i class=bn>|</i>DESCENDING<i class=bn>]</i>, ...</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The optional addition <span class="qtext">ORDER BY</span>, which can be specified independently of <span class="qtext">
+PARTITION</span>, defines an order in the current window and an evaluation framework for the window
+function. <span class="qtext">ORDER BY</span> is followed by a comma-separated list of columns of the
+data sources of the current query. These columns are used to sort the rows of the window. A column can
+only be specified directly using the column name <a href="javascript:call_link('abenopen_sql_columns.htm')" class="blue"><span class="qtext">
+col1</span></a>, <a href="javascript:call_link('abenopen_sql_columns.htm')" class="blue"><span class="qtext">col2 ...</span></a>
+Alias names defined using <a href="javascript:call_link('abapselect_list.htm')" class="blue"><span class="qtext">AS</span></a>
+cannot be specified. The additions <span class="qtext">ASCENDING</span> and <span class="qtext">DESCENDING</span>
+determine whether the rows are sorted in ascending or descending order by the column in question. The default is <span class="qtext">ASCENDING</span>.
+</p>
+<p>
+Specifying the order using <span class="qtext">ORDER BY</span> causes the following:
+</p>
+<ul class="disc">
+<li>The rows of the window are processed by the window function in the order defined by the sort sequence.
+The order of the processing of rows that appear more than once regarding the sort criterion is not defined.
+If the addition <span class="qtext">ORDER BY</span> is not specified, this applies to all rows of the window.</li>
+</ul>
+<ul class="disc">
+<li>The rows processed by the window function are additionally restricted by a frame. Only the rows
+of the window that are in front of the current row in the sorting, or that have the same values in the columns of the sort criterion are respected.</li>
+</ul>
+<p>
+While the restricted frame mainly affects the results of
+<a href="javascript:call_link('abenaggregate_function_glosry.htm')" class="grey" title="词汇表条目">aggregate functions</a> specified as a
+<a href="javascript:call_link('abensql_win_func.htm')" class="blue">window function</a>, the processing sequence primarily affects the
+<a href="javascript:call_link('abenranking_function_glosry.htm')" class="grey" title="词汇表条目">ranking functions</a>. The addition
+<span class="qtext">ORDER BY</span> must be specified for the ranking functions <span class="qtext">RANK</span> and <span class="qtext">DENSE_RANK</span>.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+The definition of the window, the processing sequence, and the frame by <span class="qtext">ORDER BY</span>
+following <span class="qtext">OVER</span> is totally independent of the addition <a href="javascript:call_link('abaporderby_clause.htm')" class="blue">
+<span class="qtext">ORDER BY</span></a> clause of the <span class="qtext">SELECT</span> statement.
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey">Window Expressions with Sort</span> <br><br>
+</p>
+<A NAME="@@UNBOUNDED PRECEDING@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@CURRENT ROW@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@FOLLOWING@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@PRECEDING@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@UNBOUNDED FOLLOWING@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<A NAME="@@AND@@!ABAP_OSQL_WIN_EXP!@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext">... ROWS BETWEEN ...</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The window frame specification is an optional addition within the <span class="qtext">OVER( ... ORDER BY ...
+)</span> clause. It allows the definition of a subset of rows inside a window, which is also referred to as a frame. Frames are determined with respect to the current row, which enables the frame to move within a window.
+</p>
+<p>
+A frame is defined by a starting frame boundary and an ending frame boundary. There are three options for the starting and ending frame boundaries:
+</p>
+<ul class="disc">
+<li><span class="qtext"><i class=bn>{</i>UNBOUNDED PRECEDING<i class=bn>}</i>/<i class=bn>{</i>UNBOUNDED FOLLOWING<i class=bn>}</i></span></li>
+</ul>
+<dl><dd>
+<span class="qtext">UNBOUNDED PRECEDING</span> as starting frame boundary specifies that the frame starts at the first row of the window.
+</dd></dl>
+<dl><dd>
+<span class="qtext">UNBOUNDED FOLLOWING</span> as ending frame boundary specifies that the frame ends at the last row of the partition.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext">CURRENT ROW</span> can be used as both starting and ending frame boundary. It specifies that the window starts or ends at the current row, including the current row in the frame.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext"><i class=bn>{</i>(n) PRECEDING<i class=bn>}</i>/<i class=bn>{</i>(n) FOLLOWING<i class=bn>}</i></span></li>
+</ul>
+<dl><dd>
+<span class="qtext">(n) PRECEDING</span> can be used as both starting and ending frame boundary. It specifies that the frame starts or ends <span class="qtext">n</span> rows above the current row.
+</dd></dl>
+<dl><dd>
+<span class="qtext">(n) FOLLOWING</span> can be used as both starting and ending frame boundary. It specifies that the frame starts or ends <span class="qtext">n</span> rows beneath the current row.
+</dd></dl>
+<dl><dd>
+<span class="qtext">n</span> must be 0, a positive
+<a href="javascript:call_link('abeninteger_literal_glosry.htm')" class="grey" title="词汇表条目"> integer literal</a>, or a
+<a href="javascript:call_link('abenopen_sql_host_expressions.htm')" class="blue">host expression</a> that can be resolved into a
+<a href="javascript:call_link('abenconstant_glosry.htm')" class="grey" title="词汇表条目">constant</a> of type <span class="qtext">b</span>, <span class="qtext">s</span>,<span class="qtext">i</span>, or <span class="qtext">int8</span>.
+</dd></dl>
+<p>
+<span class="qtext">ORDER BY</span> is mandatory.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The ending frame boundary cannot be smaller than the starting frame boundary.</li>
+</ul>
+<ul class="disc">
+<li>If no window frame is used, the default window frame is <span class="qtext">BETWEEN UNBOUNDED PRECEDING
+AND CURRENT ROW</span>. That is to say that the window function computes all rows up to the current row. As a result, the function returns cumulative values.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The example demonstrates how different <a href="javascript:call_link('abenwindow_function_glosry.htm')" class="grey" title="词汇表条目">window functions</a> are applied to frames inside a window.
+</p>
+<ul class="disc">
+<li><span class="qtext">count</span> sorts the rows by column <span class="qtext400">ID</span> and counts
+the number of rows from the first row of the window to the current row. The result is the same as that returned by the <a href="javascript:call_link('abensql_win_func.htm')" class="blue"><span class="qtext">ROW_NUMBER(
+)</span></a> function.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">count_reverse</span> sorts the rows by column <span class="qtext400">ID</span>
+and counts the number of rows from the current row to the last row of the window. The result is reverse numbering.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">average</span> sorts the rows by column <span class="qtext400">ID</span> and
+calculates the rolling averages of a subset of rows from column <span class="qtext400">COL1</span>.
+The subset consists of the current row plus one preceding and one following row. With this function,
+it is possible, for example, to calculate the 3-day-average temperature for every day from a list of temperature data.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">accumulate</span> sorts the rows by column <span class="qtext400">ID</span>
+and accumulates the values from the first row of the window up to the current row, thus computing the running total of column <span class="qtext400">COL1</span>.</li>
+</ul>
+<p class="qtextml1">
+<span class="qtext">
+SELECT id, col1, col2, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COUNT( * ) OVER( ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND CURRENT ROW ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AS count, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COUNT( * ) OVER( ORDER BY id ROWS BETWEEN CURRENT ROW <br>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND UNBOUNDED FOLLOWING ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AS count_reverse, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AVG( col1 ) OVER( ORDER BY id ROWS BETWEEN 1 PRECEDING <br>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND 1 FOLLOWING ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AS average, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SUM( col1 ) OVER( ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AND CURRENT ROW ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AS accumulate <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_update <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @DATA(result).
+</span>
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey">Window Frame Specification</span>
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abensql_win_func.htm')" class="blue">sql_win - win_func</a><br>
+<a href="javascript:call_link('abensql_expr_over_abexas.htm')" class="blue">sql_win - Examples of Window Expressions</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

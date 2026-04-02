@@ -1,0 +1,142 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENMEMORY_CONSUMPTION_3 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Sharing Between Dynamic Data Objects">
+<meta name="keywords" content="ABAP, sharing">
+<title>
+Sharing Between Dynamic Data Objects - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenmemory_consumption_3.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenmemory_consumption_3.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendeclarations.htm')" class="blue">Declarations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_declarations.htm')" class="blue">Declaration Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_and_objects.htm')" class="blue">Data Types and Data Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_objects_oview.htm')" class="blue">Types and Objects, Overview</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendata_objects.htm')" class="blue">Data Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenmemory_consumption.htm')" class="blue">Memory Management of Deep Objects</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+Sharing Between Dynamic Data Objects
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+When reference variables are assigned, only the references are copied. After an assignment, source and target variables point to the same data object or instance of a class (more precisely, to their headers).
+</p>
+<p>
+Sharing takes place internally in <a href="javascript:call_link('abenassignment_glosry.htm')" class="grey" title="词汇表条目">assignments</a> between similar
+<a href="javascript:call_link('abenstring_glosry.htm')" class="grey" title="词汇表条目">strings</a> and similar
+<a href="javascript:call_link('abeninternal_table_glosry.htm')" class="grey" title="词汇表条目">internal tables</a> whose line types
+do not themselves contain table types. This means that the actual data values are not copied initially.
+Only the necessary administration entries are copied, so that the target object refers to the same data as the source object.
+</p>
+<p>
+For strings, a new internal reference is created that points to the existing string header. For internal tables, a new internal reference and a new table header, which refers to the existing
+<a href="javascript:call_link('abentable_body_glosry.htm')" class="grey" title="词汇表条目">table body</a>, are created.
+</p>
+<p>
+Sharing between dynamic data objects is, of course, only active for as long as multiple dynamic data
+objects are involved, or more than one internal reference refers to the data values. As soon as only
+one internal reference refers to the data, sharing no longer takes place. Such cases occur, for example,
+if involved dynamic data objects only exist during the lifetime of a procedure, or if they are recorded as anonymous data objects by the Garbage Collector.
+</p>
+<p>
+Active sharing between existing dynamic data objects is canceled when either the source object or target
+object is accessed in change mode (copy-on-write semantics). The actual copy process for the data values then takes place and the references and headers are changed accordingly.
+</p>
+<p>
+The following figure illustrates the sharing of dynamic data objects. The upper section shows how strings
+are shared on the left and how internal tables are shared on the right side. The lower section shows how sharing is canceled when the source or target object is changed.
+</p>
+<p>
+
+</p>
+<span class="border1"><img src="abdoc_sharing.gif" width="00567" height="00453" alt="Figure"></span>
+<p>
+
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>Table sharing usually only occurs for tables whose line types do not themselves contain table types.
+Otherwise, the prerequisite for "similar tables" is kept deliberately vague. Tables are similar if they
+at least have the exact same table type, that is the same line type, table category, and keys. There
+are other table combinations that are also considered to be similar and in which sharing can take place.
+However, this is an internal optimization measure that may be changed between releases. Therefore, programming should never be based on when table sharing occurs and when it is canceled again.</li>
+</ul>
+<ul class="disc">
+<li>Sharing also occurs during <a href="javascript:call_link('abenpass_by_value_glosry.htm')" class="grey" title="词汇表条目">pass by value</a> to procedures.</li>
+</ul>
+<ul class="disc">
+<li>Sharing is also supported when accessing <a href="javascript:call_link('abenshared_objects_glosry.htm')" class="grey" title="词汇表条目">shared objects</a>, for as long as an
+<a href="javascript:call_link('abenarea_instance_version_glosry.htm')" class="grey" title="词汇表条目">area instance version</a> is bound to the current
+<a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a> using an <a href="javascript:call_link('abenarea_handle_glosry.htm')" class="grey" title="词汇表条目">area handle</a>.</li>
+</ul>
+<ul class="disc">
+<li>Sharing is not canceled by changes to the objects for reference variables that point to the same data object or the same instance of a class.</li>
+</ul>
+<ul class="disc">
+<li>Another type of sharing is the <a href="javascript:call_link('abeninitial_value_sharing_glosry.htm')" class="grey" title="词汇表条目">initial value sharing</a> of
+<a href="javascript:call_link('abenboxed_component_glosry.htm')" class="grey" title="词汇表条目">boxed components</a> for which the initial value is stored only once per AS instance.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,249 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPCREATE_DATA_AREA_HANDLE -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CREATE DATA, AREA HANDLE">
+<title>
+CREATE DATA, AREA HANDLE - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapcreate_data_area_handle.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapcreate_data_area_handle.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencreate_objects.htm')" class="blue">Creating Objects and Values</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapcreate_data.htm')" class="blue">CREATE DATA</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@AREA HANDLE@@CREATE DATA@@"></A>
+<p><span class="h1">
+CREATE DATA, AREA HANDLE <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapcreate_data_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">CREATE DATA dref AREA HANDLE handle ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This statement creates an anonymous data object as a
+<a href="javascript:call_link('abenshared_object_glosry.htm')" class="grey" title="词汇表条目">shared object</a> in the
+<a href="javascript:call_link('abenarea_instance_version_glosry.htm')" class="grey" title="词汇表条目">area instance version</a> of the
+<a href="javascript:call_link('abenshared_memory_glosry.htm')" class="grey" title="词汇表条目">shared memory</a> to which the
+<a href="javascript:call_link('abenarea_handle_glosry.htm')" class="grey" title="词汇表条目">area handle</a> referenced by <span class="qtext">handle</span> is bound.
+</p>
+<p>
+<span class="qtext">handle</span> expects an object reference variable whose static type is <a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue"><span class="qtext400">CL_ABAP_MEMORY_AREA</span></a> or one of its subclasses
+(<a href="javascript:call_link('abenarea_class_glosry.htm')" class="grey" title="词汇表条目">area class</a>). When the statement is executed, <span class="qtext">handle</span> must point to an
+<a href="javascript:call_link('abenarea_handle_glosry.htm')" class="grey" title="词汇表条目">area handle</a> and the area handle
+must be bound to an area instance version with a change lock. A reference like this can be created in one of the following ways:
+</p>
+<ul class="disc">
+<li>By inheriting the return value of the methods <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">
+ATTACH_FOR_WRITE</span></a> or <a href="javascript:call_link('abenshm_area_class.htm')" class="blue"><span class="qtext400">ATTACH_FOR_UPDATE</span></a>
+of an area class created using transaction <span class="lnkgrey"><span class="qtext400">SHMA</span></span>. <br></li>
+</ul>
+<ul class="disc">
+<li>By inheriting the return value of the method <a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue"><span class="qtext400">GET_HANDLE_BY_...</span></a> of any area class. <br></li>
+</ul>
+<ul class="disc">
+<li>By inheriting the return value of the method <a href="javascript:call_link('abenshm_cl_imode_area.htm')" class="blue"><span class="qtext400">
+GET_IMODE_HANDLE</span></a> of the predefined class <span class="qtext400">CL_IMODE_AREA</span>.</li>
+</ul>
+<p>
+The latter is a reference to an area handle for the current
+<a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a> and the statement
+<span class="qtext">CREATE DATA</span> works in the same way as without the addition <span class="qtext">AREA HANDLE</span>.
+</p>
+<p>
+<span class="bold">Restrictions</span>
+</p>
+<p>
+The creation of anonymous data objects as shared objects is subject to the following restrictions for data references in the shared objects memory: the storage of data references in closed
+<a href="javascript:call_link('abenarea_instance_version_glosry.htm')" class="grey" title="词汇表条目">area instance versions</a> of the shared objects memory is restricted to those
+<a href="javascript:call_link('abendynamic_type_glosry.htm')" class="grey" title="词汇表条目">dynamic types</a> that are known when loading a program into an internal session.
+</p>
+<p>
+Therefore, the following data types cannot be used to create anonymous data objects in the shared object memory if these are to be preserved in a closed area instance version:
+</p>
+<ol>
+<li>
+All data types created in a temporary subroutine pool created using <a href="javascript:call_link('abapgenerate_shortref.htm')" class="blue"><span class="qtext">GENERATE SUBROUTINE POOL</span></a>.
+<br></li>
+<li>
+Data types created dynamically at program runtime using methods of the <a href="javascript:call_link('abenrun_time_type_creation_glosry.htm')" class="grey" title="词汇表条目">RTTC</a>.
+<br></li>
+<li>
+Bound data types of anonymous data objects created at program runtime, to which a dynamic length was assigned when they were created with <span class="qtext">CREATE DATA</span>.
+<br></li>
+<li>
+Bound data types of anonymous data objects created at program runtime and that were assigned a dynamic type that requires a length specification when they were created using <span class="qtext">CREATE DATA</span>.
+<br></li>
+</ol>
+<p>
+Points 3 and 4 particularly include the statement <span class="qtext">CREATE DATA</span> with the addition <span class="qtext">AREA HANDLE</span> itself. Exceptions to the restrictions listed in points 2 to 4 are:
+</p>
+<ul class="disc">
+<li>The restrictions do not apply to the data type <span class="qtext">p</span>.</li>
+</ul>
+<ul class="disc">
+<li>The restrictions do not apply to the data types <span class="qtext">c</span>, <span class="qtext">n</span>, and <span class="qtext">x</span>, as long as the memory requirement does not exceed 100 bytes.</li>
+</ul>
+<p>
+If a data reference variable that is stored in the shared objects memory refers to an anonymous data
+object of a dynamic type that is subject to the restrictions, the exception of the class <span class="qtext400">CX_SHM_EXTERNAL_TYPE</span>
+is raised when the <span class="qtext400">DETACH_COMMIT</span> method is executed.
+</p>
+<p>
+The following can be used without restriction:
+</p>
+<ul class="disc">
+<li>All visible data types of global interfaces and classes.</li>
+</ul>
+<ul class="disc">
+<li>Data elements, DDIC structures, and DDIC database tables and DDIC table types of the ABAP Dictionary.</li>
+</ul>
+<ul class="disc">
+<li>Data types from type pools.</li>
+</ul>
+<ul class="disc">
+<li>Bound data types of anonymous data objects created at program runtime to which a static type with a static length was assigned when they were created using <span class="qtext">CREATE DATA</span>.</li>
+</ul>
+<ul class="disc">
+<li>Bound data types of anonymous data objects created at program runtime to which a fully specified dynamic type was assigned when they were created using <span class="qtext">CREATE DATA</span>.</li>
+</ul>
+<ul class="disc">
+<li>All data types that were created statically in the same program using declarative statements. It
+should be noted, however, that it is no longer possible to access existing area instances after each change to the creating program.</li>
+</ul>
+<p>
+The additions <a href="javascript:call_link('abapcreate_data_reference.htm')" class="blue"><span class="qtext">REF TO</span></a>
+and <a href="javascript:call_link('abapcreate_data_itab.htm')" class="blue"><span class="qtext">TABLE OF</span></a> can be used
+as long as the specified types meet the above requirements. This also applies to the addition <a href="javascript:call_link('abapcreate_data_handle.htm')" class="blue">
+<span class="qtext">HANDLE</span></a>, which means the type description object must have been created with methods of the
+<a href="javascript:call_link('abenrun_time_type_identific_glosry.htm')" class="grey" title="词汇表条目">RTTI</a> from allowed types.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The only shared object that can be addressed from an ABAP program directly after an area instance version is bound is the instance of the
+<a href="javascript:call_link('abenroot_data_class_glosry.htm')" class="grey" title="词汇表条目">area root class</a>. All other objects
+must be referenced in this instance. In particular, no direct access to anonymous data objects is possible.
+Instead, the instance of the area root class must contain references to these anonymous data objects, which can also be indirect.</li>
+</ul>
+<ul class="disc">
+<li>It is recommended that only global data types together with <span class="qtext">AREA HANDLE</span>
+are used. As an occasional replacement for the direct reference to data elements and table types of
+the ABAP Dictionary, the respective types can be created in global interfaces, classes, or even type pools. <br><br></li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Creation of an anonymous structure in an area instance version of area <span class="qtext400">CL_DEMO_AREA</span>.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA: root&nbsp;&nbsp; TYPE REF TO cl_demo_root, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handle TYPE REF TO cl_demo_area. <br>
+ <br>... <br> <br>TRY. <br>&nbsp;&nbsp;&nbsp;&nbsp;handle = cl_demo_area=>attach_for_write( ). <br>&nbsp;&nbsp;&nbsp;&nbsp;CREATE OBJECT root AREA HANDLE handle. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;handle->set_root( root ). <br>&nbsp;&nbsp;&nbsp;&nbsp;CREATE DATA root->dref AREA HANDLE handle TYPE scarr. <br>
+&nbsp;&nbsp;CATCH cx_shm_attach_error. <br>&nbsp;&nbsp;&nbsp;&nbsp;... <br>ENDTRY. <br> <br>... <br> <br><br>
+</span>
+</p>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey"> Creating a Data Object as a Shared Object</span> <br><br>
+</p>
+<p><span class="h4">
+<a href="javascript:call_link('abenabap_language_exceptions.htm')" class="blue">Exceptions</a>
+</span></p>
+<p>
+<span class="bold">Catchable Exceptions</span>
+</p>
+<p>
+<span class="lnkgrey"><span class="qtext400">CX_SHM_WRONG_HANDLE</span></span>
+</p>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The area handle does not hold any change locks.</li>
+</ul>
+<p>
+<span class="lnkgrey"><span class="qtext400">CX_SHM_ALREADY_DETACHED</span></span>
+</p>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The area handle is not bound to an area instance version.</li>
+</ul>
+<p>
+<span class="lnkgrey"><span class="qtext400">CX_SHM_OUT_OF_MEMORY</span></span>
+</p>
+<ul class="disc">
+<li><span class="italic">Cause:</span> There is not enough memory.</li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abencreate_shared_data_objct_abexa.htm')" class="blue">Creating a Data Object as a Shared Object</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,399 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPLOAD -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="LOAD REPORT">
+<title>
+LOAD REPORT - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapload.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapload.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenprogram_editing.htm')" class="blue">Program Maintenance</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_dynamic.htm')" class="blue">Dynamic Program Development</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_generic_program.htm')" class="blue">ABAP Source Code</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abengeneric_internal.htm')" class="blue">Internal Statements for Source Code Processing</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@LOAD REPORT@@!ABAP_STATEMENT_INT!@@"></A>
+<A NAME="@@PART@@LOAD REPORT (internal)@@"></A>
+<A NAME="@@INTO@@LOAD REPORT (internal)@@"></A>
+<p><span class="h1">
+LOAD REPORT <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<span class="bold">This statement is for internal use only. <br>It must not be used in application programs.</span> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">LOAD REPORT prog PART part INTO itab.</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The part (specified in <span class="qtext">part</span>) of the generated form
+(<a href="javascript:call_link('abenload_glosry.htm')" class="grey" title="词汇表条目">load</a>) of the program <span class="qtext">prog</span>,
+given in <span class="qtext">prog</span> is loaded to the internal table <span class="qtext">itab</span> for analysis. <span class="qtext">itab</span> must be a standard table and secondary keys are allowed.
+</p>
+<p>
+The following table shows the possible content of <span class="qtext">part</span>, its relevance, and the requested line type of <span class="qtext">itab</span>. <br><br>
+</p>
+<table border>
+<tr>
+<td><span class="qtext">part</span></td>
+<td><span class="bold">Meaning</span></td>
+<td><span class="bold">Line Type</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'BASE'</span></td>
+<td>Segment table</td>
+<td><span class="qtext400">RBASE</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'CLAS'</span></td>
+<td>Defined classes</td>
+<td><span class="qtext400">RCLAS</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'CLFR'</span></td>
+<td>Load table <span class="qtext400">CLFR</span></td>
+<td><span class="qtext400">RCLFR</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'CONS'</span></td>
+<td>Table of constants</td>
+<td><span class="qtext">x</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'CREF'</span></td>
+<td>Static addressing of classes</td>
+<td><span class="qtext400">RCREF</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'COMP'</span></td>
+<td>Description of the components of the internal structures that are used in the program</td>
+<td><span class="qtext400">RDATA</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'CONT'</span></td>
+<td>Processing control blocks</td>
+<td><span class="qtext400">RCONT</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'DATA'</span></td>
+<td>Static data descriptions (see below)</td>
+<td><span class="qtext400">RDATA</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'DATL'</span></td>
+<td>Load table <span class="qtext400">DATL</span></td>
+<td><span class="qtext400">RDATA</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'DATP'</span></td>
+<td>Data descriptions of the parameters and local field symbols</td>
+<td><span class="qtext400">RDATA</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'DATV'</span></td>
+<td>Variable data descriptions (see below)</td>
+<td><span class="qtext400">RDATA</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'DDNM'</span></td>
+<td>Used types from ABAP Dictionary</td>
+<td><span class="qtext400">RDDNM</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'EVNT'</span></td>
+<td>Event descriptors defined by the raising class</td>
+<td><span class="qtext400">REVNT</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'EXCP'</span></td>
+<td>Load table <span class="qtext400">EXCP</span></td>
+<td><span class="qtext400">REXCP</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'GCIX'</span></td>
+<td>Load table <span class="qtext400">GCIX</span></td>
+<td><span class="qtext400">RGCIX</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'HEAD'</span></td>
+<td>Program header</td>
+<td><span class="qtext400">RHEAD</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'INCL'</span></td>
+<td>Load table <span class="qtext400">INCL</span></td>
+<td><span class="qtext">c</span>, length 40</td>
+</tr>
+<tr>
+<td><span class="qtext">'INIT'</span></td>
+<td>Initial values of the local data</td>
+<td><span class="qtext">x</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'INTC'</span></td>
+<td>Load table <span class="qtext400">INTC</span></td>
+<td><span class="qtext400">RINTC</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'INTD'</span></td>
+<td>Used interfaces</td>
+<td><span class="qtext400">RINTD</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'INTI'</span></td>
+<td>Implemented interfaces</td>
+<td><span class="qtext400">RINTI</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'INTR'</span></td>
+<td>Load table <span class="qtext400">INTR</span></td>
+<td><span class="qtext400">RINTR</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'IREF'</span></td>
+<td>Additional information for addressing using <a href="javascript:call_link('abeninterface_ref_variable_glosry.htm')" class="grey" title="词汇表条目">interface reference variables</a></td>
+<td><span class="qtext400">RIREF</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'LITL'</span></td>
+<td>Literal table</td>
+<td><span class="qtext">x</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'LITX'</span></td>
+<td>Index table of literals</td>
+<td><span class="qtext400">RLITX</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'LREF'</span></td>
+<td>Line reference</td>
+<td><span class="qtext400">RLREF</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'OREF'</span></td>
+<td>Additional information for addressing using object references</td>
+<td><span class="qtext400">ROREF</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'PBAG'</span></td>
+<td>Additional descriptions of the data types used in the program</td>
+<td><span class="qtext400">RPBAG</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SELC'</span></td>
+<td>Description of the <a href="javascript:call_link('abenselection_screen_glosry.htm')" class="grey" title="词汇表条目">selection screen</a> variables</td>
+<td><span class="qtext400">RSELC</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SREF'</span></td>
+<td>Load table <span class="qtext400">SREF</span></td>
+<td><span class="qtext400">RSREF</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SSCR'</span></td>
+<td>Description of the selection screen</td>
+<td><span class="qtext400">RSSCR</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'STCO'</span></td>
+<td>Load table <span class="qtext400">STCO</span></td>
+<td><span class="qtext">x</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'STOR'</span></td>
+<td>Initial values of the global data</td>
+<td><span class="qtext">x</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'STIX'</span></td>
+<td>Load table <span class="qtext400">SREF</span></td>
+<td><span class="qtext400">RSTIX</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMB'</span></td>
+<td>Symbol table</td>
+<td><span class="qtext400">RSYMB</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBDATA'</span></td>
+<td>Load table <span class="qtext400">SYMBDATA</span></td>
+<td><span class="qtext400">RSYMBDATA</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBEVNT'</span></td>
+<td>Load table <span class="qtext400">SYMBEVNT</span></td>
+<td><span class="qtext400">RSYEV</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBINTFEVNT'</span></td>
+<td>Load table <span class="qtext400">SYMBINTFEVNT</span></td>
+<td><span class="qtext400">RSYIEV</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBINTFMETH'</span></td>
+<td>Load table <span class="qtext400">SYMBINTFMETH</span></td>
+<td><span class="qtext400">RSYIME</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBMETH'</span></td>
+<td>Load table <span class="qtext400">SYMBMETH</span></td>
+<td><span class="qtext400">RSYME</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBMETHEXCP'</span></td>
+<td>Load table <span class="qtext400">SYMBMETHEXCP</span></td>
+<td><span class="qtext400">RSYME</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'SYMBMETHPARM'</span></td>
+<td>Load table <span class="qtext400">SYMBMETHPARM</span></td>
+<td><span class="qtext400">RSYME</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'TPLR'</span></td>
+<td>Load table <span class="qtext400">TPLR</span></td>
+<td><span class="qtext400">RTPLR</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'TRIG'</span></td>
+<td>Event or time control blocks</td>
+<td><span class="qtext400">RTRIG</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'TXID'</span></td>
+<td>Index of text elements (assignment of text keys to data control blocks)</td>
+<td><span class="qtext400">RTXID</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'TYPE'</span></td>
+<td>Description of the data types</td>
+<td><span class="qtext400">RTYPE</span></td>
+</tr>
+<tr>
+<td><span class="qtext">'VTAB'</span></td>
+<td>Offsets for all methods (classes, <a href="javascript:call_link('abenevent_handler_glosry.htm')" class="grey" title="词汇表条目">event handlers</a>, instances, interfaces)</td>
+<td><span class="qtext400">RVTAB</span></td>
+</tr>
+</table><br>
+<p>
+<span class="bold">Comment on <span class="qtext400">DATA</span> and <span class="qtext400">DATV</span>:</span>
+</p>
+<p>
+To find the data description that belongs to a data index i, proceed as follows: <br>
+</p>
+<dl><dd>
+<span class="qtext">&nbsp;&nbsp; 0 &lt;= i &lt; 2^14&nbsp;&nbsp;==>&nbsp;&nbsp;i+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index in data_itab <br>
+2^14 &lt;= i &lt; 2^15&nbsp;&nbsp;==>&nbsp;&nbsp;i+1 - 2^14 index in datv_itab <br>2^15 &lt;= i &lt; 2^16&nbsp;&nbsp;==>&nbsp;&nbsp;i+1 - 2^15 parameter index</span> <br>
+</dd></dl>
+<p>
+(2^14 = 16384, 2^15 = 32768) <br><br>
+</p>
+<p>
+<span class="bold">Comment on line type <span class="qtext">x</span>:</span>
+</p>
+<p>
+If the line type <span class="qtext">x</span> is specified for the internal table, the width of the internal table determines the line break. <br><br>
+</p>
+<p>
+<span class="bold">System Fields</span>
+</p>
+<table border>
+<tr>
+<td><span class="qtext">sy-subrc</span></td>
+<td>Meaning</td>
+</tr>
+<tr>
+<td>0</td>
+<td>The load of the program <span class="qtext">prog</span> exists and is up-to-date. The internal table <span class="qtext">itab</span> was filled.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The load of the program <span class="qtext">prog</span> does not exist.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>The load of the program <span class="qtext">prog</span> exists, but is not up-to-date. In special
+cases, this <span class="qtext">sy-subrc</span> can also mean that the program load has been destroyed. This can be fixed by generating again. In <span class="qtext">PART 'LREF'</span>, <span class="qtext">sy-subrc =
+8</span> means that the line reference table does not fit the program. In <span class="qtext">PART 'CONT'</span>, the reference part of the internal table is not filled.</td>
+</tr>
+</table><br>
+<p><span class="h4">
+<a href="javascript:call_link('abenabap_language_exceptions.htm')" class="blue">Exceptions</a>
+</span></p>
+<p>
+<span class="bold">Uncatchable Exceptions</span> <br><br>
+</p>
+<ul class="disc">
+<li><span class="italic">Cause:</span> An invalid description has been specified in <span class="qtext">PART</span> . <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">LOAD_REPORT_PART_NOT_FOUND</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The specified internal table is too short. <br><span class="italic">Runtime error:</span> <span class="qtext400">LOAD_REPORT_TABLE_TOO_SHORT</span> <br><br></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

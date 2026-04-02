@@ -1,0 +1,126 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENHANA_TYPE_MAPPING -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABENHANA_TYPE_MAPPING">
+<title>
+ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenhana_type_mapping.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenhana_type_mapping.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<table border>
+<tr>
+<td><span class="bold">HANA Type</span></td>
+<td><span class="bold">Meaning</span></td>
+<td><span class="bold">Type in ABAP Dictionary</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">SMALLINT</span></td>
+<td>2-byte integer</td>
+<td><span class="qtext400">INT2</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">INTEGER</span></td>
+<td>4-byte integer</td>
+<td><span class="qtext400">INT4</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">BIGINT</span></td>
+<td>8-byte integer</td>
+<td><span class="qtext400">INT8</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">DECIMAL</span></td>
+<td>Packed number</td>
+<td><span class="qtext400">DEC</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">SMALLDECIMAL</span></td>
+<td>Packed number</td>
+<td><span class="qtext400">DEC</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">FLOAT</span></td>
+<td>Binary floating point number</td>
+<td><span class="qtext400">FLTP</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">NVARCHAR</span></td>
+<td>Unicode character string</td>
+<td><span class="qtext400">CHAR</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">VARBINARY</span></td>
+<td>Byte string</td>
+<td><span class="qtext400">RAW</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">BLOB</span></td>
+<td>Byte string</td>
+<td><span class="qtext400">RAWSTRING</span></td>
+</tr>
+<tr>
+<td><span class="qtext400">NCLOB</span></td>
+<td>Unicode character string</td>
+<td><span class="qtext400">STRING</span></td>
+</tr>
+</table><br>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

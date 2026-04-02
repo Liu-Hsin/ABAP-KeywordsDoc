@@ -1,0 +1,184 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_SERVICE_BINDINGS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP CDS - Service Bindings">
+<title>
+ABAP CDS - Service Bindings - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_service_bindings.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_service_bindings.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_rap_objects.htm')" class="blue">ABAP CDS - RAP Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_business_services.htm')" class="blue">ABAP CDS - RAP Business Services (BS)</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP CDS - Service Bindings
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+A service binding is a <a href="javascript:call_link('abenrepository_object_glosry.htm')" class="grey" title="词汇表条目">repository object</a> defined in a form-based
+<a href="javascript:call_link('abenadt_glosry.htm')" class="grey" title="词汇表条目">ABAP Development Tool (ADT)</a> that binds a
+<a href="javascript:call_link('abencds_service_definition_glosry.htm')" class="grey" title="词汇表条目">service definition</a> in ABAP CDS with a
+<a href="javascript:call_link('abenrestful_glosry.htm')" class="grey" title="词汇表条目">RESTful</a> protocol and provides it as a
+<a href="javascript:call_link('abenbusiness_service_glosry.htm')" class="grey" title="词汇表条目">business service</a> for use outside <a href="javascript:call_link('abenas_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a>.
+</p>
+<p>
+Different variants of <a href="javascript:call_link('abenodata_glosry.htm')" class="grey" title="词汇表条目">OData</a> can be used as the <a href="javascript:call_link('abenrestful_glosry.htm')" class="grey" title="词汇表条目">RESTful</a> protocol:
+</p>
+<ul class="disc">
+<li>OData in versions 2 and 4</li>
+</ul>
+<ul class="disc">
+<li>OData for UIs or Web APIs</li>
+</ul>
+<ul class="circlem2">
+<li>OData for UIs is designed for access to business services using UI technologies like
+<a href="javascript:call_link('abensapui5_glosry.htm')" class="grey" title="词汇表条目">SAPUI5</a>. The data provided by a business service contains control elements for user interfaces. These elements are themselves defined by
+<a href="javascript:call_link('abenfrmwrk_annotation_glosry.htm')" class="grey" title="词汇表条目">framework-specific annotations</a> in the
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entities</a> in question.</li>
+</ul>
+<ul class="circlem2">
+<li>OData for Web APIs is limited to the data-only content of the business services and does not contain any control elements for user interfaces.</li>
+</ul>
+<p>
+When a service binding is activated, it makes the business service accessible in accordance with the protocol used. This involves using internal frameworks such as
+<a href="javascript:call_link('abensap_gateway_glosry.htm')" class="grey" title="词汇表条目">SAP Gateway</a> and
+<a href="javascript:call_link('abensadl_glosry.htm')" class="grey" title="词汇表条目">SADL</a> to generate the objects in question.
+<a href="javascript:call_link('abenicf_glosry.htm')" class="grey" title="词汇表条目">ICF</a> services visible in transaction <span class="lnkgrey">
+<span class="qtext400">SICF</span></span> are created to provide access to the OData-based data outside AS ABAP:
+</p>
+<ul class="disc">
+<li>The ICF node of a service binding is <span class="qtext400">/sap/opu/odata/sap/SB_NAME</span>, where <span class="qtext400">SB_NAME</span> is the name of the service binding in uppercase letters.</li>
+</ul>
+<ul class="disc">
+<li>A client can access the ICF node and use it for reads in accordance with the OData protocol, for example as follows:</li>
+</ul>
+<ul class="circlem2">
+<li>Access to the metadata of the OData service <br> <br><span class="qtext400">.../sap/opu/odata/sap/SB_NAME/$metadata</span></li>
+</ul>
+<ul class="circlem2">
+<li>Access to the data of a CDS entity <span class="qtext400">cds_entity</span> exposed in the service definition: <br> <br><span class="qtext400">.../sap/opu/odata/sap/SB_NAME/cds_entity</span></li>
+</ul>
+<ul class="circlem2">
+<li>Passing formal parameters to CDS entities with input parameters <br> <br><span class="qtext400">.../sap/opu/odata/sap/SB_NAME/cds_entity(p1=...,p2=...,...)</span></li>
+</ul>
+<ul class="circlem2">
+<li>Path specified for CDS entities with CDS associations whose <a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association targets</a> are exposed in the service definition <br>
+ <br><span class="qtext400">.../sap/opu/odata/sap/SB_NAME/cds_entity?$expand=to.../to...</span></li>
+</ul>
+<ul class="disc">
+<li>If the service binding for the <a href="javascript:call_link('abenroot_entity_glosry.htm')" class="grey" title="词汇表条目">root entity</a> of a
+<a href="javascript:call_link('abenrap_bo_glosry.htm')" class="grey" title="词汇表条目">RAP business object</a> is defined by the
+<a href="javascript:call_link('abencds_behavior_definition_glosry.htm')" class="grey" title="词汇表条目">CDS behavior definition</a>
+and behavior pools, transactional HTTP POST requests can be used to access the ICF node. The internal
+frameworks are responsible for calling the methods of the handler classes in the behavior pools in the correct order.</li>
+</ul>
+<p>
+When a service binding is activated, the service definition used is checked to verify whether it meets the requirements of the internal underlying framework. The following restrictions currently apply:
+</p>
+<ul class="disc">
+<li>The CDS entities of the service definition must have at least one key field.</li>
+</ul>
+<ul class="disc">
+<li>The <a href="javascript:call_link('abencardinality_glosry.htm')" class="grey" title="词汇表条目">cardinality</a> of CDS associations must be defined correctly.</li>
+</ul>
+<ul class="disc">
+<li>No service binding can be defined for service definitions that expose CDS abstract entities.</li>
+</ul>
+<ul class="disc">
+<li>The input parameters of the CDS entities must be typed with reference to data elements. A direct typing with built-in dictionary types is not allowed.</li>
+</ul>
+<ul class="disc">
+<li>Depending on the OData version, not all data types are supported for the elements of the CDS entities.</li>
+</ul>
+<ul class="disc">
+<li>The names of <a href="javascript:call_link('abenbdl_action.htm')" class="blue">actions</a> defined in CDS BDL cannot produce naming conflicts and cannot exceed a certain length, as specified by the OData version.</li>
+</ul>
+<ul class="disc">
+<li>The parameter structure of <a href="javascript:call_link('abenbdl_action.htm')" class="blue">actions</a> defined in CDS BDL cannot overlap with the key fields of the CDS entity.</li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>A service binding is not a <a href="javascript:call_link('abencds_object_glosry.htm')" class="grey" title="词汇表条目">CDS object</a> defined in
+<a href="javascript:call_link('abencds_source_code_glosry.htm')" class="grey" title="词汇表条目">CDS source code</a>.</li>
+</ul>
+<ul class="disc">
+<li>Once a service binding is activated, the form-based
+<a href="javascript:call_link('abenadt_glosry.htm')" class="grey" title="词汇表条目">ABAP Development Tool (ADT)</a> shows the associated URL and enables comprehensive testing of the service.</li>
+</ul>
+<ul class="disc">
+<li>The default HTTP request handler of an <a href="javascript:call_link('abenicf_glosry.htm')" class="grey" title="词汇表条目">ICF</a> service created when a service binding is activated is the class <span class="lnkgrey"><span
+ class="qtext400">/IWFND/CL_SODATA_HTTP_HNDL_OAT</span></span> in <a href="javascript:call_link('abensap_gateway_glosry.htm')" class="grey" title="词汇表条目">SAP Gateway</a>.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abensap_gateway_glosry.htm')" class="grey" title="词汇表条目">SAP Gateway</a> offers so called
+<span class="lnkgrey">OData Client Proxies</span> in order to access OData data of an AS ABAP. These can be especially used for OData data of business services.</li>
+</ul>
+<p><span class="h4">
+Executable Examples
+</span></p>
+<p>
+See <span class="lnkgrey">Consuming Business Services</span>.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

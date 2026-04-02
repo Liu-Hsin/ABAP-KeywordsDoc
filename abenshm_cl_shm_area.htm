@@ -1,0 +1,677 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSHM_CL_SHM_AREA -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Shared Objects - CL_SHM_AREA">
+<title>
+Shared Objects - CL_SHM_AREA - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenshm_cl_shm_area.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenshm_cl_shm_area.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencreate_objects.htm')" class="blue">Creating Objects and Values</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_shared_objects.htm')" class="blue">Shared Objects</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenshm_classes.htm')" class="blue">Shared Objects - Classes and Interfaces</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue">Shared Objects - CL_ABAP_MEMORY_AREA</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@CL_SHM_AREA@@!ABAP_CLASS!@@"></A>
+<p><span class="h1">
+Shared Objects - CL_SHM_AREA
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+The class <span class="lnkgrey"><span class="qtext400">CL_SHM_AREA</span></span> is a subclass of <a href="javascript:call_link('abenshm_cl_abap_memory_area.htm')" class="blue">
+<span class="qtext400">CL_ABAP_MEMORY_AREA</span></a> and the superclass of all area classes that are
+generated when an area is created using transaction <span class="lnkgrey"><span class="qtext400">SHMA</span></span>. This class contains general attributes and methods for the corresponding
+<a href="javascript:call_link('abenarea_handle_glosry.htm')" class="grey" title="词汇表条目">area handles</a>.
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_1" class="blue">Instance Attributes</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_2" class="blue">PROPERTIES</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_3" class="blue">INST_NAME</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_4" class="blue">CLIENT</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_5" class="blue">Static Methods</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_6" class="blue">MULTI_ATTACH</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_7" class="blue">DETACH_ALL_AREAS</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_8" class="blue">Instance Methods</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_9" class="blue">DETACH</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_10" class="blue">DETACH_COMMIT</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_11" class="blue">DETACH_ROLLBACK</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_12" class="blue">GET_LOCK_KIND</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_13" class="blue">GET_ROOT</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_14" class="blue">Instance Events</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_15" class="blue">SHM_COMMIT_EVENT</A></li>
+</ul>
+<ul class="circlem2">
+<li><A HREF="#@@ITOC@@ABENSHM_CL_SHM_AREA_16" class="blue">SHM_ROLLBACK_EVENT</A></li>
+</ul>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_1"></A>
+<p><span class="h2">
+Instance Attributes
+</span></p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_2"></A>
+<p><span class="h3">
+PROPERTIES
+</span></p>
+<p>
+Structure of type <span class="qtext400">SHM_PROPERTIES</span> with the property <span class="qtext">READ-ONLY</span>.
+The components of the structure contain area properties that are generally set using transaction <span class="qtext400">SHMA</span>. The components of the structure are as follows:
+</p>
+<ul class="disc">
+<li><span class="qtext400">AUTO_BUILD</span></li>
+</ul>
+<dl><dd>
+If the value is <span class="qtext">abap_true</span>, the area instance versions of the area can be
+built automatically. The prerequisite for the value <span class="qtext">abap_true</span> is that the
+component <span class="qtext400">AUTO_BUILD_CLASS</span> is not initial. If the value is <span class="qtext">abap_false</span>, the area instance versions of an area cannot be built automatically.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">AUTO_BUILD_CLASS</span></li>
+</ul>
+<dl><dd>
+Contains the name of the <a href="javascript:call_link('abenshm_area_constructor_class.htm')" class="blue">area constructor
+class</a> that implements the constructor <span class="qtext">BUILD</span> using the interface <a href="javascript:call_link('abenshm_if_shm_build_instance.htm')" class="blue">
+<span class="qtext">IF_SHM_BUILD_INSTANCE</span></a> to rebuild area instance versions automatically.
+This component is only filled if the area handle is bound by a change lock to an area instance version and is otherwise initial.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">BUILD_KIND</span></li>
+</ul>
+<dl><dd>
+Controls when area instance versions of the area are to be built automatically using the area constructor in the
+<a href="javascript:call_link('abenshm_area_constructor_class.htm')" class="blue">area constructor class</a>. If the value is
+<span class="qtext400">CL_SHM_AREA=>BUILD_KIND_NONE</span>, area instance versions are not built automatically.
+This is always the case if the component <span class="qtext400">AUTO_BUILD</span> has the value <span class="qtext">
+abap_false</span>. If the component <span class="qtext400">AUTO_BUILD</span> has the value <span class="qtext">abap_true</span>, the component <span class="qtext400">BUILD_KIND</span> can have the values <span
+ class="qtext400">CL_SHM_AREA=>BUILD_KIND_DUE_TO_READ_REQUEST</span> or <span class="qtext400">CL_SHM_AREA=>BUILD_KIND_DUE_TO_INVALIDATION</span>.
+If the component has the value <span class="qtext400">CL_SHM_AREA=>BUILD_KIND_DUE_TO_READ_REQUEST</span>
+and no active area instance versions exist, the area constructor is called automatically during a read access. If it has the value <span
+ class="qtext400">CL_SHM_AREA=>BUILD_KIND_DUE_TO_INVALIDATION</span>, the area constructor is called
+in the same way as with value <span class="qtext400">CL_SHM_AREA=>BUILD_KIND_DUE_TO_READ_REQUEST</span>.
+Furthermore, the constructor is called in transitions from an active version to an obsolete or expired version, without creating an active area instance version.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">CLIENT_DEPENDENT</span></li>
+</ul>
+<dl><dd>
+If the value is <span class="qtext">abap_true</span>, the area is client-dependent. Area instance versions
+of the same area are distinguished by the current client ID in the attribute <span class="qtext">CLIENT</span>
+and using their names. If the component has the value <span class="qtext">abap_false</span> (default setting), the area is client-independent and <span class="qtext">CLIENT</span> is initial.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">DISPLACE_KIND</span></li>
+</ul>
+<dl><dd>
+Controls whether area instance versions of the area can be displaced. If the value is <span class="qtext400">CL_SHM_AREA=>DISPLACE_KIND_NONE</span>, they cannot be displaced (default setting). If the value is <span
+ class="qtext400">CL_SHM_AREA=>DISPLACE_KIND_SERIALIZABLE</span>, they can be displaced. Before displacements,
+the content is serialized, saved persistently and is reloaded into the shared memory during a read or
+update on the area instance version. The prerequisite for this is that each class instantiated in the
+area instance has to implement the interface <span class="lnkgrey"><span class="qtext400">IF_SERIALIZABLE_OBJECT</span></span>. If the component has the value <span
+ class="qtext400">CL_SHM_AREA=>DISPLACE_KIND_DISPLACABLE</span>, the area instance versions can be displaced.
+Here, the content is lost if there is a displacement (full displacement). Displacements only take place if no area handle is bound to an area instance version of the displaceable area instance at the same time.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">HAS_VERSIONS</span></li>
+</ul>
+<dl><dd>
+If the value is <span class="qtext">abap_true</span>, the area supports versioning. If the value is <span class="qtext">abap_false</span>, there is a maximum of one single area instance version.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">IDLE_TIME</span></li>
+</ul>
+<dl><dd>
+Determines how many minutes an area instance version remains in the shared memory after a change lock
+or read lock has been released before it is deleted automatically. If the value is 0 (default setting),
+the area instance version is not deleted automatically. Values other than 0 are only possible if the
+components <span class="qtext400">INVALIDATE_TIME</span> and <span class="qtext400">REFRESH_TIME</span>
+both have the value 0. In the case of transactional areas, time measurement starts with the first database commit after a lock is released using the method <span class="qtext400">DETACH_COMMIT</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">INVALIDATE_TIME</span></li>
+</ul>
+<dl><dd>
+Determines after how many minutes an area instance version becomes obsolete after an change lock is
+released. If the value is 0 (default setting), an area instance version never becomes obsolete. Values
+other than 0 are only possible if the components <span class="qtext400">IDLE_TIME</span> and <span class="qtext400">REFRESH_TIME</span>
+both have the value 0. In the case of transactional areas, time measurement starts with the first database commit after a lock is released using the method <span class="qtext400">DETACH_COMMIT</span>.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">LIFE_CONTEXT</span></li>
+</ul>
+<dl><dd>
+Determines  the visibility and lifetime of the area instance versions of the area. If it has the value <span
+ class="qtext400">CL_SHM_AREA=>LIFE_CONTEXT_APPSERVER</span>, the area instance versions exist until
+the AS instance is shut down (default value). If it has the value <span class="qtext400">CL_SHM_AREA=>LIFE_CONTEXT_SESSION</span>, the area instances exist until the last
+<a href="javascript:call_link('abenabap_session_glosry.htm')" class="grey" title="词汇表条目">ABAP session</a> of the current user
+ends. If it has the value <span class="qtext400">CL_SHM_AREA=>LIFE_CONTEXT_MODE</span>, the area instances
+exist for as long as the current ABAP session. If it has the value <span class="qtext400">CL_SHM_AREA=>LIFE_CONTEXT_MEMORY</span>,
+the area instances exist for as long as the data exists in the ABAP memory in the current call sequence.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">MAX_AREA_SIZE</span></li>
+</ul>
+<dl><dd>
+Specifies the maximum allowed size of an area in KB, where the size of an area matches the total memory
+requirement of all area instance versions of the area. The default value is currently 0 and does not restrict the size.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">MAX_VERSION_SIZE</span></li>
+</ul>
+<dl><dd>
+Specifies the maximum allowed size of an area in KB, where the size of an area matches the total memory
+requirement of all area instance versions of the area. The default value is currently 0 and does not restrict the size.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">MAX_VERSIONS</span></li>
+</ul>
+<dl><dd>
+Specifies the maximum number of area instance versions for an area instance of an area. Obsolete areas
+are not counted. The default value is 0 and does not restrict the size. If the component <span class="qtext400">HAS_VERSIONS</span>
+has the value <span class="qtext">abap_false</span>, <span class="qtext400">MAX_VERSIONS</span> is always 1. Otherwise, <span class="qtext400">MAX_VERSIONS</span> can be any non-negative integer other than 1.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">REFRESH_TIME</span></li>
+</ul>
+<dl><dd>
+Specifies after how many minutes an area instance version is rebuilt by an automatic call of the area
+constructor. If the value is 0 (default setting), an area instance version is never rebuilt automatically.
+Values other than 0 are only possible if the components <span class="qtext400">IDLE_TIME</span> and
+<span class="qtext400">INVALIDATE_TIME</span> both have the value 0. In the case of transactional areas,
+time measurement starts with the first database commit after a lock is released using the method <span class="qtext400">
+DETACH_COMMIT</span>. The prerequisite is that an active version of the area instance version exists
+at the start of the build. If the method <span class="qtext400">DETACH_COMMIT</span> was not successful,
+the previous area instance version is preserved for an area with versioning and the automatic rebuild
+raises appropriate exceptions. The area constructor can catch the exceptions <span class="qtext">CATCH
+CX_SHM_ERROR</span> and <span class="qtext400">CX_SHM_FAILURE</span> itself and, for example, call the
+method <span class="qtext">INVALIDATE_INSTANCE</span> of the area class to explicitly  delete a preceding
+area instance version. If an automatic area build fails due to the failure of the method <span class="qtext400">DETACH_COMMIT</span>, no automatic rebuilds take place until the method is executed successfully.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">TRANSACTIONAL</span></li>
+</ul>
+<dl><dd>
+If the value is <span class="qtext">abap_true</span>, the area is transactional (default setting). Any
+changes to the area instance versions of the area only become active after the next database commit
+after the method <span class="qtext400">DETACH_COMMIT</span> is executed. If the value is <span class="qtext">abap_false</span>,
+the area is not transactional, and changes become active immediately after the method <span class="qtext400">DETACH_COMMIT</span> is executed.
+</dd></dl>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_3"></A>
+<p><span class="h3">
+INST_NAME
+</span></p>
+<p>
+Text field of type <span class="qtext400">SHM_INST_NAME</span> with the property <span class="qtext">READ-ONLY</span>.
+This attribute contains the name of the current area instance and it is set when an area instance is created using the method <span class="qtext400">ATTACH_FOR_WRITE</span> of the
+<a href="javascript:call_link('abenshm_area_class.htm')" class="blue">area class</a>.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_4"></A>
+<p><span class="h3">
+CLIENT
+</span></p>
+<p>
+Text field of type <span class="qtext400">MANDT</span> with the property <span class="qtext">READ-ONLY</span>.
+In client-dependent areas (the component <span class="qtext400">CLIENT_DEPENDENT</span> of the structure
+<span class="qtext400">PROPERTIES</span> has the value <span class="qtext">abap_true</span>), this attribute contains the current client ID of the area instance. This attribute is initial in a client-independent area.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_5"></A>
+<p><span class="h2">
+Static Methods
+</span></p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_6"></A>
+<p><span class="h3">
+MULTI_ATTACH
+</span></p>
+<p>
+Enables read locks, write locks, or update locks to be set at the same time on multiple area instances
+of one or more areas. The method <span class="qtext400">MULTI_ATTACH</span> is the only way to have write access to multiple area instances at the same time or, in other words, to set multiple change locks at once.
+</p>
+<p><span class="h4">
+Input/Output Parameters
+</span></p>
+<ul class="disc">
+<li><span class="qtext400">ATTACH_TAB</span> of type <span class="qtext400">SHM_ATTACH_TAB</span></li>
+</ul>
+<dl><dd>
+Internal table whose lines contain information about the individually requested locks. The components of the lines are as follows:
+</dd></dl>
+<ul class="circlem2">
+<li><span class="qtext400">AREA_NAME</span> of type <span class="qtext400">SHM_AREA_NAME</span> <br> <br>Area name</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">INST_NAME</span> of type <span class="qtext400">SHM_INST_NAME</span> <br> <br>
+Name of the area instance. If the area instance is to be accessed using the default name, the value <span class="qtext400">CL_SHM_AREA=>DEFAULT_INSTANCE</span> must be passed.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext">CLIENT</span> of type <span class="qtext400">MANDT</span> <br> <br>Client ID
+for client-dependent areas. If the area instance is to be accessed using the current client ID, the current client must also be passed. The component must be initial in the case of client-independent areas.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">LOCK_KIND</span> of type <span class="qtext400">SHM_LOCK_KIND</span> <br> <br>
+Access type. Possible values are <span class="qtext400">CL_SHM_AREA=>LOCK_KIND_READ</span>, <span class="qtext400">CL_SHM_AREA=>LOCK_KIND_WRITE</span>, or <span class="qtext400">CL_SHM_AREA=>LOCK_KIND_UPDATE</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">ATTACH_MODE</span> of type <span class="qtext400">SHM_ATTACH_MODE</span> <br>
+ <br>Behavior for change access. Possible values are <span class="qtext400">CL_SHM_AREA=>ATTACH_MODE_DEFAULT</span>, <span
+ class="qtext400">CL_SHM_AREA=>ATTACH_MODE_DETACH_READER</span>, or <span class="qtext400">CL_SHM_AREA=>ATTACH_MODE_WAIT</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext">LEVEL</span> of type <span class="qtext">i</span> <br> <br>Order in which the
+locks are set. Table lines with smaller values in the column are evaluated before table lines with larger values. If the values are equal, the order of the lines in the table is used as the deciding factor.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext">HANDLE</span> of type <span class="qtext">REF TO cl_shm_area</span> <br> <br>If
+successful, this column returns a reference to an area handle for the area instance version for which
+the lock was requested. If an exception is raised, the value of the column is initial for all or for
+only the affected lines, depending on the value of the input parameter <span class="qtext400">IGNORE_ERRORS</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext">EXCEPTION</span> of type <span class="qtext">REF TO cx_root</span> <br> <br>If
+an exception is raised, this column returns a reference to the exception object for either one line
+or all affected lines, depending on the value of <span class="qtext400">IGNORE_ERRORS</span>. In addition
+to the exceptions of <span class="qtext400">ATTACH</span> methods for settings individual locks in the
+area class, the exception <span class="qtext400">CX_SHM_MULTI_ATTACH_ERROR</span> can also be raised
+in the following cases: a write lock and an update lock are requested at the same time on an area instance
+version (exception text: <span class="qtext400">DUPLICATE_CHANGE_LOCK</span>), a lock for a client other
+than the current client is requested on an area instance version with automatic area building (exception
+text: <span class="qtext400">ILLEGAL_AUTO_BUILD_CLIENT</span>), a client ID is specified for a client-independent
+area (exception text: <span class="qtext400">ILLEGAL_CLIENT_FOR_AREA</span>). If this is successful, the column is initial.</li>
+</ul>
+<dl><dd>
+For more information about the individual components, see also the description of the parameters of the <span class="qtext400">ATTACH</span> methods for setting individual locks in the
+<a href="javascript:call_link('abenshm_area_class.htm')" class="blue">area class</a>.
+</dd></dl>
+<p><span class="h4">
+Input Parameters
+</span></p>
+<ul class="disc">
+<li><span class="qtext400">IGNORE_ERRORS</span> of type <span class="qtext">abap_bool</span></li>
+</ul>
+<dl><dd>
+Controls error handling of methods. Possible values are <span class="qtext">abap_true</span> and <span class="qtext">abap_false</span>.
+</dd></dl>
+<ul class="circlem2">
+<li>If <span class="qtext">abap_true</span> is passed, the system attempts to set the remaining locks
+after an exception when setting a lock. In the lines of the <span class="qtext400">ATTACH_TAB</span>
+parameter where an error occurred, the reference to the area handle in the <span class="qtext">HANDLE</span>
+column is initialized and the reference in the <span class="qtext">EXCEPTION</span> column is set to the associated exception object.</li>
+</ul>
+<ul class="circlem2">
+<li>If <span class="qtext">abap_false</span> is passed, the method is terminated after an exception
+when setting a lock. The column <span class="qtext">HANDLE</span> is initialized in all lines of the
+parameter <span class="qtext400">ATTACH_TAB</span>. The reference is set to the corresponding exception object in the column <span class="qtext">EXCEPTION</span> in the line where the error occurred.</li>
+</ul>
+<dl><dd>
+All area instances for which an error occurs in the method <span class="qtext400">MULTI_ATTACH</span>
+have the same state after the method ends as before the method was called, that is, the previous locks and the statuses remain the same.
+</dd></dl>
+<ul class="disc">
+<li><span class="qtext400">WAIT_TIME</span> of the type <span class="qtext">i</span></li>
+</ul>
+<dl><dd>
+Specifies the wait time in milliseconds for all lines of the parameter <span class="qtext400">ATTACH_TAB</span>
+for which the value <span class="qtext400">CL_SHM_AREA=>ATTACH_MODE_WAIT</span> is specified in the
+column <span class="qtext400">ATTACH_MODE</span>. The wait time must be greater than or equal to 0 and
+is distributed to the corresponding lock requests. If multiple change locks are to be set and the first
+lock can be set during the wait time, the remaining wait time can be used by the other locks. The time available for the remaining lines is therefore reduced by the time used each time such a line is evaluated.
+</dd></dl>
+<p>
+<span class="bold">Caution</span>
+</p>
+<p>
+In the case of change locks with a wait time that are set using <span class="qtext400">MULTI_ATTACH</span>,
+the same mutual exclusions apply as to the methods <span class="qtext400">ATTACH_FOR_WRITE</span> and
+<span class="qtext400">ATTACH_FOR_UPDATE</span> of the area class, which may prevent locks from being
+set. For example, if a <span class="qtext400">MULTI_ATTACH</span> with a wait time is executed in parallel
+in two programs, where program 1 first sets a change lock A and then a change lock B, program 2 does
+this in reverse order, and then lock A is successfully set in program 1 and lock B is set in program
+2, at least one second lock cannot be set. If there is a lock request for the second lock (lock B in program 1 and lock A in program 2), each program must wait for the wait time of the other program to have expired.
+</p>
+<p><span class="h4">
+Output Parameters
+</span></p>
+<ul class="disc">
+<li><span class="qtext400">ERROR_FLAG</span> of type <span class="qtext">abap_bool</span></li>
+</ul>
+<dl><dd>
+Indicates whether one or more exceptions were raised during the method. If <span class="qtext400">ERROR_FLAG</span>
+has the value <span class="qtext">abap_false</span>, all locks were set successfully. If <span class="qtext400">ERROR_FLAG</span>
+has the value <span class="qtext">abap_true</span>, not all locks could be set and, depending on the
+value of the input parameter <span class="qtext400">IGNORE_ERRORS</span>, one or more lines of the column
+<span class="qtext">EXCEPTION</span> of the parameter <span class="qtext400">ATTACH_TAB</span> contain references to the exception object or objects.
+</dd></dl>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_7"></A>
+<p><span class="h3">
+DETACH_ALL_AREAS
+</span></p>
+<p>
+Releases all locks of the current <a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal
+session</a> on any area instance versions of any areas, and thus deactivates all of the area handles
+of the internal session. If a write lock or update lock is released, any changes that were made to area instance versions are discarded until then.
+</p>
+<p><span class="h4">
+Return Value
+</span></p>
+<ul class="disc">
+<li><span class="qtext400">RC</span> of type <span class="qtext400">SHM_RC</span></li>
+</ul>
+<dl><dd>
+Possible values:
+</dd></dl>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>RC_DONE</span> if all locks were released.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>RC_NOTHING_TO_BE_DONE</span> if no locks were released because no locks existed in the first place.</li>
+</ul>
+<p>
+<span class="bold">Note</span>
+</p>
+<p>
+The method <span class="qtext400">DETACH_ALL_AREAS</span> does not require any input parameters for
+the client ID, since it accesses both client-dependent and client-independent area instances independently
+of the client. To delete all locks in a special client, the corresponding area handles must be accessed individually. These can be managed in an internal table.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_8"></A>
+<p><span class="h2">
+Instance Methods
+</span></p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_9"></A>
+<p><span class="h3">
+DETACH
+</span></p>
+<p>
+Releases the read lock on the current area handle. The area handle is then inactive.
+</p>
+<p><span class="h4">
+Exceptions
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_WRONG_HANDLE</span></span></li>
+</ul>
+<dl><dd>
+An change lock was active and not a read lock (exception text: <span class="qtext">READ_HANDLE_REQUIRED</span>)
+</dd></dl>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_ALREADY_DETACHED</span></span></li>
+</ul>
+<dl><dd>
+No read lock was active.
+</dd></dl>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_10"></A>
+<p><span class="h3">
+DETACH_COMMIT
+</span></p>
+<p>
+Releases a change lock (write lock or update lock) on the current area handle and confirms the changes
+that were made. The area handle is then inactive. The prerequisite is that the current area instance version contains an instance of the area root class (
+<a href="javascript:call_link('abenroot_object_glosry.htm')" class="grey" title="词汇表条目">root object</a>) and that there are no references from the area instance version to a different area instance of the shared objects memory or to the
+<a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a>.
+</p>
+<p>
+If an exception is raised when the method is executed, the change lock is not released correctly. It
+remains the same but cannot be released a second time using the method <span class="qtext400">DETACH_COMMIT</span>. The <span class="qtext400">DETACH_ROLLBACK</span> can be used instead.
+</p>
+<p>
+In the case of non-transactional areas (component <span class="qtext400">TRANSACTIONAL</span> of the
+structure <span class="qtext400">PROPERTIES</span> has the value <span class="qtext">abap_false</span>),
+any changes to the current area instance version are active immediately after the method <span class="qtext400">DETACH_COMMIT</span>
+is executed. In the case of transactional areas (component <span class="qtext400">TRANSACTIONAL</span>
+of the structure <span class="qtext400">PROPERTIES</span> has the value <span class="qtext">abap_true</span>),
+the changes that are completed when the method <span class="qtext400">DETACH_COMMIT</span> is executed
+are not active until the next database commit. The following rules apply in the time between the completion of the method <span class="qtext400">DETACH_COMMIT</span> and the next database commit:
+</p>
+<ul class="disc">
+<li>In the case of transactional areas with versioning, all requested read locks access the previous version.</li>
+</ul>
+<ul class="disc">
+<li>No reads are possible for transactional areas without versioning.</li>
+</ul>
+<ul class="disc">
+<li>It is not possible to set a new change lock for areas with or without versioning.</li>
+</ul>
+<p>
+When the method <span class="qtext400">DETACH_COMMIT</span> is called, the event <span class="qtext400">SHM_COMMIT_EVENT</span> of the generated area class is raised automatically before it is executed
+</p>
+<p><span class="h4">
+Exceptions
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_WRONG_HANDLE</span></span></li>
+</ul>
+<dl><dd>
+A read lock was active instead of a change lock (exception text: <span class="qtext">WRITE_HANDLE_REQUIRED</span>)
+</dd></dl>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_ALREADY_DETACHED</span></span></li>
+</ul>
+<dl><dd>
+No change lock was active.
+</dd></dl>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_COMPLETION_ERROR</span></span></li>
+</ul>
+<dl><dd>
+Subclasses:
+</dd></dl>
+<ul class="circlem2">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_ROOT_OBJECT_INITIAL</span></span> <br>No root object was assigned to the area instance version.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_EXTERNAL_REFERENCE</span></span> <br>There are
+still references from the current area instance version to a different area instance of the shared objects memory or to the internal session.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_EVENT_EXECUTION_FAILED</span></span> <br>An
+exception was raised when an event handler was executed for <span class="qtext400">SHM_COMMIT_EVENT</span>. The exception raised can be read using the attribute <span class="qtext400">PREVIOUS</span>.</li>
+</ul>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_SECONDARY_COMMIT</span></span></li>
+</ul>
+<dl><dd>
+An attempt was made to release a change lock again that had failed previously using <span class="qtext400">DETACH_COMMIT</span> instead of <span class="qtext400">DETACH_ROLLBACK</span>.
+</dd></dl>
+<p>
+<span class="qtext400">CX_SHM_COMPLETION_ERROR</span> and <span class="qtext400">CX_SHM_SECONDARY_COMMIT</span> are subclasses of <span class="qtext400">CX_SHM_DETACH_ERROR</span>.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_11"></A>
+<p><span class="h3">
+DETACH_ROLLBACK
+</span></p>
+<p>
+Releases a change lock (write lock or update lock) on the current area handle and discards the changes that were made. The area handle is then inactive.
+</p>
+<p>
+For areas without versioning, there is no longer active version of the area after the method has been
+executed. The previous version is still available for areas with versioning. In the case of transactional
+areas, a new change lock can be set on the relevant area instance before the next database commit after the method <span class="qtext400">DETACH_ROLLBACK</span> has been executed.
+</p>
+<p>
+When the method <span class="qtext400">DETACH_ROLLBACK</span> is called, the event <span class="qtext400">SHM_ROLLBACK_EVENT</span> is raised automatically before it is executed.
+</p>
+<p><span class="h4">
+Exceptions
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_WRONG_HANDLE</span></span></li>
+</ul>
+<dl><dd>
+A read lock was active instead of a change lock (the exception text here is <span class="qtext">WRITE_HANDLE_REQUIRED</span>).
+</dd></dl>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_ALREADY_DETACHED</span></span></li>
+</ul>
+<dl><dd>
+No change lock was active.
+</dd></dl>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_EVENT_EXECUTION_FAILED</span></span></li>
+</ul>
+<dl><dd>
+An exception was raised when an event handler was executed for <span class="qtext400">SHM_ROLLBACK_EVENT</span>. The exception raised can be read using the attribute <span class="qtext400">PREVIOUS</span>.
+</dd></dl>
+<p>
+<span class="qtext400">CX_SHM_EVENT_EXECUTION_FAILED</span> is a subclass of <span class="qtext400">CX_SHM_COMPLETION_ERROR</span>, which is a subclass of <span class="qtext400">CX_SHM_DETACH_ERROR</span>.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_12"></A>
+<p><span class="h3">
+GET_LOCK_KIND
+</span></p>
+<p>
+Returns the type of the current lock for an area handle.
+</p>
+<p><span class="h4">
+Return Value
+</span></p>
+<ul class="disc">
+<li><span class="qtext400">LOCK_KIND</span> of type <span class="qtext400">SHM_LOCK_KIND</span></li>
+</ul>
+<dl><dd>
+Possible values:
+</dd></dl>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>LOCK_KIND_READ</span> if the area handle holds a read lock.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>LOCK_KIND_WRITE</span> if the area handle holds a write lock.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>LOCK_KIND_UPDATE</span> if the area handle holds an update lock.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>LOCK_KIND_COMPLETION_ERROR</span> if the area handle holds a change lock after the method <span class="qtext400">DETACH_COMMIT</span> ended with an exception.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">CL_SHM_AREA=>LOCK_KIND_DETACHED</span>, if the area handle does not hold any locks or is not bound to an area instance version.</li>
+</ul>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_13"></A>
+<p><span class="h3">
+GET_ROOT
+</span></p>
+<p>
+Returns a reference to the <a href="javascript:call_link('abenroot_object_glosry.htm')" class="grey" title="词汇表条目">root object</a>
+(instance of the area root class) for an area handle. This method is intended for the unlikely case
+where multiple handles need to be handled for different areas with different area root classes. Otherwise the attribute <span class="qtext">ROOT</span> of the
+<a href="javascript:call_link('abenshm_area_class.htm')" class="blue">area class</a> can be accessed directly.
+</p>
+<p><span class="h4">
+Return value
+</span></p>
+<ul class="disc">
+<li><span class="qtext">ROOT</span> of type <span class="qtext">REF TO object</span></li>
+</ul>
+<p><span class="h4">
+Exceptions
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey"><span class="qtext400">CX_SHM_ALREADY_DETACHED</span></span></li>
+</ul>
+<dl><dd>
+The area handle is not bound to an area instance version.
+</dd></dl>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_14"></A>
+<p><span class="h2">
+Instance Events
+</span></p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_15"></A>
+<p><span class="h3">
+SHM_COMMIT_EVENT
+</span></p>
+<p>
+This event is raised by the area handle automatically when the method <span class="qtext400">DETACH_COMMIT</span> is called.
+</p>
+<A name="@@ITOC@@ABENSHM_CL_SHM_AREA_16"></A>
+<p><span class="h3">
+SHM_ROLLBACK_EVENT
+</span></p>
+<p>
+This event is raised by the area handle automatically when the method <span class="qtext400">DETACH_ROLLBACK</span> is called.
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abenshm_area_class.htm')" class="blue">Shared Objects - Area Classes</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

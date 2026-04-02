@@ -1,0 +1,226 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENSPA_GPA -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="SPA/GPA Parameters in the User Memory">
+<meta name="keywords" content="ABAP, set/get parameter, spa/gpa parameter">
+<title>
+SPA/GPA Parameters in the User Memory - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenspa_gpa.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenspa_gpa.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencreate_objects.htm')" class="blue">Creating Objects and Values</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+SPA/GPA Parameters in the User Memory
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+The <a href="javascript:call_link('abenuser_memory_glosry.htm')" class="grey" title="词汇表条目">user memory</a> is a user-specific
+<a href="javascript:call_link('abenmemory_organization.htm')" class="blue">memory area</a> of the current
+<a href="javascript:call_link('abenapplication_server_glosry.htm')" class="grey" title="词汇表条目">AS instance</a>, which can be accessed by all
+<a href="javascript:call_link('abenabap_session_glosry.htm')" class="grey" title="词汇表条目">ABAP sessions</a> of a user session
+simultaneously. ABAP programs have access to SPA/GPA parameters stored in the user memory (also referred to as SET/GET parameters).
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSPA_GPA_1" class="blue">Properties of SPA/GPA parameters</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSPA_GPA_2" class="blue">SPA/GPA Parameters and ABAP Programs</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSPA_GPA_3" class="blue">Managing SPA/GPA Parameters</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABENSPA_GPA_4" class="blue">SPA/GPA Parameters and Dynpro Fields</A></li>
+</ul>
+<A name="@@ITOC@@ABENSPA_GPA_1"></A>
+<p><span class="h2">
+Properties of SPA/GPA parameters
+</span></p>
+<p>
+Each SPA/GPA parameter is identified by an ID of up to 20 characters. SPA/GPA parameters can either
+be created explicitly using the statement <a href="javascript:call_link('abapset_parameter.htm')" class="blue"><span class="qtext">SET PARAMETER</span></a>, or implicitly in a
+<a href="javascript:call_link('abenpai_glosry.htm')" class="grey" title="词汇表条目">PAI</a> event and are available to any programs
+and any sessions for the whole duration of a user session after they have been saved in the user memory.
+SPA/GPA parameters are usually evaluated by the ABAP runtime environment. In ABAP programs, they can be read using the statement <a href="javascript:call_link('abapget_parameter.htm')" class="blue"><span class="qtext">GET PARAMETER</span></a>.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+An example of a program that uses SPA/GPA parameters is the user maintenance (transaction <span class="lnkgrey"><span class="qtext400">
+SU01</span></span>). In this transaction, user-specific parameters can be entered on the <span class="italic">Parameters</span> tab page, which are then set when the user logs on to
+<a href="javascript:call_link('abenas_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a> and are evaluated by other programs.
+</p>
+<A name="@@ITOC@@ABENSPA_GPA_2"></A>
+<p><span class="h2">
+SPA/GPA Parameters and ABAP Programs
+</span></p>
+<p>
+The statements <a href="javascript:call_link('abapset_parameter.htm')" class="blue"><span class="qtext">SET PARAMETER</span></a>
+and <a href="javascript:call_link('abapget_parameter.htm')" class="blue"><span class="qtext">GET PARAMETER</span></a> of a program do not directly access the SPA/GPA parameters of the user memory.
+</p>
+<ul class="disc">
+<li>As soon as an ABAP program is rolled in to the memory, all SPA/GPA parameters of the user memory are copied to the
+<a href="javascript:call_link('abenroll_area_glosry.htm')" class="grey" title="词汇表条目">session memory</a> of the program. The
+statements <a href="javascript:call_link('abapset_parameter.htm')" class="blue"><span class="qtext">SET PARAMETER</span></a>
+and <a href="javascript:call_link('abapget_parameter.htm')" class="blue"><span class="qtext">GET PARAMETER</span></a> of a program work with the local SPA/GPA parameters of the session memory.</li>
+</ul>
+<ul class="disc">
+<li>As soon as a program is rolled out of the memory, all local SPA/GPA parameters are copied to the
+cross-session user memory, where they replace all SPA/GPA parameters. Any SPA/GPA parameters that do
+not exist in the session memory also do not exist in the user memory afterwards. A roll out is performed, for example:</li>
+</ul>
+<ul class="circlem2">
+<li>When exiting a program.</li>
+</ul>
+<ul class="circlem2">
+<li>When calling a new program using <a href="javascript:call_link('abapsubmit.htm')" class="blue"><span class="qtext">SUBMIT</span></a>,
+<a href="javascript:call_link('abapcall_transaction.htm')" class="blue"><span class="qtext">CALL TRANSACTION</span></a>,
+or <a href="javascript:call_link('abapleave_to_transaction.htm')" class="blue"><span class="qtext">LEAVE TO TRANSACTION</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li>During any work process change  A work process is changed in the same situations that cause implicit <a href="javascript:call_link('abendb_commit.htm')" class="blue">database commits</a>.</li>
+</ul>
+<ul class="circlem2">
+<li>In the statement <a href="javascript:call_link('abapcommit.htm')" class="blue"><span class="qtext">COMMIT WORK</span></a>.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+The fact that ABAP programs do not access the user memory directly but all SPA/GPA parameters like a
+file have to be imported or exported implicitly at given times, has consequences for programs that run in parallel sessions of the same user:
+</p>
+<ul class="disc">
+<li>If a program sets a SPA/GPA parameter using <a href="javascript:call_link('abapset_parameter.htm')" class="blue"><span class="qtext">SET
+PARAMETER</span></a>, a program in a parallel ABAP session can only be started after the rolling program has been rolled out if it needs to access the modified parameter.</li>
+</ul>
+<ul class="disc">
+<li>If a program sets a SPA/GPA parameter using <a href="javascript:call_link('abapset_parameter.htm')" class="blue"><span class="qtext">SET
+PARAMETER</span></a> while another program in a parallel ABAP session is active, and the latter has
+been running longer than the setting program, these changes are overwritten when the program that has been running longer is rolled out.</li>
+</ul>
+<p>
+Premature rollouts can be forced by statements such as <a href="javascript:call_link('abapwait_up_to.htm')" class="blue"><span class="qtext">
+WAIT UP TO</span></a>, but the fact that the state of the user memory is always determined by the program
+that was last rolled out creates a serious obstacle for cross-session use of SPA/GPA parameters in parallel programs. This type of programming is therefore not recommended.
+</p>
+<A name="@@ITOC@@ABENSPA_GPA_3"></A>
+<p><span class="h2">
+Managing SPA/GPA Parameters
+</span></p>
+<p>
+The names of SPA/GPA parameters are managed in the database table <span class="qtext400">TPARA</span>. In the
+<a href="javascript:call_link('abenobject_navigator_glosry.htm')" class="grey" title="词汇表条目">Object Navigator</a> of the
+<a href="javascript:call_link('abenabap_workbench_glosry.htm')" class="grey" title="词汇表条目">ABAP Workbench</a>, the names of
+SPA/GPA parameters are created in uppercase letters in the database table <span class="qtext400">TPARA</span>
+and are linked to packages. The database table <span class="lnkgrey"><span class="qtext400">TPARA</span></span>
+acts as a reservation table for SPA/GPA parameters. If SPA/GPA parameters are used in a program, the
+name of the parameter must be contained in the <span class="qtext400">PARAMID</span> column in the database
+table <span class="qtext400">TPARA</span>. SPA/GPA parameters from other applications should not be unintentionally overwritten.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+If a name exists in the database table <span class="qtext400">TPARA</span>, this does not automatically
+mean that the corresponding parameter also exists in the user memory. SPA/GPA parameters are created only during the execution of ABAP programs.
+</p>
+<A name="@@ITOC@@ABENSPA_GPA_4"></A>
+<p><span class="h2">
+SPA/GPA Parameters and Dynpro Fields
+</span></p>
+<p>
+When defining input fields, <a href="javascript:call_link('abendynpro_field_glosry.htm')" class="grey" title="词汇表条目">dynpro
+fields</a> can be linked to SPA/GPA parameters by entering the name of an SPA/GPA parameter from the
+database table <span class="qtext400">TPARA</span> as the property <span class="qtext400">PARAMETER
+ID</span>. If the corresponding property <span class="italic">GET PARAMETER</span> is set, no other value is assigned to the input field, and the dynpro is not processed in a
+<a href="javascript:call_link('abenbatch_input_session_glosry.htm')" class="grey" title="词汇表条目">batch input session</a>, the input field is filled with the value of the SPA/GPA parameter when the
+<a href="javascript:call_link('abenscreen_glosry.htm')" class="grey" title="词汇表条目">screen</a> is sent. If the corresponding
+property <span class="italic">SET PARAMETER</span> is set, the content of the input field is assigned
+to the SPA/GPA parameter at the PAI event. If the parameter does not yet exist in the user memory, it is created implicitly in the PAI event. In the case of
+<a href="javascript:call_link('abenselection_screen_glosry.htm')" class="grey" title="词汇表条目">selection screens</a>, the addition
+<span class="qtext">MEMORY ID</span> links the statements <a href="javascript:call_link('abapparameters_value.htm')" class="blue"><span class="qtext">
+PARAMETERS</span></a> and <a href="javascript:call_link('abapselect-options_value.htm')" class="blue"><span class="qtext">SELECT-OPTIONS</span></a>.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>A data transport between a dynpro field and an SPA/GPA parameter in the user memory only takes place if a global data object with the same name as the dynpro field is declared in the associated ABAP program.</li>
+</ul>
+<ul class="disc">
+<li>If the PAI event is raised using a function of type "E", no values are assigned to the SPA/GPA parameters linked to the dynpro and no parameters are created in the user memory.</li>
+</ul>
+<ul class="disc">
+<li>The restriction that input fields are not filled with the value of SPA/GPA parameters during
+<a href="javascript:call_link('abenbatch_input_session_glosry.htm')" class="grey" title="词汇表条目">batch input sessions</a> is not valid for
+<a href="javascript:call_link('abenbatch_input_table_glosry.htm')" class="grey" title="词汇表条目">batch input tables</a> used with
+<a href="javascript:call_link('abapcall_transaction_using.htm')" class="blue"><span class="qtext">CALL TRANSACTION</span></a>.
+Then, dynpro fields to which no value is assigned in the batch input table, are supplied from their SPA/GPA parameters.</li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abapset_parameter.htm')" class="blue">SET PARAMETER</a><br>
+<a href="javascript:call_link('abapget_parameter.htm')" class="blue">GET PARAMETER</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

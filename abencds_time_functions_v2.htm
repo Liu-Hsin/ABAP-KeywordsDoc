@@ -1,0 +1,135 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_TIME_FUNCTIONS_V2 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - CDS View Entity, Time Functions">
+<title>
+CDS DDL - CDS View Entity, Time Functions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_time_functions_v2.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_time_functions_v2.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v2_views.htm')" class="blue">ABAP CDS - View Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_entity.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_operands_and_expr_v2.htm')" class="blue">CDS DDL - SELECT, CDS View Entity, Operands and Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_expressions_v2.htm')" class="blue">CDS DDL - CDS View Entity, Expressions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_builtin_functions_v2.htm')" class="blue">CDS DDL - CDS View Entity, Built-In Functions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_special_functions_v2.htm')" class="blue">CDS DDL - CDS View Entity, Special Functions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_date_time_functions_v2.htm')" class="blue">CDS DDL - CDS View Entity, Date Functions and Time Functions</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@TIMS_IS_VALID@@!ABAP_CDS_FUNCTION!@@"></A>
+<p><span class="h1">
+CDS DDL - CDS View Entity, Time Functions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... TIMS_IS_VALID(time) ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+In a <a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>, the function <span class="qtext400">TIMS_IS_VALID</span> determines whether the
+<a href="javascript:call_link('abenpositional_parameter_glosry.htm')" class="grey" title="词汇表条目">positional parameter</a> <span class="qtext400">
+time</span> contains a valid time in the format <span class="qtext400">HHMMSS</span>. The actual parameter
+must have the built-in data type <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">TIMS</span></a>. <span class="qtext400">time</span> can be specified as
+<a href="javascript:call_link('abencds_literal_v2.htm')" class="blue">literal</a>, field of a
+<a href="javascript:call_link('abencds_data_source_v2.htm')" class="blue">data source</a>,
+<a href="javascript:call_link('abencds_parameter_v2.htm')" class="blue">parameter</a>,
+<a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">path expression</a>, or
+<a href="javascript:call_link('abencds_builtin_functions_v2.htm')" class="blue">built-in function</a>. The result has the data
+type <a href="javascript:call_link('abenddic_builtin_types.htm')" class="blue"><span class="qtext400">INT4</span></a>. A valid date produces the value 1 and all other input values (including the null value) produce the value 0.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+It is not currently possible to access the current system time directly in a CDS view entity. Instead, a CDS view entity can be given an appropriate
+<a href="javascript:call_link('abencds_parameter_list_v2.htm')" class="blue">input parameter</a>. The special annotation <a href="javascript:call_link('abencds_f1_parameter_annotations.htm')" class="blue">
+<span class="qtext400">@Environment.systemField</span></a> makes it possible to pass the value of the
+<a href="javascript:call_link('abensystem_field_glosry.htm')" class="grey" title="词汇表条目">ABAP system field</a> <span class="qtext">sy-uzeit</span> to this parameter. <br><br>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view entity demonstrates how to use the time function <span class="qtext400">TIMS_IS_VALID</span>.
+The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_TIME_FUNC_VE</span></span> uses <span class="qtext">
+SELECT</span> to access the view. You can assign any value to the column <span class="qtext400">TIMS1</span> of the DDIC database table <span class="qtext400">DEMO_EXPRESSIONS</span>.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #NOT_REQUIRED <br>define view entity DEMO_CDS_TIME_FUNC_VE <br>
+&nbsp;&nbsp;as select from demo_expressions <br>{ <br>&nbsp;&nbsp;key id, <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;tims1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as time1, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tims_is_valid(120102)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as valid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tims_is_valid(tims_from_timn(timn1, 'FAIL')) as valid1, <br>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;tims_is_valid(tims1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as valid2 <br>}</span>
+</dd></dl>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

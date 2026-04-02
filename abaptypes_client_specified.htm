@@ -1,0 +1,162 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPTYPES_CLIENT_SPECIFIED -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="TYPES, CLIENT SPECIFIED">
+<title>
+TYPES, CLIENT SPECIFIED - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abaptypes_client_specified.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abaptypes_client_specified.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_obsolete.htm')" class="blue">Obsolete Language Elements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenobsolete_declarations.htm')" class="blue">Obsolete Declarations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abentypes_data_obsolete.htm')" class="blue">Data Types and Data Objects</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+TYPES, CLIENT SPECIFIED <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abaptypes_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<A NAME="@@CLIENT SPECIFIED@@TYPES (obsolete)@@"></A>
+<A name="@@ITOC@@ABAPTYPES_CLIENT_SPECIFIED_1"></A>
+<p><span class="h2">
+<span class="bold">Obsolete Syntax</span>
+</span></p>
+<p>
+<span class="qtext">TYPES dtype TYPE cds_entity CLIENT SPECIFIED clnt.</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+With the addition <span class="qtext">CLIENT SPECIFIED</span> the statement <span class="qtext">TYPES</span> defines a structured type constructed from all components of a
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> <span class="qtext">cds_entity</span> and an additional first component <span class="qtext">clnt</span> with the type of a
+<a href="javascript:call_link('abenclient_column_glosry.htm')" class="grey" title="词汇表条目">client column</a>.
+</p>
+<p>
+<span class="qtext">cds_entity</span> expects the name of a non-abstract <a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a>, namely:
+</p>
+<ul class="disc">
+<li>The name of a <a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a></li>
+</ul>
+<ul class="disc">
+<li>The name of a <a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a></li>
+</ul>
+<ul class="disc">
+<li>The name of a <a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchy</a></li>
+</ul>
+<p>
+as defined in the respective <a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue"><span class="qtext400">DEFINE</span></a> statement of the
+<a href="javascript:call_link('abencds_ddl_glosry.htm')" class="grey" title="词汇表条目">CDS DDL</a>.
+</p>
+<p>
+Any name for the client column that complies with the <a href="javascript:call_link('abennaming_conventions.htm')" class="blue">naming conventions</a> can be specified for <span class="qtext">clnt</span>.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>A structure of a type defined using this statement can be used as a work area of a <a href="javascript:call_link('abapselect.htm')" class="blue"><span class="qtext">SELECT</span></a> statement for CDS entities in which
+<a href="javascript:call_link('abenopen_sql_client_handling.htm')" class="blue">implicit client handling</a> is disabled using the obsolete statement <span class="qtext">
+<a href="javascript:call_link('abenopen_sql_client_handling.htm')" class="blue">CLIENT SPECIFIED</a></span>. <a href="javascript:call_link('abapselect_client.htm')" class="blue">
+<span class="qtext">USING</span></a> is used to switch implicit client handling and not disable it,
+which means the addition <span class="qtext">CLIENT SPECIFIED</span> is also obsolete for <span class="qtext">TYPES</span>.</li>
+</ul>
+<ul class="disc">
+<li>If the statement is used for a <a href="javascript:call_link('abencds_func_client_handling.htm')" class="blue">client-dependent CDS table function</a>, a structured type is produced that matches the row structure of the return value of the associated
+<a href="javascript:call_link('abenamdp_function_methods.htm')" class="blue">AMDP function implementation</a>. This type is
+not, however, required in ABAP programs, since the AMDP function implementation cannot be called like a regular function method</li>
+</ul>
+<ul class="disc">
+<li>The name specified for <span class="qtext">clnt</span> has absolutely no dependency on the actual name of a client column in a data source of a CDS view.</li>
+</ul>
+<ul class="disc">
+<li>Abstract <a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS</a> entities cannot be specified.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Defines a line type <span class="qtext">scarr_spfli_clnt</span> for an internal table used as a target
+area when a client-dependent CDS view is accessed using the obsolete addition <a href="javascript:call_link('abapselect_client_obsolete.htm')" class="blue">
+<span class="qtext">CLIENT SPECIFIED</span></a> of the <span class="qtext">SELECT</span> statement.
+If the addition <span class="qtext">CLIENT SPECIFIED</span> of the statement <span class="qtext">TYPES</span>
+is not used, the column <span class="qtext">clnt</span> would not exist in the table <span class="qtext">scarr_spfli_clnt</span> and could not be used as a target range.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TYPES scarr_spfli_clnt TYPE demo_cds_scarr_spfli CLIENT SPECIFIED clnt. <br> <br>DATA scarr_spfli_clnt TYPE TABLE OF scarr_spfli_clnt WITH EMPTY KEY. <br>
+ <br>SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_cds_scarr_spfli CLIENT SPECIFIED <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @scarr_spfli_clnt.
+</span>
+</p>
+<p>
+The following example shows how the recommended addition <a href="javascript:call_link('abapselect_client.htm')" class="blue"><span class="qtext">USING ALL CLIENTS</span></a> is used, for which no special target area is required.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+DATA scarr_spfli TYPE TABLE OF demo_cds_scarr_spfli WITH EMPTY KEY. <br> <br>SELECT * <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM demo_cds_scarr_spfli USING ALL CLIENTS <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO TABLE @scarr_spfli.
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

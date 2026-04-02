@@ -1,0 +1,223 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_DEFINE_VIEW_AS_PROJECTION -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - DEFINE VIEW ENTITY AS PROJECTION">
+<title>
+CDS DDL - DEFINE VIEW ENTITY AS PROJECTION - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_define_view_as_projection.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_define_view_as_projection.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_views.htm')" class="blue">ABAP CDS - Projection Views</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@DEFINE VIEW ENTITY AS PROJECTION@@!ABAP_CDS_DDL_STATEMENT!@@"></A>
+<A NAME="@@ROOT@@!ABAP_CDS_DEF_VIEW_PROJ!@@"></A>
+<A NAME="@@ON@@!ABAP_CDS_DEF_VIEW_PROJ!@@"></A>
+<p><span class="h1">
+CDS DDL - DEFINE VIEW ENTITY AS PROJECTION
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400"><i class=bn>[</i><a href="javascript:call_link('abencds_f1_entity_annotations.htm')" class="blue">@entity_annot1</a><i class=bn>]</i> <br>
+<i class=bn>[</i><a href="javascript:call_link('abencds_f1_entity_annotations.htm')" class="blue">@entity_annot2</a><i class=bn>]</i> <br>
+... <br><i class=bn>[</i><a href="javascript:call_link('abencds_proj_view_annotations.htm')" class="blue">@proj_view_annot1</a><i class=bn>]</i> <br>
+<i class=bn>[</i><a href="javascript:call_link('abencds_proj_view_annotations.htm')" class="blue">@proj_view_annot2</a><i class=bn>]</i> <br>
+... <br>DEFINE <i class=bn>[</i>ROOT<i class=bn>]</i> VIEW ENTITY projection_view <br>&nbsp;&nbsp;&nbsp;&nbsp;AS PROJECTION ON cds_entity <i class=bn>[</i>AS cds_entity_alias<i class=bn>]</i> <br>
+&nbsp;&nbsp; <i class=bn>[</i><a href="javascript:call_link('abencds_proj_view_association.htm')" class="blue">association1</a>
+<a href="javascript:call_link('abencds_proj_view_association.htm')" class="blue"> association2</a> ...<i class=bn>]</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">element_list</a> } <br>
+&nbsp;&nbsp; <i class=bn>[</i><a href="javascript:call_link('abencds_proj_view_cond_expr.htm')" class="blue">WHERE</a> <i class=bn>[</i>NOT<i
+class=bn>]</i> cds_cond1 <i class=bn>[</i>AND<i class=bn>|</i>OR cds_cond2 ...<i class=bn>]</i><i class=bn>]</i></span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a <a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a> with the name <span class="qtext400">projection_view</span> in
+<a href="javascript:call_link('abencds_ddl_glosry.htm')" class="grey" title="词汇表条目">CDS DDL</a>. A CDS projection view is a direct projection of an underlying
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a> <span class="qtext400">cds_entity</span> (called
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a>) and
+exposes a subset of elements of the projected entity, which are defined in the list of elements <a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">
+<span class="qtext400">element_list</span></a>. In a business application, a projection view allows to restrict access to, denormalize, and fine-tune the underlying data model.
+</p>
+<p>
+Currently, the projected entity <span class="qtext400">cds_entity</span> can only be a
+<a href="javascript:call_link('abencds_view_glosry.htm')" class="grey" title="词汇表条目">CDS view</a> without parameters. Any other CDS entity (namely
+<a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entities</a>,
+<a href="javascript:call_link('abencds_custom_entity_glosry.htm')" class="grey" title="词汇表条目">CDS custom entities</a>,
+<a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchies</a>,
+<a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table functions</a>, and
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection views</a>) plus
+<a href="javascript:call_link('abenddic_db_table_glosry.htm')" class="grey" title="词汇表条目">DDIC database tables</a> and
+<a href="javascript:call_link('abendatabase_view_glosry.htm')" class="grey" title="词汇表条目">DDIC database view</a> are currently not allowed.
+</p>
+<p>
+A projection view inherits the element and association annotations of the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a>. Header annotations are not inherited. Optionally, additional
+<a href="javascript:call_link('abencds_f1_entity_annotations.htm')" class="blue">entity annotations</a> <span class="qtext400">@entity_annot</span> and
+<a href="javascript:call_link('abencds_proj_view_annotations.htm')" class="blue">projection view annotations</a> <span class="qtext400">@proj_view_annot</span> can be defined.
+</p>
+<p>
+The keyword <span class="qtext400">ROOT</span> specifies that the projection view is the
+<a href="javascript:call_link('abenroot_entity_glosry.htm')" class="grey" title="词汇表条目">root entity</a> of a
+<a href="javascript:call_link('abencds_composition_tree_glosry.htm')" class="grey" title="词汇表条目">composition tree</a>. The projection  view must always reflect the position of the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a> in the composition tree: if the projected entity is a
+<a href="javascript:call_link('abenroot_entity_glosry.htm')" class="grey" title="词汇表条目">root entity</a>, the projection view
+must be a root as well. If the projected entity is not a root, the projection view cannot be a root. In this case, the projected entity must contain a
+<a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">to-parent association</a>.
+</p>
+<p>
+<a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">Associations</a>, including
+<a href="javascript:call_link('abencds_composition_glosry.htm')" class="grey" title="词汇表条目">compositions</a> and
+<a href="javascript:call_link('abento_parent_association_glosry.htm')" class="grey" title="词汇表条目">to-parent association</a>,
+that are defined in the projected CDS view can be used in the CDS projection view. However, associations
+or compositions might change their target, if the target CDS view is also projected. In this case, the
+association or composition can be redirected to the new target. Further details on exposing and redirecting
+associations can be found in the topic <a href="javascript:call_link('abencds_proj_view_expose_assoc.htm')" class="blue"><span class="qtext400">expose_assoc</span></a> below.
+</p>
+<p>
+It is possible to add new, local, read-only associations to a projection view after the view definition with <span class="qtext400">DEFINE VIEW ENTITY AS PROJECTION ON</span>. The same rules apply as for
+<a href="javascript:call_link('abencds_association_v2.htm')" class="blue">associations in CDS view entities</a>. The main difference is that read-only associations in projection views can only be exposed, but they cannot be used in
+<a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">path expressions</a> (meaning that no elements
+can be exposed from new associations). Details on new, local associations in CDS projection views can
+be found in topic <a href="javascript:call_link('abencds_proj_view_association.htm')" class="blue"><span class="qtext400">CDS DDL - projection_view, ASSOCIATION</span></a>.
+</p>
+<p>
+The <a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">list of elements</a> <span class="qtext400">element_list</span>
+consists of elements of the underlying CDS view <span class="qtext400">cds_view</span>, elements of
+the CDS associations exposed in the <span class="qtext400">cds_view</span>, plus new elements specified using the keyword <span class="qtext400">VIRTUAL</span>.
+</p>
+<p>
+The number of rows included in the result set can be further restricted by the addition <a href="javascript:call_link('abencds_proj_view_cond_expr.htm')" class="blue"><span class="qtext400">WHERE</span></a>.
+</p>
+<p>
+The name of a CDS projection view is in the namespace of all <a href="javascript:call_link('abenglobal_type_glosry.htm')" class="grey" title="词汇表条目">global types</a> of an AS ABAP.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>A CDS projection view can be extended using a <a href="javascript:call_link('abencds_view_extend_glosry.htm')" class="grey" title="词汇表条目">CDS view extension</a>. Two options are possible:</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">EXTEND VIEW</span>. This type of CDS view extension is supported for legacy
+reasons. Syntax specific to CDS projection views is not supported and this option is not recommended. <br>
+For details, see topic <a href="javascript:call_link('abencds_extend_view.htm')" class="blue">CDS DDL - <span class="qtext400">EXTEND VIEW</span> <span class="qtext400">ddic_based_view</span></a>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">EXTEND VIEW ENTITY</span>. All syntax elements specific to CDS projection
+views are supported. It is recommended to use this option for the extension of a CDS projection view. <br>
+For details, see topic <a href="javascript:call_link('abencds_extend_view_entity.htm')" class="blue">CDS DDL - <span class="qtext400">EXTEND VIEW ENTITY</span></a>.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">Path expressions</a> cannot be used to specify
+the projected CDS view <span class="qtext400">cds_view</span> in the <span class="qtext400">PROJECTION ON</span> clause.</li>
+</ul>
+<ul class="disc">
+<li>CDS projection views cannot include <a href="javascript:call_link('abenjoin_glosry.htm')" class="grey" title="词汇表条目">joins</a>, or <a href="javascript:call_link('abensubquery_glosry.htm')" class="grey" title="词汇表条目">subquery</a> clauses.</li>
+</ul>
+<ul class="disc">
+<li>Projection views have evolved from and will in the future replace
+ <span class="lnkgrey">consumption views</span>. Both serve the same purpose, namely, to simplify the access to business objects. While consumption views were used for data modelling in the obsolete
+<a href="javascript:call_link('abenabap_pm_for_fiori_glosry.htm')" class="grey" title="词汇表条目">ABAP Programming Model for SAP Fiori</a>, projection views take over this role in its successor
+<a href="javascript:call_link('abenarap_glosry.htm')" class="grey" title="词汇表条目">RAP</a>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS projection view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_PV_BUPA</span></span>
+is a projection of the existing CDS view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_CDS_BUPA</span></span>. The result set contains only rows where the last name of the business partner starts with "P".
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #CHECK <br>@EndUserText.label: 'Projection View for BuPa' <br>
+define root view entity DEMO_SALES_PV_BUPA&nbsp;&nbsp;<br>&nbsp;&nbsp;as projection on DEMO_SALES_CDS_BUPA <br>
+{ <br> <br>&nbsp;&nbsp;key id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as BusinessPartnerID,&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given_name&nbsp;&nbsp;&nbsp;&nbsp;as GivenName, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;middle_name&nbsp;&nbsp; as MiddleName, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family_name&nbsp;&nbsp; as FamilyName&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>} <br> <br>where $projection.familyname like 'P%'</span> <br><br>
+</dd></dl>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS projection view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_PV_SO_I_SL</span></span>
+is a projection of the existing CDS view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_CDS_SO_I_SL</span></span>. It exposes a subset of the elements of the projected entity as well as an association.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #CHECK <br>@EndUserText.label: 'Projection View SO Item Schedule Line' <br>
+@Metadata.allowExtensions: true <br>define view entity DEMO_SALES_PV_SO_I_SL <br>&nbsp;&nbsp;as projection on DEMO_SALES_CDS_SO_I_SL <br>
+&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;key schedule_line_key as ScheduleLineKey, <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parent_key&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as SalesOrderItemKey, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_SalesOrderItem : redirected to parent DEMO_SALES_PV_SO_I <br>&nbsp;&nbsp;}</span>
+</dd></dl>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_proj_view_annotations.htm')" class="blue">CDS DDL - projection_view, proj_view_annot</a><br>
+<a href="javascript:call_link('abencds_proj_view_association.htm')" class="blue">CDS DDL - projection_view, ASSOCIATION</a><br>
+<a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">CDS DDL - projection_view, element_list</a><br>
+<a href="javascript:call_link('abencds_proj_view_cond_expr.htm')" class="blue">CDS DDL - projection_view, WHERE</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

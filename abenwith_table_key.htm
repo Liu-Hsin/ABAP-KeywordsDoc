@@ -1,0 +1,126 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENWITH_TABLE_KEY -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABENWITH_TABLE_KEY">
+<title>
+ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenwith_table_key.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenwith_table_key.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Each component of the table key used must be listed either directly as <span class="qtext">comp_name1
+comp_name2 ...</span> or as a parenthesized character-like data object <span class="qtext">name1 name2 ...</span>, which contains the name of the component when the statement is executed.
+ <span class="qtext">name</span> is not case-sensitive. If <span class="qtext">name</span> only contains
+blanks, this component specification is ignored when the statement is executed. An operand <span class="qtext">operand1 operand2 ...</span>
+<a href="javascript:call_link('abencompatible_glosry.htm')" class="grey" title="词汇表条目">compatible</a> with the data type of
+the component or convertible to it must be assigned to every component. The first line found in the
+internal table, whose values in the column of the table key used correspond with the values in the operands
+<span class="qtext">operand1 operand2 ...</span> assigned, is processed. No duplicate or overlapping keys, nor columns that are not components of the table key can be specified.
+</p>
+<p>
+<span class="qtext">operand1 operand2 ...</span> are
+<a href="javascript:call_link('abengeneral_expr_position_glosry.htm')" class="grey" title="词汇表条目">general expression positions</a>.
+If necessary, the content of the operands is converted to the data type of the components before the
+comparison. If a conversion error occurs here, the exception cannot be handled using <span class="qtext400">CX_SY_CONVERSION_ERROR</span> and the associated runtime error occurs instead. If an
+<a href="javascript:call_link('abenarithmetic_expression_glosry.htm')" class="grey" title="词汇表条目">arithmetic expression</a> is specified, the
+<a href="javascript:call_link('abencalculation_type_glosry.htm')" class="grey" title="词汇表条目">calculation type</a> is determined
+from its operands and the data type of the component. If necessary, the result is converted to the data type of the component.
+</p>
+<p>
+If the addition <span class="qtext">COMPONENTS</span> is not specified, the
+<a href="javascript:call_link('abenprimary_table_key_glosry.htm')" class="grey" title="词汇表条目">primary table key</a> is used.
+If the addition <span class="qtext">COMPONENTS</span> is specified, the table key specified in <a href="javascript:call_link('abenkeyname.htm')" class="blue"><span class="qtext">keyname</span></a> is used. <br><br>
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The <a href="javascript:call_link('abenpseudo_component_glosry.htm')" class="grey" title="词汇表条目">pseudo component</a> <span class="qtext">
+table_line</span> can be specified as a component for tables with an unstructured line type and for which the entire table line is defined as a table key. <br></li>
+</ul>
+<ul class="disc">
+<li>If <span class="qtext">WITH TABLE KEY</span> is used, it should be noted that the values of incompatible
+operands <span class="qtext">operand1</span>, <span class="qtext">operand2</span>, ... are converted to the data type of the columns before the comparison, and therefore the
+<a href="javascript:call_link('abenlogexp_rules.htm')" class="blue">comparison rules</a> do not apply to incompatible data types.
+If a <span class="qtext">WHERE</span> condition is used in the statements <a href="javascript:call_link('abaploop_at_itab_cond.htm')" class="blue">
+<span class="qtext">LOOP</span></a>, <a href="javascript:call_link('abapmodify_itab_multiple.htm')" class="blue"><span class="qtext">MODIFY</span></a>,
+and <a href="javascript:call_link('abapdelete_itab_lines.htm')" class="blue"><span class="qtext">DELETE</span></a>, however, the comparison rules do apply, which can produce different results. <br></li>
+</ul>
+<ul class="disc">
+<li>Due to the conversion before the comparison, <a href="javascript:call_link('abenenumerated_object_glosry.htm')" class="grey" title="词汇表条目">
+enumerated objects</a> can be specified as operands for character-like types of type <span class="qtext">c</span> or <span class="qtext">string</span> and the corresponding special
+<a href="javascript:call_link('abenconversion_enumerated.htm')" class="blue">conversion rules</a> apply, which is not possible
+in a <span class="qtext">WHERE</span> condition. Conversions of this type produce a message from the extended syntax check. <br></li>
+</ul>
+<ul class="disc">
+<li>To avoid unexpected results after a conversion, <span class="qtext">operand1</span>, <span class="qtext">operand2</span>, ... must be compatible with the data type of the component. <br></li>
+</ul>
+<ul class="disc">
+<li>If the line type of the internal table is not known statically, the components of the key can only be specified dynamically and not directly. <br></li>
+</ul>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abencustomizing_include_glosry.htm')" class="grey" title="词汇表条目">customizing include</a> must not be specified as a component if it is empty.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

@@ -1,0 +1,134 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_PROJ_VIEW_VIRTUAL_ELEMENT -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - projection_view, VIRTUAL">
+<title>
+CDS DDL - projection_view, VIRTUAL - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_proj_view_virtual_element.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_proj_view_virtual_element.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_views.htm')" class="blue">ABAP CDS - Projection Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_as_projection.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY AS PROJECTION</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">CDS DDL - projection_view, element_list</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@VIRTUAL@@!ABAP_CDS_DEF_VIEW_PROJ!@@"></A>
+<p><span class="h1">
+CDS DDL - projection_view, VIRTUAL
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... VIRTUAL elem_name : <a href="javascript:call_link('abencds_typing.htm')" class="blue">typing</a></span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a <a href="javascript:call_link('abencds_virtual_element_glosry.htm')" class="grey" title="词汇表条目">virtual element</a> in an
+<a href="javascript:call_link('abencds_proj_view_element_list.htm')" class="blue">element list</a> of a
+<a href="javascript:call_link('abencds_projection_view_glosry.htm')" class="grey" title="词汇表条目">CDS projection view</a>. Virtual elements are read-only elements of a CDS projection view which are not part of the
+<a href="javascript:call_link('abencds_pv_projected_entity_glosry.htm')" class="grey" title="词汇表条目">projected entity</a>. Reading
+the virtual elements of a projection view with ABAP SQL delivers initial values. In order to fill and analyze the virtual elements of projection view, special frameworks like
+<a href="javascript:call_link('abensadl_glosry.htm')" class="grey" title="词汇表条目">SADL</a> have to be involved.
+</p>
+<p>
+In <a href="javascript:call_link('abenarap_glosry.htm')" class="grey" title="词汇表条目">RAP</a>, for example, a virtual element can be connected to an ABAP class that implements a special virtual element interface by using the
+<a href="javascript:call_link('abenfrmwrk_annotation_glosry.htm')" class="grey" title="词汇表条目">framework-specific</a> annotation <span
+ class="qtext400">ObjectModel.virtualElement.CalculatedBy</span>. In that case the value of the virtual element is calculated during runtime by the
+<a href="javascript:call_link('abensadl_glosry.htm')" class="grey" title="词汇表条目">SADL</a> framework. For more information, see <span class="lnkgrey">Using Virtual Elements in CDS Projection Views</span>. <br><br>
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The projection view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_PV_SO_EXP</span></span>
+is based on the CDS view <span class="lnkgrey"><span class="qtext400">DEMO_SALES_CDS_SO</span></span>.
+It contains a virtual element <span class="qtext400">expiry_date</span> that is bound to ABAP class
+<span class="lnkgrey"><span class="qtext400">CL_DEMO_SALES_VIRT_ELEM_EXIT</span></span> that calculates the expiry date of an item during runtime if the view is accessed by the SADL framework.
+</p>
+<dl><dd>
+<span class="qtext400">@AccessControl.authorizationCheck: #CHECK <br>@EndUserText.label: 'Exposure of SO Projection View' <br>
+define root view entity DEMO_SALES_PV_SO_EXP <br>&nbsp;&nbsp;as projection on DEMO_SALES_CDS_SO <br>&nbsp;&nbsp;{ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;&nbsp;&nbsp;&nbsp; so_key, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifecycle_status as LifecycleStatus, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buyer_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as BuyerId, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created_by, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ObjectModel.virtualElement: true <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@ObjectModel.virtualElementCalculatedBy: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ABAP:CL_DEMO_SALES_VIRT_ELEM_EXIT' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;virtual expiry_date : abap.dats(8), <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_Buyer : redirected to DEMO_SALES_PV_BUPA_EXP <br>&nbsp;&nbsp;}</span> <br><br>
+</dd></dl>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+The executable example <span class="lnkgrey">Calculating a virtual element</span> accesses the CDS projection view shown above and returns the result of the virtual element. <br><br>
+</p>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abencds_proj_view_virtel_abexa.htm')" class="blue">CDS DDL - projection_view, calculating a virtual element</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

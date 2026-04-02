@@ -1,0 +1,364 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPRAISE_EXCEPTION_MESSAGE -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="RAISE EXCEPTION, message">
+<title>
+RAISE EXCEPTION, message - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapraise_exception_message.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapraise_exception_message.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_flow_logic.htm')" class="blue">Program Flow Logic</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_exceptions.htm')" class="blue">Exception Handling</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenexceptions.htm')" class="blue">Class-Based Exceptions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapraise_exception_class.htm')" class="blue">RAISE EXCEPTION</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@MESSAGE@@RAISE EXCEPTION@@"></A>
+<A NAME="@@ID@@RAISE EXCEPTION MESSAGE@@"></A>
+<A NAME="@@TYPE@@RAISE EXCEPTION MESSAGE@@"></A>
+<A NAME="@@NUMBER@@RAISE EXCEPTION MESSAGE@@"></A>
+<A NAME="@@WITH@@RAISE EXCEPTION MESSAGE@@"></A>
+<A NAME="@@USING@@RAISE EXCEPTION MESSAGE@@"></A>
+<A NAME="@@ID@@THROW MESSAGE@@"></A>
+<A NAME="@@TYPE@@THROW MESSAGE@@"></A>
+<A NAME="@@NUMBER@@THROW MESSAGE@@"></A>
+<A NAME="@@WITH@@THROW MESSAGE@@"></A>
+<A NAME="@@USING@@THROW MESSAGE@@"></A>
+<p><span class="h1">
+RAISE EXCEPTION, message <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapraise_exception_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <i class=bn>{</i> MESSAGE tn(id) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> ID mid TYPE mtype NUMBER num <i class=bn>}</i> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>WITH dobj1 ... dobj4<i class=bn>]</i> <i class=bn>}</i> <br>
+&nbsp;&nbsp;<i class=bn>|</i> <i class=bn>{</i> USING MESSAGE <i class=bn>}</i> ...</span> <br><br>
+</p>
+<p><span class="h2">
+Variants:
+</span></p>
+<P>
+   <A HREF="#!ABAP_VARIANT_1@1@" class="blue"> 1. <span class="qtext">... MESSAGE msg ...</span> </A> <br><br><A HREF="#!ABAP_VARIANT_2@2@" class="blue"> 2. <span class="qtext">... USING MESSAGE ...</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The addition <span class="qtext">MESSAGE</span> of the statement <a href="javascript:call_link('abapraise_exception_class.htm')" class="blue">
+<span class="qtext">RAISE EXCEPTION</span></a> and of the addition <a href="javascript:call_link('abenconditional_expression_result.htm')" class="blue"><span class="qtext">THROW</span></a> in a
+<a href="javascript:call_link('abenconditional_expressions.htm')" class="blue">conditional expression</a> passes the specification of a
+<a href="javascript:call_link('abenmessage_glosry.htm')" class="grey" title="词汇表条目">message</a> to the exception object. <br><br>
+</p>
+<p><span class="h2">
+<A NAME="!ABAP_VARIANT_1@1@"></A> <span class="bold">Variant 1</span>
+</span></p>
+<P>
+<span class="qtext">... MESSAGE msg ...</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+The addition <span class="qtext">tn(id)</span> or <span class="qtext">ID mid TYPE mtype NUMBER num</span> is used to specify the
+<a href="javascript:call_link('abenmessage_type_glosry.htm')" class="grey" title="词汇表条目">message type</a>, the
+<a href="javascript:call_link('abenmessage_class_glosry.htm')" class="grey" title="词汇表条目">message class</a>, and the
+<a href="javascript:call_link('abenmessage_number_glosry.htm')" class="grey" title="词汇表条目">message number</a> of a message <a href="javascript:call_link('abapmessage_msg.htm')" class="blue">
+<span class="qtext">msg</span></a> for the table <span class="lnkgrey"><span class="qtext400">T100</span></span>,
+statically or dynamically like in the statement <a href="javascript:call_link('abapmessage.htm')" class="blue"><span class="qtext">MESSAGE</span></a>.
+Also like in <a href="javascript:call_link('abapmessage.htm')" class="blue"><span class="qtext">MESSAGE</span></a>, the optional
+addition <span class="qtext">WITH</span> can be used to provide the placeholders of a message with contents. The exception class of the raised exception must implement one of the
+<a href="javascript:call_link('abenmessage_interfaces.htm')" class="blue">system interfaces for messages</a>:
+</p>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABAPRAISE_EXCEPTION_MESSAGE_1" class="blue">Using IF_T100_DYN_MSG</A></li>
+</ul>
+<ul class="disc">
+<li><A HREF="#@@ITOC@@ABAPRAISE_EXCEPTION_MESSAGE_2" class="blue">Using IF_T100_MESSAGE</A></li>
+</ul>
+<p>
+The addition <span class="qtext">MESSAGE</span> fills the attributes of these interfaces with values.
+This assignment takes place after the instance constructor is executed. This overwrites any values that were assigned to these attributes when the exception object was constructed.
+</p>
+<p>
+The attributes of the system interfaces are used to link the exception object to the message specified
+after <span class="qtext">MESSAGE</span>. Using an object reference, the object can be used directly
+in the variant <a href="javascript:call_link('abapmessage_msg.htm')" class="blue"><span class="qtext">MESSAGE oref</span></a>
+of the <a href="javascript:call_link('abapmessage.htm')" class="blue"><span class="qtext">MESSAGE</span> statement</a> and the message texts can be read using the interface methods.
+</p>
+<p>
+If the addition <span class="qtext">MESSAGE</span> is used, the input parameter <span class="qtext400">TEXTID</span> of the constructor of the exception class must not be filled. This parameter is only intended for specifying a predefined
+<a href="javascript:call_link('abenexception_texts.htm')" class="blue">exception text</a>.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>The addition <span class="qtext">MESSAGE</span> cannot be specified after the variant <a href="javascript:call_link('abapraise_exception_class.htm')" class="blue"><span class="qtext">RAISE EXCEPTION oref</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>The position behind <span class="qtext">MESSAGE</span> is contained in the where-used list for the message specified.</li>
+</ul>
+<ul class="disc">
+<li>See also <a href="javascript:call_link('abenmessage_exceptions.htm')" class="blue">Exception Classes for Messages</a>.</li>
+</ul>
+<A name="@@ITOC@@ABAPRAISE_EXCEPTION_MESSAGE_1"></A>
+<p><span class="h2">
+Using IF_T100_DYN_MSG
+</span></p>
+<p>
+The full functionality of the addition <span class="qtext">MESSAGE</span> is available only if the system
+interface <a href="javascript:call_link('abenif_t100_dyn_msg.htm')" class="blue"><span class="qtext400">IF_T100_DYN_MSG</span></a>
+is implemented in the used exception class. This interface includes the system interface <a href="javascript:call_link('abenif_t100_message.htm')" class="blue">
+<span class="qtext400">IF_T100_MESSAGE</span></a> requested by the syntax check. If an exception class
+is used with the system interface <span class="qtext400">IF_T100_DYN_MSG</span>, the addition <span class="qtext">MESSAGE</span> fills its attributes as follows after the instance constructor is executed:
+</p>
+<ul class="disc">
+<li>The message type specified after <span class="qtext">MESSAGE</span> is assigned to the attribute
+<span class="qtext400">MSGTY</span> of the interface <span class="lnkgrey"><span class="qtext400">IF_T100_DYN_MSG</span></span>.</li>
+</ul>
+<ul class="disc">
+<li>The components of the structured attribute <span class="qtext400">T100KEY</span> of the component interface <span class="lnkgrey"><span class="qtext400">IF_T100_MESSAGE</span></span> are filled as follows:</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">MSGID</span> is assigned the message class specified after <span class="qtext">MESSAGE</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">MSGNO</span> is assigned the message number specified after <span class="qtext">MESSAGE</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">ATTR1</span> to <span class="qtext400">ATTR4</span> are assigned the names
+<span class="qtext400">IF_T100_DYN_MSG~MSGV1</span> to <span class="qtext400">IF_T100_DYN_MSG~MSGV4</span>
+of the interface attributes for the placeholders of the message. If the addition <span class="qtext">WITH</span>
+is not specified, <span class="qtext400">ATTR1</span> to <span class="qtext400">ATTR4</span> remain initial.</li>
+</ul>
+<ul class="disc">
+<li>The attributes <span class="qtext400">MSGV1</span> to <span class="qtext400">MSGV4</span> of the
+interface <span class="lnkgrey"><span class="qtext400">IF_T100_DYN_MSG</span></span> are assigned the texts specified using <span class="qtext">WITH</span>.</li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>If <span class="qtext400">IF_T100_DYN_MSG</span> is used, the addition <span class="qtext">MESSAGE</span>
+assigns the correct values to all required attributes of the exception class to link them to the message.
+More specifically, the attributes for the placeholders of the message are mapped to the structure <span class="qtext400">T100KEY</span> of the interface <span class="qtext400">IF_T100_MESSAGE</span> automatically.</li>
+</ul>
+<ul class="disc">
+<li>In exception classes with the interface <span class="qtext400">IF_T100_DYN_MSG</span>, <span class="qtext">MESSAGE</span>
+used together with the <span class="qtext">EXPORTING</span> addition can produce unexpected results
+in the placeholder texts if the addition <span class="qtext">WITH</span> is not specified. Implicit
+assignments of the input parameters specified after <span class="qtext">EXPORTING</span> to the components
+<span class="qtext400">ATTR1</span> to <span class="qtext400">ATTR4</span> are intended for exception
+classes with the interface <span class="qtext400">IF_T100_MESSAGE</span> where <span class="qtext">WITH</span>
+cannot be specified (see the <span class="lnkgrey">executable example</span>). Implicit assignments
+of the names of the input parameters or of initial values can be prevented by specifying <span class="qtext">WITH</span> with a dummy value <span class="qtext">space</span>.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Raising of the exception <span class="lnkgrey"><span class="qtext400">CX_DEMO_DYN_T100</span></span>
+that implements the interface <span class="qtext400">IF_T100_DYN_MSG</span>. The addition <span class="qtext">MESSAGE</span> is used to pass the properties of a message that determines the exception text.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+TRY. <br>&nbsp;&nbsp;&nbsp;&nbsp;RAISE EXCEPTION TYPE cx_demo_dyn_t100 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE ID 'SABAPDEMOS' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE 'I' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NUMBER '888' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH 'Message'. <br>
+&nbsp;&nbsp;CATCH cx_demo_dyn_t100 INTO DATA(oref). <br>&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>display( oref->get_text( ) &amp;&amp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `, ` &amp;&amp; oref->msgty ). <br>ENDTRY.
+</span>
+</p>
+<p><span class="h4">
+Executable Examples
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey">System Interface <span class="qtext400">IF_T100_DYN_MSG</span> in a Local Exception Class</span></li>
+</ul>
+<ul class="disc">
+<li><span class="lnkgrey">System Interface <span class="qtext400">IF_T100_DYN_MSG</span> in a Global Exception Class</span></li>
+</ul>
+<ul class="disc">
+<li><span class="lnkgrey">System Interface <span class="qtext400">IF_T100_DYN_MSG</span> for Exception <span class="qtext">error_message</span></span></li>
+</ul>
+<A name="@@ITOC@@ABAPRAISE_EXCEPTION_MESSAGE_2"></A>
+<p><span class="h2">
+Using IF_T100_MESSAGE
+</span></p>
+<p>
+If only the system interface <a href="javascript:call_link('abenif_t100_message.htm')" class="blue"><span class="qtext400">IF_T100_MESSAGE</span></a>
+is implemented, the addition <span class="qtext">WITH</span> must not be used and only a restricted
+set of functions is available. When an exception class is used that implements only the system interface
+<span class="qtext400">IF_T100_MESSAGE</span>, the addition <span class="qtext">MESSAGE</span> fills its attributes as follows after the instance constructor is executed:
+</p>
+<ul class="disc">
+<li>The specification of a message type has no effect.</li>
+</ul>
+<ul class="disc">
+<li>The components of the structured attribute <span class="qtext400">T100KEY</span> of the component interface <span class="lnkgrey"><span class="qtext400">IF_T100_MESSAGE</span></span> are filled as follows:</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">MSGID</span> is assigned the message class specified after <span class="qtext">MESSAGE</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">MSGNO</span> is assigned the message number specified after <span class="qtext">MESSAGE</span>.</li>
+</ul>
+<ul class="circlem2">
+<li><span class="qtext400">ATTR1</span> to <span class="qtext400">ATTR4</span> are assigned the names
+of the first four input parameters of the instance constructors specified after <span class="qtext">EXPORTING</span>
+that can be converted to a character-like target field, in the specified order. Components that cannot be assigned input parameters are initialized.</li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>It is recommended that the system interface <a href="javascript:call_link('abenif_t100_dyn_msg.htm')" class="blue"><span class="qtext400">
+IF_T100_DYN_MSG</span></a> is used for exceptions raised using the addition <span class="qtext">MESSAGE</span>.</li>
+</ul>
+<ul class="disc">
+<li>The use of the addition <span class="qtext">MESSAGE</span> for an exception class with <a href="javascript:call_link('abenif_t100_message.htm')" class="blue">
+<span class="qtext400">IF_T100_MESSAGE</span></a> is intended for cases where existing exception classes
+that cannot be switched to <a href="javascript:call_link('abenif_t100_dyn_msg.htm')" class="blue"><span class="qtext400">IF_T100_DYN_MSG</span></a> must be used.</li>
+</ul>
+<ul class="disc">
+<li>The addition <span class="qtext">MESSAGE</span> is suitable for existing exception classes with <a href="javascript:call_link('abenif_t100_message.htm')" class="blue"><span class="qtext400">IF_T100_MESSAGE</span></a> that already have a generic
+<a href="javascript:call_link('abenexception_texts.htm')" class="blue">exception text</a> without semantic meaning. Previously,
+structures of the type <span class="lnkgrey"><span class="qtext400">SCX_T100KEY</span></span>, filled in the program, had to be passed to such exceptions.</li>
+</ul>
+<ul class="disc">
+<li>The use of the addition <span class="qtext">MESSAGE</span> is not recommended for an exception class
+with <a href="javascript:call_link('abenif_t100_message.htm')" class="blue"><span class="qtext400">IF_T100_MESSAGE</span></a> whose exception texts all have a fixed semantic meaning.</li>
+</ul>
+<p><span class="h4">
+Executable Example
+</span></p>
+<p>
+<span class="lnkgrey">System Interface <span class="qtext400">IF_T100_MESSAGE</span> for Exception with Message</span> <br><br>
+</p>
+<p><span class="h2">
+<A NAME="!ABAP_VARIANT_2@2@"></A> <span class="bold">Variant 2</span>
+</span></p>
+<P>
+<span class="qtext">... USING MESSAGE ...</span> <br><br><br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+This variant is a short form of the preceding variant of the <span class="qtext">MESSAGE</span> addition. It can be used if the exception class of the raised exception implements the
+<a href="javascript:call_link('abenmessage_interfaces.htm')" class="blue">system interface</a> <a href="javascript:call_link('abenif_t100_dyn_msg.htm')" class="blue"><span class="qtext400">IF_T100_DYN_MSG</span></a>, and has the following effect:
+</p>
+<dl><dd>
+<span class="qtext">... MESSAGE ID&nbsp;&nbsp;&nbsp;&nbsp; sy-msgid <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TYPE&nbsp;&nbsp; sy-msgty <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NUMBER sy-msgno <br>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH&nbsp;&nbsp; sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 ...</span>
+</dd></dl>
+<p>
+The addition <span class="qtext">USING MESSAGE</span> implicitly passes the specification of the message
+that is stored during the execution of the statement in the system fields <span class="qtext">sy-msgid</span>, <span class="qtext">sy-msgty</span> <span class="qtext">sy-msgno</span>, and
+ <span class="qtext">sy-msgv1</span> to <span class="qtext">sy-msgv4</span> to the exception class.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+The short form is particularly suitable for converting classic exceptions that were raised in function
+modules or methods with the statement <a href="javascript:call_link('abapmessage_raising.htm')" class="blue"><span class="qtext">MESSAGE
+RAISING</span></a>, or messages that were caught with <a href="javascript:call_link('abapcall_function_parameter.htm')" class="blue"><span class="qtext">error_message</span></a>, into class-based exceptions.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Raising of the exception <span class="lnkgrey"><span class="qtext400">CX_DEMO_DYN_T100</span></span>
+that implements the interface <span class="qtext400">IF_T100_DYN_MSG</span>. The addition <span class="qtext">USING MESSAGE</span> implicitly passes the properties of a
+<a href="javascript:call_link('abenstatus_message_glosry.htm')" class="grey" title="词汇表条目">status message</a>
+that was previously output with the statement <a href="javascript:call_link('abapmessage.htm')" class="blue"><span class="qtext">MESSAGE</span></a>.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+MESSAGE ID 'SABAPDEMOS' TYPE 'S' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NUMBER '888' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WITH 'Message'. <br>
+TRY. <br>&nbsp;&nbsp;&nbsp;&nbsp;RAISE EXCEPTION TYPE cx_demo_dyn_t100 USING MESSAGE. <br>&nbsp;&nbsp;CATCH cx_demo_dyn_t100 INTO DATA(oref). <br>
+&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>display( oref->get_text( ) &amp;&amp; <br>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `, ` &amp;&amp; oref->msgty ). <br>ENDTRY.
+</span>
+</p>
+<p><span class="h4">
+Executable Examples
+</span></p>
+<ul class="disc">
+<li><span class="lnkgrey">Converting a Classic Example to a Class-Based Exception</span></li>
+</ul>
+<ul class="disc">
+<li><span class="lnkgrey">Converting the Exception <span class="qtext">error_message</span> to a Class-Based Exception</span></li>
+</ul>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abenraise_message_glbl_shrt_abexa.htm')" class="blue">Converting a Classic Example to a Class-Based Exception</a><br>
+<img src="exa.gif" alt="Example" title="Example">
+<a href="javascript:call_link('abenraise_error_message_shrt_abexa.htm')" class="blue">Converting the Exception error_message to a Class-Based Exception</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

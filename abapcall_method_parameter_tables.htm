@@ -1,0 +1,190 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPCALL_METHOD_PARAMETER_TABLES -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CALL METHOD, parameter_tables">
+<title>
+CALL METHOD, parameter_tables - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapcall_method_parameter_tables.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapcall_method_parameter_tables.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_execution.htm')" class="blue">Calling and exiting program units</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencall_processing_blocks.htm')" class="blue">Calling Processing Blocks</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencall_procedures.htm')" class="blue">Calling Procedures</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenmethod_calls.htm')" class="blue">Method Calls</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenmethod_calls_dynamic.htm')" class="blue">Dynamic Method Call</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapcall_method_dynamic.htm')" class="blue">CALL METHOD</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+CALL METHOD, parameter_tables <br><br>
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+<a href="javascript:call_link('abapcall_method_shortref.htm')" class="blue">Short Reference</a> <br><br>
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <i class=bn>[</i>PARAMETER-TABLE ptab<i class=bn>]</i></span> <br><span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i>EXCEPTION-TABLE etab<i class=bn>]</i>.</span> <br><br>
+</p>
+<p><span class="h3">
+Additions:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext">... PARAMETER-TABLE ptab</span> </A> <br>
+<br><A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext">... EXCEPTION-TABLE etab</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+In <a href="javascript:call_link('abapcall_method_dynamic.htm')" class="blue">dynamic method calls</a>, these additions assign
+actual parameters and exceptions to the formal parameters and non-class-based exceptions using the special internal tables <span class="qtext">ptab</span> and <span class="qtext">etab</span>. <br><br>
+</p>
+<A NAME="@@PARAMETER-TABLE@@CALL METHOD@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext">... PARAMETER-TABLE ptab</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+<span class="qtext">PARAMETER-TABLE</span> can be used to assign actual parameters to all formal parameters of a dynamically called method. <span class="qtext">ptab</span> expects a
+<a href="javascript:call_link('abenhashed_table_glosry.htm')" class="grey" title="词汇表条目">hashed table</a> of table type <span class="qtext">abap_parmbind_tab</span> or line type <span class="qtext">abap_parmbind</span> from the
+<a href="javascript:call_link('abentype_pool_glosry.htm')" class="grey" title="词汇表条目">type pool</a> <span class="lnkgrey"><span class="qtext400">
+ABAP</span></span>. When the statement <span class="qtext">CALL METHOD</span> is executed, the table
+must contain exactly one line for each non-optional formal parameter. This line is optional for each optional formal parameter. The table columns are:
+</p>
+<ul class="disc">
+<li><span class="qtext">NAME</span> of type <span class="qtext">c</span> and length 30 <br>For the name
+of the relevant formal parameter in uppercase letters. If a nonexistent formal parameter is specified, a catchable exception is raised. <br></li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">KIND</span> of type <span class="qtext">c</span> of length 1. <br>For the type
+of the formal parameter. This column is used to verify the interface. The type of the formal parameter
+is determined in the declaration of the called method. If <span class="qtext">KIND</span> is initial,
+no check is performed. If <span class="qtext">KIND</span> contains the value of a constant <span class="qtext">EXPORTING</span>,
+<span class="qtext">IMPORTING</span>, <span class="qtext">CHANGING</span>, or <span class="qtext">RECEIVING</span>
+of the class <span class="qtext400">CL_ABAP_OBJECTDESCR</span>, the system checks (from the perspective
+of the caller) whether the formal parameter specified in <span class="qtext">NAME</span> is an input,
+output, input/output parameter, or a return value, and raises the catchable exception <span class="qtext400">CX_SY_DYN_CALL_ILLEGAL_TYPE</span> if an error occurs. <br></li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">VALUE</span> of the type <span class="qtext">REF TO data</span> <br>For a pointer
+to an appropriate actual parameter. The data object to which the reference variable in <span class="qtext">VALUE</span> points is assigned to the formal parameter specified in <span class="qtext">NAME</span>.</li>
+</ul>
+<p>
+The column <span class="qtext">NAME</span> is the unique key of the table <span class="qtext">ptab</span>. <br><br>
+</p>
+<A NAME="@@EXCEPTION-TABLE@@CALL METHOD@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext">... EXCEPTION-TABLE etab</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+<span class="qtext">EXCEPTION-TABLE</span> can be used to assign return values to all
+<a href="javascript:call_link('abenexceptions_non_class.htm')" class="blue">non-class-based exceptions</a> of a dynamically called method. <span class="qtext">etab</span> expects a
+<a href="javascript:call_link('abenhashed_table_glosry.htm')" class="grey" title="词汇表条目">hashed table</a> of table type <span class="qtext">abap_excpbind_tab</span> or of line type <span class="qtext">abap_excpbind</span> from the
+<a href="javascript:call_link('abentype_pool_glosry.htm')" class="grey" title="词汇表条目">type pool</a> <span class="lnkgrey"><span class="qtext400">
+ABAP</span></span>. When the statement <span class="qtext">CALL METHOD</span> is executed, this table can contain exactly one line for every non-class-based exception of the method. The table columns are:
+</p>
+<ul class="disc">
+<li><span class="qtext">NAME</span> of type <span class="qtext">c</span> and length 30 <br>For the name
+of the respective exception or <a href="javascript:call_link('abapcall_method_parameters.htm')" class="blue"><span class="qtext">OTHERS</span></a> in uppercase letters. <br></li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">VALUE</span> of type <span class="qtext">i</span> <br>For the numeric value
+that is to be available in <span class="qtext">sy-subrc</span> after the exception specified in <span class="qtext">NAME</span> is raised.</li>
+</ul>
+<p>
+The column <span class="qtext">NAME</span> is the unique key of table <span class="qtext">etab</span>.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Dynamic method call with parameter and exception table.
+</p>
+<p class="qtextml1">
+<span class="qtext">
+CLASS cls DEFINITION. <br>&nbsp;&nbsp;PUBLIC SECTION. <br>&nbsp;&nbsp;&nbsp;&nbsp;CLASS-METHODS meth IMPORTING&nbsp;&nbsp;p TYPE string <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXCEPTIONS e. <br>
+ENDCLASS. <br> <br>CLASS cls IMPLEMENTATION. <br>&nbsp;&nbsp;METHOD meth. <br>&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>write( p ). <br>
+&nbsp;&nbsp;&nbsp;&nbsp;RAISE e. <br>&nbsp;&nbsp;ENDMETHOD. <br>ENDCLASS. <br> <br>START-OF-SELECTION. <br>
+&nbsp;&nbsp;DATA(class) = `CLS`. <br>&nbsp;&nbsp;DATA(meth) = `METH`. <br> <br>&nbsp;&nbsp;DATA(ptab) = VALUE abap_parmbind_tab( <br>
+&nbsp;&nbsp;&nbsp;&nbsp;( name&nbsp;&nbsp;= 'P' <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kind&nbsp;&nbsp;= cl_abap_objectdescr=>exporting <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value = REF #( `Hello method!` ) ) ). <br> <br>&nbsp;&nbsp;DATA(etab) = VALUE abap_excpbind_tab( <br>
+&nbsp;&nbsp;&nbsp;&nbsp;( name = 'E' value = 4 ) ). <br> <br>&nbsp;&nbsp;CALL METHOD (class)=>(meth) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;PARAMETER-TABLE ptab <br>&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTION-TABLE etab. <br>&nbsp;&nbsp;IF sy-subrc &lt;> 0. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;cl_demo_output=>display( `Exception caught ...` ). <br>&nbsp;&nbsp;ENDIF.
+</span>
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

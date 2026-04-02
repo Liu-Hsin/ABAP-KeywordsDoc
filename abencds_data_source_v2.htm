@@ -1,0 +1,167 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_DATA_SOURCE_V2 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - CDS View Entity, SELECT, data_source">
+<title>
+CDS DDL - CDS View Entity, SELECT, data_source - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_data_source_v2.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_data_source_v2.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v2_views.htm')" class="blue">ABAP CDS - View Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_entity.htm')" class="blue">CDS DDL - DEFINE VIEW ENTITY</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@AS@@!ABAP_CDS_SELECT_DS!@@"></A>
+<p><span class="h1">
+CDS DDL - CDS View Entity, SELECT, data_source
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... entity<i class=bn>[</i>
+<a href="javascript:call_link('abencds_select_parameters_v2.htm')" class="blue">parameters</a><i class=bn>]</i><i class=bn>|</i>
+<a href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue">path_expr</a> <i class=bn>[</i>AS alias<i class=bn>]</i> <i class=bn>[</i>
+<a href="javascript:call_link('abencds_joined_data_source_v2.htm')" class="blue">join</a><i class=bn>]</i> ...</span> <br><br>
+</p>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a data source of a <a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>. A data source can be a
+<a href="javascript:call_link('abenddic_database_tables.htm')" class="blue">DDIC database table</a>, a
+<a href="javascript:call_link('abencds_v2_view_glosry.htm')" class="grey" title="词汇表条目">CDS view entity</a>, a
+<a href="javascript:call_link('abencds_table_function_glosry.htm')" class="grey" title="词汇表条目">CDS table function</a>, a
+<a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchy</a>, or a <a href="javascript:call_link('abencds_v1_view_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based view</a>.
+</p>
+<ul class="disc">
+<li>The data source is specified either directly using its name <span class="qtext400">entity</span> or using a path expression <a
+ href="javascript:call_link('abencds_path_expression_v2.htm')" class="blue"><span class="qtext400">path_expr</span></a> in which
+<a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS associations</a> are evaluated. The CDS associations of the path expression cannot have any abstract
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association targets</a>.</li>
+</ul>
+<ul class="disc">
+<li>If the data source is a CDS entity with a <a href="javascript:call_link('abencds_parameter_list_v2.htm')" class="blue">list
+of input parameters</a>, actual parameters must be passed to these using <a href="javascript:call_link('abencds_select_parameters_v2.htm')" class="blue"><span class="qtext400">parameters</span></a>.</li>
+</ul>
+<ul class="disc">
+<li>An <a href="javascript:call_link('abenalias_glosry.htm')" class="grey" title="词汇表条目">alias name</a> <span class="qtext400">alias</span>
+for a directly specified data source can be defined after <span class="qtext400">AS</span>. The name must comply with the naming rules for <a href="javascript:call_link('abencds_general_syntax_rules.htm')" class="blue">names</a>.</li>
+</ul>
+<ul class="disc">
+<li>The syntax <a href="javascript:call_link('abencds_joined_data_source_v2.htm')" class="blue"><span class="qtext400">JOIN</span></a> can be used to combine multiple data sources as
+<a href="javascript:call_link('abenjoin_glosry.htm')" class="grey" title="词汇表条目">joins</a>.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+If the data source after <span class="qtext400">FROM</span> is specified as path expression and if,
+additionally, the view defines an association, then there's a conflict because in the <span class="qtext400">ON</span>
+condition of an association, it is not possible to specify a path expression. To prevent this conflict, the following options are available:
+</p>
+<ul class="disc">
+<li>Use the <span class="qtext400">$projection</span> syntax in the <span class="qtext400">ON</span> condition</li>
+</ul>
+<ul class="disc">
+<li>Assign an alias name to the data source</li>
+</ul>
+<ul class="disc">
+<li>Resolve the path expression and use the association target as prefix in the <span class="qtext400">ON</span> condition.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Defines the CDS view entity <span class="lnkgrey"><span class="qtext400">DEMO_CDS_DATA_SOURCE</span></span> with two data sources:
+</p>
+<ul class="disc">
+<li>The first data source <span class="qtext400">demo_cds_param_view_entity</span> requires values for
+three input parameters. It is assigned the alias name <span class="qtext400">source1</span>. To use
+this data source in the <span class="qtext400">SELECT</span> list, the alias name <span class="qtext400">source1</span> must be used as prefix.</li>
+</ul>
+<ul class="disc">
+<li>The second data source <span class="qtext400">scarr</span> is defined using an inner join. It is
+assigned the alias name <span class="qtext400">_source2</span>. To use this data source in the <span class="qtext400">SELECT</span> list, the alias name <span class="qtext400">_source2</span> must be used as prefix.</li>
+</ul>
+<dl><dd>
+<span class="qtext400">@EndUserText.label: 'CDS view entity data source example' <br>define view entity DEMO_CDS_DATA_SOURCE <br>
+&nbsp;&nbsp;as select from Demo_Cds_Param_View_Entity <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( p_distance_l:12, p_distance_u:23, p_unit:'kms' )&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as source1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;inner join&nbsp;&nbsp; scarr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as _source2 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on source1.carrid = _source2.carrid <br>&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;key source1.carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;key source1.connid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source1.cityfrom, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source1.cityto, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source1.distance, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source1.distid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//scarr <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_source2.carrname, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_source2.currcode, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_source2.url <br>&nbsp;&nbsp;}</span>
+</dd></dl>
+<br>
+<br>
+<!-- POSTFIX --><span class="h4">Continue</span><br>
+<a href="javascript:call_link('abencds_joined_data_source_v2.htm')" class="blue">CDS DDL - CDS View Entity, SELECT, JOIN</a><br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

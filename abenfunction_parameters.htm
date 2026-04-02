@@ -1,0 +1,204 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENFUNCTION_PARAMETERS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="Properties of Interface Parameters">
+<meta name="keywords" content="ABAP, interface parameter, function module">
+<title>
+Properties of Interface Parameters - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenfunction_parameters.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenfunction_parameters.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_program_layout.htm')" class="blue">Program Structure</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_modularization.htm')" class="blue">Modularization Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_language_procedures.htm')" class="blue">Procedures</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_functions.htm')" class="blue">Function Modules</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abapfunction.htm')" class="blue">FUNCTION</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenfunction.htm')" class="blue">Function Module Interface</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@VALUE@@FUNCTION@@"></A>
+<A NAME="@@TYPE@@FUNCTION@@"></A>
+<A NAME="@@OPTIONAL@@FUNCTION@@"></A>
+<A NAME="@@DEFAULT@@FUNCTION@@"></A>
+<p><span class="h1">
+Properties of Interface Parameters
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+When an interface parameter <span class="qtext">p1</span>, <span class="qtext">p2</span>... is defined
+in the Function Builder, its properties are determined that are reflected in the syntax of <span class="qtext">parameters</span>
+and <a href="javascript:call_link('abaptables_parameters_obsolete.htm')" class="blue"><span class="qtext">table_parameters</span></a>.
+</p>
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext">... <i class=bn>{</i> VALUE(p1) <i class=bn>|</i> REFERENCE(p1) <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i> <i class=bn>{</i>TYPE <i class=bn>[</i>REF TO<i class=bn>]</i> type<i class=bn>}</i> <i class=bn>|</i>
+<a href="javascript:call_link('abapfunction_typing_obsolete.htm')" class="blue">like_structure</a></span> <br><span class="qtext">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i>OPTIONAL<i class=bn>|</i><i class=bn>{</i>DEFAULT def1<i class=bn>}</i><i class=bn>]</i> <i class=bn>]</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>{</i> VALUE(p2) <i class=bn>|</i> REFERENCE(p2) <i class=bn>}</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i> <i class=bn>{</i>TYPE <i class=bn>[</i>REF TO<i class=bn>]</i> type<i class=bn>}</i> <i class=bn>|</i>
+<a href="javascript:call_link('abapfunction_typing_obsolete.htm')" class="blue">like_structure</a></span> <br><span class="qtext">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class=bn>[</i>OPTIONAL<i class=bn>|</i><i class=bn>{</i>DEFAULT def2<i class=bn>}</i><i class=bn>]</i> <i class=bn>]</i></span> <br>
+<span class="qtext">&nbsp;&nbsp;&nbsp;&nbsp;...</span>
+</p>
+<p>
+The syntax and semantics of <span class="qtext">VALUE</span>, <span class="qtext">TYPE</span>, <span class="qtext">
+OPTIONAL</span>, and <span class="qtext">DEFAULT</span> are mainly the same as in the definition of method interfaces with <a href="javascript:call_link('abapmethods_parameters.htm')" class="blue"><span class="qtext"><i
+class=bn>[</i>CLASS-<i class=bn>]</i>METHODS</span></a>. In addition, there is the obsolete option <a href="javascript:call_link('abapfunction_typing_obsolete.htm')" class="blue">
+<span class="qtext">like_structure</span></a> also exists, which uses <span class="qtext">LIKE</span> or <span class="qtext">STRUCTURE</span> to type interface parameters.
+</p>
+<A name="@@ITOC@@ABENFUNCTION_PARAMETERS_1"></A>
+<p><span class="h3">
+Type of Parameter Passing
+</span></p>
+<p>
+There are two types of pass by parameters: <a href="javascript:call_link('abenpass_by_reference_glosry.htm')" class="grey" title="词汇表条目">pass by reference</a> and
+<a href="javascript:call_link('abenpass_by_value_glosry.htm')" class="grey" title="词汇表条目">pass by value</a>. Pass by value is
+selected in the Function Builder by selecting <span class="italic">pass by value</span> and differs from pass by reference in the above syntax that is indicated by <span class="qtext">REFERENCE(
+)</span> through the specification of <span class="qtext">VALUE( )</span>. If only one name <span class="qtext">p1 p2 ...</span> is specified, the parameter is passed by reference by default.
+</p>
+<ul class="disc">
+<li>In pass by reference, the formal parameter points directly to the actual parameter, so that changes to the formal parameters have an immediate effect on the actual parameter.</li>
+</ul>
+<ul class="disc">
+<li>In pass by value, the formal parameter is created as a copy of the actual parameter (in <span class="qtext">IMPORTING</span>
+and <span class="qtext">CHANGING</span> parameters) or as an initial parameter (in <span class="qtext">EXPORTING</span>
+parameters) on the stack when the function module is called and for <span class="qtext">CHANGING</span>
+and <span class="qtext">EXPORTING</span> parameters, the formal parameter is copied to the actual parameter when returning from the function module.</li>
+</ul>
+<p>
+Note the following for the different types of parameter:
+</p>
+<ul class="disc">
+<li>In <span class="qtext">IMPORTING</span>, <span class="qtext">EXPORTING</span>, and <span class="qtext">CHANGING</span>
+parameters, pass by reference and pass by value are possible; for <a href="javascript:call_link('abaptables_parameters_obsolete.htm')" class="blue"><span class="qtext">TABLES</span> parameters</a>, only pass by reference is possible.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext">IMPORTING</span> parameters passed by reference must not be overwritten in the function module.</li>
+</ul>
+<ul class="disc">
+<li>An <span class="qtext">EXPORTING</span> parameter passed by reference behaves like a <span class="qtext">CHANGING</span>
+parameter, that is, <span class="qtext">EXPORTING</span> parameters passed by reference are not initialized
+when the function module is called. Therefore, no read access to these parameters should take place
+before the first write access. In addition, one must be careful when adding content to such parameters as, for example, when inserting lines into internal tables.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+The time the function module was last edited specifies whether a parameter passed by reference is shown with or without <span class="qtext">REFERENCE(
+)</span>. <span class="qtext">REFERENCE( )</span> is shown for function modules that have been modified since Release 7.31.
+</p>
+<A name="@@ITOC@@ABENFUNCTION_PARAMETERS_2"></A>
+<p><span class="h3">
+Typing of Interface Parameters
+</span></p>
+<p>
+The parameter interface of a function module is public throughout the system. Interface parameters can
+therefore only be typed with reference to data types from the ABAP Dictionary or from the public visibility
+section of global classes. Interface parameters can be typed using <span class="qtext400">TYPE</span>,
+<span class="qtext400">TYPE REF TO</span> or <a href="javascript:call_link('abapfunction_typing_obsolete.htm')" class="blue"><span class="qtext400">LIKE</span></a>.
+</p>
+<p>
+Typing with <span class="qtext">TYPE <i class=bn>[</i>REF TO<i class=bn>]</i></span> is the only recommended
+typing for interface parameters of function modules. It takes place when <span class="qtext400">TYPE</span>
+or <span class="qtext400">TYPE REF TO</span> is used in the Function Builder . For <span class="qtext">IMPORTING</span>, <span class="qtext">EXPORTING</span>, and <span class="qtext">CHANGING</span> parameters, any
+<a href="javascript:call_link('abenbuilt_in_types.htm')" class="blue">built-in ABAP type</a> (complete or generic), or any data
+type of the ABAP Dictionary or from the public visibility section of a global class can be specified
+after <span class="qtext">TYPE</span>. After <span class="qtext">TYPE REF TO</span>, the generic data type <a href="javascript:call_link('abenbuilt_in_types_generic.htm')" class="blue"><span class="qtext">data</span></a>, a non-generic data type, or an
+<a href="javascript:call_link('abenobject_type_glosry.htm')" class="grey" title="词汇表条目">object type</a> can be specified, and the interface parameter is typed as a
+<a href="javascript:call_link('abenreference_variable_glosry.htm')" class="grey" title="词汇表条目">reference variable</a>. The <a href="javascript:call_link('abentyping_check.htm')" class="blue">typing check</a> is performed in the same way as for methods.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Without an explicit typing, a formal parameter is typed implicitly with the fully generic type <span class="qtext">any</span>.
+</p>
+<A name="@@ITOC@@ABENFUNCTION_PARAMETERS_3"></A>
+<p><span class="h3">
+Optional Parameters
+</span></p>
+<p>
+<span class="qtext">IMPORTING</span>, <span class="qtext">CHANGING</span>, and <a href="javascript:call_link('abaptables_parameters_obsolete.htm')" class="blue">
+<span class="qtext">TABLES</span> parameters</a> can be made optional by using <span class="italic">optional</span>
+in the Function Builder . <span class="qtext">EXPORTING</span> parameters are always optional. <span class="qtext">IMPORTING</span> and <span class="qtext">CHANGING</span> parameters can be assigned a replacement parameter
+(<span class="italic">default value</span> in the Function Builder) . In the above syntax, this is expressed
+using the additions <span class="qtext">OPTIONAL</span> or <span class="qtext">DEFAULT</span>. For an
+optional parameter, no actual parameter must be specified when the function module is called. While
+a formal parameter with the addition <span class="qtext">OPTIONAL</span> is then initialized as a type-compliant
+parameter, a formal parameter with the addition <span class="qtext">DEFAULT</span> assumes the value and type of the replacement parameter <span class="qtext">def1 def2 ...</span>
+</p>
+<p>
+If no actual parameter is specified for a generically typed formal parameter with the addition <span class="qtext">OPTIONAL</span> when it is called, the type of the formal parameter is completed according to
+<a href="javascript:call_link('abentyping_generic.htm')" class="blue">fixed rules</a>.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+Within a function module, the <a href="javascript:call_link('abenpredicate_expression_glosry.htm')" class="grey" title="词汇表条目">predicate
+expression</a> <a href="javascript:call_link('abenlogexp_supplied.htm')" class="blue"><span class="qtext">IS SUPPLIED</span></a> can be used to check whether an optional formal parameter was assigned an actual parameter when it was called.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

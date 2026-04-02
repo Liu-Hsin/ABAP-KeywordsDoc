@@ -1,0 +1,481 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCDS_SIMPLE_ASSOCIATION_V1 -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="CDS DDL - DDIC-based View, ASSOCIATION">
+<title>
+CDS DDL - DDIC-based View, ASSOCIATION - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abencds_simple_association_v1.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abencds_simple_association_v1.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds.htm')" class="blue">ABAP - Core Data Services (ABAP CDS)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_entities.htm')" class="blue">ABAP CDS - Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_f1_ddl_syntax.htm')" class="blue">ABAP CDS - DDL for Data Definitions</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_view_entity.htm')" class="blue">ABAP CDS - CDS Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_ddic_entity.htm')" class="blue">ABAP CDS - DDIC-Based Entities</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_v1_views.htm')" class="blue">ABAP CDS - DDIC-Based Views</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_define_view_v1.htm')" class="blue">CDS DDL - DEFINE VIEW ddic_based</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abencds_association_v1.htm')" class="blue">CDS DDL - DDIC-based View, SELECT, Associations</a>&nbsp;&rarr;&nbsp;
+</span>
+<A NAME="@@ASSOCIATION@@!ABAP_CDS_SELECT_V1!@@"></A>
+<A NAME="@@$projection@@!ABAP_CDS_SELECT_ASS_V1!@@"></A>
+<A NAME="@@TO@@!ABAP_CDS_SELECT_ASS_V1!@@"></A>
+<A NAME="@@ON@@!ABAP_CDS_SELECT_ASS_V1!@@"></A>
+<p><span class="h1">
+CDS DDL - DDIC-based View, ASSOCIATION
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p><span class="h2">
+Syntax
+</span></p>
+<p>
+<span class="qtext400">... ASSOCIATION <i class=bn>[</i> [min..max] <i class=bn>]</i> TO target <i class=bn>[</i>AS _assoc<i class=bn>]</i> ON
+<a href="javascript:call_link('abencds_conditional_expression_v1.htm')" class="blue">cds_cond</a> <br>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class=bn>[</i> WITH DEFAULT FILTER <a href="javascript:call_link('abencds_conditional_expression_v1.htm')" class="blue">cds_cond</a> <i class=bn>]</i> ...</span> <br><br>
+</p>
+<p><span class="h3">
+Additions:
+</span></p>
+<P>
+   <A HREF="#!ABAP_ADDITION_1@1@" class="blue"> 1. <span class="qtext400">... [min..max]</span> </A> <br>
+<br><A HREF="#!ABAP_ADDITION_2@2@" class="blue"> 2. <span class="qtext400">... AS _assoc</span> </A> <br>
+<br><A HREF="#!ABAP_ADDITION_3@3@" class="blue"> 3. <span class="qtext400">... WITH DEFAULT FILTER cds_cond</span> </A> <br><br>
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a <a href="javascript:call_link('abencds_association_glosry.htm')" class="grey" title="词汇表条目">CDS association</a> with
+the name <span class="qtext400">_assoc</span> in a <a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue"><span class="qtext400">SELECT</span> statement</a> of a
+<a href="javascript:call_link('abencds_v1_view_glosry.htm')" class="grey" title="词汇表条目">CDS DDIC-based view</a>. A CDS association associates the current CDS view as
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> with the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> <span class="qtext400">
+target</span> using an <span class="qtext400">ON</span> condition <a href="javascript:call_link('abencds_conditional_expression_v1.htm')" class="blue">
+<span class="qtext400">cds_cond</span></a>. A data source <span class="qtext400">target</span> can be a DDIC database table defined in ABAP Dictionary , a
+<a href="javascript:call_link('abendictionary_view_glosry.htm')" class="grey" title="词汇表条目">dictionary view</a>,  or a
+<a href="javascript:call_link('abencds_entity_glosry.htm')" class="grey" title="词汇表条目">CDS entity</a>. If <span class="qtext400">target</span> is an
+<a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entity</a>, the way the CDS association can be used is restricted.
+</p>
+<p>
+A CDS association of a <a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue"><span class="qtext400">SELECT</span> statement</a> in a CDS view can be accessed as follows:
+</p>
+<ul class="disc">
+<li>By specifying its name in a <a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">path expression</a> in the same statement and in all places where this is documented. A CDS association whose
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> is an
+<a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entity</a> can only be
+<a href="javascript:call_link('abencds_select_list_association_v1.htm')" class="blue">exposed</a> in the <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue"><span class="qtext400">SELECT</span> list</a>.</li>
+</ul>
+<ul class="disc">
+<li>If a CDS association whose <a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> is not abstract is exposed using a
+<a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">path expression</a> in the <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue">
+<span class="qtext400">SELECT</span> list</a> of the current <span class="qtext400">SELECT</span> statement, the following can use it in their path expressions:</li>
+</ul>
+<ul class="circlem2">
+<li>Other <a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">CDS views</a></li>
+</ul>
+<ul class="circlem2">
+<li><a href="javascript:call_link('abenopen_sql_path.htm')" class="blue">ABAP SQL statements</a></li>
+</ul>
+<dl><dd>
+
+</dd></dl>
+<ul class="disc">
+<li>Exposed <a href="javascript:call_link('abenself_association_glosry.htm')" class="grey" title="词汇表条目">self associations</a> can be specified as
+<a href="javascript:call_link('abenhierarchy_association_glosry.htm')" class="grey" title="词汇表条目">hierarchy associations</a> in
+<a href="javascript:call_link('abencds_hierarchy_glosry.htm')" class="grey" title="词汇表条目">CDS hierarchies</a> or in the ABAP SQL
+<a href="javascript:call_link('abenhierarchy_generator_glosry.htm')" class="grey" title="词汇表条目">hierarchy generator</a> <a href="javascript:call_link('abenselect_hierarchy_generator.htm')" class="blue"><span class="qtext">HIERARCHY</span></a>.</li>
+</ul>
+<p>
+When a CDS view is activated that uses a path expression to access a CDS association or an element, or when a path expression is used for access in ABAP SQL, every CDS association of the path expression is transformed to a
+<a href="javascript:call_link('abenjoin_expression_glosry.htm')" class="grey" title="词汇表条目">join expression</a>. Here, the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> represents the left side and the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>  represents
+the right side. The <span class="qtext400">ON</span> condition of the association is added to the <span class="qtext400">ON</span> condition of the join. By default, the
+<a href="javascript:call_link('abenjoin_type_glosry.htm')" class="grey" title="词汇表条目">join type</a> is determined by where the <a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">path expression</a> is used:
+</p>
+<ul class="disc">
+<li>After <a href="javascript:call_link('abencds_select_statement_v1.htm')" class="blue"><span class="qtext400">FROM</span></a>, it is an
+<a href="javascript:call_link('abeninner_join_glosry.htm')" class="grey" title="词汇表条目">inner join</a> inner join (<span class="qtext400">INNER JOIN</span>)</li>
+</ul>
+<ul class="disc">
+<li>In all other locations, it is a <a href="javascript:call_link('abenleft_outer_join_glosry.htm')" class="grey" title="词汇表条目">left outer join</a> (<span class="qtext400">LEFT OUTER JOIN</span>)</li>
+</ul>
+<p>
+This setting can be overwritten by specifying the
+<a href="javascript:call_link('abencds_path_expr_jointype_v1.htm')" class="blue">join type</a> when using the CDS association
+in a path expression. A path expression in a <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue"><span class="qtext400">SELECT</span> list</a> that
+<a href="javascript:call_link('abencds_select_list_association_v1.htm')" class="blue">exposes</a> its closing CDS association is not defined as a join. A self association whose
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> is the same as the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> cannot be created as a join in the CDS view where it is defined.
+</p>
+<p>
+When specifying the <span class="qtext400">ON</span> condition, for the operands,
+<a href="javascript:call_link('abencds_cond_expr_operands_v1.htm')" class="blue">general</a> and the following <a href="javascript:call_link('abencds_cond_expr_on_assoc_v1.htm')" class="blue">special rules</a> apply:
+</p>
+<ul class="disc">
+<li>The fields of the <a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association
+target</a>  must be prefixed in the <span class="qtext400">ON</span> condition by the name of the CDS association (prefix <span class="qtext400">_assoc.</span> separated by a period).</li>
+</ul>
+<ul class="disc">
+<li>If the CDS association in the <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue"><span class="qtext400">SELECT</span> list</a> of the current <span class="qtext400">SELECT</span> statement is exposed, the fields of the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> specified
+in the <span class="qtext400">ON</span> condition must also be listed in the <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue">
+<span class="qtext400">SELECT</span> list</a>. This ensures that a join expression can be built from the CDS association (when used in a path expression).</li>
+</ul>
+<ul class="disc">
+<li>To make a reference to an element of the <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue"><span class="qtext400">
+SELECT</span> list</a> in the <span class="qtext400">ON</span> condition, the field name can be prefixed with <span class="qtext400">$projection</span> instead of the
+<a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a>. In this
+case, an alternative element name defined using <a href="javascript:call_link('abencds_select_list_entry_v1.htm')" class="blue"><span class="qtext400">
+AS</span></a> can be specified instead of the field name. If a path expression of the <span class="qtext400">SELECT</span>
+list is used when the prefix <span class="qtext400">$projection</span> is used in the <span class="qtext400">ON</span>
+condition, the current CDS association cannot itself be used in the <span class="qtext400">SELECT</span> list, to avoid invalid join expressions.</li>
+</ul>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>CDS associations not listed in the <span class="qtext400">SELECT</span> list can only be used in path expressions of the current <span class="qtext400">SELECT</span> statement.</li>
+</ul>
+<ul class="disc">
+<li>The syntax for defining and using CDS associations is a higher-value wrapping of the syntax for
+<a href="javascript:call_link('abencds_joined_data_source_v1.htm')" class="blue">joins</a>. Using CDS associations instead of
+directly programming joins makes it easier to read the definition of a CDS view. CDS associations can be used to model relationships between CDS entities that can be accessed simply using path expressions in
+<a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">CDS views</a> or in <a href="javascript:call_link('abenopen_sql_path.htm')" class="blue">ABAP SQL</a>.</li>
+</ul>
+<ul class="disc">
+<li>When a CDS view is activated, a join defined by a CDS association is built for every use in a path
+expression and not for the definition of the CDS association. No joins are constructed for CDS associations that are not used in their CDS views.</li>
+</ul>
+<ul class="disc">
+<li>If a CDS association is used in a path expression of the <span class="qtext400">SELECT</span> list
+of the current <span class="qtext400">SELECT</span> statement, a join is defined for the current view.
+Here, the <span class="qtext400">ON</span> conditions of the CDS association are applied to the join
+directly. No path expressions are allowed in the <span class="qtext400">ON</span> condition of a join,
+which means that no reference can be made to a path expression of the <span class="qtext400">SELECT</span>
+list when using the prefix <span class="qtext400">$projection</span> in the <span class="qtext400">ON</span> condition of a CDS association, if CDS the association is also used here.</li>
+</ul>
+<ul class="disc">
+<li>CDS associations and <a href="javascript:call_link('abencds_joined_data_source_v1.htm')" class="blue">join expressions</a>
+can be used in a <span class="qtext400">SELECT</span> statement of a CDS view. When the join expressions defined by the CDS associations are used in path expressions, all joins are joined.</li>
+</ul>
+<ul class="disc">
+<li>Special rules apply to CDS associations in <span class="qtext400">SELECT</span> statements joined with <a href="javascript:call_link('abencds_union_v1.htm')" class="blue"><span class="qtext400">UNION</span></a>.</li>
+</ul>
+<ul class="disc">
+<li><a href="javascript:call_link('abencds_cycle_problems.htm')" class="blue">Cyclical dependencies</a> should be avoided when using CDS associations to prevent problems occurring in mass activations of CDS entities.</li>
+</ul>
+<ul class="disc">
+<li>CDS associations whose <a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> is an
+<a href="javascript:call_link('abencds_abstract_entity_glosry.htm')" class="grey" title="词汇表条目">CDS abstract entity</a> cannot be used anywhere where they could produce instances of join expressions. <br><br></li>
+</ul>
+<A NAME="@@[ ]@@!ABAP_CDS_SELECT_ASS_V1!@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_1@1@"></A> <span class="bold">Addition 1</span>
+</span></p>
+<P>
+<span class="qtext400">... [min..max]</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines the  <a href="javascript:call_link('abencardinality_glosry.htm')" class="grey" title="词汇表条目">cardinality</a> of the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association
+target</a> of a CDS view, which is defined with a CDS association <span class="qtext400">ASSOCIATION</span>. The square brackets <span class="qtext400">[
+]</span> are part of the syntax. For <span class="qtext400">min</span> and <span class="qtext400">max</span>, positive integers (including 0) and asterisks (<span class="qtext400">*</span>) can be specified:
+</p>
+<ul class="disc">
+<li><span class="qtext400">max</span> cannot be 0.</li>
+</ul>
+<ul class="disc">
+<li>An asterisk <span class="qtext400">*</span> for <span class="qtext400">max</span> means any number of rows.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">min</span> can be omitted (set to 0 if omitted).</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">min</span> cannot be <span class="qtext400">*</span>.</li>
+</ul>
+<ul class="disc">
+<li>When a CDS association is used in a <a href="javascript:call_link('abencds_where_clause_v1.htm')" class="blue"><span class="qtext400">WHERE</span> condition</a>, 1 must be specified for <span class="qtext400">max</span>.</li>
+</ul>
+<p>
+If the cardinality is not defined explicitly, the cardinality to-one is used implicitly (<span class="qtext400">[min..1]</span>).
+</p>
+<p>
+A cardinality is specified to document the semantics of the data model and, in some database systems, for optimizations. In these database systems, left outer joins (<span class="qtext400">LEFT OUTER JOIN</span>) produced by a
+<a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">path expressions</a> are given the addition <span class="qtext400">
+TO ONE</span> if an explicit or implicit "to 1" cardinality is used and the addition <span class="qtext400">TO
+MANY</span> if any other cardinality is used. These additions work in the same way as when they are
+specified explicitly in <a href="javascript:call_link('abencds_joined_data_source_v1.htm')" class="blue"><span class="qtext400">LEFT
+OUTER JOIN</span></a>. This means that an optimization is attempted and the result can be undefined if the result set does not match the cardinality.
+</p>
+<p><span class="h4">
+Hints
+</span></p>
+<ul class="disc">
+<li>To avoid undefined and platform-dependent behavior, the cardinality should always be defined to match the data in question.</li>
+</ul>
+<ul class="disc">
+<li>The specified cardinality is evaluated by the syntax check for paths specified in the CDS DDL of CDS or in ABAP SQL. A non-matching cardinality usually produces a syntax check warning.</li>
+</ul>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Specifies the cardinality of a CDS association incorrectly. The following CDS view joins the DDIC database
+tables <span class="lnkgrey"><span class="qtext400">SCARR</span></span> and <span class="lnkgrey"><span class="qtext400">
+SPFLI</span></span> in a CDS association <span class="qtext400">_spfli</span> without specifying the
+cardinality explicitly. The implicitly set cardinality is "to 1". If the CDS association is used in a path specified in the <span class="qtext400">SELECT</span> list, this is implemented in some database systems (for example the
+<a href="javascript:call_link('abenhana_database_glosry.htm')" class="grey" title="词汇表条目">SAP HANA database</a>) as a left outer
+join using the implicit addition <span class="qtext400">TO ONE</span>. The actual cardinality of the data is, however, <span class="qtext400">TO MANY</span>.
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMOCDSWRGC' <br>define view demo_cds_wrong_cardinality <br>
+&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;scarr <br>&nbsp;&nbsp;&nbsp;&nbsp;association to spfli as _spfli on <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli.carrid = scarr.carrid <br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scarr.carrid&nbsp;&nbsp; as carrid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scarr.carrname as carrname, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli.connid&nbsp;&nbsp;as connid <br>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</dd></dl>
+<p>
+The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_WRONG_CARDINALITY</span></span> uses
+different <span class="qtext">SELECT</span> statements to access the view. On optimizing database systems, such as the SAP HANA database, the two reads return a different number of rows, potentially an unexpected result.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Specifies the cardinality of a CDS association correctly. The following CDS view joins the DDIC database
+tables <span class="lnkgrey"><span class="qtext400">SCARR</span></span> and <span class="lnkgrey"><span class="qtext400">
+SPFLI</span></span> in a CDS association <span class="qtext400">_spfli</span> while specifying the cardinality
+explicitly. If the CDS association is used in a path specified in the <span class="qtext400">SELECT</span> list, this is implemented in some database systems (for example the
+<a href="javascript:call_link('abenhana_database_glosry.htm')" class="grey" title="词汇表条目">SAP HANA database</a>) as a left outer
+join using the implicit addition <span class="qtext400">TO MANY</span>, which matches the actual cardinality of the data.
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMOCDSEXPC' <br>define view demo_cds_explicit_cardinality <br>
+&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;scarr <br>&nbsp;&nbsp;&nbsp;&nbsp;association [1..*] to spfli as _spfli on <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli.carrid = scarr.carrid <br>&nbsp;&nbsp;&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scarr.carrid&nbsp;&nbsp; as carrid, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scarr.carrname as carrname, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli.connid&nbsp;&nbsp;as connid <br>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</dd></dl>
+<p>
+The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_EXPLICIT_CARDINALITY</span></span>
+uses different <span class="qtext">SELECT</span> statements to access the view. The two reads return the same number of rows on all database systems. <br><br>
+</p>
+<A NAME="@@AS@@!ABAP_CDS_SELECT_ASS_V1!@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_2@2@"></A> <span class="bold">Addition 2</span>
+</span></p>
+<P>
+<span class="qtext400">... AS _assoc</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines the name <span class="qtext400">_assoc</span> of a CDS association of a CDS view defined using
+<span class="qtext400">ASSOCIATION</span>. If no name is defined explicitly using <span class="qtext400">AS</span>, <span class="qtext400">_assoc</span> is set implicitly to the name of the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>. The name <span class="qtext400">_assoc</span> must comply with the naming rules for
+<a href="javascript:call_link('abencds_general_syntax_rules.htm')" class="blue">names</a>.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+It is advisable to use an underscore <span class="qtext400">_</span> as the first character of the CTE CDS association name.
+</p>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+Example of a simple CDS association. The following CDS view provides the same result as the CDS view <span class="qtext400">DEMO_CDS_SCARR_SPFLI</span> in the
+<a href="javascript:call_link('abencds_joined_data_source_v1.htm')" class="blue">joins</a> example, as shown in the program
+<span class="lnkgrey"><span class="qtext400">DEMO_CDS_ASSOCIATION</span></span> using an assertion. Furthermore, the CDS association <span class="qtext400">spfli_scarr</span> is
+<a href="javascript:call_link('abencds_select_list_association_v1.htm')" class="blue">exposed</a> to
+be used from outside in the <a href="javascript:call_link('abencds_select_list_v1.htm')" class="blue"><span class="qtext400">SELECT</span> list</a> by specifying a
+<a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">path</a> that contains only the name of a CDS
+association. The program <span class="lnkgrey"><span class="qtext400">DEMO_CDS_ASSOCIATION</span></span> also shows how the CDS association can be accessed by
+<a href="javascript:call_link('abenopen_sql_path.htm')" class="blue">specifying a path</a> in ABAP SQL.
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'DEMO_CDS_ASSOC' <br>@AccessControl.authorizationCheck: #NOT_REQUIRED <br>
+define view demo_cds_association( <br>&nbsp;&nbsp;&nbsp;&nbsp;_spfli_scarr, <br>&nbsp;&nbsp;&nbsp;&nbsp;id, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;carrier, <br>&nbsp;&nbsp;&nbsp;&nbsp;flight, <br>&nbsp;&nbsp;&nbsp;&nbsp;departure, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;destination <br>&nbsp;&nbsp;) <br>&nbsp;&nbsp;as select from <br>&nbsp;&nbsp;&nbsp;&nbsp;spfli <br>
+&nbsp;&nbsp;&nbsp;&nbsp;association [1..1] to scarr as _spfli_scarr on <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$projection.carrid = _spfli_scarr.carrid <br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_spfli_scarr, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key spfli.carrid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key _spfli_scarr[inner].carrname, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key spfli.connid, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spfli.cityfrom, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spfli.cityto <br>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</dd></dl>
+<p><span class="h4">
+Example
+</span></p>
+<p>
+The following CDS view <span class="qtext400">sales_order_invoice_header</span> returns information
+about sales invoices and works with the DDIC database tables <span class="qtext400">snwd_so_inv_head</span>,
+<span class="qtext400">snwd_so</span>, <span class="qtext400">snwd_bpa</span>, and <span class="qtext400">snwd_so_inv_item</span>.
+</p>
+<p>
+Two CDS associations are defined:
+</p>
+<ul class="disc">
+<li><span class="qtext400">_buyer</span> stands for a join between the current view and the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a> <span class="qtext400">snwd_bpa</span>.</li>
+</ul>
+<ul class="disc">
+<li><span class="qtext400">_invoice_items</span> stands for a join between the current view and the
+<a href="javascript:call_link('abenassociation_target_glosry.htm')" class="grey" title="词汇表条目">association target</a>  <span class="qtext400">snwd_so_inv_item</span>.</li>
+</ul>
+<p>
+The <a href="javascript:call_link('abenassociation_source_glosry.htm')" class="grey" title="词汇表条目">association source</a> fields
+used in the <span class="qtext400">ON</span> conditions - <span class="qtext400">node_key</span> and
+<span class="qtext400">buyer_guid</span> - are part of the <span class="qtext400">SELECT</span> list.
+Here the prefix <span class="qtext400">$projection</span> is used instead of the prefixes <span class="qtext400">snwd_so_inv_head</span> or <span class="qtext400">snwd_so_inv_head</span>.
+</p>
+<p>
+The CDS association <span class="qtext400">_buyer</span> is not listed in the <span class="qtext400">SELECT</span>
+list and can only be used in path expressions of the current <span class="qtext400">SELECT</span> statement.
+This association can be specified in the <span class="qtext400">WHERE</span> condition due to the cardinality
+<span class="qtext400">[1..1]</span>. The CDS association <span class="qtext400">_invoice_items</span>
+is not accessed in path expressions of the current <span class="qtext400">SELECT</span> statement. However,
+this association is listed in the <span class="qtext400">SELECT</span> list, which means it can be used
+in path expressions of other CDS views. This association cannot be specified in a <span class="qtext400">WHERE</span> condition due to the cardinality <span class="qtext400">[1..*]</span>.
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'SALESO_INVHDR_VW' <br>define view sales_order_invoice_header as <br>
+&nbsp;&nbsp;select from snwd_so_inv_head <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inner join snwd_so <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on snwd_so_inv_head.so_guid = snwd_so.node_key <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; association [1..1] to snwd_bpa as _buyer <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on $projection.buyer_guid = _buyer.node_key <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; association [1..*] to snwd_so_inv_item as _invoice_items <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on $projection.node_key = _invoice_items.parent_key <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { key snwd_so_inv_head.node_key,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//used in assoc _invoice_items <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snwd_so_inv_head.buyer_guid,&nbsp;&nbsp;&nbsp;&nbsp;//used in assoc _buyer <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snwd_so.so_id as sales_order_id, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _buyer.bp_id as buyer_id,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //from assoc _buyer <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snwd_so_inv_head.payment_status, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Semantics.currencyCode <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snwd_so_inv_head.currency_code, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Semantics.amount.currencyCode: 'currency_code' <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; snwd_so_inv_head.gross_amount, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _invoice_items&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//expose assoc _invoice_items <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;where _buyer.bp_role = '001';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//usage of assoc buyer <br></span>
+</dd></dl>
+<p>
+The CDS view can be accessed in an ABAP program with a simple ABAP SQL <span class="qtext400">SELECT</span> statement.
+</p>
+<dl><dd>
+<span class="qtext">SELECT sales_order_id, buyer_id, payment_status <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM sales_order_invoice_header <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INTO CORRESPONDING FIELDS OF TABLE @itab.</span>
+</dd></dl>
+<p>
+The complexity of the actual query is wrapped transparently in the CDS view for the application programmer.
+When the view is accessed, the join (defined by the CDS association <span class="qtext400">_invoice_items</span>)
+between <span class="qtext400">snwd_so_inv_head</span> and <span class="qtext400">snwd_so_inv_item</span> is not built, because there are no path expressions that need to access the join.
+</p>
+<p>
+The CDS view <span class="qtext400">sales_order_invoice_header</span> mentioned above is used as the
+data source in the definition of the CDS view <span class="qtext400">sales_order_invoice_items</span>. This data source is used to access the
+<a href="javascript:call_link('abencds_select_list_association_v1.htm')" class="blue">exposed</a> CDS association <span class="qtext400">_invoice_items</span>.
+The elements of the CDS association are accessed in this view. There is no visual indication that it
+is the result of a join. This join between <span class="qtext400">snwd_so_inv_head</span> and <span class="qtext400">
+snwd_so_inv_item</span> is created when the CDS view <span class="qtext400">sales_order_invoice_items</span>
+is activated. The other CDS association <span class="qtext400">_buyer</span> of the CDS view <span class="qtext400">sales_order_invoice_header</span> cannot be accessed.
+</p>
+<dl><dd>
+<span class="qtext400">@AbapCatalog.sqlViewName: 'SALESO_INVITM_VW' <br>define view sales_order_invoice_items as <br>
+&nbsp;&nbsp;select from sales_order_invoice_header as header <br>&nbsp;&nbsp;{ header.sales_order_id, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;header._invoice_items.inv_item_pos as item_position, <br>&nbsp;&nbsp; @Semantics.currencyCode <br>
+&nbsp;&nbsp;&nbsp;&nbsp;header._invoice_items.currency_code, <br>&nbsp;&nbsp; @Semantics.amount.currencyCode: 'currency_code' <br>&nbsp;&nbsp;&nbsp;&nbsp;header._invoice_items.gross_amount }</span> <br><br>
+</dd></dl>
+<A NAME="@@WITH DEFAULT FILTER@@!ABAP_CDS_SELECT_ASS_V1!@@"></A>
+<p><span class="h3">
+<A NAME="!ABAP_ADDITION_3@3@"></A> <span class="bold">Addition 3</span>
+</span></p>
+<P>
+<span class="qtext400">... WITH DEFAULT FILTER cds_cond</span>   <br><!-- /A -->
+</P>
+<p><span class="h4">
+Effect
+</span></p>
+<p>
+Defines a standard filter condition for a <a href="javascript:call_link('abencds_path_expression_v1.htm')" class="blue">path expression</a>.
+</p>
+<ul class="disc">
+<li>If no <a href="javascript:call_link('abencds_path_expression_filter_v1.htm')" class="blue">filter condition</a> is specified
+when the CDS association is used in an path expression, the condition <a href="javascript:call_link('abencds_conditional_expression_v1.htm')" class="blue">
+<span class="qtext400">cds_cond</span></a> specified using <span class="qtext400">DEFAULT FILTER</span> is used as the filter condition and applied in an extended condition for the join. The same
+<a href="javascript:call_link('abencds_cond_expr_filter_v1.htm')" class="blue">rules</a> apply to the default filter condition as to a filter condition specified as an attribute.</li>
+</ul>
+<ul class="disc">
+<li>If a <a href="javascript:call_link('abencds_path_expression_filter_v1.htm')" class="blue">filter condition</a> is specified
+when the CDS association is used in a path expression, this condition is used instead of the default filter condition.</li>
+</ul>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+When the syntax check evaluates a cardinality specified using <span class="qtext400">[min..max]</span>, the default filter condition is respected alongside the <span class="qtext400">ON</span> condition.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

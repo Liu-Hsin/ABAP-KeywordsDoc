@@ -1,0 +1,168 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENCLASS_INTERFACE_DEFINITION -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAP Objects - Definition of Classes and Interfaces">
+<title>
+ABAP Objects - Definition of Classes and Interfaces - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenclass_interface_definition.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenclass_interface_definition.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abendeclarations.htm')" class="blue">Declarations</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_declarations.htm')" class="blue">Declaration Statements</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenclasses_and_interfaces.htm')" class="blue">Classes and Interfaces (ABAP Objects)</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_objects_oview.htm')" class="blue">ABAP Objects - Overview</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+ABAP Objects - Definition of Classes and Interfaces
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Classes and interfaces in ABAP Objects can be defined either globally or locally.
+</p>
+<ul class="disc">
+<li>Global classes and interfaces are stored centrally in the
+<a href="javascript:call_link('abenclass_library_glosry.htm')" class="grey" title="词汇表条目">class library</a> in the
+<a href="javascript:call_link('abenrepository_glosry.htm')" class="grey" title="词汇表条目">repository</a>. From a technical perspective, global classes and interfaces are defined in
+<a href="javascript:call_link('abenclass_pool_glosry.htm')" class="grey" title="词汇表条目">class pools</a> or
+<a href="javascript:call_link('abeninterface_pool_glosry.htm')" class="grey" title="词汇表条目">interface pools</a>. The global classes and interfaces are visible for all ABAP programs of an
+<a href="javascript:call_link('abenas_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a>. Access is managed by the package check. Global classes and interfaces are stored in the namespace of all
+<a href="javascript:call_link('abenglobal_type_glosry.htm')" class="grey" title="词汇表条目">global types</a> of an AS ABAP.</li>
+</ul>
+<ul class="disc">
+<li>Local classes and interfaces can be defined in any programs except
+<a href="javascript:call_link('abeninterface_pool_glosry.htm')" class="grey" title="词汇表条目">interface pools</a> and
+<a href="javascript:call_link('abentype_pool_glosry.htm')" class="grey" title="词汇表条目">type pools</a>. They can only be used
+statically in the defining program. Dynamic access across program boundaries is possible, but not recommended.
+When a class is used in an ABAP program, the system first searches for a local class, then for a global
+class with the specified name. Otherwise, there is no differentiation between using global and local classes or interfaces.</li>
+</ul>
+<p>
+In local classes that can only be used in a single program, it is usually sufficient to define the public
+interface, that is, the externally visible components, suitable for this program. However, global classes
+are available throughout the system, which means that its public interface can only be typed with reference to data types that are themselves visible throughout the system.
+</p>
+<p>
+The syntax for defining classes and interfaces is essentially the same for local and global classes
+and interfaces. The only difference is in the addition <span class="qtext">PUBLIC</span>, which makes a distinction between the global classes and interfaces and local declarations.
+</p>
+<p>
+ Global classes and interfaces can be edited in the
+<a href="javascript:call_link('abenclass_builder_glosry.htm')" class="grey" title="词汇表条目">Class Builder</a>, either in form-based
+or source code-based mode. In form-based mode, the Class Builder generates the corresponding source code that can be accessed directly in source-code based mode. The
+<a href="javascript:call_link('abenadt_glosry.htm')" class="grey" title="词汇表条目">ABAP Development Tools (ADT)</a> only offer the source code-based mode.
+</p>
+<A name="@@ITOC@@ABENCLASS_INTERFACE_DEFINITION_1"></A>
+<p><span class="h2">
+Defining Classes
+</span></p>
+<p>
+Classes consist of <a href="javascript:call_link('abenabap_source_code_glosry.htm')" class="grey" title="词汇表条目">ABAP source
+code</a>, which is enclosed in the ABAP statements <a href="javascript:call_link('abapclass.htm')" class="blue"><span class="qtext">CLASS
+- ENDCLASS</span></a>. A complete class definition consists of a declaration part and, if required, an implementation part.
+</p>
+<p>
+The declaration part of a class named <span class="qtext">class</span> consists of a statement block: <br><br>
+</p>
+<dl><dd>
+<a href="javascript:call_link('abapclass.htm')" class="blue"><span class="qtext">CLASS class DEFINITION.</span></a> <br>  ... <br><a href="javascript:call_link('abapendclass.htm')" class="blue"><span class="qtext">ENDCLASS.</span></a>
+</dd></dl>
+<p>
+It contains the declaration of all <a href="javascript:call_link('abenclass_components.htm')" class="blue">components</a> (attributes, methods, or events) of a class. All the components of a class must be assigned explicitly to a
+<a href="javascript:call_link('abenclass_visibility.htm')" class="blue">visibility section</a>
+(<span class="qtext">PUBLIC SECTION</span>, <span class="qtext">PROTECTED SECTION</span>, or <span class="qtext">PRIVATE
+SECTION</span>), which defines the location from where each component can be accessed. In local classes,
+the declaration part belongs to the global data declarations and should therefore also be at the beginning of the program.
+</p>
+<p>
+If methods are declared in the declaration part of a class, the class also needs an implementation part. This consists of a statement block: <br><br>
+</p>
+<dl><dd>
+<a href="javascript:call_link('abapclass.htm')" class="blue"><span class="qtext">CLASS class IMPLEMENTATION.</span></a> <br>  ... <br><a href="javascript:call_link('abapendclass.htm')" class="blue"><span class="qtext">ENDCLASS.</span></a>
+</dd></dl>
+<p>
+The implementation part of a class contains the implementation of all
+<a href="javascript:call_link('abenmethod_glosry.htm')" class="grey" title="词汇表条目">methods</a> of this class. Methods are
+<a href="javascript:call_link('abenprocedure_glosry.htm')" class="grey" title="词汇表条目">procedures</a>, which makes them processing
+blocks of an ABAP program. The arrangement of the implementation part in the source code is therefore
+irrelevant. For clarity, all the implementation parts of local classes should be listed at the end of
+the program, or directly after the relevant definition part. In the latter case, however, it should be ensured that subsequent non-declarative statements must then be assigned explicitly to a
+<a href="javascript:call_link('abenprocessing_block_glosry.htm')" class="grey" title="词汇表条目">processing block</a> such as <span class="qtext">START-OF-SELECTION</span>, so that they can be accessed.
+</p>
+<A name="@@ITOC@@ABENCLASS_INTERFACE_DEFINITION_2"></A>
+<p><span class="h2">
+Defining Interfaces
+</span></p>
+<p>
+The definition of an <span class="qtext">intf</span> interface is enclosed in the following statements: <br><br>
+</p>
+<dl><dd>
+<a href="javascript:call_link('abapinterface.htm')" class="blue"><span class="qtext">INTERFACE intf.</span></a> <br>  ... <br><a href="javascript:call_link('abapendinterface.htm')" class="blue"><span class="qtext">ENDINTERFACE.</span></a>
+</dd></dl>
+<p>
+ The definition contains the declaration of all components (attributes, methods, events) of the interface.
+In interfaces, the same components can be defined as in class definitions. The components of an interface cannot be assigned explicitly to a
+<a href="javascript:call_link('abenvisibility_section_glosry.htm')" class="grey" title="词汇表条目">visibility section</a>, because
+interface components always expand the public area of a class in which they are implemented. Interfaces
+do not have an implementation part since their methods must be implemented in the classes that implement the interface.
+</p>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

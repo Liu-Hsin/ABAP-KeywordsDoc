@@ -1,0 +1,131 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABAPINSERT_REPORT_EXCEPTIONS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="ABAPINSERT_REPORT_EXCEPTIONS">
+<title>
+ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abapinsert_report_exceptions.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abapinsert_report_exceptions.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+</span>
+<p><span class="h4">
+<a href="javascript:call_link('abenabap_language_exceptions.htm')" class="blue">Exceptions</a>
+</span></p>
+<p>
+<span class="bold">Catchable Exceptions</span>
+</p>
+<p>
+<span class="lnkgrey"><span class="qtext400">CX_SY_WRITE_SRC_LINE_TOO_LONG</span></span>
+</p>
+<ul class="disc">
+<li><span class="italic">Cause:</span> A line in the source code contains more than 255 characters. <br><span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_LINE_TOO_LONG</span> <br><br></li>
+</ul>
+<p>
+<span class="bold">Uncatchable Exceptions</span>
+</p>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The program name <span class="qtext">prog</span> begins with <span class="qtext">'%_T'</span>. This prefix is reserved for temporary subroutine pools. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_PROGRAM_INTERNAL_NAME</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The program name <span class="qtext">prog</span> begins with a blank. This is not allowed. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_PROGRAM_NAME_BLANK</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The program name <span class="qtext">prog</span> is too long; it can be no more than 40 characters long. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_PROGRAM_NAME_TOO_LONG</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> Suffix 2 in the program name <span class="qtext">prog</span> is invalid or does not correspond to the specification <span class="qtext">apptype</span>. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_BAD_APPENDAGE</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The specification <span class="qtext">apptype</span> is invalid.
+Valid values are defined in the type pool <span class="lnkgrey"><span class="qtext400">SREXT</span></span>. <br><span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_BAD_APPTYPE</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> Suffix 2 in the program name <span class="qtext">prog</span> is invalid or does not correspond to the specification <span class="qtext">exttype</span>. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_BAD_EXTENSION</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The specification <span class="qtext">exttype</span> is invalid. Valid values are defined in the type pool <span class="qtext400">SREXT</span>. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_BAD_EXTTYPE</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The value of the field <span class="qtext">uc</span> is not <span class="qtext">'X'</span> or <span class="qtext">' '</span>. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_ILLEGAL_FLAG</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The value of the field <span class="qtext">pt</span> is not <span class="qtext">
+'1'</span>, <span class="qtext">'I'</span>, <span class="qtext">'S'</span> , <span class="qtext">'M'</span>,
+<span class="qtext">'F'</span>, <span class="qtext">'J'</span>, or <span class="qtext">'K'</span>. <br><span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_ILLEGAL_PROGTYPE</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The program name <span class="qtext">prog</span> is longer than
+30 characters and the program does not yet exist in the library. Without the addition <span class="qtext">... APPENDAGE TYPE apptype</span>, the program cannot be inserted. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_NO_APPTYPE</span></li>
+</ul>
+<ul class="disc">
+<li><span class="italic">Cause:</span> The program name <span class="qtext">prog</span> is longer than
+30 characters and the program does not yet exist in the library. Without the addition <span class="qtext">... EXTENSION TYPE exttype</span>, the program cannot be inserted. <br>
+<span class="italic">Runtime error:</span> <span class="qtext400">INSERT_REPORT_NO_EXTTYPE</span></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>

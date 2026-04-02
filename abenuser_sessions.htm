@@ -1,0 +1,192 @@
+<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN">
+<!-- ABENUSER_SESSIONS -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="SAP">
+<meta name="description" content="User Sessions">
+<meta name="keywords" content="ABAP, user session">
+<title>
+User Sessions - ABAP &#x5173;&#x952E;&#x5B57;&#x6587;&#x6863;
+</title>
+<link rel="icon" href="ABAPIcon.ico" type="image/ico">
+<link rel="shortcut icon" href="ABAPIcon.ico">
+<LINK rel="stylesheet" href="abap_docu.css" type="text/css">
+<script language="javascript" type="text/javascript" src="functions.js"></script>
+<script type="text/JavaScript">
+function urlToClipboard(id){
+ try{ var loc = top.location.href;}
+ catch(e){ alert( "URL cannnot be determined" ); return; }
+ var field = document.getElementById(id);
+ field.focus();
+ if ( loc.search( ".htm" ) == -1 && loc.search( ".HTM" ) == -1  ){ loc = loc + "index.htm"; }
+ if (   loc.search( "index.htm" ) != -1
+     || loc.search( "INDEX.HTM" ) != -1 ){
+   var off = loc.search( "file=" );
+   if ( off == -1  ){
+     field.value = loc + "?file=abenuser_sessions.htm"; }
+   else {
+     field.value = loc.substring( 0, off ) + "file=abenuser_sessions.htm";
+   }
+ }
+ else {
+    field.value = loc; }
+ field.setSelectionRange(0, field.value.length);
+ var r = confirm( "Copy URL to clipboard?\n\n" + field.value + "\n\nCopy to clipboard does not work in all browsers." );
+ if (r == true) {
+   try{
+     document.execCommand("copy");
+   }
+     catch(e){ alert( "URL could not be copied to clipboard" ); }
+ }
+ window.scrollTo(0,0);
+}
+</script>
+</head>
+<body>
+<div class="all">
+<div style="float:right;">
+<input type="button" value="URL"
+style="font-size:10px; width:30px; height:18px; padding:0; "
+onclick="urlToClipboard('url')" title="Copy URL to Clipboard" ></div>
+<p>
+<input name="query" id="query" value="" type="text" title="Suchbegriff" size="30" maxlength="30" onkeyup="getInput()">&nbsp;
+<input type="button" value="Search"
+style="font-size:12px; width:50px; height:18px; padding:0"
+onclick="call_search('search.htm')" title="Search in ABAP Keyword Documentation" >
+<hr style="width:100%;height:1px"></p>
+<p class="copyright">AS ABAP Release 755, &copy;Copyright 2026 SAP SE. All rights reserved.</p>
+<span class="path">
+<a href="javascript:call_link('abenabap.htm')" class="blue">ABAP - Keyword Documentation</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_reference.htm')" class="blue">ABAP - Programming Language</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenabap_oview.htm')" class="blue">ABAP - Overview</a>&nbsp;&rarr;&nbsp;
+<a href="javascript:call_link('abenorganization_of_modules.htm')" class="blue">ABAP Programs on the AS ABAP</a>&nbsp;&rarr;&nbsp;
+</span>
+<p><span class="h1">
+User Sessions
+</span></p>
+<!-- @@DISCLAIMER@@ -->
+<p>
+Each execution of an ABAP program takes place in an
+<a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a> in an
+<a href="javascript:call_link('abenabap_session_glosry.htm')" class="grey" title="词汇表条目">ABAP session</a> within an
+<a href="javascript:call_link('abenapplication_server_glosry.htm')" class="grey" title="词汇表条目">AS instance</a>
+<a href="javascript:call_link('abenuser_session_glosry.htm')" class="grey" title="词汇表条目">user session</a>. For this, at least one ABAP session is open in each user session.
+</p>
+<p>
+A user session is opened whenever a <a href="javascript:call_link('abenuser_glosry.htm')" class="grey" title="词汇表条目">user</a>
+<a href="javascript:call_link('abenlogon_glosry.htm')" class="grey" title="词汇表条目">logs on</a> to an
+<a href="javascript:call_link('abenas_abap_glosry.htm')" class="grey" title="词汇表条目">AS ABAP</a>. Here, the following fixed properties of the user session are defined:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abenuser_name_glosry.htm')" class="grey" title="词汇表条目">User name</a></li>
+</ul>
+<dl><dd>
+The user name is assigned a <a href="javascript:call_link('abenuser_master_record_glosry.htm')" class="grey" title="词汇表条目">user master record</a> and
+<a href="javascript:call_link('abenauthorization_glosry.htm')" class="grey" title="词汇表条目">authorizations</a> that affect the
+behavior of an ABAP program. The current user name is returned by the method <span class="qtext">GET_USER_NAME</span> of the class <span class="lnkgrey"><span class="qtext400">CL_ABAP_SYST</span></span> and is available in the
+<a href="javascript:call_link('abensystem_field_glosry.htm')" class="grey" title="词汇表条目">system field</a> <span class="qtext">sy-uname</span>.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenclient_identifier_glosry.htm')" class="grey" title="词汇表条目">Client ID</a></li>
+</ul>
+<dl><dd>
+The client ID determines the current <a href="javascript:call_link('abenclient_glosry.htm')" class="grey" title="词汇表条目">client</a>. When database content is accessed using
+<a href="javascript:call_link('abenabap_sql_glosry.htm')" class="grey" title="词汇表条目">ABAP SQL</a>,
+<a href="javascript:call_link('abenopen_sql_client_handling.htm')" class="blue">implicit client handling</a> is used by default
+where only the data of the current client is accessed. The current client is returned by the method
+<span class="qtext">GET_CLIENT</span> of the class <span class="lnkgrey"><span class="qtext400">CL_ABAP_SYST</span></span> and is available in the
+<a href="javascript:call_link('abensystem_field_glosry.htm')" class="grey" title="词汇表条目">system field</a> <span class="qtext">sy-mandt</span>.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenlogon_language_glosry.htm')" class="grey" title="词汇表条目">Logon language</a></li>
+</ul>
+<dl><dd>
+The logon language determines the access to certain text repositories and is also the
+<a href="javascript:call_link('abentext_env_langu_glosry.htm')" class="grey" title="词汇表条目">text environment language</a> by
+default. The current logon language is returned by the method <span class="qtext">GET_LOGON_LANGUAGE</span> of the class <span class="lnkgrey"><span class="qtext400">CL_ABAP_SYST</span></span>. The
+<a href="javascript:call_link('abensystem_field_glosry.htm')" class="grey" title="词汇表条目">system field</a> <span class="qtext">sy-langu</span>, on the other hand, contains the text environment language of the current
+<a href="javascript:call_link('abeninternal_session_glosry.htm')" class="grey" title="词汇表条目">internal session</a>, which can also be set to a different value.
+</dd></dl>
+<p>
+There are different types of user sessions in which different rules and restrictions apply when ABAP programs are executed:
+</p>
+<ul class="disc">
+<li><a href="javascript:call_link('abendialog_session_glosry.htm')" class="grey" title="词汇表条目">Dialog sessions</a></li>
+</ul>
+<dl><dd>
+Dialog sessions are used for <a href="javascript:call_link('abendialog_processing_glosry.htm')" class="grey" title="词汇表条目">dialog processing</a> with the
+<a href="javascript:call_link('abensap_gui_glosry.htm')" class="grey" title="词汇表条目">SAP GUI</a>. The ABAP programs are controlled by classic
+<a href="javascript:call_link('abendynpro_glosry.htm')" class="grey" title="词汇表条目">dynpros</a> and their special forms,
+<a href="javascript:call_link('abenselection_screen_glosry.htm')" class="grey" title="词汇表条目">selection screens</a> and classic <a href="javascript:call_link('abenlist_glosry.htm')" class="grey" title="词汇表条目">lists</a>.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenbatch_session_glosry.htm')" class="grey" title="词汇表条目">Background sessions</a></li>
+</ul>
+<dl><dd>
+Background sessions are used for <a href="javascript:call_link('abenbackround_processing_glosry.htm')" class="grey" title="词汇表条目">background processing</a>, namely the execution of ABAP programs in the background without user interaction.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenupdate_session_glosry.htm')" class="grey" title="词汇表条目">Update sessions</a></li>
+</ul>
+<dl><dd>
+Update sessions are used for classic non-local <a href="javascript:call_link('abenupdate_glosry.htm')" class="grey" title="词汇表条目">updates</a>, namely the execution of registered
+<a href="javascript:call_link('abenupdate_function_module_glosry.htm')" class="grey" title="词汇表条目">update function modules</a> in a dedicated work process.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenrfc_session_glosry.htm')" class="grey" title="词汇表条目">RFC sessions</a></li>
+</ul>
+<dl><dd>
+RFC sessions are used for <a href="javascript:call_link('abenrfc_processing_glosry.htm')" class="grey" title="词汇表条目">RFC processing</a>, namely the execution of remotely called function modules
+(<a href="javascript:call_link('abenrfm_glosry.htm')" class="grey" title="词汇表条目">RFMs</a>).
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenicf_session_glosry.htm')" class="grey" title="词汇表条目">ICF sessions</a></li>
+</ul>
+<dl><dd>
+ICF sessions are used for <a href="javascript:call_link('abenicf_processing_glosry.htm')" class="grey" title="词汇表条目">ICF</a> processing, namely the processing of HTTP/HTTPS or SMTP queries to the AS ABAP in a handler class.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenapc_session_glosry.htm')" class="grey" title="词汇表条目">APC sessions</a></li>
+</ul>
+<dl><dd>
+APC sessions are used for <a href="javascript:call_link('abenapc_processing_glosry.htm')" class="grey" title="词汇表条目">APC</a> processing, namely the processing of WebSocket or TCP queries to the AS ABAP in a handler class.
+</dd></dl>
+<ul class="disc">
+<li><a href="javascript:call_link('abenabap_daemon_session_glosry.htm')" class="grey" title="词汇表条目">ABAP Daemon sessions</a></li>
+</ul>
+<dl><dd>
+ABAP Daemon sessions are used for <a href="javascript:call_link('abenabap_daemon_processing_glosry.htm')" class="grey" title="词汇表条目">ABAP Daemon processing</a>, namely the execution of an
+<a href="javascript:call_link('abenabap_daemon_glosry.htm')" class="grey" title="词汇表条目">ABAP Daemon</a> that is automatically restarted after a program termination.
+</dd></dl>
+<p>
+The <a href="javascript:call_link('abenuser_memory_glosry.htm')" class="grey" title="词汇表条目">user memory</a> is assigned a user session as a dedicated memory area for
+<a href="javascript:call_link('abenspa_gpa_parameter_glosry.htm')" class="grey" title="词汇表条目">SPA/GPA parameters</a> and an <a href="javascript:call_link('abenabap_daemon_memory_glosry.htm')" class="grey" title="词汇表条目">ABAP Daemon memory</a> as a subarea.
+</p>
+<p><span class="h4">
+Hint
+</span></p>
+<p>
+From a user session, it is possible to programmatically open further user sessions on the same or another AS instance. For example:
+</p>
+<ul class="disc">
+<li>A <a href="javascript:call_link('abenremote_function_call_glosry.htm')" class="grey" title="词汇表条目">remote function call</a> with the destination <span class="qtext400">"NONE"</span> opens a user session on the same AS instance.</li>
+</ul>
+<ul class="disc">
+<li>Calls of <a href="javascript:call_link('abenupdate_module_glosry.htm')" class="grey" title="词汇表条目">update
+modules</a> using <a href="javascript:call_link('abapcommit.htm')" class="blue"><span class="qtext">COMMIT WORK</span></a> or execution of executable programs in
+<a href="javascript:call_link('abenbackround_processing_glosry.htm')" class="grey" title="词汇表条目">background programming</a> open separate user sessions.</li>
+</ul>
+<ul class="disc">
+<li>ICF and APC clients can address the current or another AS instance as ICF or APC servers and thus open new user sessions.</li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+</DIV>
+<fieldset style="opacity:0">
+<input id="url" type="text" />
+</fieldset>
+</BODY>
+</html>
